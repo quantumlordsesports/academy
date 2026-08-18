@@ -12,10 +12,12 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="ui-effects.css" />
   <link rel="stylesheet" href="audio-controller.css" />
+  <link rel="stylesheet" href="roster-reel.css" />
   <script src="data.js" defer></script>
   <script src="app.js" defer></script>
   <script src="ui-effects.js" defer></script>
   <script src="audio-controller.js" defer></script>
+  <script src="roster-reel.js" defer></script>
 </head>
 <body>
   <!-- Preloader -->
@@ -145,7 +147,255 @@
         <h2>Meet the lineup</h2>
         <p>Built for clutch moments, each member brings a unique weapon to the fight.</p>
       </div>
-      <div id="roster-grid" class="card-grid"></div>
+
+      <!-- Auto-Sequencing Roster Reel Component -->
+      <div class="roster-reel-wrapper" aria-label="Auto-Sequencing Player Reel" role="region">
+        
+        <!-- HUD Header & Progress Cadence Bar -->
+        <div class="reel-hud-header">
+          <div class="reel-telemetry-badge">
+            <span class="reel-live-pulse" aria-hidden="true"></span>
+            <span>Active Pro Roster // Tier-1 Squad</span>
+          </div>
+
+          <!-- 4-Segment Auto-Progress Bars (3.5s sequence) -->
+          <div class="reel-progress-segments" aria-label="Player Sequence Timeline">
+            <div class="reel-prog-seg active" data-index="0" title="Player 1: —͞Ɲɪꜱʜꫝᴅ">
+              <span class="reel-prog-fill"></span>
+            </div>
+            <div class="reel-prog-seg" data-index="1" title="Player 2: ΔPOCΔLYPSE">
+              <span class="reel-prog-fill"></span>
+            </div>
+            <div class="reel-prog-seg" data-index="2" title="Player 3: ᴀꜱ̷ᴄᴇㅤ">
+              <span class="reel-prog-fill"></span>
+            </div>
+            <div class="reel-prog-seg" data-index="3" title="Player 4: Shᥲhri̾ᥲr〆ᥲk">
+              <span class="reel-prog-fill"></span>
+            </div>
+          </div>
+
+          <!-- Navigation & Pause Controls -->
+          <div class="reel-nav-actions">
+            <span class="reel-counter-text" id="reelCounterText">01 / 04</span>
+            <button class="reel-ctrl-btn" id="reelPrevBtn" aria-label="Previous Player" title="Previous Player">❮</button>
+            <button class="reel-ctrl-btn" id="reelPlayPauseBtn" aria-label="Pause Auto Sequence" title="Pause Auto-Reel">❚❚</button>
+            <button class="reel-ctrl-btn" id="reelNextBtn" aria-label="Next Player" title="Next Player">❯</button>
+          </div>
+        </div>
+
+        <!-- Reel Stage (Whip-Pan Slide Deck) -->
+        <div class="reel-stage" id="rosterReelStage">
+          
+          <!-- Slide 1: Nishad -->
+          <article class="reel-slide is-active" data-player="nishad" data-index="0">
+            <div class="slide-photo-pane">
+              <div class="slide-photo-frame">
+                <span class="hud-bracket hud-tl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-tr" aria-hidden="true"></span>
+                <span class="hud-bracket hud-bl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-br" aria-hidden="true"></span>
+                <div class="slide-status-pill">● ACTIVE STARTER</div>
+                <div class="slide-scan-line" aria-hidden="true"></div>
+                <img class="slide-player-img" src="assets/players/nishad.jpg" alt="—͞Ɲɪꜱʜꫝᴅ profile photo" onerror="this.src='folder/nishad.jpg.jpeg'" />
+              </div>
+            </div>
+            <div class="slide-info-pane">
+              <div class="slide-header-meta">
+                <span class="slide-role-tag">🎯 Rusher / Sniper</span>
+                <span class="slide-game-tag">⚡ Rusher by Birth</span>
+              </div>
+              <h3 class="slide-player-ign">—͞Ɲɪꜱʜꫝᴅ</h3>
+              <div class="slide-realname-box">
+                <span class="slide-realname">Mehejub Raiyan Nishad</span>
+                <span>•</span>
+                <span class="slide-location">📍 Kishorgonj</span>
+              </div>
+              <div class="slide-bio-quote">
+                "Aggressive frontline entry fragger with elite long-range precision and clutch instincts."
+              </div>
+              <div class="slide-stats-grid">
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Entry Fragging</span><strong>98%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 98%;"></div></div>
+                </div>
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Sniper Precision</span><strong>94%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 94%;"></div></div>
+                </div>
+              </div>
+              <a href="profile.html" class="slide-action-btn">View Full Dossier →</a>
+            </div>
+          </article>
+
+          <!-- Slide 2: Roman -->
+          <article class="reel-slide" data-player="roman" data-index="1">
+            <div class="slide-photo-pane">
+              <div class="slide-photo-frame">
+                <span class="hud-bracket hud-tl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-tr" aria-hidden="true"></span>
+                <span class="hud-bracket hud-bl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-br" aria-hidden="true"></span>
+                <div class="slide-status-pill">● ACTIVE STARTER</div>
+                <div class="slide-scan-line" aria-hidden="true"></div>
+                <img class="slide-player-img" src="assets/players/roman.jpg" alt="ΔPOCΔLYPSE profile photo" onerror="this.src='folder/roman.jpg.jpeg'" />
+              </div>
+            </div>
+            <div class="slide-info-pane">
+              <div class="slide-header-meta">
+                <span class="slide-role-tag">🛡️ Rusher / Support</span>
+                <span class="slide-game-tag">⚡ Esports Mind, Always Bind</span>
+              </div>
+              <h3 class="slide-player-ign">ΔPOCΔLYPSE</h3>
+              <div class="slide-realname-box">
+                <span class="slide-realname">Ruhul Amin Roman</span>
+                <span>•</span>
+                <span class="slide-location">📍 Kishorgonj</span>
+              </div>
+              <div class="slide-bio-quote">
+                "Balanced aggression and smart support play keep the squad in control during high-stakes rotations."
+              </div>
+              <div class="slide-stats-grid">
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Tactical Support</span><strong>96%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 96%;"></div></div>
+                </div>
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Zone Control</span><strong>92%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 92%;"></div></div>
+                </div>
+              </div>
+              <a href="profile.html" class="slide-action-btn">View Full Dossier →</a>
+            </div>
+          </article>
+
+          <!-- Slide 3: Santo -->
+          <article class="reel-slide" data-player="santo" data-index="2">
+            <div class="slide-photo-pane">
+              <div class="slide-photo-frame">
+                <span class="hud-bracket hud-tl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-tr" aria-hidden="true"></span>
+                <span class="hud-bracket hud-bl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-br" aria-hidden="true"></span>
+                <div class="slide-status-pill">● ACTIVE STARTER</div>
+                <div class="slide-scan-line" aria-hidden="true"></div>
+                <img class="slide-player-img" src="assets/players/santo.jpg" alt="ᴀꜱ̷ᴄᴇㅤ profile photo" onerror="this.src='folder/santo.jpg.jpeg'" />
+              </div>
+            </div>
+            <div class="slide-info-pane">
+              <div class="slide-header-meta">
+                <span class="slide-role-tag">💣 Bomber</span>
+                <span class="slide-game-tag">⚡ Booooom!!!</span>
+              </div>
+              <h3 class="slide-player-ign">ᴀꜱ̷ᴄᴇㅤ</h3>
+              <div class="slide-realname-box">
+                <span class="slide-realname">Hasibur Hassan Shanto</span>
+                <span>•</span>
+                <span class="slide-location">📍 Kishorgonj</span>
+              </div>
+              <div class="slide-bio-quote">
+                "Heavy pressure, ordnance mastery, and explosive timing make every site breach overwhelmingly lethal."
+              </div>
+              <div class="slide-stats-grid">
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Area Denial</span><strong>99%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 99%;"></div></div>
+                </div>
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Breach Impact</span><strong>95%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 95%;"></div></div>
+                </div>
+              </div>
+              <a href="profile.html" class="slide-action-btn">View Full Dossier →</a>
+            </div>
+          </article>
+
+          <!-- Slide 4: Shahriar -->
+          <article class="reel-slide" data-player="shahriar" data-index="3">
+            <div class="slide-photo-pane">
+              <div class="slide-photo-frame">
+                <span class="hud-bracket hud-tl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-tr" aria-hidden="true"></span>
+                <span class="hud-bracket hud-bl" aria-hidden="true"></span>
+                <span class="hud-bracket hud-br" aria-hidden="true"></span>
+                <div class="slide-status-pill">● ACTIVE STARTER</div>
+                <div class="slide-scan-line" aria-hidden="true"></div>
+                <img class="slide-player-img" src="assets/players/shahriar.png" alt="Shᥲhri̾ᥲr〆ᥲk profile photo" onerror="this.src='folder/shahriar.png.png'" />
+              </div>
+            </div>
+            <div class="slide-info-pane">
+              <div class="slide-header-meta">
+                <span class="slide-role-tag">🧠 Support / Analyst</span>
+                <span class="slide-game-tag">⚡ Would Love to Analyse your game</span>
+              </div>
+              <h3 class="slide-player-ign">Shᥲhri̾ᥲr〆ᥲk</h3>
+              <div class="slide-realname-box">
+                <span class="slide-realname">A.K.M Shahriar</span>
+                <span>•</span>
+                <span class="slide-location">📍 Sylhet</span>
+              </div>
+              <div class="slide-bio-quote">
+                "Strategic mastermind with sharp tactical observation, round analytics, and adaptive in-game leadership."
+              </div>
+              <div class="slide-stats-grid">
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Tactical IQ</span><strong>97%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 97%;"></div></div>
+                </div>
+                <div class="slide-stat-item">
+                  <div class="slide-stat-top"><span>Match Telemetry</span><strong>95%</strong></div>
+                  <div class="slide-stat-bar"><div class="slide-stat-fill" style="width: 95%;"></div></div>
+                </div>
+              </div>
+              <a href="profile.html" class="slide-action-btn">View Full Dossier →</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Thumbnail Selector Track -->
+        <div class="reel-thumbs-track" aria-label="Quick Select Player">
+          <button class="reel-thumb-card is-active" data-target="0">
+            <div class="reel-thumb-avatar">
+              <img src="assets/players/nishad.jpg" alt="Nishad" onerror="this.src='folder/nishad.jpg.jpeg'" />
+            </div>
+            <div class="reel-thumb-meta">
+              <span class="reel-thumb-ign">—͞Ɲɪꜱʜꫝᴅ</span>
+              <span class="reel-thumb-role">Rusher / Sniper</span>
+            </div>
+          </button>
+
+          <button class="reel-thumb-card" data-target="1">
+            <div class="reel-thumb-avatar">
+              <img src="assets/players/roman.jpg" alt="Roman" onerror="this.src='folder/roman.jpg.jpeg'" />
+            </div>
+            <div class="reel-thumb-meta">
+              <span class="reel-thumb-ign">ΔPOCΔLYPSE</span>
+              <span class="reel-thumb-role">Rusher / Support</span>
+            </div>
+          </button>
+
+          <button class="reel-thumb-card" data-target="2">
+            <div class="reel-thumb-avatar">
+              <img src="assets/players/santo.jpg" alt="Santo" onerror="this.src='folder/santo.jpg.jpeg'" />
+            </div>
+            <div class="reel-thumb-meta">
+              <span class="reel-thumb-ign">ᴀꜱ̷ᴄᴇㅤ</span>
+              <span class="reel-thumb-role">Bomber</span>
+            </div>
+          </button>
+
+          <button class="reel-thumb-card" data-target="3">
+            <div class="reel-thumb-avatar">
+              <img src="assets/players/shahriar.png" alt="Shahriar" onerror="this.src='folder/shahriar.png.png'" />
+            </div>
+            <div class="reel-thumb-meta">
+              <span class="reel-thumb-ign">Shᥲhri̾ᥲr〆ᥲk</span>
+              <span class="reel-thumb-role">Support / Analyst</span>
+            </div>
+          </button>
+        </div>
+
+      </div>
     </section>
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
