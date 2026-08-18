@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuantumLords Esports — Rise Together. Win Together.</title>
+  <meta name="description" content="QuantumLords Esports — a Free Fire competitive squad. Roster, achievements, news, tournaments and recruitment." />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="ui-effects.css" />
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="ui-effects.js" defer></script>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <span class="preloader-logo">QLD</span>
+      <div class="preloader-bar"><i></i></div>
+      <span class="preloader-tag">LOADING THE QUANTUM STATE</span>
+    </div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+  <!-- Cinematic atmosphere layers -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="mouse-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav-bar" aria-label="Primary navigation">
+      <a class="brand" href="#hero">
+        <span class="brand-mark">
+          <span class="glitch-wrap">
+            <img class="glitch-img" src="assets/logo.png" alt="QuantumLords logo" />
+            <img class="glitch-layer glitch-red" aria-hidden="true" src="assets/logo.png" />
+            <img class="glitch-layer glitch-green" aria-hidden="true" src="assets/logo.png" />
+          </span>
+        </span>
+        <span class="brand-label">QuantumLords</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">
+        <span>Menu</span>
+      </button>
+      <ul id="primary-navigation" class="nav-list">
+        <li><a href="roster/index.html">Roster</a></li>
+        <li><a href="achievements/index.html">Achievements</a></li>
+        <li><a href="news/index.html">News</a></li>
+        <li><a href="tournaments/index.html">Tournaments</a></li>
+        <li><a href="free-fire/index.html">Free Fire</a></li>
+        <li><a href="recruit/index.html">Recruit</a></li>
+        <li><a href="sponsors/index.html">Sponsors</a></li>
+        <li><a href="contact/index.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="announcement-banner" role="status" aria-live="polite">
+    <div class="announce-inner">
+      <span class="announce-badge" aria-hidden="true">🚨 ANNOUNCEMENT</span>
+      <div class="announcement-marquee" aria-hidden="false">
+        <div class="marquee-track">
+          <span class="announce-text">Academy recruitment is OPEN — Apply now for Academy & roster slots.</span>
+          <a class="announce-cta" href="recruit/index.html">Apply Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section id="hero" class="hero-section">
+      <div class="hero-video-bg">
+        <video autoplay muted loop playsinline class="hero-video">
+          <source src="assets/matches/promo.mp4" type="video/mp4" />
+          Your browser does not support embedded videos.
+        </video>
+      </div>
+      <div class="hero-particles" aria-hidden="true"></div>
+      <div class="hero-letterbox" aria-hidden="true"><span class="lb-line lb-top"></span><span class="lb-line lb-bottom"></span></div>
+      <div class="hero-content">
+        <div class="hero-branding">
+          <div class="logo-frame">
+            <span class="glitch-wrap">
+              <img class="hero-logo glitch-img" src="assets/logo.png" alt="QuantumLords Esports logo" />
+              <img class="glitch-layer glitch-red" aria-hidden="true" src="assets/logo.png" />
+              <img class="glitch-layer glitch-green" aria-hidden="true" src="assets/logo.png" />
+            </span>
+            <div class="logo-fallback" aria-hidden="true">#QLD</div>
+          </div>
+          <div>
+            <p class="eyebrow">Team Portfolio</p>
+            <h1 id="hero-title">QuantumLords Esports</h1>
+
+            <div class="welcome-panel" aria-live="polite">
+              <span class="welcome-badge" aria-hidden="true">#QLD</span>
+              <div class="welcome-copy">
+                <p class="welcome-line">"Collision in the Quantum State is called Entanglement. We are the Lords of that state. We are QuantumLords!"</p>
+                <p class="welcome-line welcome-line--accent">Welcome, you son of a Human.!⚡</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#team">Meet the Team</a>
+          <a class="button button-secondary" href="#contact">Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats band -->
+    <section class="stats-band" aria-label="Team statistics">
+      <div class="stat">
+        <span class="stat-value" data-count="4">0</span>
+        <span class="stat-label">Division Players</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" data-count="4">0</span>
+        <span class="stat-label">Major Finals</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" data-count="1">0</span>
+        <span class="stat-label">Academy Program</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" data-count="100">0</span>
+        <span class="stat-label">% Dedication</span>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="team" class="section-block">
+      <div class="section-header">
+        <p class="eyebrow">Team Roster</p>
+        <h2>Meet the lineup</h2>
+        <p>Built for clutch moments, each member brings a unique weapon to the fight.</p>
+      </div>
+      <div id="roster-grid" class="card-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="highlights" class="section-block">
+      <div class="section-header">
+        <p class="eyebrow">News & Highlights</p>
+        <h2>Fresh coverage and highlights</h2>
+      </div>
+      <div id="news-grid" class="card-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="achievements" class="section-block section-alt">
+      <div class="section-header">
+        <p class="eyebrow">Achievements</p>
+        <h2>Title-winning moments</h2>
+        <p>Recent tournament results that shaped the squad’s momentum and identity.</p>
+      </div>
+      <div id="achievements-grid" class="achievement-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="tournament" class="section-block">
+      <div class="section-header">
+        <p class="eyebrow">Tournament</p>
+        <h2>Upcoming & Past Tournaments</h2>
+        <p>Schedule, results, and highlights from our competitive events.</p>
+      </div>
+      <div id="tournament-grid" class="card-grid">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">No tournaments yet</h3>
+            <p class="card-text">We'll list upcoming matches and past results here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="freefire" class="section-block section-alt">
+      <div class="section-header">
+        <p class="eyebrow">FreeFire</p>
+        <h2>FreeFire Squad</h2>
+        <p>News and roster for our FreeFire division.</p>
+      </div>
+      <div id="freefire-grid" class="card-grid"></div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="recruitment" class="section-block section-accent">
+      <div class="section-header">
+        <p class="eyebrow">Recruitment</p>
+        <h2>Join the QuantumLords Academy</h2>
+        <p>Open trials for aspiring players and competitive talent. Train with the squad and earn a chance to join the lineup.</p>
+      </div>
+      <div class="recruit-grid">
+        <div class="recruit-copy">
+          <p class="recruit-note">Looking for disciplined players with hunger, teamwork, and tournament focus.</p>
+          <ul class="recruit-list">
+            <li>Structured coaching and match review</li>
+            <li>Discord team development and support</li>
+            <li>Regular scrims and showcase opportunities</li>
+            <li>Path to full roster placement</li>
+          </ul>
+          <a class="button button-primary" href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Apply via Discord</a>
+          <div class="discord-note" role="note" aria-label="Discord direction">Direction: <strong>DM ME @ak47shahriar_31706</strong></div>
+        </div>
+        <div class="recruit-image">
+          <img src="assets/matches/academy.png" alt="QuantumLords Academy recruitment banner" />
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="sponsors" class="section-block section-alt">
+      <div class="section-header">
+        <p class="eyebrow">Sponsors</p>
+        <h2>Trusted partners</h2>
+        <p>Partner brands that help keep the squad sharp, supported, and in the fight.</p>
+      </div>
+      <div id="sponsor-grid" class="sponsor-grid"></div>
+      <p id="sponsor-text" class="sponsor-text"></p>
+    </section>
+
+    <!-- CTA band -->
+    <section class="cta-band">
+      <p class="eyebrow">The Next Chapter</p>
+      <h2>Ready to collide with the quantum state?</h2>
+      <p>Trials are open. Bring your hunger, your discipline, and your will to win.</p>
+      <a class="button button-primary" href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Join the Squad</a>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <section id="contact" class="section-block contact-section">
+      <div class="section-header">
+        <p class="eyebrow">Contact</p>
+        <h2>Get in touch</h2>
+        <p>Follow the squad, book a media call, or reach out for sponsorship inquiries.</p>
+      </div>
+      <div class="contact-panel">
+        <div class="contact-card">
+          <h3>Socials</h3>
+          <ul id="social-links" class="social-list"></ul>
+        </div>
+        <div class="contact-card">
+          <h3>Email</h3>
+          <div id="contact-emails" class="contact-emails"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="QuantumLords logo" class="footer-logo" />
+          <div>
+            <strong>QuantumLords Esports</strong>
+            <div class="footer-tagline">Rise together. Win together.</div>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#team">Roster</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#recruitment">Recruit</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="footer-contact">
+          <div>Contact: <a href="mailto:quantumlordsesports@gmail.com">quantumlordsesports@gmail.com</a></div>
+          <div class="footer-social">
+            <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Discord</a>
+            <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <small>© Akreative Studio — All rights reserved.</small>
+        <small class="footer-version">version 2.2.0.0.0 (CINEMATIC)</small>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
