@@ -2,12 +2,19 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Googol Inc. // Pro Player Portal & Strategy Vault</title>
-  <meta name="description" content="Googol Inc. Pro Player Portal - Authentication, Player Dossier, Combat Telemetry, and Classified PDF Vault." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#06080f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuantumLords" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>QuantumLords Esports // Player Profile & Strategy Vault</title>
+  <meta name="description" content="QuantumLords Esports Player Profile, Authentication, Player Dossier, Combat Telemetry, and Classified Strategy Vault." />
   
   <!-- Favicon -->
   <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
 
   <!-- Google Fonts: Orbitron, Space Grotesk, JetBrains Mono, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,10 +40,10 @@
         extend: {
           colors: {
             cyber: {
-              bg: '#0A0C11',
-              card: '#0F131D',
-              cardHover: '#151B29',
-              border: '#1E293B',
+              bg: '#06080F',
+              card: '#0D111A',
+              cardHover: '#131826',
+              border: '#1E2536',
               cyan: '#00F0FF',
               'cyan-glow': 'rgba(0, 240, 255, 0.4)',
               crimson: '#FF0055',
@@ -45,7 +52,8 @@
               'violet-glow': 'rgba(139, 92, 246, 0.4)',
               green: '#00FF66',
               'green-glow': 'rgba(0, 255, 102, 0.4)',
-              gold: '#FFB800',
+              gold: '#E8C56A',
+              'gold-glow': 'rgba(232, 197, 106, 0.4)',
               muted: '#64748B',
               text: '#E2E8F0',
             }
@@ -59,10 +67,12 @@
           boxShadow: {
             'cyan-glow': '0 0 25px -5px rgba(0, 240, 255, 0.5)',
             'cyan-glow-lg': '0 0 40px 0px rgba(0, 240, 255, 0.35)',
+            'gold-glow': '0 0 25px -5px rgba(232, 197, 106, 0.45)',
+            'gold-glow-lg': '0 0 40px 0px rgba(232, 197, 106, 0.35)',
             'crimson-glow': '0 0 25px -5px rgba(255, 0, 85, 0.5)',
             'violet-glow': '0 0 25px -5px rgba(139, 92, 246, 0.5)',
             'green-glow': '0 0 20px -3px rgba(0, 255, 102, 0.5)',
-            'cyber-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(0, 240, 255, 0.15)',
+            'cyber-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(232, 197, 106, 0.25)',
           },
           animation: {
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -79,23 +89,23 @@
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0A0C11; }
-    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; border: 1px solid rgba(0, 240, 255, 0.2); }
-    ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; border: 1px solid rgba(232, 197, 106, 0.2); }
+    ::-webkit-scrollbar-thumb:hover { background: #E8C56A; }
 
     /* Cyber Grid */
     .cyber-grid-bg {
       background-image: 
-        linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+        linear-gradient(to right, rgba(232, 197, 106, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(232, 197, 106, 0.04) 1px, transparent 1px);
       background-size: 36px 36px;
     }
 
     /* Glassmorphism Panel */
     .glass-panel {
-      background: rgba(15, 19, 29, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 240, 255, 0.15);
+      background: rgba(13, 17, 26, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(232, 197, 106, 0.22);
     }
 
     /* Card Hover */
@@ -104,29 +114,30 @@
     }
     .vault-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(0, 240, 255, 0.6);
-      box-shadow: 0 12px 30px -10px rgba(0, 240, 255, 0.25);
+      border-color: rgba(232, 197, 106, 0.6);
+      box-shadow: 0 12px 30px -10px rgba(232, 197, 106, 0.25);
     }
 
-    /* Shake Animation */
+    /* Shake on alert */
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+      40%, 60% { transform: translate3d(3px, 0, 0); }
     }
     .shake-alert {
       animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
     }
   </style>
 </head>
-<body class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-cyber-cyan selection:text-black">
+<body class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-[#E8C56A] selection:text-black">
 
   <!-- Background Animated Cyber Canvas -->
   <canvas id="cyberCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-35"></canvas>
   <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0 opacity-70"></div>
 
   <!-- Ambient Glow Spots -->
-  <div class="fixed -top-32 -left-32 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed -top-32 -left-32 w-96 h-96 bg-[#E8C56A]/10 rounded-full blur-3xl pointer-events-none z-0"></div>
   <div class="fixed -bottom-32 -right-32 w-96 h-96 bg-cyber-crimson/10 rounded-full blur-3xl pointer-events-none z-0"></div>
 
   <!-- App Wrapper -->
@@ -135,18 +146,18 @@
     <!-- Top Utility Bar with Bangladesh Time Zone (BST) -->
     <div class="w-full bg-[#07090D]/85 border-b border-cyber-border/60 py-2 px-4 sm:px-8 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md">
       <div class="flex items-center space-x-3">
-        <a href="../index.html" class="flex items-center space-x-1.5 text-cyber-cyan hover:text-white transition-colors duration-200">
+        <a href="../index.html" class="flex items-center space-x-1.5 text-[#E8C56A] hover:text-white transition-colors duration-200">
           <i class="ph-bold ph-arrow-left"></i>
-          <span class="font-semibold uppercase tracking-wider">Public Squad Page</span>
+          <span class="font-semibold uppercase tracking-wider">Main Home Page</span>
         </a>
         <span class="text-cyber-border hidden sm:inline">|</span>
-        <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">GOOGOL INC.</span></span>
+        <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">QUANTUMLORDS ESPORTS</span></span>
       </div>
       <div class="flex items-center space-x-4">
         <!-- Live Bangladesh Time Clock (BST) -->
-        <div class="flex items-center space-x-2 bg-cyber-card/80 border border-cyber-cyan/30 px-3 py-1 rounded-lg shadow-sm">
-          <span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
-          <span class="text-[11px] text-cyber-cyan font-bold uppercase tracking-wider hidden xs:inline">🇧🇩 BD TIME:</span>
+        <div class="flex items-center space-x-2 bg-cyber-card/80 border border-[#E8C56A]/30 px-3 py-1 rounded-lg shadow-sm">
+          <span class="inline-block w-2 h-2 rounded-full bg-[#E8C56A] animate-pulse"></span>
+          <span class="text-[11px] text-[#E8C56A] font-bold uppercase tracking-wider hidden xs:inline">🇧🇩 BD TIME:</span>
           <span id="militaryClock" class="text-white font-bold tracking-widest font-mono">00:00:00 BST</span>
         </div>
         <!-- Theme Toggle -->
@@ -155,8 +166,8 @@
           <span class="theme-toggle-text">Dark</span>
         </button>
         <!-- SFX Toggle -->
-        <button id="sfxToggleBtn" onclick="toggleAudioSFX()" class="flex items-center space-x-1 hover:text-cyber-cyan transition-colors" title="Toggle UI Sound Effects">
-          <i id="sfxIcon" class="ph-bold ph-speaker-high text-cyber-cyan"></i>
+        <button id="sfxToggleBtn" onclick="toggleAudioSFX()" class="flex items-center space-x-1 hover:text-[#E8C56A] transition-colors" title="Toggle UI Sound Effects">
+          <i id="sfxIcon" class="ph-bold ph-speaker-high text-[#E8C56A]"></i>
           <span id="sfxLabel" class="hidden md:inline">SFX: ON</span>
         </button>
       </div>
@@ -169,33 +180,30 @@
       <div class="w-full max-w-md relative group">
         
         <!-- Cyber Corner Accents -->
-        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
+        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none"></div>
+        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none"></div>
+        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none"></div>
+        <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none"></div>
 
         <!-- Glowing Login Card -->
-        <div class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-cyber-cyan/30">
+        <div class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-[#E8C56A]/30">
           
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-pulse-slow"></div>
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E8C56A] to-transparent animate-pulse-slow"></div>
 
           <!-- Header / Brand Section -->
-          <div class="text-center mb-7">
-            <div class="mx-auto w-14 h-14 mb-3.5 relative flex items-center justify-center">
-              <div class="absolute inset-0 rounded-2xl bg-cyber-cyan/15 border border-cyber-cyan/40 rotate-45 animate-pulse"></div>
-              <div class="relative z-10 w-11 h-11 rounded-xl bg-[#090C12] border border-cyber-cyan/60 flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
-                <i class="ph-bold ph-shield-chevron text-2xl text-cyber-cyan"></i>
-              </div>
+          <div class="text-center mb-6">
+            <div class="mx-auto w-16 h-16 mb-3 p-1 rounded-2xl bg-gradient-to-b from-[#E8C56A]/30 to-transparent border border-[#E8C56A]/40 shadow-gold-glow flex items-center justify-center">
+              <img src="../assets/logo.png" alt="QuantumLords Esports Logo" class="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(232,197,106,0.4)]" />
             </div>
 
-            <div class="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-[11px] font-mono tracking-widest uppercase mb-1.5">
-              <span>GOOGOL INC. // SECURE VAULT</span>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#E8C56A]/10 border border-[#E8C56A]/30 text-[#E8C56A] text-[11px] font-mono tracking-widest uppercase mb-1.5">
+              <span>QUANTUMLORDS ESPORTS</span>
             </div>
             <h1 class="text-2xl sm:text-3xl font-black font-orbitron text-white tracking-wider uppercase">
-              SYSTEM <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-blue-400">ACCESS</span>
+              PLAYER <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C56A] via-[#FFD700] to-[#FFA500]">PROFILE</span>
             </h1>
-            <p class="text-xs text-cyber-muted font-space mt-1 uppercase tracking-wider">
-              Authenticate to unlock Player Dossier & Strategy Vault
+            <p class="text-xs text-slate-400 font-space mt-1">
+              Sign in to access your Player Dossier & Strategy Vault
             </p>
           </div>
 
@@ -218,13 +226,12 @@
           <!-- Login Form -->
           <form id="loginForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
             <div>
-              <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                <span>Player Email / ID</span>
-                <span class="text-[10px] text-cyber-cyan font-mono">SUPABASE AUTH v2</span>
+              <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                Player Email / ID
               </label>
-              <div class="relative rounded-lg">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                  <i class="ph-bold ph-user text-lg"></i>
+              <div class="relative rounded-xl">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <i class="ph-bold ph-envelope-simple text-lg text-[#E8C56A]"></i>
                 </div>
                 <input 
                   type="email" 
@@ -232,22 +239,19 @@
                   name="email"
                   required 
                   autocomplete="email"
-                  placeholder="player@googol.esports"
-                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono placeholder:text-slate-600 transition-all"
+                  placeholder="player@quantumlords.com"
+                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <div class="flex items-center justify-between mb-1.5">
-                <label for="playerPassword" class="block text-xs font-mono text-slate-300 uppercase tracking-wider">
-                  Passcode / Key
-                </label>
-                <span class="text-[10px] text-cyber-muted font-mono">MIN 6 CHARS</span>
-              </div>
-              <div class="relative rounded-lg">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                  <i class="ph-bold ph-lock-key text-lg"></i>
+              <label for="playerPassword" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                Passcode / Key
+              </label>
+              <div class="relative rounded-xl">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <i class="ph-bold ph-lock-key text-lg text-[#E8C56A]"></i>
                 </div>
                 <input 
                   type="password" 
@@ -256,13 +260,13 @@
                   required 
                   autocomplete="current-password"
                   placeholder="••••••••••••"
-                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono placeholder:text-slate-600 transition-all"
+                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all"
                 />
                 <button 
                   type="button" 
                   id="passwordToggleBtn"
                   onclick="togglePasswordVisibility()" 
-                  class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-cyber-muted hover:text-cyber-cyan transition-colors"
+                  class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-[#E8C56A] transition-colors"
                   aria-label="Toggle password visibility"
                 >
                   <i id="passwordToggleIcon" class="ph-bold ph-eye text-lg"></i>
@@ -274,26 +278,14 @@
               <button 
                 type="submit" 
                 id="authSubmitBtn"
-                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyber-cyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-cyan-glow hover:shadow-cyan-glow-lg transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]"
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]"
               >
-                <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl"></i>
+                <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl text-[#06080F]"></i>
                 <span id="authBtnText">AUTHENTICATE</span>
-                <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden"></i>
+                <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden text-[#06080F]"></i>
               </button>
             </div>
           </form>
-
-          <!-- Instant Demo Access Bypass -->
-          <div class="mt-6 pt-4 border-t border-cyber-border/60 text-center">
-            <button 
-              type="button" 
-              onclick="launchSimulationSession()" 
-              class="text-xs font-mono text-cyber-cyan hover:text-white bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 px-4 py-2 rounded-lg transition-all inline-flex items-center space-x-2"
-            >
-              <i class="ph-bold ph-lightning text-sm"></i>
-              <span>Instant Offline / Demo Vault Access</span>
-            </button>
-          </div>
 
         </div>
 
@@ -306,20 +298,20 @@
     <div id="dashboardView" class="hidden flex-grow flex flex-col transition-all duration-500 pb-12">
       
       <!-- Top Navigation Bar -->
-      <header class="sticky top-0 z-40 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-cyber-cyan/20 shadow-lg">
+      <header class="sticky top-0 z-40 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-[#E8C56A]/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <!-- Left: Brand -->
           <div class="flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-xl bg-cyber-card border border-cyber-cyan/50 flex items-center justify-center shadow-cyan-glow flex-shrink-0">
-              <i class="ph-bold ph-shield-check text-2xl text-cyber-cyan"></i>
+            <div class="w-10 h-10 rounded-xl bg-cyber-card border border-[#E8C56A]/50 flex items-center justify-center shadow-gold-glow flex-shrink-0">
+              <img src="../assets/logo.png" alt="QuantumLords Logo" class="w-7 h-7 object-contain" />
             </div>
             <div>
               <div class="text-lg sm:text-xl font-black font-orbitron tracking-wider text-white">
-                GOOGOL INC. <span class="text-cyber-cyan">// VAULT</span>
+                QUANTUMLORDS <span class="text-[#E8C56A]">// PROFILE & VAULT</span>
               </div>
               <div class="text-[11px] font-mono text-cyber-muted hidden sm:block">
-                CLEARANCE LEVEL 5 • TIER-1 ESPORTS OPERATIVE
+                TIER-1 PRO ESPORTS SQUAD • CLASSIFIED DOSSIER
               </div>
             </div>
           </div>
@@ -424,9 +416,9 @@
                   <span id="heroStatusBadge">ACTIVE STARTER</span>
                 </span>
 
-                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-cyan/15 border border-cyber-cyan/40 text-cyber-cyan text-xs font-mono font-bold tracking-wider">
+                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-gold/15 border border-[#E8C56A]/40 text-[#E8C56A] text-xs font-mono font-bold tracking-wider">
                   <i class="ph-bold ph-shield text-sm"></i>
-                  <span id="heroTeamBadge">Googol Inc.</span>
+                  <span id="heroTeamBadge">QuantumLords Esports</span>
                 </span>
 
                 <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-violet/15 border border-cyber-violet/40 text-purple-300 text-xs font-mono font-bold tracking-wider">
@@ -842,7 +834,7 @@
                 <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   Strategical Esports
                 </h4>
-                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: AK (Googol Strat Lead)</div>
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: AK (QuantumLords Strat Lead)</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
                   Squad tactical playbook covering competitive zone rotations, micro-comms protocol, trade setups, and end-circle win conditions.
                 </p>
@@ -1010,11 +1002,11 @@
     <footer class="w-full bg-[#05070A] border-t border-cyber-border/60 py-5 px-4 text-center text-xs font-mono text-cyber-muted relative z-20">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
-          <span class="text-cyber-cyan font-bold font-orbitron">GOOGOL INC.</span>
-          <span>// PRO PLAYER PORTAL & VAULT</span>
+          <span class="text-cyber-gold font-bold font-orbitron">QUANTUMLORDS ESPORTS</span>
+          <span>// PLAYER PROFILE & VAULT</span>
         </div>
         <div class="text-slate-500 text-[11px]">
-          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT ENGINE • BANGLADESH STANDARD TIME (BST)
+          ALL RIGHTS RESERVED • QUANTUMLORDS ESPORTS • BANGLADESH STANDARD TIME (BST)
         </div>
       </div>
     </footer>
@@ -1039,7 +1031,7 @@
             detectSessionInUrl: true
           }
         });
-        console.log("Googol Inc. // Supabase Client Initialized.");
+        console.log("QuantumLords Esports // Supabase Client Initialized.");
       }
     } catch (err) {
       console.error("Supabase Init Error:", err);
@@ -1132,7 +1124,7 @@
       ign: "CYBER_NINJA",
       uuid: "usr_9482fa81",
       realName: "Alexander \"AK\" Vance",
-      team: "Googol Inc.",
+      team: "QuantumLords Esports",
       role: "IGL / Entry Rusher",
       status: "ACTIVE STARTER",
       avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
@@ -1140,7 +1132,7 @@
 
     function loadUserProfile() {
       try {
-        const raw = localStorage.getItem('googol_esports_player_dossier');
+        const raw = localStorage.getItem('qld_esports_player_dossier') || localStorage.getItem('googol_esports_player_dossier');
         return raw ? Object.assign({}, defaultProfile, JSON.parse(raw)) : defaultProfile;
       } catch (e) {
         return defaultProfile;
@@ -1149,7 +1141,7 @@
 
     function saveUserProfile(profile) {
       try {
-        localStorage.setItem('googol_esports_player_dossier', JSON.stringify(profile));
+        localStorage.setItem('qld_esports_player_dossier', JSON.stringify(profile));
       } catch (e) {
         console.warn("Storage quota warning, saving compact record:", e);
         try {
@@ -1162,7 +1154,7 @@
             status: profile.status,
             avatar: profile.avatar
           };
-          localStorage.setItem('googol_esports_player_dossier', JSON.stringify(compact));
+          localStorage.setItem('qld_esports_player_dossier', JSON.stringify(compact));
         } catch (inner) {
           console.error("Local storage error:", inner);
         }
@@ -1448,7 +1440,7 @@
         
         let errorMsg = err.message || "Invalid Player Credentials";
         if (errorMsg.includes("Invalid login credentials") || errorMsg.includes("invalid_credentials")) {
-          errorMsg = "ACCESS DENIED: Invalid Player Credentials. Please check email/passcode or use Instant Offline Access.";
+          errorMsg = "ACCESS DENIED: Invalid Player Credentials. Please check your email and passcode.";
         }
         showAuthAlert(errorMsg);
       } finally {
@@ -1470,19 +1462,6 @@
       }
       renderUnauthenticatedState();
       showToast("Session Terminated.", 'ph-lock');
-    }
-
-    function launchSimulationSession() {
-      playCyberSFX('success');
-      const simulatedSession = {
-        user: {
-          id: "usr_" + Math.random().toString(36).substring(2, 10),
-          email: "pro_player@googol.esports",
-          role: "authenticated"
-        }
-      };
-      renderAuthenticatedState(simulatedSession);
-      showToast("Entered Pro Vault Mode", 'ph-sparkle');
     }
 
     function togglePasswordVisibility() {
