@@ -17,7 +17,7 @@ const siteData = {
   roster: [
     {
       handle: 'nishad',
-      ign: '—͞Ɲɪꜱʜꫝᴅ',
+      ign: '—͞ƝɪꜱʜAᴅ',
       realName: 'Mehejub Raiyan Nishad',
       role: 'Rusher / Sniper',
       location: 'Kishorgonj',
