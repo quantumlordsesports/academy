@@ -1403,12 +1403,30 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 [data-reveal].revealed { opacity: 1; transform: translateY(0); }
 
-/* ---------- Responsive ---------- */
-
 @media (min-width: 900px) {
-  .nav-toggle { display: none; }
-  .nav-list { display: flex; width: auto; }
+  .nav-toggle { display: none !important; }
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 0.25rem;
+    width: auto;
+  }
   .nav-list.open { display: flex; }
+  .nav-actions {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+  }
+  .nav-theme-item { display: none !important; }
   .hero-branding { justify-items: center; }
   .contact-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .recruit-grid { grid-template-columns: 1.4fr 1fr; }
@@ -1425,13 +1443,23 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     align-items: center;
     padding: 0.75rem 1rem;
   }
+  .nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    order: 2;
+  }
+  .brand {
+    order: 1;
+  }
   .nav-toggle {
     display: inline-flex;
-    margin-left: auto;
   }
   .nav-list {
     display: none;
     width: 100%;
+    order: 3;
     margin-top: 0.65rem;
     padding: 0.65rem;
     background: rgba(10, 13, 22, 0.97);
@@ -1445,6 +1473,18 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     display: grid;
     gap: 0.35rem;
     animation: navMenuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .nav-theme-item {
+    display: block;
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid var(--border);
+  }
+  .nav-theme-item .theme-toggle {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    border-radius: 0.65rem;
   }
   .nav-list a {
     width: 100%;
