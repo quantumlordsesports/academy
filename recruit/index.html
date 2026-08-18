@@ -3,21 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recruit - QuantumLords</title>
+  <title>Recruitment // Join QuantumLords Academy</title>
+  <meta name="description" content="Open trials for aspiring players and competitive talent. Train with QuantumLords and earn a chance to join the Tier-1 lineup." />
+  
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
   <script src="../audio-controller.js" defer></script>
 </head>
-<body>
+<body class="theme-obsidian">
+
+  <!-- Header -->
   <header class="site-header">
     <nav class="nav-bar" aria-label="Primary navigation">
       <a class="brand" href="../index.html">
         <span class="brand-mark">
           <span class="glitch-wrap">
             <img class="glitch-img" src="../assets/logo.png" alt="QuantumLords logo" />
-            <img class="glitch-layer glitch-red" aria-hidden="true" src="../assets/logo.png" />
-            <img class="glitch-layer glitch-green" aria-hidden="true" src="../assets/logo.png" />
           </span>
         </span>
         <span class="brand-label">QuantumLords</span>
@@ -30,31 +37,55 @@
         <li><a href="../news/index.html">News</a></li>
         <li><a href="../tournaments/index.html">Tournaments</a></li>
         <li><a href="../free-fire/index.html">Free Fire</a></li>
-        <li><a href="../recruit/index.html">Recruit</a></li>
+        <li><a href="../recruit/index.html" class="active">Recruit</a></li>
         <li><a href="../sponsors/index.html">Sponsors</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Main Content -->
   <main>
-    <section class="section-block section-accent">
+    
+    <!-- Recruitment Section (Copied from Main Page & Adapted for Sub-Page) -->
+    <section id="recruitment" class="section-block section-accent" style="padding-top: 4rem; padding-bottom: 4rem;">
       <div class="section-header">
         <p class="eyebrow">Recruitment</p>
-        <h1>Recruit - Coming Soon</h1>
-        <p>Placeholder for recruitment details and application links.</p>
+        <h2>Join the QuantumLords Academy</h2>
+        <p>Open trials for aspiring players and competitive talent. Train with the squad and earn a chance to join the lineup.</p>
       </div>
       <div class="recruit-grid">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Recruit page</h3>
-            <p class="card-text">Add application form and details here.</p>
-          </div>
+        <div class="recruit-copy">
+          <p class="recruit-note">Looking for disciplined players with hunger, teamwork, and tournament focus.</p>
+          <ul class="recruit-list">
+            <li>Structured coaching and match review</li>
+            <li>Discord team development and support</li>
+            <li>Regular scrims and showcase opportunities</li>
+            <li>Path to full roster placement</li>
+          </ul>
+          <a class="button button-primary" href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Apply via Discord</a>
+          <div class="discord-note" role="note" aria-label="Discord direction">Direction: <strong>DM ME @ak47shahriar_31706</strong></div>
+        </div>
+        <div class="recruit-image">
+          <img src="../assets/matches/academy.png" alt="QuantumLords Academy recruitment banner" onerror="this.src='../folder/Academy Graduatiom.png.png'" />
         </div>
       </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true"><span></span></div>
+
+    <!-- CTA Band (From Main Page) -->
+    <section class="cta-band">
+      <p class="eyebrow">The Next Chapter</p>
+      <h2>Ready to collide with the quantum state?</h2>
+      <p>Trials are open. Bring your hunger, your discipline, and your will to win.</p>
+      <a class="button button-primary" href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Join the Squad</a>
+    </section>
+
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-grid">
@@ -84,11 +115,10 @@
 
       <div class="footer-bottom">
         <small>© Akreative Studio — All rights reserved.</small>
-        <small class="footer-version">version 2.1.2.0.0 (HJCPP)</small>
+        <small class="footer-version">version 2.2.0.0.0 (CINEMATIC)</small>
       </div>
     </div>
   </footer>
 
-  
 </body>
 </html>
