@@ -2,11 +2,18 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#06080f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuantumLords" />
+  <meta name="format-detection" content="telephone=no" />
   <title>ᴀꜱ̷ᴄᴇㅤ (Hasibur Hassan Shanto) // QuantumLords Pro Player Spotlight</title>
   <meta name="description" content="Official Pro Player Dossier, Solo Spotlight Video, Combat Telemetry and Loadout for ᴀꜱ̷ᴄᴇㅤ (Hasibur Hassan Shanto) — QuantumLords Esports." />
   
   <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -24,11 +31,6 @@
       theme: {
         extend: {
           colors: {
-            cyber: {
-              bg: '#0A0C11',
-              card: '#0F131D',
-              cardHover: '#151B29',
-              border: '#1E293B',
               cyan: '#00F0FF',
               'cyan-glow': 'rgba(0, 240, 255, 0.45)',
               gold: '#E8C56A',
@@ -105,6 +107,8 @@
         muted 
         loop 
         playsinline 
+        webkit-playsinline
+        preload="auto"
         poster="../assets/players/santo.jpg"
       >
         <source src="../assets/Team Video/santo video solo.mp4" type="video/mp4" />
