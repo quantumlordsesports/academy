@@ -96,7 +96,13 @@ const siteData = {
       thumbnail: 'assets/matches/promo.png'
     }
   ],
-  sponsors: [],
-  sponsorText: 'Esport team sponsored By googol INC Guild.',
+  sponsors: [
+    {
+      name: 'Google INC',
+      logo: 'assets/sponsors/Google INC.jfif',
+      url: '#'
+    }
+  ],
+  sponsorText: 'Esport team sponsored By Google INC / Googol INC Guild.',
   contactEmail: 'quantumlordsesports@gmail.com'
 };
