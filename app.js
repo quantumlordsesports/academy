@@ -310,6 +310,75 @@ const setupNavToggle = () => {
   }
 };
 
+/* ---------- Dual-Theme Switcher (Dark / Bright) ---------- */
+
+const initThemeToggle = () => {
+  const getStoredTheme = () => {
+    try {
+      return localStorage.getItem('qld_theme') || 'dark';
+    } catch (e) {
+      return 'dark';
+    }
+  };
+
+  const setStoredTheme = (theme) => {
+    try {
+      localStorage.setItem('qld_theme', theme);
+    } catch (e) {}
+  };
+
+  const applyTheme = (theme, playAudio = false) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'light') {
+      document.documentElement.classList.add('theme-light');
+      if (document.body) document.body.classList.add('theme-light');
+    } else {
+      document.documentElement.classList.remove('theme-light');
+      if (document.body) document.body.classList.remove('theme-light');
+    }
+
+    // Update all theme toggle buttons across the page
+    document.querySelectorAll('.theme-toggle').forEach((btn) => {
+      const isLight = theme === 'light';
+      btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+      btn.setAttribute('aria-label', isLight ? 'Switch to Dark Theme' : 'Switch to Bright Theme');
+      btn.setAttribute('title', isLight ? 'Switch to Dark Theme' : 'Switch to Bright Theme');
+
+      const icon = btn.querySelector('.theme-toggle-icon');
+      const text = btn.querySelector('.theme-toggle-text');
+
+      if (icon) {
+        icon.innerHTML = isLight ? '☀️' : '🌙';
+      }
+      if (text) {
+        text.textContent = isLight ? 'Bright' : 'Dark';
+      }
+    });
+
+    if (playAudio && window.AudioController && typeof window.AudioController.play === 'function') {
+      window.AudioController.play('click');
+    }
+  };
+
+  // Initial apply
+  const currentTheme = getStoredTheme();
+  applyTheme(currentTheme, false);
+
+  // Bind click listeners on all theme toggles
+  document.querySelectorAll('.theme-toggle').forEach((btn) => {
+    // Avoid double listeners
+    if (btn.dataset.themeBound) return;
+    btn.dataset.themeBound = 'true';
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setStoredTheme(next);
+      applyTheme(next, true);
+    });
+  });
+};
+
 /* ---------- Preloader ---------- */
 
 const initPreloader = () => {
@@ -431,7 +500,15 @@ const initScrollReveal = () => {
 
 /* ---------- Boot ---------- */
 
+// Run theme setup immediately for fast response
+if (document.readyState !== 'loading') {
+  initThemeToggle();
+} else {
+  document.addEventListener('DOMContentLoaded', initThemeToggle);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   applySiteData();
   buildSocialLinks();
   buildRoster();
@@ -457,3 +534,4 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+

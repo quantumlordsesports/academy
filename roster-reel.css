@@ -674,3 +674,40 @@
     min-width: 54px;
   }
 }
+
+/* Light Theme overrides for Roster Reel */
+html[data-theme="light"] .reel-hud-header {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(184, 130, 12, 0.25);
+  box-shadow: 0 8px 24px rgba(18, 22, 36, 0.06);
+}
+html[data-theme="light"] .reel-card-main {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(18, 22, 36, 0.1);
+  box-shadow: 0 20px 50px rgba(18, 22, 36, 0.08);
+}
+html[data-theme="light"] .slide-player-ign {
+  color: #0a0d17;
+}
+html[data-theme="light"] .slide-player-name {
+  color: #3b4256;
+}
+html[data-theme="light"] .reel-stat-box {
+  background: rgba(235, 239, 248, 0.85);
+  border-color: rgba(18, 22, 36, 0.08);
+}
+html[data-theme="light"] .reel-stat-val {
+  color: #0a0d17;
+}
+html[data-theme="light"] .reel-thumb-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(18, 22, 36, 0.1);
+  box-shadow: 0 6px 18px rgba(18, 22, 36, 0.04);
+}
+html[data-theme="light"] .reel-thumb-name {
+  color: #0a0d17;
+}
+html[data-theme="light"] .reel-thumb-role {
+  color: #5c647b;
+}
+

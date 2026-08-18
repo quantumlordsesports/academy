@@ -1,6 +1,6 @@
 /* ============================================================
-   QuantumLords Esports — Cinematic Premium Theme (2.2.0)
-   Palette: void black · obsidian glass · gold accent
+   QuantumLords Esports — Dual-Theme System (Dark & Bright)
+   Palette: Void Black & Gold (Dark) · Alabaster Glass & Amber (Bright)
    Type: Bebas Neue (display) · Space Grotesk (UI) · Inter (body)
    ============================================================ */
 
@@ -11,7 +11,11 @@
   --surface: rgba(255, 255, 255, 0.045);
   --surface-strong: rgba(255, 255, 255, 0.07);
   --surface-alt: rgba(255, 255, 255, 0.03);
+  --surface-card: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  --surface-card-hover: linear-gradient(165deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
   --text: #f4f3ee;
+  --text-heading: #f8f6ef;
+  --text-pure: #ffffff;
   --muted: #9aa0b5;
   --border: rgba(255, 255, 255, 0.09);
   --border-strong: rgba(255, 255, 255, 0.16);
@@ -23,8 +27,13 @@
   --accent-soft: rgba(232, 197, 106, 0.14);
   --accent-glow: rgba(232, 197, 106, 0.35);
 
+  --header-bg: rgba(5, 7, 13, 0.75);
+  --dropdown-bg: rgba(10, 13, 22, 0.97);
+  --footer-bg: linear-gradient(180deg, rgba(5, 7, 13, 0.4), rgba(3, 4, 8, 0.9));
+
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
   --shadow-gold: 0 24px 70px rgba(232, 197, 106, 0.12);
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.4);
 
   --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
   --font-ui: "Space Grotesk", "Segoe UI", sans-serif;
@@ -32,6 +41,40 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --radius: 1.4rem;
+}
+
+/* Bright (Light) Theme Tokens */
+html[data-theme="light"],
+body.theme-light {
+  color-scheme: light;
+  --bg: #f4f6fb;
+  --bg-soft: #e9ecf5;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --surface-alt: rgba(235, 239, 248, 0.85);
+  --surface-card: linear-gradient(165deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 253, 0.92));
+  --surface-card-hover: linear-gradient(165deg, #ffffff, rgba(240, 244, 252, 0.98));
+  --text: #191c28;
+  --text-heading: #0a0d17;
+  --text-pure: #000000;
+  --muted: #5c647b;
+  --border: rgba(18, 22, 36, 0.11);
+  --border-strong: rgba(18, 22, 36, 0.2);
+
+  /* Deep golden amber calibrated for bright backgrounds with high legibility */
+  --accent: #b8820c;
+  --accent-bright: #8f6103;
+  --accent-deep: #754d02;
+  --accent-soft: rgba(184, 130, 12, 0.12);
+  --accent-glow: rgba(184, 130, 12, 0.28);
+
+  --header-bg: rgba(244, 246, 251, 0.88);
+  --dropdown-bg: rgba(255, 255, 255, 0.98);
+  --footer-bg: linear-gradient(180deg, #eaedf5, #dde2ed);
+
+  --shadow: 0 20px 50px rgba(18, 22, 36, 0.08);
+  --shadow-gold: 0 16px 40px rgba(184, 130, 12, 0.16);
+  --shadow-card: 0 14px 35px rgba(18, 22, 36, 0.07);
 }
 
 * {
@@ -46,7 +89,6 @@ html {
   overflow-x: hidden;
   max-width: 100vw;
   width: 100%;
-  color-scheme: dark;
 }
 
 body {
@@ -336,6 +378,55 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #f6f3ea;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s var(--ease-out);
+  user-select: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-bright);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: translateY(-1px);
+}
+.theme-toggle:active {
+  transform: scale(0.96);
+}
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-toggle:hover .theme-toggle-icon {
+  transform: rotate(20deg) scale(1.15);
+}
+.theme-toggle-text {
+  font-family: var(--font-ui);
 }
 
 /* Nav Toggle Button */
@@ -1413,3 +1504,272 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .player-card__photo { min-height: 14rem; }
   .marquee-track { animation-duration: calc(var(--marquee-duration, 14s) * 1.4); }
 }
+
+/* ============================================================
+   QuantumLords Esports — Bright (Light) Theme Overrides
+   High-contrast, Alabaster glassmorphism, Warm Amber accents
+   ============================================================ */
+
+html[data-theme="light"] body,
+body.theme-light {
+  background-color: var(--bg);
+  color: var(--text);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(184, 130, 12, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 30%, rgba(184, 130, 12, 0.05), transparent 55%),
+    linear-gradient(90deg, rgba(18, 22, 36, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(18, 22, 36, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 92px 92px, 92px 92px;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(184, 130, 12, 0.35);
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 130, 12, 0.6);
+}
+
+/* Header & Navigation in Light Theme */
+html[data-theme="light"] .site-header {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+}
+html[data-theme="light"] .site-header.scrolled {
+  box-shadow: 0 10px 30px rgba(18, 22, 36, 0.07);
+}
+html[data-theme="light"] .brand-mark {
+  background: #ffffff;
+  border-color: rgba(18, 22, 36, 0.12);
+  box-shadow: 0 6px 18px rgba(18, 22, 36, 0.05);
+}
+html[data-theme="light"] .brand-label {
+  color: var(--text-heading);
+}
+html[data-theme="light"] .nav-list a {
+  color: var(--muted);
+}
+html[data-theme="light"] .nav-list a:hover {
+  color: var(--text-heading);
+  background: rgba(184, 130, 12, 0.08);
+}
+html[data-theme="light"] .nav-list a.active {
+  color: var(--accent-deep);
+  background: rgba(184, 130, 12, 0.14);
+  border-color: rgba(184, 130, 12, 0.4);
+  box-shadow: inset 0 0 12px rgba(184, 130, 12, 0.06);
+}
+html[data-theme="light"] .nav-toggle {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(184, 130, 12, 0.35);
+  color: var(--text);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+html[data-theme="light"] .nav-toggle:hover {
+  background: rgba(184, 130, 12, 0.12);
+  border-color: var(--accent);
+  color: var(--accent-deep);
+}
+html[data-theme="light"] .nav-toggle.is-open {
+  background: rgba(184, 130, 12, 0.18);
+  border-color: var(--accent);
+  color: var(--accent-deep);
+}
+
+@media (max-width: 899px) {
+  html[data-theme="light"] .nav-list {
+    background: var(--dropdown-bg);
+    border-color: rgba(184, 130, 12, 0.28);
+    box-shadow: 0 20px 45px -10px rgba(18, 22, 36, 0.15), 0 0 20px rgba(184, 130, 12, 0.08);
+  }
+  html[data-theme="light"] .nav-list a:hover {
+    background: rgba(184, 130, 12, 0.1);
+    color: var(--text-heading);
+  }
+  html[data-theme="light"] .nav-list a.active {
+    background: rgba(184, 130, 12, 0.16);
+    border-color: rgba(184, 130, 12, 0.45);
+    color: var(--accent-deep);
+  }
+}
+
+/* Announcement Banner in Light Theme */
+html[data-theme="light"] .announce-inner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(242, 245, 253, 0.92));
+  border-color: rgba(184, 130, 12, 0.25);
+  box-shadow: 0 10px 30px rgba(18, 22, 36, 0.06);
+}
+html[data-theme="light"] .announce-text {
+  color: #1a1e2d;
+}
+
+/* Hero in Light Theme */
+html[data-theme="light"] .hero-section {
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 20%, rgba(184, 130, 12, 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 60% at 85% 80%, rgba(184, 130, 12, 0.06), transparent 60%),
+    linear-gradient(180deg, rgba(244, 246, 251, 0.45), rgba(244, 246, 251, 0.95));
+}
+html[data-theme="light"] .hero-video {
+  opacity: 0.15;
+  filter: saturate(0.85) contrast(1.1) brightness(1.2);
+}
+html[data-theme="light"] .hero-section::after {
+  background:
+    linear-gradient(180deg, rgba(244, 246, 251, 0.5), transparent 30%, transparent 70%, var(--bg)),
+    radial-gradient(ellipse 90% 60% at 50% 0%, transparent, rgba(244, 246, 251, 0.35));
+}
+html[data-theme="light"] .hero-section h1 {
+  background: linear-gradient(180deg, #0a0d17 15%, var(--accent) 55%, var(--accent-deep) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 6px 16px rgba(18, 22, 36, 0.12));
+}
+html[data-theme="light"] .logo-frame {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(184, 130, 12, 0.3);
+  box-shadow: 0 10px 30px rgba(18, 22, 36, 0.08), 0 0 25px rgba(184, 130, 12, 0.12);
+}
+html[data-theme="light"] .welcome-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(184, 130, 12, 0.25);
+  box-shadow: 0 14px 35px rgba(18, 22, 36, 0.07);
+}
+html[data-theme="light"] .welcome-line {
+  color: #272c3d;
+}
+html[data-theme="light"] .welcome-line--accent {
+  color: var(--accent-deep);
+}
+
+/* Headings & Text in Light Theme */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .card-title,
+html[data-theme="light"] .section-header h2 {
+  color: var(--text-heading);
+  text-shadow: none;
+}
+html[data-theme="light"] .eyebrow {
+  color: var(--accent-deep);
+}
+
+/* Cards & Surfaces in Light Theme */
+html[data-theme="light"] .card,
+html[data-theme="light"] .player-card,
+html[data-theme="light"] .highlight-card,
+html[data-theme="light"] .contact-card,
+html[data-theme="light"] .achievement-card {
+  background: var(--surface-card);
+  border-color: var(--border);
+  box-shadow: var(--shadow-card);
+}
+html[data-theme="light"] .card:hover,
+html[data-theme="light"] .achievement-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(184, 130, 12, 0.35);
+  box-shadow: 0 24px 60px rgba(18, 22, 36, 0.12), var(--shadow-gold);
+}
+html[data-theme="light"] .stat {
+  background: var(--surface);
+  border-color: var(--border);
+  box-shadow: 0 8px 24px rgba(18, 22, 36, 0.05);
+}
+html[data-theme="light"] .stat-value {
+  color: var(--accent-deep);
+  text-shadow: 0 0 20px rgba(184, 130, 12, 0.2);
+}
+html[data-theme="light"] .roster-info-box {
+  background: rgba(235, 239, 248, 0.85);
+  border-color: var(--border);
+}
+html[data-theme="light"] .roster-name {
+  color: var(--text-heading);
+}
+html[data-theme="light"] .roster-location {
+  color: var(--muted);
+}
+html[data-theme="light"] .section-alt,
+html[data-theme="light"] .section-accent {
+  background: linear-gradient(180deg, rgba(235, 239, 248, 0.7), rgba(244, 246, 251, 0.4));
+  border-color: var(--border);
+}
+
+/* Recruitment in Light Theme */
+html[data-theme="light"] .recruit-list li {
+  color: #272c3d;
+}
+html[data-theme="light"] .discord-note {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--border);
+  color: #272c3d;
+}
+
+/* Sponsors in Light Theme */
+html[data-theme="light"] .sponsor-bg-section {
+  background-color: #eaedf5;
+  border-color: rgba(184, 130, 12, 0.25);
+  box-shadow: 0 15px 40px rgba(18, 22, 36, 0.07);
+}
+html[data-theme="light"] .sponsor-card {
+  background: #ffffff;
+  border-color: var(--border);
+  box-shadow: 0 6px 20px rgba(18, 22, 36, 0.04);
+}
+
+/* Contact in Light Theme */
+html[data-theme="light"] .social-list a,
+html[data-theme="light"] .email-card {
+  background: #ffffff;
+  border-color: var(--border);
+  color: var(--text);
+  box-shadow: 0 4px 12px rgba(18, 22, 36, 0.04);
+}
+html[data-theme="light"] .social-list a:hover,
+html[data-theme="light"] .email-card:hover {
+  background: var(--accent-soft);
+  border-color: rgba(184, 130, 12, 0.4);
+  color: var(--accent-deep);
+}
+html[data-theme="light"] .social-icon {
+  background: rgba(184, 130, 12, 0.1);
+  color: var(--accent-deep);
+}
+
+/* Footer in Light Theme */
+html[data-theme="light"] .site-footer {
+  background: var(--footer-bg);
+  border-top-color: var(--border);
+  color: var(--muted);
+}
+html[data-theme="light"] .footer-brand strong {
+  color: var(--text-heading);
+}
+html[data-theme="light"] .footer-nav a,
+html[data-theme="light"] .footer-social a,
+html[data-theme="light"] .footer-contact a {
+  color: var(--muted);
+}
+html[data-theme="light"] .footer-nav a:hover,
+html[data-theme="light"] .footer-social a:hover,
+html[data-theme="light"] .footer-contact a:hover {
+  color: var(--accent-deep);
+}
+
+/* Preloader in Light Theme */
+html[data-theme="light"] .preloader {
+  background: #f4f6fb;
+}
+html[data-theme="light"] .preloader-logo {
+  background: #ffffff;
+  border-color: rgba(184, 130, 12, 0.3);
+  box-shadow: 0 10px 40px rgba(184, 130, 12, 0.15);
+}
+html[data-theme="light"] .preloader-bar {
+  background: rgba(18, 22, 36, 0.08);
+}
+
