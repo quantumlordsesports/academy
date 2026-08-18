@@ -99,7 +99,7 @@ const siteData = {
   sponsors: [
     {
       name: 'Google INC',
-      logo: 'assets/sponsors/Google INC.jfif',
+      logo: 'assets/sponsors/png Google Inc.png',
       url: '#'
     }
   ],
