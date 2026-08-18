@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ΔPOCΔLYPSE (Ruhul Amin Roman) // QuantumLords Pro Player Dossier</title>
-  <meta name="description" content="Official Pro Player Dossier, Combat Telemetry and Loadout for ΔPOCΔLYPSE (Ruhul Amin Roman) — QuantumLords Esports." />
+  <title>ΔPOCΔLYPSE (Ruhul Amin Roman) // QuantumLords Pro Player Spotlight</title>
+  <meta name="description" content="Official Pro Player Dossier, Solo Spotlight Video, Combat Telemetry and Loadout for ΔPOCΔLYPSE (Ruhul Amin Roman) — QuantumLords Esports." />
   
   <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
@@ -30,9 +30,9 @@
               cardHover: '#151B29',
               border: '#1E293B',
               cyan: '#00F0FF',
-              'cyan-glow': 'rgba(0, 240, 255, 0.4)',
+              'cyan-glow': 'rgba(0, 240, 255, 0.45)',
               gold: '#E8C56A',
-              'gold-glow': 'rgba(232, 197, 106, 0.4)',
+              'gold-glow': 'rgba(232, 197, 106, 0.45)',
               green: '#00FF66',
               muted: '#94A3B8',
               text: '#F4F3EE'
@@ -48,11 +48,26 @@
       }
     }
   </script>
+
+  <style>
+    /* Custom HUD scan line for video hero */
+    .hud-scanline {
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 240, 255, 0.05) 51%, transparent 52%);
+      background-size: 100% 4px;
+    }
+    .hud-corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: #00F0FF;
+      pointer-events: none;
+    }
+  </style>
 </head>
-<body class="bg-[#06080F] text-[#F4F3EE] font-sans min-h-screen relative overflow-x-hidden antialiased">
+<body class="bg-[#0A0C11] text-[#F4F3EE] font-sans min-h-screen relative overflow-x-hidden antialiased">
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-cyber-gold/20 shadow-lg">
+  <header class="sticky top-0 z-50 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-cyber-gold/20 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <div class="flex items-center space-x-3.5">
         <a href="../index.html" class="w-10 h-10 rounded-xl bg-cyber-card border border-cyber-gold/50 flex items-center justify-center shadow-md text-cyber-gold hover:text-white transition-colors">
@@ -60,7 +75,7 @@
         </a>
         <div>
           <div class="text-lg sm:text-xl font-black font-orbitron tracking-wider text-white">
-            QUANTUMLORDS <span class="text-cyber-gold">// PLAYER DOSSIER</span>
+            QUANTUMLORDS <span class="text-cyber-gold">// PLAYER SPOTLIGHT</span>
           </div>
           <div class="text-[11px] font-mono text-cyber-muted hidden sm:block">
             TIER-1 FREE FIRE PRO SQUAD
@@ -76,59 +91,172 @@
     </div>
   </header>
 
-  <!-- Main Player Content -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+  <!-- ========================================================================= -->
+  <!-- 1. CINEMATIC PLAYER SPOTLIGHT HERO HEADER (Video Looper + Cyber HUD) -->
+  <!-- ========================================================================= -->
+  <section class="relative w-full min-h-[520px] md:min-h-[580px] lg:h-[65vh] max-h-[720px] bg-[#0A0C11] overflow-hidden flex items-end">
     
-    <!-- Player Hero Dossier Card -->
-    <section class="rounded-3xl p-6 sm:p-10 bg-[#0F131D]/85 backdrop-blur-xl border border-cyber-gold/30 shadow-2xl relative overflow-hidden">
+    <!-- Background Looping Video -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+      <video 
+        id="spotlightVideo" 
+        class="w-full h-full object-cover" 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        poster="../assets/players/roman.jpg"
+      >
+        <source src="../assets/Team Video/Roman Video solo.mp4" type="video/mp4" />
+        <source src="../../assets/Team Video/Roman Video solo.mp4" type="video/mp4" />
+        <source src="../folder/promo.mp4.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Dark Contrast Gradient Overlays (Ensures High Legibility) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0A0C11] via-[#0A0C11]/50 to-black/30 pointer-events-none z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-black/60 pointer-events-none z-10"></div>
+    <div class="absolute inset-0 hud-scanline pointer-events-none opacity-40 z-10"></div>
+
+    <!-- HUD Decorative Corner Accents -->
+    <div class="hud-corner top-6 left-6 border-t-2 border-l-2 z-20"></div>
+    <div class="hud-corner top-6 right-6 border-t-2 border-r-2 z-20"></div>
+
+    <!-- Overlay Content Container -->
+    <div class="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col justify-between h-full">
+      
+      <!-- Top-Left: Glowing Team Badge & Status Indicator -->
+      <div class="flex flex-wrap items-center justify-between gap-4 w-full">
+        <div class="flex items-center space-x-2.5">
+          <!-- Neon Glowing Team Badge -->
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-xl bg-black/60 border border-cyber-cyan/60 backdrop-blur-md shadow-[0_0_20px_rgba(0,240,255,0.35)]">
+            <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
+            <span class="text-xs font-mono font-bold tracking-widest text-cyber-cyan uppercase">GOOGOL INC. // QUANTUMLORDS</span>
+          </div>
+
+          <!-- Active Starter Pulse -->
+          <div class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-cyber-green/15 border border-cyber-green/50 backdrop-blur-md text-cyber-green text-xs font-mono font-bold tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+            <span>ACTIVE STARTER</span>
+          </div>
+        </div>
+
+        <!-- Top-Right Live Feed Tag -->
+        <div class="hidden sm:inline-flex items-center space-x-2 px-3 py-1 rounded-lg bg-black/50 border border-white/15 text-[11px] font-mono text-slate-300">
+          <span class="text-cyber-gold font-bold">PRO SPOTLIGHT</span>
+          <span>•</span>
+          <span>1080P SOLO REEL</span>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Player In-Game Bio (Left) & Cyber HUD Controls (Right) -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pt-12">
+        
+        <!-- Bottom-Left: Player IGN, Real Name, Role & Location -->
+        <div class="space-y-3 max-w-2xl">
+          <!-- Badges Row -->
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-lg bg-cyber-gold/20 border border-cyber-gold/60 text-cyber-gold text-xs font-mono font-bold tracking-wider">
+              🛡️ RUSHER / SUPPORT
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-lg bg-cyber-cyan/15 border border-cyber-cyan/40 text-cyber-cyan text-xs font-mono font-bold">
+              ⚡ Esports Mind, Always Bind
+            </span>
+            <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
+              <span>🇧🇩</span>
+              <span>Kishorgonj, Bangladesh</span>
+            </span>
+          </div>
+
+          <!-- Massive IGN -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-orbitron text-white tracking-wider drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
+            ΔPOCΔLYPSE
+          </h1>
+
+          <!-- Real Name & Subtitle -->
+          <div class="text-base sm:text-lg font-space text-slate-200 flex items-center space-x-3">
+            <span class="font-bold text-white text-lg">Ruhul Amin Roman</span>
+            <span class="text-cyber-cyan">•</span>
+            <span class="text-slate-300 font-mono text-sm">Squad #02 • Tactical Anchor & Re-Frag Lead</span>
+          </div>
+        </div>
+
+        <!-- Bottom-Right: Cyber HUD Video Controls (Mute / Pause) -->
+        <div class="flex items-center space-x-3 flex-shrink-0">
+          
+          <!-- Mute / Unmute Button -->
+          <button 
+            id="spotlightMuteBtn" 
+            class="px-4 py-2.5 rounded-xl bg-black/75 hover:bg-cyber-cyan/20 border border-cyber-cyan/60 hover:border-cyber-cyan text-cyber-cyan font-mono text-xs font-bold tracking-wider flex items-center space-x-2 backdrop-blur-md transition-all shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+            title="Toggle Video Sound"
+            aria-label="Toggle Video Sound"
+          >
+            <span id="spotlightMuteIcon">🔇</span>
+            <span id="spotlightMuteText">UNMUTE AUDIO</span>
+          </button>
+
+          <!-- Pause / Play Button -->
+          <button 
+            id="spotlightPlayBtn" 
+            class="px-4 py-2.5 rounded-xl bg-black/75 hover:bg-cyber-gold/20 border border-cyber-gold/60 hover:border-cyber-gold text-cyber-gold font-mono text-xs font-bold tracking-wider flex items-center space-x-2 backdrop-blur-md transition-all shadow-[0_0_15px_rgba(232,197,106,0.2)]"
+            title="Pause/Play Video"
+            aria-label="Pause/Play Video"
+          >
+            <span id="spotlightPlayIcon">❚❚</span>
+            <span id="spotlightPlayText">PAUSE FEED</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Edge: Neon Cyan Accent Line (Separates Hero Video from Stats) -->
+    <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyber-gold via-cyber-cyan to-cyber-gold shadow-[0_0_20px_rgba(0,240,255,0.8)] z-30"></div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. PLAYER TELEMETRY, LOADOUTS & TACTICAL PHILOSOPHY -->
+  <!-- ========================================================================= -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    
+    <!-- Tactical Overview Card -->
+    <section class="rounded-3xl p-6 sm:p-10 bg-[#0F131D]/90 backdrop-blur-xl border border-cyber-cyan/30 shadow-2xl relative overflow-hidden">
       <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
         
-        <!-- Player Photo -->
+        <!-- Player Photo Frame -->
         <div class="relative flex-shrink-0">
-          <div class="w-48 h-56 sm:w-56 sm:h-64 rounded-2xl bg-gradient-to-tr from-cyber-gold via-amber-500 to-cyan-400 p-[2px] shadow-xl overflow-hidden">
+          <div class="w-44 h-52 sm:w-52 sm:h-60 rounded-2xl bg-gradient-to-tr from-cyber-gold via-cyber-cyan to-amber-500 p-[2px] shadow-xl overflow-hidden">
             <img 
               src="../assets/players/roman.jpg" 
-              alt="ΔPOCΔLYPSE" 
+              alt="ΔPOCΔLYPSE portrait" 
               class="w-full h-full object-cover rounded-2xl"
               onerror="this.src='../folder/roman.jpg.jpeg'"
             />
           </div>
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#080B10] border border-cyber-gold text-[10px] font-mono text-cyber-gold font-bold tracking-widest whitespace-nowrap shadow-lg">
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#080B10] border border-cyber-cyan text-[10px] font-mono text-cyber-cyan font-bold tracking-widest whitespace-nowrap shadow-lg">
             SQUAD #02 • STARTER
           </div>
         </div>
 
-        <!-- Player Details -->
+        <!-- Tactical Details -->
         <div class="flex-grow text-center md:text-left space-y-4">
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyber-green/15 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold tracking-wider">
-              <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
-              <span>ACTIVE STARTER</span>
-            </span>
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-cyber-gold/15 border border-cyber-gold/40 text-cyber-gold text-xs font-mono font-bold tracking-wider">
-              🛡️ RUSHER / SUPPORT
+              🛡️ SUPPORT & FLANK ANCHOR
             </span>
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold">
-              ⚡ Esports Mind, Always Bind
+              ⚡ RE-FRAG SPECIALIST
             </span>
           </div>
 
-          <div>
-            <h1 class="text-3xl sm:text-5xl font-black font-orbitron text-white tracking-wider">
-              ΔPOCΔLYPSE
-            </h1>
-            <div class="text-sm font-space text-slate-300 mt-1 flex flex-wrap items-center justify-center md:justify-start gap-3">
-              <span class="text-slate-100 font-bold text-base">Ruhul Amin Roman</span>
-              <span>•</span>
-              <span class="text-slate-400">📍 Kishorgonj, Bangladesh</span>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl bg-white/[0.03] border-l-4 border-cyber-gold text-slate-200 italic font-space text-sm sm:text-base">
+          <div class="p-4 rounded-xl bg-white/[0.03] border-l-4 border-cyber-cyan text-slate-200 italic font-space text-sm sm:text-base">
             "Balanced aggression and smart support play keep the squad in control during high-stakes rotations."
           </div>
 
-          <!-- Quick Stats Bar -->
+          <!-- Quick Metrics Bar -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10 text-center">
               <div class="text-xs font-mono text-slate-400">ROLE</div>
@@ -139,7 +267,7 @@
               <div class="text-sm font-bold text-cyan-400">96% Tactical</div>
             </div>
             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10 text-center">
-              <div class="text-xs font-mono text-slate-400">REVIAL RATE</div>
+              <div class="text-xs font-mono text-slate-400">REVIVAL RATE</div>
               <div class="text-sm font-bold text-green-400">99% Clutch</div>
             </div>
             <div class="p-3 rounded-xl bg-white/[0.02] border border-white/10 text-center">
@@ -151,34 +279,34 @@
       </div>
     </section>
 
-    <!-- Combat Telemetry & Playstyle Breakdown -->
+    <!-- Combat Telemetry & Signature Loadouts Grid -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
       <!-- Tactical Dossier -->
       <div class="p-6 sm:p-8 rounded-3xl bg-[#0F131D]/80 border border-white/10 space-y-4">
         <h2 class="text-xl font-orbitron font-bold text-white flex items-center gap-2">
-          <span class="text-cyber-gold">⚔️</span> COMBAT TELEMETRY
+          <span class="text-cyber-cyan">⚔️</span> COMBAT TELEMETRY
         </h2>
         <p class="text-slate-300 text-sm leading-relaxed">
           Roman provides the backbone of team stability and zone presence. His dual skillset of explosive re-fragging and strategic support anchoring allows the team to survive punishing third-party encounters and hold key choke points.
         </p>
         <ul class="space-y-2 text-sm text-slate-300 font-mono">
           <li class="flex items-center gap-2">
-            <span class="text-cyber-gold">▸</span> <strong>Flank Anchor:</strong> Prevents opposing teams from wrapping around the squad.
+            <span class="text-cyber-cyan">▸</span> <strong>Flank Anchor:</strong> Prevents opposing teams from wrapping around the squad.
           </li>
           <li class="flex items-center gap-2">
-            <span class="text-cyber-gold">▸</span> <strong>Zone Positioning:</strong> Controls high-ground angles and safe rotation paths.
+            <span class="text-cyber-cyan">▸</span> <strong>Zone Positioning:</strong> Controls high-ground angles and safe rotation paths.
           </li>
           <li class="flex items-center gap-2">
-            <span class="text-cyber-gold">▸</span> <strong>Re-Frag King:</strong> Instantly trades out teammates to maintain numerical parity.
+            <span class="text-cyber-cyan">▸</span> <strong>Re-Frag King:</strong> Instantly trades out teammates to maintain numerical parity.
           </li>
         </ul>
       </div>
 
-      <!-- Preferred Weapons & Signature Loadouts -->
+      <!-- Signature Loadouts -->
       <div class="p-6 sm:p-8 rounded-3xl bg-[#0F131D]/80 border border-white/10 space-y-4">
         <h2 class="text-xl font-orbitron font-bold text-white flex items-center gap-2">
-          <span class="text-cyan-400">🎯</span> SIGNATURE LOADOUT
+          <span class="text-cyber-gold">🎯</span> SIGNATURE LOADOUT
         </h2>
         <div class="space-y-3">
           <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex justify-between items-center">
@@ -244,8 +372,68 @@
 
   <!-- Footer -->
   <footer class="mt-16 py-8 border-t border-white/10 text-center text-slate-500 text-xs font-mono">
-    <div>© Akreative Studio · QuantumLords Esports Player Dossier</div>
+    <div>© 2026 QuantumLords Esports & Googol Inc. · Player Spotlight Feed</div>
   </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 3. SPOTLIGHT VIDEO CONTROLS JAVASCRIPT -->
+  <!-- ========================================================================= -->
+  <script>
+    (function() {
+      'use strict';
+      
+      const video = document.getElementById('spotlightVideo');
+      const muteBtn = document.getElementById('spotlightMuteBtn');
+      const muteIcon = document.getElementById('spotlightMuteIcon');
+      const muteText = document.getElementById('spotlightMuteText');
+      
+      const playBtn = document.getElementById('spotlightPlayBtn');
+      const playIcon = document.getElementById('spotlightPlayIcon');
+      const playText = document.getElementById('spotlightPlayText');
+
+      if (!video) return;
+
+      // 1. Mute / Unmute Control
+      if (muteBtn) {
+        muteBtn.addEventListener('click', function() {
+          video.muted = !video.muted;
+          if (video.muted) {
+            muteIcon.textContent = '🔇';
+            muteText.textContent = 'UNMUTE AUDIO';
+            muteBtn.classList.remove('bg-cyber-cyan/30', 'border-cyber-cyan');
+          } else {
+            muteIcon.textContent = '🔊';
+            muteText.textContent = 'MUTE AUDIO';
+            muteBtn.classList.add('bg-cyber-cyan/30', 'border-cyber-cyan');
+          }
+        });
+      }
+
+      // 2. Play / Pause Control
+      if (playBtn) {
+        playBtn.addEventListener('click', function() {
+          if (video.paused) {
+            video.play();
+            playIcon.textContent = '❚❚';
+            playText.textContent = 'PAUSE FEED';
+            playBtn.classList.remove('bg-cyber-gold/30', 'border-cyber-gold');
+          } else {
+            video.pause();
+            playIcon.textContent = '▶';
+            playText.textContent = 'RESUME FEED';
+            playBtn.classList.add('bg-cyber-gold/30', 'border-cyber-gold');
+          }
+        });
+      }
+
+      // Auto ensure playback starts smoothly
+      document.addEventListener('DOMContentLoaded', function() {
+        video.play().catch(function() {
+          // Autoplay policy prevented playback, video will play upon interaction
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
