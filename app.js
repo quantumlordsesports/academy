@@ -238,11 +238,12 @@ const applySiteData = () => {
 
   const emailContainer = document.getElementById('contact-emails');
   if (emailContainer) {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteData.contactEmail || 'quantumlordsesports@gmail.com')}`;
     emailContainer.innerHTML = `
-      <div class="email-card">
-        <span class="social-icon" aria-hidden="true"><img class="social-logo" src="assets/social/gmail.webp" alt="Gmail" /></span>
-        <a href="mailto:${siteData.contactEmail}">${siteData.contactEmail}</a>
-      </div>`;
+      <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="email-card">
+        <span class="social-icon" aria-hidden="true"><img class="social-logo" src="assets/social/gmail.webp" alt="Gmail" onerror="this.src='../assets/social/gmail.webp'" /></span>
+        <span>${siteData.contactEmail}</span>
+      </a>`;
   }
 };
 
