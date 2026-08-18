@@ -3,15 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Active Roster - QuantumLords Esports</title>
+  <title>Active Roster Tree // QuantumLords Esports</title>
+  <meta name="description" content="QuantumLords Esports Pro Squad Lineup — Interactive Neural Tree Root Network for Tier-1 Championship Roster." />
+  
   <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="roster-tree.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
   <script src="../audio-controller.js" defer></script>
 </head>
-<body>
+<body class="theme-obsidian">
+
+  <!-- Main Site Navigation Bar -->
   <header class="site-header">
     <nav class="nav-bar" aria-label="Primary navigation">
       <a class="brand" href="../index.html">
@@ -37,100 +46,187 @@
     </nav>
   </header>
 
+  <!-- Main Roster Tree Root Stage -->
   <main>
-    <section class="section-block" style="padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto;">
-      <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <p class="eyebrow" style="color: #00F0FF; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px;">Championship Squad</p>
-        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #fff; text-transform: uppercase; margin: 0.5rem 0;">PRO ROSTER // STARTERS</h1>
-        <p style="color: #94A3B8; max-width: 600px; margin: 0 auto;">Active competitive Free Fire lineup for Googol Inc. / QuantumLords Tier-1 Tournaments.</p>
+    <section class="roster-tree-section" aria-label="QuantumLords Roster Tree Root Network">
+      
+      <!-- Background Ambient Light Pulse -->
+      <div class="roster-tree-ambient" aria-hidden="true"></div>
+
+      <!-- 1. Apex Root Origin (Tree Trunk / Squad Core) -->
+      <div class="tree-origin-wrapper">
+        <div class="tree-origin-node">
+          <div class="tree-origin-core-icon">
+            <img src="../assets/logo.png" alt="QuantumLords Apex Core" />
+          </div>
+          <span class="tree-origin-tag">SQUAD APEX ROOT // TIER-1 LINEUP</span>
+          <h1 class="tree-origin-title">PRO ROSTER TREE</h1>
+          <p class="tree-origin-desc">
+            4 Neural Roots • Synchronized Championship Destiny • Select a player root to inspect their full tactical dossier.
+          </p>
+        </div>
       </div>
 
-      <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
+      <!-- 2. Cybernetic Tree Branch Circuitry (Desktop Connecting Roots) -->
+      <div class="tree-branches-svg-container" aria-hidden="true">
+        <svg class="tree-branches-svg" viewBox="0 0 1200 110" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="rootGoldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#E8C56A" stop-opacity="1" />
+              <stop offset="100%" stop-color="#00F0FF" stop-opacity="0.8" />
+            </linearGradient>
+          </defs>
+          
+          <!-- Root Branch 1 (to Nishad - 12.5%) -->
+          <path d="M 600 0 C 600 50, 150 45, 150 110" stroke="url(#rootGoldGrad)" class="root-branch-line" />
+          <path d="M 600 0 C 600 50, 150 45, 150 110" class="root-branch-pulse" />
+
+          <!-- Root Branch 2 (to Roman - 37.5%) -->
+          <path d="M 600 0 C 600 45, 450 55, 450 110" stroke="url(#rootGoldGrad)" class="root-branch-line" />
+          <path d="M 600 0 C 600 45, 450 55, 450 110" class="root-branch-pulse" style="animation-delay: 0.7s;" />
+
+          <!-- Root Branch 3 (to Santo - 62.5%) -->
+          <path d="M 600 0 C 600 45, 750 55, 750 110" stroke="url(#rootGoldGrad)" class="root-branch-line" />
+          <path d="M 600 0 C 600 45, 750 55, 750 110" class="root-branch-pulse" style="animation-delay: 1.4s;" />
+
+          <!-- Root Branch 4 (to Shahriar - 87.5%) -->
+          <path d="M 600 0 C 600 50, 1050 45, 1050 110" stroke="url(#rootGoldGrad)" class="root-branch-line" />
+          <path d="M 600 0 C 600 50, 1050 45, 1050 110" class="root-branch-pulse" style="animation-delay: 2.1s;" />
+        </svg>
+      </div>
+
+      <!-- 3. The 4 Clickable Tree Root Player Thumbnails -->
+      <div class="tree-nodes-grid">
         
-        <!-- Player 1: Nishad -->
-        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(232, 197, 106, 0.35); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s ease;">
-          <div style="height: 260px; overflow: hidden; position: relative;">
-            <img src="../assets/players/nishad.jpg" alt="—͞Ɲɪꜱʜꫝᴅ" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='../folder/nishad.jpg.jpeg'" />
-            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
-              ACTIVE STARTER
-            </div>
+        <!-- Root Node 1: Nishad -->
+        <a href="nishad.html" class="tree-root-card" title="Open Full Details for —͞Ɲɪꜱʜꫝᴅ">
+          <div class="root-branch-badge">
+            <span class="pulse-dot"></span>
+            <span>ROOT-01 // ALPHA</span>
           </div>
-          <div class="card-body" style="padding: 1.5rem;">
-            <div style="color: #e8c56a; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">RUSHER / SNIPER • #01</div>
-            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">—͞Ɲɪꜱʜꫝᴅ</h3>
-            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Mehejub Raiyan Nishad • 📍 Kishorgonj • ⚡ Rusher by Birth</p>
-            <a href="nishad.html" style="display: block; text-align: center; background: rgba(232, 197, 106, 0.15); border: 1px solid #e8c56a; color: #e8c56a; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
-              VIEW FULL DETAILS →
-            </a>
-          </div>
-        </div>
 
-        <!-- Player 2: Roman -->
-        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(232, 197, 106, 0.35); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s ease;">
-          <div style="height: 260px; overflow: hidden; position: relative;">
-            <img src="../assets/players/roman.jpg" alt="ΔPOCΔLYPSE" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='../folder/roman.jpg.jpeg'" />
-            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
-              ACTIVE STARTER
-            </div>
+          <div class="tree-avatar-frame">
+            <img 
+              src="../assets/players/nishad.jpg" 
+              alt="—͞Ɲɪꜱʜꫝᴅ" 
+              class="tree-avatar-img" 
+              onerror="this.src='../folder/nishad.jpg.jpeg'" 
+            />
           </div>
-          <div class="card-body" style="padding: 1.5rem;">
-            <div style="color: #e8c56a; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">RUSHER / SUPPORT • #02</div>
-            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">ΔPOCΔLYPSE</h3>
-            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Ruhul Amin Roman • 📍 Kishorgonj • ⚡ Esports Mind, Always Bind</p>
-            <a href="roman.html" style="display: block; text-align: center; background: rgba(232, 197, 106, 0.15); border: 1px solid #e8c56a; color: #e8c56a; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
-              VIEW FULL DETAILS →
-            </a>
-          </div>
-        </div>
 
-        <!-- Player 3: Santo -->
-        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(232, 197, 106, 0.35); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s ease;">
-          <div style="height: 260px; overflow: hidden; position: relative;">
-            <img src="../assets/players/santo.jpg" alt="ᴀꜱ̷ᴄᴇㅤ" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='../folder/santo.jpg.jpeg'" />
-            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
-              ACTIVE STARTER
-            </div>
-          </div>
-          <div class="card-body" style="padding: 1.5rem;">
-            <div style="color: #e8c56a; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">BOMBER • #03</div>
-            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">ᴀꜱ̷ᴄᴇㅤ</h3>
-            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Hasibur Hassan Shanto • 📍 Kishorgonj • ⚡ Booooom!!!</p>
-            <a href="santo.html" style="display: block; text-align: center; background: rgba(232, 197, 106, 0.15); border: 1px solid #e8c56a; color: #e8c56a; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
-              VIEW FULL DETAILS →
-            </a>
-          </div>
-        </div>
+          <h2 class="tree-player-ign">—͞Ɲɪꜱʜꫝᴅ</h2>
+          <div class="tree-player-name">Mehejub Raiyan Nishad</div>
+          <div class="tree-player-district">📍 Kishorgonj</div>
+          
+          <div class="tree-role-tag">🎯 Rusher / Sniper</div>
+          <div class="tree-in-game-tag">⚡ Rusher by Birth</div>
 
-        <!-- Player 4: Shahriar -->
-        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(232, 197, 106, 0.35); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s ease;">
-          <div style="height: 260px; overflow: hidden; position: relative;">
-            <img src="../assets/players/shahriar.png" alt="Shᥲhri̾ᥲr〆ᥲk" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='../folder/shahriar.png.png'" />
-            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
-              ACTIVE STARTER
-            </div>
+          <div class="tree-action-cta">
+            <span>View Full Details</span>
+            <span>→</span>
           </div>
-          <div class="card-body" style="padding: 1.5rem;">
-            <div style="color: #e8c56a; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">SUPPORT / ANALYST • #04</div>
-            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">Shᥲhri̾ᥲr〆ᥲk</h3>
-            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">A.K.M Shahriar • 📍 Sylhet • ⚡ Would Love to Analyse</p>
-            <a href="shahriar.html" style="display: block; text-align: center; background: rgba(232, 197, 106, 0.15); border: 1px solid #e8c56a; color: #e8c56a; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
-              VIEW FULL DETAILS →
-            </a>
+        </a>
+
+        <!-- Root Node 2: Roman -->
+        <a href="roman.html" class="tree-root-card" title="Open Full Details for ΔPOCΔLYPSE">
+          <div class="root-branch-badge">
+            <span class="pulse-dot"></span>
+            <span>ROOT-02 // BETA</span>
           </div>
-        </div>
+
+          <div class="tree-avatar-frame">
+            <img 
+              src="../assets/players/roman.jpg" 
+              alt="ΔPOCΔLYPSE" 
+              class="tree-avatar-img" 
+              onerror="this.src='../folder/roman.jpg.jpeg'" 
+            />
+          </div>
+
+          <h2 class="tree-player-ign">ΔPOCΔLYPSE</h2>
+          <div class="tree-player-name">Ruhul Amin Roman</div>
+          <div class="tree-player-district">📍 Kishorgonj</div>
+          
+          <div class="tree-role-tag">🛡️ Rusher / Support</div>
+          <div class="tree-in-game-tag">⚡ Esports Mind, Always Bind</div>
+
+          <div class="tree-action-cta">
+            <span>View Full Details</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <!-- Root Node 3: Santo -->
+        <a href="santo.html" class="tree-root-card" title="Open Full Details for ᴀꜱ̷ᴄᴇㅤ">
+          <div class="root-branch-badge">
+            <span class="pulse-dot"></span>
+            <span>ROOT-03 // GAMMA</span>
+          </div>
+
+          <div class="tree-avatar-frame">
+            <img 
+              src="../assets/players/santo.jpg" 
+              alt="ᴀꜱ̷ᴄᴇㅤ" 
+              class="tree-avatar-img" 
+              onerror="this.src='../folder/santo.jpg.jpeg'" 
+            />
+          </div>
+
+          <h2 class="tree-player-ign">ᴀꜱ̷ᴄᴇㅤ</h2>
+          <div class="tree-player-name">Hasibur Hassan Shanto</div>
+          <div class="tree-player-district">📍 Kishorgonj</div>
+          
+          <div class="tree-role-tag">💣 Bomber & Ordnance</div>
+          <div class="tree-in-game-tag">⚡ Booooom!!!</div>
+
+          <div class="tree-action-cta">
+            <span>View Full Details</span>
+            <span>→</span>
+          </div>
+        </a>
+
+        <!-- Root Node 4: Shahriar -->
+        <a href="shahriar.html" class="tree-root-card" title="Open Full Details for Shᥲhri̾ᥲr〆ᥲk">
+          <div class="root-branch-badge">
+            <span class="pulse-dot"></span>
+            <span>ROOT-04 // DELTA</span>
+          </div>
+
+          <div class="tree-avatar-frame">
+            <img 
+              src="../assets/players/shahriar.png" 
+              alt="Shᥲhri̾ᥲr〆ᥲk" 
+              class="tree-avatar-img" 
+              onerror="this.src='../folder/shahriar.png.png'" 
+            />
+          </div>
+
+          <h2 class="tree-player-ign">Shᥲhri̾ᥲr〆ᥲk</h2>
+          <div class="tree-player-name">A.K.M Shahriar</div>
+          <div class="tree-player-district">📍 Sylhet</div>
+          
+          <div class="tree-role-tag">🧠 Support / Analyst</div>
+          <div class="tree-in-game-tag">⚡ Would Love to Analyse</div>
+
+          <div class="tree-action-cta">
+            <span>View Full Details</span>
+            <span>→</span>
+          </div>
+        </a>
 
       </div>
     </section>
   </main>
 
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-brand">
           <img src="../assets/logo.png" alt="QuantumLords logo" class="footer-logo" />
           <div>
-            <span class="footer-title">QuantumLords</span>
-            <p class="footer-text">Rise Together. Win Together. Free Fire Esports Division.</p>
+            <span class="footer-title">QuantumLords Esports</span>
+            <p class="footer-text">Rise Together. Win Together. Tier-1 Championship Division.</p>
           </div>
         </div>
       </div>
@@ -139,5 +235,6 @@
       </div>
     </div>
   </footer>
+
 </body>
 </html>
