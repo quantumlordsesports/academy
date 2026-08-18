@@ -346,13 +346,15 @@
           
           <div class="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
             
-            <!-- Avatar Container with Instant Auto-Compressed Upload -->
-            <div class="relative group flex-shrink-0">
+            <!-- Avatar Container with Prominently Displayed "Change Photo" Button & Badge -->
+            <div class="relative flex-shrink-0 flex flex-col items-center">
+              
+              <!-- Photo Box -->
               <div 
                 id="avatarTriggerBox" 
-                class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer"
+                class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer group"
                 onclick="triggerAvatarUpload()"
-                title="Click to change profile picture"
+                title="Click to Change Photo"
               >
                 <img 
                   id="avatarPreviewImg" 
@@ -360,16 +362,38 @@
                   alt="Player Avatar" 
                   class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300 pointer-events-none"
                 />
-                <div class="absolute inset-0 bg-black/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl pointer-events-none">
-                  <i class="ph-bold ph-camera text-3xl text-cyber-cyan mb-1 animate-bounce"></i>
-                  <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-center px-2">Change Photo</span>
+
+                <!-- Permanently visible bottom gradient bar with Change Photo icon -->
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-4 pb-2 px-2 flex items-center justify-center text-cyber-cyan space-x-1.5 pointer-events-none">
+                  <i class="ph-bold ph-camera text-sm"></i>
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">Change Photo</span>
+                </div>
+
+                <!-- Hover Overlay with Glowing Camera Circle -->
+                <div class="absolute inset-0 bg-black/75 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl pointer-events-none">
+                  <div class="w-12 h-12 rounded-full bg-cyber-cyan/20 border border-cyber-cyan flex items-center justify-center mb-1.5 shadow-cyan-glow">
+                    <i class="ph-bold ph-camera text-2xl text-cyber-cyan animate-pulse"></i>
+                  </div>
+                  <span class="text-xs font-mono font-bold uppercase tracking-wider text-center text-cyber-cyan">Upload Photo</span>
+                  <span class="text-[10px] text-slate-300 font-mono mt-0.5">Click to browse</span>
                 </div>
               </div>
 
-              <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#080B10] border border-cyber-cyan/60 text-[10px] font-mono text-cyber-cyan font-bold tracking-widest shadow-md whitespace-nowrap">
+              <!-- Dedicated, Always-Visible "CHANGE PHOTO" Cyber Button -->
+              <button 
+                type="button" 
+                onclick="triggerAvatarUpload()" 
+                class="mt-3 w-full py-2 px-3 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan/60 text-cyber-cyan hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95 group"
+              >
+                <i class="ph-bold ph-camera text-base group-hover:scale-110 transition-transform"></i>
+                <span>CHANGE PHOTO</span>
+              </button>
+
+              <div class="mt-1.5 px-3 py-0.5 rounded-full bg-[#080B10] border border-cyber-cyan/40 text-[10px] font-mono text-slate-400 font-semibold tracking-wider">
                 PRO OPERATIVE
               </div>
 
+              <!-- Hidden Native File Input -->
               <input 
                 type="file" 
                 id="avatarFileInput" 
@@ -894,19 +918,19 @@
         <form onsubmit="handleSaveDossierModal(event)" class="space-y-4 text-xs font-mono">
           
           <!-- Avatar Preview & Upload in Modal -->
-          <div class="bg-[#080B10] p-3.5 rounded-2xl border border-cyber-border flex items-center space-x-4">
-            <img id="modalAvatarPreview" src="" alt="Avatar Preview" class="w-16 h-16 rounded-2xl object-cover border border-cyber-cyan/40 flex-shrink-0" />
+          <div class="bg-[#080B10] p-4 rounded-2xl border border-cyber-border flex items-center space-x-4">
+            <img id="modalAvatarPreview" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Avatar Preview" class="w-16 h-16 rounded-2xl object-cover border border-cyber-cyan/60 shadow-cyan-glow flex-shrink-0" />
             <div class="flex-grow space-y-1.5">
               <div class="text-[11px] font-bold text-white uppercase">Player Photo / Avatar</div>
               <div class="flex items-center space-x-2">
                 <button 
                   type="button" 
                   onclick="triggerAvatarUpload()" 
-                  class="px-3 py-1.5 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold uppercase transition-colors"
+                  class="px-3.5 py-1.5 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold uppercase transition-colors shadow-sm"
                 >
-                  <i class="ph-bold ph-upload-simple mr-1"></i> Upload File
+                  <i class="ph-bold ph-camera mr-1"></i> Choose New Photo
                 </button>
-                <span class="text-[10px] text-slate-500">Auto-compressed HD</span>
+                <span class="text-[10px] text-slate-500">Auto-compressed</span>
               </div>
             </div>
           </div>
@@ -1110,9 +1134,8 @@
       try {
         localStorage.setItem('googol_esports_player_dossier', JSON.stringify(profile));
       } catch (e) {
-        console.warn("Storage quota warning, clearing unnecessary cache:", e);
+        console.warn("Storage quota warning, saving compact record:", e);
         try {
-          // If storage full, preserve only essentials
           const compact = {
             ign: profile.ign,
             uuid: profile.uuid,
@@ -1208,6 +1231,13 @@
         return;
       }
 
+      // Immediately render local instant preview in 0ms
+      const tempUrl = URL.createObjectURL(file);
+      const avatarElem = document.getElementById('avatarPreviewImg');
+      if (avatarElem) avatarElem.src = tempUrl;
+      const modalPreview = document.getElementById('modalAvatarPreview');
+      if (modalPreview) modalPreview.src = tempUrl;
+
       showToast("Optimizing & Updating Avatar...", "ph-spinner-gap");
 
       compressAndResizeImage(file, 480, 0.85, (compressedDataUrl) => {
@@ -1216,8 +1246,6 @@
         saveUserProfile(p);
         updateProfileUI();
 
-        // If modal is open, also sync modal preview
-        const modalPreview = document.getElementById('modalAvatarPreview');
         if (modalPreview) modalPreview.src = compressedDataUrl;
 
         playCyberSFX('success');
