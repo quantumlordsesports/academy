@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Googol Inc. // Pro Player Portal & Protected Vault</title>
-  <meta name="description" content="Googol Inc. Esports Pro Player Portal - Authenticated Combat Vault, Telemetry Reports, and Classified Strategy Documents." />
+  <title>Googol Inc. // Pro Player Vault & Strategy Portal</title>
+  <meta name="description" content="Googol Inc. Esports Pro Player Portal - Authenticated Strategy Vault, Required Reading & Tactical Intelligence." />
   
   <!-- Favicon -->
   <link rel="icon" href="../assets/logo.png" type="image/png" />
@@ -51,31 +51,11 @@
             'cyan-glow': '0 0 25px -5px rgba(0, 240, 255, 0.5)',
             'cyan-glow-lg': '0 0 40px 0px rgba(0, 240, 255, 0.35)',
             'crimson-glow': '0 0 25px -5px rgba(255, 0, 85, 0.5)',
-            'crimson-glow-lg': '0 0 40px 0px rgba(255, 0, 85, 0.35)',
             'green-glow': '0 0 20px -3px rgba(0, 255, 102, 0.5)',
             'cyber-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(0, 240, 255, 0.15)',
           },
           animation: {
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'glow-cyan': 'glowCyan 2s ease-in-out infinite alternate',
-            'glow-crimson': 'glowCrimson 2s ease-in-out infinite alternate',
-            'scanline': 'scanline 8s linear infinite',
-            'glitch': 'glitch 1s linear infinite',
-            'spin-slow': 'spin 12s linear infinite',
-          },
-          keyframes: {
-            glowCyan: {
-              '0%': { boxShadow: '0 0 15px rgba(0, 240, 255, 0.2)' },
-              '100%': { boxShadow: '0 0 35px rgba(0, 240, 255, 0.6), 0 0 10px rgba(0, 240, 255, 0.4)' },
-            },
-            glowCrimson: {
-              '0%': { boxShadow: '0 0 15px rgba(255, 0, 85, 0.2)' },
-              '100%': { boxShadow: '0 0 35px rgba(255, 0, 85, 0.6), 0 0 10px rgba(255, 0, 85, 0.4)' },
-            },
-            scanline: {
-              '0%': { transform: 'translateY(-100%)' },
-              '100%': { transform: 'translateY(1000%)' },
-            }
           }
         }
       }
@@ -86,10 +66,10 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    /* Custom Cyber Scrollbar & Effects */
+    /* Custom Cyber Scrollbar */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #0A0C11;
@@ -106,51 +86,45 @@
     /* Grid Overlay */
     .cyber-grid-bg {
       background-image: 
-        linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
-      background-size: 32px 32px;
+        linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
     }
 
-    /* Scanlines Overlay */
-    .scanlines {
-      background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.25) 50%
-      ), linear-gradient(
-        90deg,
-        rgba(255, 0, 0, 0.03),
-        rgba(0, 255, 0, 0.01),
-        rgba(0, 0, 255, 0.03)
-      );
-      background-size: 100% 3px, 6px 100%;
-      pointer-events: none;
-    }
-
-    /* Subtle Glassmorphism */
+    /* Glassmorphism Panel */
     .glass-panel {
-      background: rgba(15, 19, 29, 0.72);
+      background: rgba(15, 19, 29, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(0, 240, 255, 0.15);
     }
 
+    /* Book Cover 3D Card Hover */
+    .book-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .book-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 12px 30px -10px rgba(0, 240, 255, 0.25);
+    }
+
     /* Custom Shake Animation */
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
-      20%, 40%, 60%, 80% { transform: translateX(6px); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
     }
     .shake-alert {
-      animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+      animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
     }
   </style>
 </head>
 <body class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-cyber-cyan selection:text-black">
 
   <!-- Background Animated Cyber Canvas -->
-  <canvas id="cyberCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
-  <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0 opacity-60"></div>
-  <div class="fixed inset-0 scanlines pointer-events-none z-10 opacity-30"></div>
+  <canvas id="cyberCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-35"></canvas>
+  <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0 opacity-70"></div>
 
   <!-- Ambient Glow Spots -->
   <div class="fixed -top-32 -left-32 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none z-0"></div>
@@ -159,21 +133,21 @@
   <!-- App Wrapper -->
   <div id="appContainer" class="relative z-20 min-h-screen flex flex-col justify-between">
 
-    <!-- Global Sound and Link Bar -->
-    <div class="w-full bg-[#07090D]/80 border-b border-cyber-border/60 py-1.5 px-4 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md">
+    <!-- Top Utility Bar -->
+    <div class="w-full bg-[#07090D]/85 border-b border-cyber-border/60 py-2 px-4 sm:px-8 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md">
       <div class="flex items-center space-x-3">
         <a href="../index.html" class="flex items-center space-x-1.5 text-cyber-cyan hover:text-white transition-colors duration-200">
           <i class="ph-bold ph-arrow-left"></i>
-          <span class="font-semibold uppercase tracking-wider">Public Squad Page</span>
+          <span class="font-semibold uppercase tracking-wider">Main Squad Site</span>
         </a>
-        <span class="text-cyber-border">|</span>
-        <span class="hidden sm:inline text-slate-400">HOST: <span class="text-cyber-cyan">kttshkoadnkemknjajsp.supabase.co</span></span>
+        <span class="text-cyber-border hidden sm:inline">|</span>
+        <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">GOOGOL INC.</span></span>
       </div>
       <div class="flex items-center space-x-4">
-        <!-- Live UTC Military Clock -->
+        <!-- Live UTC Clock -->
         <div class="flex items-center space-x-1.5">
           <span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
-          <span id="militaryClock" class="text-cyber-text font-bold">00:00:00 UTC</span>
+          <span id="militaryClock" class="text-slate-200 font-bold">00:00:00 UTC</span>
         </div>
         <!-- SFX Toggle -->
         <button id="sfxToggleBtn" onclick="toggleAudioSFX()" class="flex items-center space-x-1 hover:text-cyber-cyan transition-colors" title="Toggle UI Sound Effects">
@@ -189,53 +163,46 @@
     <main id="authView" class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8 transition-all duration-500">
       <div class="w-full max-w-md relative group">
         
-        <!-- Cyber Edge Corner Decors -->
-        <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
+        <!-- Cyber Corner Accents -->
+        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
+        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
+        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-cyber-cyan z-30 pointer-events-none"></div>
+        <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-cyber-cyan z-30 pointer-events-none"></div>
 
-        <!-- Glowing Backdrop Filter Card -->
-        <div class="glass-panel rounded-xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-cyber-cyan/30 hover:border-cyber-cyan/60 transition-all duration-300">
+        <!-- Glowing Card -->
+        <div class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-cyber-cyan/30">
           
-          <!-- Cyber Scanline Animation inside card -->
+          <!-- Subtle Top Border Beam -->
           <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-pulse-slow"></div>
 
           <!-- Header / Brand Section -->
-          <div class="text-center mb-7 relative">
-            <!-- Organization Badge Icon -->
-            <div class="mx-auto w-16 h-16 mb-4 relative flex items-center justify-center">
-              <div class="absolute inset-0 rounded-2xl bg-cyber-cyan/10 border border-cyber-cyan/40 rotate-45 animate-pulse"></div>
-              <div class="absolute inset-1 rounded-2xl bg-cyber-crimson/10 border border-cyber-crimson/30 -rotate-12"></div>
-              <div class="relative z-10 w-12 h-12 rounded-xl bg-[#090C12] border border-cyber-cyan/60 flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
+          <div class="text-center mb-7">
+            <div class="mx-auto w-14 h-14 mb-3.5 relative flex items-center justify-center">
+              <div class="absolute inset-0 rounded-2xl bg-cyber-cyan/15 border border-cyber-cyan/40 rotate-45 animate-pulse"></div>
+              <div class="relative z-10 w-11 h-11 rounded-xl bg-[#090C12] border border-cyber-cyan/60 flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
                 <i class="ph-bold ph-shield-chevron text-2xl text-cyber-cyan"></i>
               </div>
             </div>
 
-            <!-- Organization & System Access Title -->
-            <div class="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-[11px] font-mono tracking-widest uppercase mb-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-ping"></span>
-              <span>GOOGOL INC. // SECURE GATEWAY</span>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan text-[11px] font-mono tracking-widest uppercase mb-1.5">
+              <span>GOOGOL INC. // SECURE VAULT</span>
             </div>
-            <h1 class="text-2xl sm:text-3xl font-black font-orbitron text-white tracking-wider uppercase mt-1">
-              SYSTEM <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-blue-400">ACCESS</span>
+            <h1 class="text-2xl sm:text-3xl font-black font-orbitron text-white tracking-wider uppercase">
+              PRO PLAYER <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-blue-400">PORTAL</span>
             </h1>
             <p class="text-xs text-cyber-muted font-space mt-1 uppercase tracking-wider">
-              PRO PLAYER TERMINAL // AUTHORIZED PERSONNEL ONLY
+              Enter your credentials to access protected strategy documents
             </p>
           </div>
 
-          <!-- Error Alert Banner (Hidden by default) -->
-          <div id="authAlert" class="hidden mb-6 p-3.5 rounded-lg bg-cyber-crimson/15 border border-cyber-crimson/60 text-cyber-crimson text-xs font-mono relative overflow-hidden shake-alert">
+          <!-- Error Alert Banner -->
+          <div id="authAlert" class="hidden mb-5 p-3.5 rounded-xl bg-cyber-crimson/15 border border-cyber-crimson/60 text-cyber-crimson text-xs font-mono relative overflow-hidden shake-alert">
             <div class="flex items-start space-x-2.5">
               <i class="ph-fill ph-warning-octagon text-lg flex-shrink-0 mt-0.5 text-cyber-crimson"></i>
               <div class="flex-grow">
-                <div class="font-bold uppercase tracking-wider font-orbitron flex items-center justify-between">
-                  <span>ACCESS DENIED</span>
-                  <span class="text-[10px] text-cyber-crimson/80">ERR // 401</span>
-                </div>
-                <div id="authAlertMessage" class="mt-1 text-slate-300 font-sans text-xs">
-                  Invalid Player Credentials. Verify email and passcode.
+                <div class="font-bold uppercase tracking-wider font-orbitron">ACCESS DENIED</div>
+                <div id="authAlertMessage" class="mt-0.5 text-slate-300 font-sans text-xs">
+                  Invalid Player Credentials. Please try again.
                 </div>
               </div>
               <button onclick="dismissAuthAlert()" class="text-cyber-crimson/80 hover:text-white transition-colors">
@@ -249,12 +216,12 @@
             
             <!-- Email / Player ID Input -->
             <div>
-              <label for="playerEmail" class="block text-xs font-mono font-medium text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+              <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
                 <span>Player Email / ID</span>
                 <span class="text-[10px] text-cyber-cyan font-mono">SUPABASE AUTH</span>
               </label>
-              <div class="relative rounded-lg group/input">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted group-focus-within/input:text-cyber-cyan transition-colors">
+              <div class="relative rounded-lg">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
                   <i class="ph-bold ph-user text-lg"></i>
                 </div>
                 <input 
@@ -264,21 +231,21 @@
                   required 
                   autocomplete="email"
                   placeholder="player@googol.esports"
-                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-lg focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan transition-all font-mono placeholder:text-slate-600 shadow-inner"
+                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono placeholder:text-slate-600 transition-all"
                 />
               </div>
             </div>
 
-            <!-- Password / Passcode Input with Eye Toggle -->
+            <!-- Password Input with Eye Toggle -->
             <div>
               <div class="flex items-center justify-between mb-1.5">
-                <label for="playerPassword" class="block text-xs font-mono font-medium text-slate-300 uppercase tracking-wider">
+                <label for="playerPassword" class="block text-xs font-mono text-slate-300 uppercase tracking-wider">
                   Passcode / Key
                 </label>
                 <span class="text-[10px] text-cyber-muted font-mono">MIN 6 CHARS</span>
               </div>
-              <div class="relative rounded-lg group/input">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted group-focus-within/input:text-cyber-cyan transition-colors">
+              <div class="relative rounded-lg">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
                   <i class="ph-bold ph-lock-key text-lg"></i>
                 </div>
                 <input 
@@ -288,7 +255,7 @@
                   required 
                   autocomplete="current-password"
                   placeholder="••••••••••••"
-                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-lg focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan transition-all font-mono placeholder:text-slate-600 shadow-inner"
+                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono placeholder:text-slate-600 transition-all"
                 />
                 <!-- Visibility Toggle Button -->
                 <button 
@@ -308,11 +275,8 @@
               <button 
                 type="submit" 
                 id="authSubmitBtn"
-                class="w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-cyber-cyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-cyan-glow hover:shadow-cyan-glow-lg transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group/btn active:scale-[0.98]"
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyber-cyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-cyan-glow hover:shadow-cyan-glow-lg transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]"
               >
-                <!-- Sweep shimmer effect -->
-                <div class="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover/btn:translate-x-[300%] transition-transform duration-1000 ease-out"></div>
-                
                 <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl"></i>
                 <span id="authBtnText">AUTHENTICATE</span>
                 <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden"></i>
@@ -320,30 +284,18 @@
             </div>
           </form>
 
-          <!-- Quick Demo Helper Note -->
-          <div class="mt-6 pt-5 border-t border-cyber-border/60 text-center">
-            <div class="text-[11px] font-mono text-cyber-muted flex items-center justify-center space-x-1.5">
-              <i class="ph-bold ph-info text-cyber-cyan"></i>
-              <span>Need test access? Register or use your Supabase account.</span>
-            </div>
+          <!-- Quick Demo Access Helper -->
+          <div class="mt-6 pt-4 border-t border-cyber-border/60 text-center">
             <button 
               type="button" 
               onclick="launchSimulationSession()" 
-              class="mt-2 text-[11px] font-mono text-cyber-cyan/80 hover:text-cyber-cyan underline hover:no-underline transition-colors"
+              class="text-xs font-mono text-cyber-cyan hover:text-white bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 px-4 py-2 rounded-lg transition-all inline-flex items-center space-x-2"
             >
-              [ Quick Preview: Enter Demo Simulation Mode ]
+              <i class="ph-bold ph-lightning text-sm"></i>
+              <span>Instant Demo Access (Bypass Login)</span>
             </button>
           </div>
 
-        </div>
-
-        <!-- Terminal Status Line -->
-        <div class="mt-3 flex items-center justify-between text-[11px] font-mono text-cyber-muted px-2">
-          <div class="flex items-center space-x-1.5">
-            <span class="w-2 h-2 rounded-full bg-cyber-green"></span>
-            <span>GATEWAY: <span class="text-slate-300">ONLINE</span></span>
-          </div>
-          <div>VAULT PROTOCOL // v2.48</div>
         </div>
 
       </div>
@@ -358,27 +310,23 @@
       <header class="sticky top-0 z-40 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-cyber-cyan/20 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
-          <!-- Left: Brand & Portal Mode -->
-          <div class="flex items-center space-x-4">
-            <div class="w-10 h-10 rounded-lg bg-cyber-card border border-cyber-cyan/50 flex items-center justify-center shadow-cyan-glow flex-shrink-0">
+          <!-- Left: Brand -->
+          <div class="flex items-center space-x-3.5">
+            <div class="w-10 h-10 rounded-xl bg-cyber-card border border-cyber-cyan/50 flex items-center justify-center shadow-cyan-glow flex-shrink-0">
               <i class="ph-bold ph-shield-check text-2xl text-cyber-cyan"></i>
             </div>
             <div>
-              <div class="flex items-center space-x-2">
-                <span class="text-lg sm:text-xl font-black font-orbitron tracking-wider text-white">
-                  GOOGOL INC. <span class="text-cyber-cyan">// VAULT</span>
-                </span>
+              <div class="text-lg sm:text-xl font-black font-orbitron tracking-wider text-white">
+                GOOGOL INC. <span class="text-cyber-cyan">// VAULT</span>
               </div>
               <div class="text-[11px] font-mono text-cyber-muted hidden sm:block">
-                CLASSIFIED PRO PLAYER OPERATIONAL INTELLIGENCE
+                PRO PLAYER OPERATIONAL INTELLIGENCE & STRATEGY
               </div>
             </div>
           </div>
 
-          <!-- Center/Right: Badges & Actions -->
+          <!-- Right: Badges & Logout -->
           <div class="flex items-center space-x-3 sm:space-x-4">
-            
-            <!-- Green Pulse "AUTHORIZED" Badge -->
             <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 shadow-green-glow text-cyber-green text-xs font-mono font-bold tracking-wider">
               <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-green opacity-75"></span>
@@ -387,250 +335,198 @@
               <span class="uppercase">AUTHORIZED</span>
             </div>
 
-            <!-- Clearance Pill (Hidden on tiny screens) -->
-            <div class="hidden md:flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-cyber-card border border-cyber-border text-xs font-mono text-slate-300">
-              <i class="ph-bold ph-lock-simple-open text-cyber-cyan"></i>
-              <span>LEVEL 5 CLEARANCE</span>
-            </div>
-
-            <!-- Logout Button -->
             <button 
               id="logoutBtn"
               onclick="handleSignOut()" 
-              class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/50 text-cyber-crimson hover:text-white transition-all text-xs font-mono font-bold uppercase tracking-wider shadow-sm hover:shadow-crimson-glow active:scale-95"
+              class="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/50 text-cyber-crimson hover:text-white transition-all text-xs font-mono font-bold uppercase tracking-wider active:scale-95"
             >
               <i class="ph-bold ph-sign-out text-base"></i>
-              <span class="hidden sm:inline">TERMINATE SESSION</span>
-              <span class="sm:hidden">LOGOUT</span>
+              <span class="hidden sm:inline">LOGOUT</span>
             </button>
-
           </div>
 
         </div>
       </header>
 
-      <!-- Main Dashboard Content Container -->
+      <!-- Main Dashboard Container -->
       <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8 w-full">
         
         <!-- Welcome Hero Banner -->
-        <div class="relative rounded-2xl overflow-hidden glass-panel p-6 sm:p-8 border border-cyber-cyan/30">
-          <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative rounded-2xl overflow-hidden glass-panel p-6 sm:p-7 border border-cyber-cyan/30">
           <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <div class="inline-flex items-center space-x-2 text-xs font-mono text-cyber-cyan uppercase tracking-widest mb-1.5">
+              <div class="inline-flex items-center space-x-2 text-xs font-mono text-cyber-cyan uppercase tracking-widest mb-1">
                 <i class="ph-bold ph-terminal-window text-base"></i>
                 <span>COMBAT TERMINAL // LIVE LINK ACTIVE</span>
               </div>
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black font-orbitron text-white uppercase tracking-wide">
-                WELCOME, OPERATIVE <span id="heroDisplayTag" class="text-cyber-cyan">CYBER_NINJA</span>
+              <h2 class="text-2xl sm:text-3xl font-black font-orbitron text-white uppercase tracking-wide">
+                OPERATIVE <span id="heroDisplayTag" class="text-cyber-cyan">CYBER_NINJA</span>
               </h2>
-              <p class="text-sm text-slate-400 font-space mt-1 max-w-2xl">
-                Telemetry synchronized with Googol Inc. Neural Strat Engine. Tactic Vault decrypted and ready for download.
+              <p class="text-xs sm:text-sm text-slate-400 font-space mt-1 max-w-xl">
+                Strategy & Mental Toughness Library unlocked. Access required readings and telemetry metrics below.
               </p>
             </div>
-            <!-- Session User Token Pill -->
-            <div class="flex items-center space-x-2 bg-[#080B10]/90 border border-cyber-border p-2.5 rounded-xl text-xs font-mono">
-              <i class="ph-bold ph-fingerprint text-cyber-cyan text-lg"></i>
+
+            <div class="flex items-center space-x-3 bg-[#080B10]/90 border border-cyber-border p-2.5 rounded-xl text-xs font-mono">
+              <i class="ph-bold ph-user-circle text-cyber-cyan text-2xl"></i>
               <div>
-                <div class="text-[10px] text-cyber-muted uppercase">ACTIVE SESSION ID</div>
+                <div class="text-[10px] text-cyber-muted uppercase">LOGGED IN AS</div>
                 <div id="sessionUserEmail" class="text-slate-200 font-semibold truncate max-w-[200px]">player@googol.esports</div>
               </div>
-              <button onclick="copySessionInfo()" class="ml-2 p-1.5 hover:bg-cyber-card rounded text-cyber-muted hover:text-cyber-cyan transition-colors" title="Copy User ID">
-                <i class="ph-bold ph-copy text-sm"></i>
-              </button>
             </div>
           </div>
         </div>
 
         <!-- ========================================================================= -->
-        <!-- SECTION A: PLAYER DOSSIER -->
+        <!-- SECTION A: CLEAN PLAYER PROFILE -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-cyan rounded-sm"></div>
-              <h3 class="text-lg sm:text-xl font-bold font-orbitron text-white uppercase tracking-wider">
-                SECTION A // PLAYER DOSSIER
+              <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
+                PLAYER PROFILE
               </h3>
             </div>
             <span class="text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20">
-              IDENTITY SYNC
+              CUSTOM DOSSIER
             </span>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            
-            <!-- Left: Avatar Upload Card -->
-            <div class="glass-panel rounded-xl p-6 flex flex-col items-center justify-center text-center relative border border-cyber-border">
-              <div class="absolute top-2 left-2 text-[10px] font-mono text-cyber-muted">FIG. 01</div>
-              <div class="absolute top-2 right-2 text-[10px] font-mono text-cyber-green">STATUS: READY</div>
-
-              <!-- Avatar Preview Container -->
-              <div class="relative my-4 group cursor-pointer" onclick="document.getElementById('avatarFileInput').click()">
-                <div class="w-36 h-36 rounded-2xl bg-gradient-to-tr from-cyber-cyan to-cyber-crimson p-[2px] shadow-cyan-glow group-hover:shadow-cyan-glow-lg transition-all duration-300">
-                  <div class="w-full h-full rounded-2xl bg-cyber-card overflow-hidden relative flex items-center justify-center">
+          <div class="glass-panel rounded-2xl p-6 sm:p-8 border border-cyber-border">
+            <form id="dossierForm" onsubmit="handleSaveDossier(event)" class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
+              
+              <!-- Clean Avatar Upload -->
+              <div class="flex flex-col items-center justify-center text-center space-y-3 lg:border-r lg:border-cyber-border/80 lg:pr-6">
+                <div class="relative group cursor-pointer" onclick="document.getElementById('avatarFileInput').click()">
+                  <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-cyber-cyan to-cyber-crimson p-[2px] shadow-cyan-glow group-hover:scale-105 transition-all">
                     <img 
                       id="avatarPreviewImg" 
                       src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" 
                       alt="Player Avatar" 
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      class="w-full h-full object-cover rounded-2xl"
                     />
-                    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2">
-                      <i class="ph-bold ph-camera text-2xl text-cyber-cyan mb-1"></i>
-                      <span class="text-[11px] font-mono uppercase tracking-wider font-bold">CHANGE PHOTO</span>
-                    </div>
+                  </div>
+                  <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-lg bg-cyber-cyan text-black flex items-center justify-center shadow-lg border border-black font-bold">
+                    <i class="ph-bold ph-camera text-base"></i>
                   </div>
                 </div>
-                <div class="absolute -bottom-2 -right-2 w-9 h-9 rounded-lg bg-cyber-cyan text-black flex items-center justify-center shadow-lg border border-black font-bold">
-                  <i class="ph-bold ph-upload-simple text-base"></i>
-                </div>
+
+                <input 
+                  type="file" 
+                  id="avatarFileInput" 
+                  accept="image/*" 
+                  class="hidden" 
+                  onchange="handleAvatarFileChange(event)"
+                />
+
+                <button 
+                  type="button" 
+                  onclick="document.getElementById('avatarFileInput').click()" 
+                  class="text-xs font-mono text-cyber-cyan hover:text-white transition-colors"
+                >
+                  Change Photo
+                </button>
               </div>
 
-              <!-- Hidden File Input for Image Selection -->
-              <input 
-                type="file" 
-                id="avatarFileInput" 
-                accept="image/*" 
-                class="hidden" 
-                onchange="handleAvatarFileChange(event)"
-              />
-
-              <button 
-                type="button" 
-                onclick="document.getElementById('avatarFileInput').click()" 
-                class="mt-2 text-xs font-mono text-cyber-cyan hover:text-white bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 px-4 py-2 rounded-lg transition-all flex items-center space-x-1.5"
-              >
-                <i class="ph-bold ph-image text-sm"></i>
-                <span>UPLOAD NEW AVATAR</span>
-              </button>
-              <span class="text-[10px] text-cyber-muted font-mono mt-1.5">PNG, JPG, WEBP • MAX 5MB</span>
-            </div>
-
-            <!-- Right: Editable Profile Details Form -->
-            <div class="lg:col-span-2 glass-panel rounded-xl p-6 sm:p-7 border border-cyber-border flex flex-col justify-between">
-              <form id="dossierForm" onsubmit="handleSaveDossier(event)" class="space-y-4">
+              <!-- Clean Profile Fields -->
+              <div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <!-- Display Tag -->
-                  <div>
-                    <label for="dossierTag" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                      <span>Display Tag / IGN</span>
-                      <span class="text-cyber-cyan text-[10px]">PRIMARY IDENTIFIER</span>
-                    </label>
-                    <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                        <i class="ph-bold ph-identification-badge text-lg"></i>
-                      </div>
-                      <input 
-                        type="text" 
-                        id="dossierTag" 
-                        value="CYBER_NINJA // 007" 
-                        required
-                        class="w-full pl-10 pr-4 py-2.5 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-lg focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono"
-                      />
+                <!-- Display Tag -->
+                <div>
+                  <label for="dossierTag" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    Display Tag / IGN
+                  </label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
+                      <i class="ph-bold ph-identification-badge text-base"></i>
                     </div>
+                    <input 
+                      type="text" 
+                      id="dossierTag" 
+                      value="CYBER_NINJA // 007" 
+                      required
+                      class="w-full pl-9 pr-3 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono"
+                    />
                   </div>
+                </div>
 
-                  <!-- Role Selector / Input -->
-                  <div>
-                    <label for="dossierRole" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                      <span>Combat Role</span>
-                      <span class="text-cyber-cyan text-[10px]">TACTICAL POSITION</span>
-                    </label>
-                    <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                        <i class="ph-bold ph-crosshair text-lg"></i>
-                      </div>
-                      <select 
-                        id="dossierRole" 
-                        class="w-full pl-10 pr-8 py-2.5 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-lg focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono appearance-none"
-                      >
-                        <option value="Entry Fragger">Entry Fragger (First Blood Specialist)</option>
-                        <option value="In-Game Leader (IGL)">In-Game Leader (IGL / Strategist)</option>
-                        <option value="Primary Sniper">Primary Sniper (Long Range Precision)</option>
-                        <option value="Support / Flanker">Support / Flanker (Utility & Zone Control)</option>
-                        <option value="Flex Operative">Flex Operative (All-Rounder)</option>
-                      </select>
-                      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-cyber-muted">
-                        <i class="ph-bold ph-caret-down text-sm"></i>
-                      </div>
+                <!-- Combat Role -->
+                <div>
+                  <label for="dossierRole" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    Combat Role
+                  </label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
+                      <i class="ph-bold ph-crosshair text-base"></i>
+                    </div>
+                    <select 
+                      id="dossierRole" 
+                      class="w-full pl-9 pr-8 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono appearance-none"
+                    >
+                      <option value="Entry Fragger">Entry Fragger</option>
+                      <option value="In-Game Leader (IGL)">In-Game Leader (IGL)</option>
+                      <option value="Primary Sniper">Primary Sniper</option>
+                      <option value="Support / Utility">Support / Utility</option>
+                      <option value="Flex Operative">Flex Operative</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-cyber-muted">
+                      <i class="ph-bold ph-caret-down text-sm"></i>
                     </div>
                   </div>
                 </div>
 
-                <!-- Team Name & Contract Tier -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label for="dossierTeam" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                      <span>Team / Roster</span>
-                      <span class="text-cyber-cyan text-[10px]">SQUADRON</span>
-                    </label>
-                    <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                        <i class="ph-bold ph-users-three text-lg"></i>
-                      </div>
-                      <input 
-                        type="text" 
-                        id="dossierTeam" 
-                        value="GOOGOL ALPHA SQUAD" 
-                        required
-                        class="w-full pl-10 pr-4 py-2.5 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-lg focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono"
-                      />
+                <!-- Team Name -->
+                <div>
+                  <label for="dossierTeam" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    Team Name
+                  </label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
+                      <i class="ph-bold ph-users-three text-base"></i>
                     </div>
-                  </div>
-
-                  <div>
-                    <label for="dossierContract" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                      <span>Contract Tier</span>
-                      <span class="text-cyber-green text-[10px]">ACTIVE PRO</span>
-                    </label>
-                    <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-cyber-muted">
-                        <i class="ph-bold ph-certificate text-lg"></i>
-                      </div>
-                      <input 
-                        type="text" 
-                        id="dossierContract" 
-                        value="PRO DIVISION // TIER-1" 
-                        disabled
-                        class="w-full pl-10 pr-4 py-2.5 bg-[#080B10]/50 border border-cyber-border text-cyber-muted text-sm rounded-lg cursor-not-allowed font-mono"
-                      />
-                    </div>
+                    <input 
+                      type="text" 
+                      id="dossierTeam" 
+                      value="GOOGOL ALPHA SQUAD" 
+                      required
+                      class="w-full pl-9 pr-3 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono"
+                    />
                   </div>
                 </div>
 
-                <!-- Action & Toast Area -->
-                <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <!-- Save Action Row -->
+                <div class="sm:col-span-3 flex items-center justify-between pt-2">
                   <div id="dossierSaveToast" class="hidden text-xs font-mono text-cyber-green flex items-center space-x-2 bg-cyber-green/10 border border-cyber-green/30 px-3 py-1.5 rounded-lg animate-pulse">
                     <i class="ph-bold ph-check-circle text-base"></i>
-                    <span>DOSSIER COMMITTED & SYNCED LOCALLY</span>
+                    <span>PROFILE UPDATED & SAVED</span>
                   </div>
-                  <div class="flex-grow sm:flex-grow-0 sm:ml-auto">
+                  <div class="ml-auto">
                     <button 
                       type="submit" 
-                      class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-cyan-glow active:scale-95"
+                      class="px-5 py-2 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center space-x-2 shadow-cyan-glow active:scale-95"
                     >
                       <i class="ph-bold ph-floppy-disk text-base"></i>
-                      <span>SAVE DOSSIER</span>
+                      <span>SAVE PROFILE</span>
                     </button>
                   </div>
                 </div>
 
-              </form>
-            </div>
+              </div>
 
+            </form>
           </div>
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION B: COMBAT TELEMETRY (PERFORMANCE REPORT) -->
+        <!-- SECTION B: COMBAT TELEMETRY -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-crimson rounded-sm"></div>
-              <h3 class="text-lg sm:text-xl font-bold font-orbitron text-white uppercase tracking-wider">
-                SECTION B // COMBAT TELEMETRY
+              <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
+                COMBAT TELEMETRY
               </h3>
             </div>
             <span class="text-xs font-mono text-cyber-crimson bg-cyber-crimson/10 px-2.5 py-1 rounded border border-cyber-crimson/20">
@@ -639,283 +535,310 @@
           </div>
 
           <!-- Stat Cards Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
             
             <!-- Stat 1: K/D Ratio -->
-            <div class="glass-panel rounded-xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all group relative overflow-hidden">
-              <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-cyber-cyan/10 rounded-full blur-xl group-hover:bg-cyber-cyan/20 transition-all"></div>
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span class="uppercase">K/D Ratio</span>
+                <span>K/D RATIO</span>
                 <i class="ph-bold ph-crosshair text-cyber-cyan text-lg"></i>
               </div>
-              <div class="text-3xl sm:text-4xl font-black font-orbitron text-white tracking-wider flex items-baseline space-x-2">
-                <span>3.84</span>
-                <span class="text-xs font-mono text-cyber-green font-bold">+14.2%</span>
-              </div>
-              <div class="mt-3 text-[11px] font-mono text-cyber-muted flex items-center justify-between border-t border-cyber-border/60 pt-2">
-                <span>Total Frags: 1,428</span>
-                <span class="text-cyber-cyan">ELITE TIER</span>
+              <div class="text-3xl font-black font-orbitron text-white">3.84</div>
+              <div class="mt-2 text-[11px] font-mono text-cyber-green flex items-center space-x-1">
+                <i class="ph-bold ph-trend-up"></i>
+                <span>+14.2% THIS SPLIT</span>
               </div>
             </div>
 
             <!-- Stat 2: Win Rate -->
-            <div class="glass-panel rounded-xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all group relative overflow-hidden">
-              <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-cyber-cyan/10 rounded-full blur-xl group-hover:bg-cyber-cyan/20 transition-all"></div>
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span class="uppercase">Win Rate</span>
+                <span>WIN RATE</span>
                 <i class="ph-bold ph-trophy text-cyber-gold text-lg"></i>
               </div>
-              <div class="text-3xl sm:text-4xl font-black font-orbitron text-white tracking-wider flex items-baseline space-x-2">
-                <span>68.2%</span>
-                <span class="text-xs font-mono text-cyber-cyan font-bold">142 Matches</span>
-              </div>
-              <div class="mt-3 text-[11px] font-mono text-cyber-muted flex items-center justify-between border-t border-cyber-border/60 pt-2">
-                <span>Rank: Grandmaster</span>
-                <span class="text-cyber-gold font-bold">TOP 0.5%</span>
-              </div>
+              <div class="text-3xl font-black font-orbitron text-white">68.2%</div>
+              <div class="mt-2 text-[11px] font-mono text-cyber-gold">142 MATCHES PLAYED</div>
             </div>
 
             <!-- Stat 3: Avg APM -->
-            <div class="glass-panel rounded-xl p-5 border border-cyber-border hover:border-cyber-crimson/40 transition-all group relative overflow-hidden">
-              <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-cyber-crimson/10 rounded-full blur-xl group-hover:bg-cyber-crimson/20 transition-all"></div>
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-crimson/40 transition-all">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span class="uppercase">Avg APM (Speed)</span>
+                <span>AVG APM</span>
                 <i class="ph-bold ph-lightning text-cyber-crimson text-lg"></i>
               </div>
-              <div class="text-3xl sm:text-4xl font-black font-orbitron text-white tracking-wider flex items-baseline space-x-2">
-                <span>294</span>
-                <span class="text-xs font-mono text-cyber-crimson font-bold">PEAK: 348</span>
-              </div>
-              <div class="mt-3 text-[11px] font-mono text-cyber-muted flex items-center justify-between border-t border-cyber-border/60 pt-2">
-                <span>Reaction: 118ms</span>
-                <span class="text-cyber-crimson">ULTRA REFLEX</span>
-              </div>
+              <div class="text-3xl font-black font-orbitron text-white">294</div>
+              <div class="mt-2 text-[11px] font-mono text-cyber-crimson">PEAK: 348 APM</div>
             </div>
 
             <!-- Stat 4: Headshot % -->
-            <div class="glass-panel rounded-xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all group relative overflow-hidden">
-              <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-cyber-cyan/10 rounded-full blur-xl group-hover:bg-cyber-cyan/20 transition-all"></div>
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span class="uppercase">Headshot %</span>
+                <span>HEADSHOT %</span>
                 <i class="ph-bold ph-target text-cyber-cyan text-lg"></i>
               </div>
-              <div class="text-3xl sm:text-4xl font-black font-orbitron text-white tracking-wider flex items-baseline space-x-2">
-                <span>42.8%</span>
-                <span class="text-xs font-mono text-cyber-green font-bold">CRITICAL</span>
-              </div>
-              <div class="mt-3 text-[11px] font-mono text-cyber-muted flex items-center justify-between border-t border-cyber-border/60 pt-2">
-                <span>HS Frags: 611</span>
-                <span class="text-cyber-cyan">TOP 1.2%</span>
-              </div>
+              <div class="text-3xl font-black font-orbitron text-white">42.8%</div>
+              <div class="mt-2 text-[11px] font-mono text-cyber-cyan">CRITICAL EFFICIENCY</div>
             </div>
 
           </div>
 
-          <!-- Visual Progress Bar: Tournament Readiness Score -->
-          <div class="glass-panel rounded-xl p-6 border border-cyber-border space-y-3 relative overflow-hidden">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <div class="flex items-center space-x-2">
-                  <i class="ph-bold ph-gauge text-cyber-cyan text-lg"></i>
-                  <span class="text-sm font-bold font-orbitron text-white uppercase tracking-wider">Tournament Readiness Score</span>
-                </div>
-                <p class="text-xs text-cyber-muted font-space mt-0.5">Calculated across tactical discipline, aim stability, and scrim performance metrics.</p>
+          <!-- Tournament Readiness Score -->
+          <div class="glass-panel rounded-2xl p-5 border border-cyber-border space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <i class="ph-bold ph-gauge text-cyber-cyan text-lg"></i>
+                <span class="text-xs font-bold font-orbitron text-white uppercase tracking-wider">Tournament Readiness Score</span>
               </div>
-              <div class="text-right flex sm:flex-col items-center sm:items-end justify-between">
-                <span class="text-2xl font-black font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">
-                  94.0%
-                </span>
-                <span class="text-[10px] font-mono text-cyber-green tracking-widest uppercase">S-TIER PRIME COMBAT READY</span>
-              </div>
+              <span class="text-lg font-black font-orbitron text-cyber-green">94.0% • S-TIER</span>
             </div>
-
-            <!-- The Glowing Meter Bar -->
-            <div class="w-full bg-[#080B10] h-4 rounded-full p-0.5 border border-cyber-border relative overflow-hidden">
-              <div 
-                class="h-full rounded-full bg-gradient-to-r from-cyber-cyan via-blue-500 to-cyber-green shadow-cyan-glow relative" 
-                style="width: 94%;"
-              >
-                <div class="absolute inset-0 bg-white/20 animate-pulse-slow"></div>
-              </div>
-            </div>
-
-            <!-- Milestone Indicators -->
-            <div class="flex justify-between text-[10px] font-mono text-cyber-muted pt-1">
-              <span>0% SCRIM BASELINE</span>
-              <span>50% ROSTER QUALIFIED</span>
-              <span>75% LAN READY</span>
-              <span class="text-cyber-green font-bold">94% CHAMPIONSHIP FORM</span>
+            <div class="w-full bg-[#080B10] h-3 rounded-full border border-cyber-border overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-green" style="width: 94%;"></div>
             </div>
           </div>
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION C: PREMIUM STRATEGY & PDF VAULT -->
+        <!-- SECTION C: REQUIRED READING & STRATEGY PDF VAULT -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-green rounded-sm"></div>
-              <h3 class="text-lg sm:text-xl font-bold font-orbitron text-white uppercase tracking-wider">
-                SECTION C // PREMIUM STRATEGY & PDF VAULT
+              <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
+                STRATEGY & MENTAL MASTERY VAULT
               </h3>
             </div>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20 flex items-center space-x-1">
-                <i class="ph-bold ph-database text-xs"></i>
-                <span>BUCKET: premium-vault-pdfs</span>
-              </span>
-            </div>
+            <span class="text-xs font-mono text-cyber-green bg-cyber-green/10 px-2.5 py-1 rounded border border-cyber-green/20">
+              6 ESSENTIAL TEXTS
+            </span>
           </div>
 
-          <!-- Tactic PDF Cards Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 6 Strategy Books Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Tactic Card 1 -->
-            <div class="glass-panel rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-28 h-28 bg-cyber-cyan/5 rounded-bl-full pointer-events-none group-hover:bg-cyber-cyan/15 transition-all"></div>
-              
+            <!-- Book 1: The Book of Five Rings -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
               <div>
-                <div class="flex items-start justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-cyber-card border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
-                    <i class="ph-bold ph-file-pdf text-2xl"></i>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img 
+                    src="https://covers.openlibrary.org/b/isbn/9781590302484-L.jpg" 
+                    alt="The Book of Five Rings"
+                    class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
+                    MARTIAL STRATEGY
                   </div>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded bg-cyber-crimson/15 text-cyber-crimson border border-cyber-crimson/30">
-                    CLASSIFIED // ALPHA
-                  </span>
                 </div>
-                <h4 class="text-base sm:text-lg font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors">
-                  Vibe Tactic Bible Vol. 3
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  The Book of Five Rings
                 </h4>
-                <p class="text-xs text-slate-400 font-space mt-1.5 leading-relaxed">
-                  Comprehensive playbook for modern map control fundamentals, crossfire setups, split-second retake protocols, and economic sabotage triggers.
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Miyamoto Musashi</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  Classic treatise on the psychology of combat, positioning, seizing rhythm, and decisive engagement mastery.
                 </p>
-                <div class="mt-4 flex items-center space-x-4 text-xs font-mono text-cyber-muted">
-                  <span><i class="ph-bold ph-file-text text-cyber-cyan mr-1"></i>PDF • 14.8 MB</span>
-                  <span><i class="ph-bold ph-clock text-cyber-cyan mr-1"></i>Updated: Season 12</span>
-                </div>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-cyber-border/60">
-                <button 
-                  type="button"
-                  onclick="downloadVaultPDF('vibe-tactic-bible-vol-3.pdf', 'Vibe Tactic Bible Vol. 3', this)"
-                  class="w-full py-2.5 px-4 rounded-lg bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/50 hover:border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm active:scale-95 group/btn"
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://drive.google.com/file/d/1JgGL3XnhkpORJUMDBm8MMCLFgk5LxO1_/view?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
                 >
-                  <i class="ph-bold ph-download-simple text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
-                  <span>SECURE DOWNLOAD (SIGNED URL)</span>
-                </button>
+                  <i class="ph-bold ph-file-pdf text-base"></i>
+                  <span>ACCESS PDF (GOOGLE DRIVE)</span>
+                </a>
               </div>
             </div>
 
-            <!-- Tactic Card 2 -->
-            <div class="glass-panel rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-28 h-28 bg-cyber-cyan/5 rounded-bl-full pointer-events-none group-hover:bg-cyber-cyan/15 transition-all"></div>
-              
+            <!-- Book 2: The Champion's Mind -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
               <div>
-                <div class="flex items-start justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-cyber-card border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
-                    <i class="ph-bold ph-compass text-2xl"></i>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img 
+                    src="https://covers.openlibrary.org/b/isbn/9781623365622-L.jpg" 
+                    alt="The Champion's Mind"
+                    class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=600&q=80';"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
+                    SPORTS PSYCHOLOGY
                   </div>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded bg-cyber-cyan/15 text-cyber-cyan border border-cyber-cyan/30">
-                    SQUADRON CLEARANCE
-                  </span>
                 </div>
-                <h4 class="text-base sm:text-lg font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors">
-                  Bermuda Zone Rotation Guide
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  The Champion's Mind
                 </h4>
-                <p class="text-xs text-slate-400 font-space mt-1.5 leading-relaxed">
-                  Endgame mathematical zone probabilities, dead-side boundary shifts, high-ground compound fortification, and safe vehicle exfil corridors.
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Jim Afremow</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  How elite athletes cultivate relentless focus, recover from in-game mistakes, and achieve peak flow state under extreme pressure.
                 </p>
-                <div class="mt-4 flex items-center space-x-4 text-xs font-mono text-cyber-muted">
-                  <span><i class="ph-bold ph-file-text text-cyber-cyan mr-1"></i>PDF • 8.2 MB</span>
-                  <span><i class="ph-bold ph-clock text-cyber-cyan mr-1"></i>Updated: 48 hrs ago</span>
-                </div>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-cyber-border/60">
-                <button 
-                  type="button"
-                  onclick="downloadVaultPDF('bermuda-zone-rotation-guide.pdf', 'Bermuda Zone Rotation Guide', this)"
-                  class="w-full py-2.5 px-4 rounded-lg bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/50 hover:border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm active:scale-95 group/btn"
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://drive.google.com/file/d/1q_A7kBkC-w4BYW2j--bXpQ1zNFb8OC2G/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-green/15 hover:bg-cyber-green/30 border border-cyber-green text-cyber-green hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
                 >
-                  <i class="ph-bold ph-download-simple text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
-                  <span>SECURE DOWNLOAD (SIGNED URL)</span>
-                </button>
+                  <i class="ph-bold ph-file-pdf text-base"></i>
+                  <span>ACCESS PDF (GOOGLE DRIVE)</span>
+                </a>
               </div>
             </div>
 
-            <!-- Tactic Card 3 -->
-            <div class="glass-panel rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-28 h-28 bg-cyber-cyan/5 rounded-bl-full pointer-events-none group-hover:bg-cyber-cyan/15 transition-all"></div>
-              
+            <!-- Book 3: Thinking in Bets -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
               <div>
-                <div class="flex items-start justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-cyber-card border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
-                    <i class="ph-bold ph-broadcast text-2xl"></i>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img 
+                    src="https://covers.openlibrary.org/b/isbn/9780735216358-L.jpg" 
+                    alt="Thinking in Bets"
+                    class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=600&q=80';"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-gold/40 text-[10px] font-mono text-cyber-gold uppercase font-bold">
+                    DECISION THEORY
                   </div>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded bg-cyber-gold/15 text-cyber-gold border border-cyber-gold/30">
-                    COMMS STANDARD
-                  </span>
                 </div>
-                <h4 class="text-base sm:text-lg font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors">
-                  4-Man Squad Comms Protocols
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  Thinking in Bets
                 </h4>
-                <p class="text-xs text-slate-400 font-space mt-1.5 leading-relaxed">
-                  Brevity codes, target prioritization hierarchy, trade-frag synchronisation timers, and mental reset trigger phrases under tournament stress.
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Annie Duke</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  Making smarter, probabilistic decisions when you don't have all the facts. Eliminates tilt and outcome bias in competitive games.
                 </p>
-                <div class="mt-4 flex items-center space-x-4 text-xs font-mono text-cyber-muted">
-                  <span><i class="ph-bold ph-file-text text-cyber-cyan mr-1"></i>PDF • 5.5 MB</span>
-                  <span><i class="ph-bold ph-clock text-cyber-cyan mr-1"></i>Updated: Pro Circuit</span>
-                </div>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-cyber-border/60">
-                <button 
-                  type="button"
-                  onclick="downloadVaultPDF('4man-squad-comms-protocols.pdf', '4-Man Squad Comms Protocols', this)"
-                  class="w-full py-2.5 px-4 rounded-lg bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/50 hover:border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm active:scale-95 group/btn"
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://drive.google.com/file/d/14ctzeDcpP60UzWxkrU-XlVzpneXai3Qj/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/30 border border-cyber-gold text-cyber-gold hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
                 >
-                  <i class="ph-bold ph-download-simple text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
-                  <span>SECURE DOWNLOAD (SIGNED URL)</span>
-                </button>
+                  <i class="ph-bold ph-file-pdf text-base"></i>
+                  <span>ACCESS PDF (GOOGLE DRIVE)</span>
+                </a>
               </div>
             </div>
 
-            <!-- Tactic Card 4 -->
-            <div class="glass-panel rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan/50 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-28 h-28 bg-cyber-cyan/5 rounded-bl-full pointer-events-none group-hover:bg-cyber-cyan/15 transition-all"></div>
-              
+            <!-- Book 4: The Art of War -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
               <div>
-                <div class="flex items-start justify-between">
-                  <div class="w-12 h-12 rounded-xl bg-cyber-card border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
-                    <i class="ph-bold ph-sparkle text-2xl"></i>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img 
+                    src="https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg" 
+                    alt="The Art of War"
+                    class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80';"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-crimson/40 text-[10px] font-mono text-cyber-crimson uppercase font-bold">
+                    WARFARE & TACTICS
                   </div>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 rounded bg-cyber-green/15 text-cyber-green border border-cyber-green/30">
-                    TACTICAL DRILLS
-                  </span>
                 </div>
-                <h4 class="text-base sm:text-lg font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors">
-                  Quantum Retake Execution Manual
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  The Art of War
                 </h4>
-                <p class="text-xs text-slate-400 font-space mt-1.5 leading-relaxed">
-                  Pixel-perfect utility lineups, synchronised smoke walls, double-peek angles, and 2v4 clutch conversion flowcharts.
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Sun Tzu</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  The quintessential strategic text on deception, map control, reading opponent psychological weaknesses, and winning before fighting.
                 </p>
-                <div class="mt-4 flex items-center space-x-4 text-xs font-mono text-cyber-muted">
-                  <span><i class="ph-bold ph-file-text text-cyber-cyan mr-1"></i>PDF • 12.1 MB</span>
-                  <span><i class="ph-bold ph-clock text-cyber-cyan mr-1"></i>Updated: Special Edition</span>
-                </div>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-cyber-border/60">
-                <button 
-                  type="button"
-                  onclick="downloadVaultPDF('quantum-retake-execution-manual.pdf', 'Quantum Retake Execution Manual', this)"
-                  class="w-full py-2.5 px-4 rounded-lg bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/50 hover:border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm active:scale-95 group/btn"
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://drive.google.com/file/d/1pxUFb_SDDWj1duQtT99QbTXNEYdiKJYW/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-crimson/15 hover:bg-cyber-crimson/30 border border-cyber-crimson text-cyber-crimson hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
                 >
-                  <i class="ph-bold ph-download-simple text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
-                  <span>SECURE DOWNLOAD (SIGNED URL)</span>
-                </button>
+                  <i class="ph-bold ph-file-pdf text-base"></i>
+                  <span>ACCESS PDF (GOOGLE DRIVE)</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Book 5: The Art of Strategy -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
+              <div>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img 
+                    src="https://covers.openlibrary.org/b/isbn/9780393062434-L.jpg" 
+                    alt="The Art of Strategy"
+                    class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=600&q=80';"
+                  />
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
+                    GAME THEORY
+                  </div>
+                </div>
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  The Art of Strategy
+                </h4>
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Avinash K. Dixit & Barry J. Nalebuff</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  A game theorist's master guide to anticipating opponent reactions, designing dominant strategies, and out-maneuvering rival teams.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://drive.google.com/file/d/1rQu6lCRm1I_oRqxmhSxdTc1BOriF8EEi/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
+                >
+                  <i class="ph-bold ph-file-pdf text-base"></i>
+                  <span>ACCESS PDF (GOOGLE DRIVE)</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Book 6: Strategical Esports by AK -->
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border book-card flex flex-col justify-between group">
+              <div>
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-cyan/40 flex items-center justify-center relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" 
+                    alt="Strategical Esports by AK"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <!-- Custom Cyber Playbook Overlay Badge -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4">
+                    <div class="text-cyber-cyan font-orbitron font-extrabold text-sm tracking-wider">STRATEGICAL ESPORTS</div>
+                    <div class="text-[10px] font-mono text-slate-300">CUSTOM PLAYBOOK • BY AK</div>
+                  </div>
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-cyber-crimson/90 border border-white/20 text-[10px] font-mono text-white uppercase font-bold">
+                    INTERNAL SQUAD DOC
+                  </div>
+                </div>
+                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                  Strategical Esports
+                </h4>
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: AK (Googol Strat Lead)</div>
+                <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
+                  Squad tactical playbook covering competitive zone rotations, micro-comms protocol, trade setups, and end-circle win conditions.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-cyber-border/60">
+                <a 
+                  href="https://docs.google.com/document/d/1U_9-LltnT0WOipK9Jnq6iMd-MKNPIS4H/edit?usp=drive_link&ouid=107954101100984058702&rtpof=true&sd=true" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onclick="playCyberSFX('download')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyber-cyan/20 to-blue-600/20 hover:from-cyber-cyan/30 hover:to-blue-600/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
+                >
+                  <i class="ph-bold ph-file-doc text-base"></i>
+                  <span>OPEN SQUAD DOCUMENT</span>
+                </a>
               </div>
             </div>
 
@@ -923,173 +846,24 @@
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION D: CLOUD STATUS & DIAGNOSTICS CARD -->
+        <!-- SECTION D: CLEAN CLOUD STATUS -->
         <!-- ========================================================================= -->
-        <section class="space-y-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-              <div class="w-2.5 h-6 bg-cyber-cyan rounded-sm"></div>
-              <h3 class="text-lg sm:text-xl font-bold font-orbitron text-white uppercase tracking-wider">
-                SECTION D // CLOUD INFRASTRUCTURE & TELEMETRY
-              </h3>
+        <section class="glass-panel rounded-2xl p-5 border border-cyber-border flex flex-col sm:flex-row items-center justify-between text-xs font-mono gap-4 text-cyber-muted">
+          <div class="flex items-center space-x-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyber-green animate-pulse"></span>
+            <div>
+              <span class="text-white font-bold">SUPABASE HOST:</span> 
+              <span class="text-cyber-cyan">kttshkoadnkemknjajsp.supabase.co</span>
             </div>
-            <span class="text-xs font-mono text-slate-400">
-              HEALTH CHECK
-            </span>
           </div>
-
-          <!-- Diagnostic Status Bar Card -->
-          <div class="glass-panel rounded-xl p-6 border border-cyber-border space-y-6">
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-              
-              <!-- Supabase Host Info -->
-              <div class="bg-[#080B10]/80 p-4 rounded-lg border border-cyber-border flex flex-col justify-between">
-                <div class="flex items-center justify-between text-cyber-muted mb-2">
-                  <span class="uppercase">DATABASE & AUTH HOST</span>
-                  <i class="ph-bold ph-cloud text-cyber-cyan text-base"></i>
-                </div>
-                <div class="text-slate-200 font-bold truncate text-sm">
-                  kttshkoadnkemknjajsp.supabase.co
-                </div>
-                <div class="mt-2 flex items-center justify-between text-[11px]">
-                  <span class="text-cyber-green flex items-center space-x-1">
-                    <span class="w-2 h-2 rounded-full bg-cyber-green animate-ping inline-block"></span>
-                    <span>REST / WSS LINKED</span>
-                  </span>
-                  <button onclick="copyHostAddress()" class="text-cyber-cyan hover:underline">Copy</button>
-                </div>
-              </div>
-
-              <!-- Storage Bucket Connection -->
-              <div class="bg-[#080B10]/80 p-4 rounded-lg border border-cyber-border flex flex-col justify-between">
-                <div class="flex items-center justify-between text-cyber-muted mb-2">
-                  <span class="uppercase">STORAGE REPOSITORY</span>
-                  <i class="ph-bold ph-hard-drives text-cyber-green text-base"></i>
-                </div>
-                <div class="text-slate-200 font-bold text-sm">
-                  premium-vault-pdfs
-                </div>
-                <div class="mt-2 flex items-center justify-between text-[11px]">
-                  <span class="text-cyber-cyan">SIGNED URL EXP: 60s</span>
-                  <span class="text-slate-400">ENCRYPTION: AES-256</span>
-                </div>
-              </div>
-
-              <!-- Real-time Latency & Status -->
-              <div class="bg-[#080B10]/80 p-4 rounded-lg border border-cyber-border flex flex-col justify-between">
-                <div class="flex items-center justify-between text-cyber-muted mb-2">
-                  <span class="uppercase">EDGE LATENCY MONITOR</span>
-                  <i class="ph-bold ph-activity text-cyber-cyan text-base"></i>
-                </div>
-                <div class="flex items-baseline space-x-2">
-                  <span id="livePingValue" class="text-2xl font-black font-orbitron text-cyber-green">14 ms</span>
-                  <span class="text-cyber-muted text-xs">ASIA-PACIFIC ROUTE</span>
-                </div>
-                <div class="mt-2 flex items-center justify-between text-[11px]">
-                  <span class="text-slate-400">SUPABASE JS: v2.x</span>
-                  <button onclick="pingSupabaseHealth()" class="text-cyber-cyan hover:underline flex items-center space-x-1">
-                    <i class="ph-bold ph-arrows-clockwise"></i>
-                    <span>Test Ping</span>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Diagnostic Console Strip -->
-            <div class="bg-[#05070A] p-3.5 rounded-lg border border-cyber-border/80 font-mono text-xs text-cyber-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-cyber-green"></span>
-                <span class="text-slate-300">SESSION AUTH: <span class="text-cyber-green font-bold">ACTIVE & PERSISTED</span></span>
-                <span class="text-cyber-border">|</span>
-                <span class="text-slate-400">TOKEN: auto-refresh enabled</span>
-              </div>
-              <div class="text-[11px] text-cyber-cyan">
-                GOOGOL_OS // KERNEL v8.4.1 SECURE
-              </div>
-            </div>
-
+          <div class="flex items-center space-x-4">
+            <span>VAULT ENGINE: <span class="text-slate-300">v2.4 ONLINE</span></span>
+            <span class="text-cyber-border">|</span>
+            <span class="text-cyber-green">AES-256 ENCRYPTED</span>
           </div>
         </section>
 
       </main>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- SECURE TACTICAL BRIEFING / PDF FALLBACK MODAL -->
-    <!-- ========================================================================= -->
-    <div id="tacticalPdfModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-      <div class="glass-panel w-full max-w-2xl rounded-2xl border border-cyber-cyan/60 p-6 sm:p-8 shadow-cyan-glow-lg relative flex flex-col max-h-[90vh]">
-        
-        <!-- Modal Header -->
-        <div class="flex items-center justify-between border-b border-cyber-border/80 pb-4">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan flex items-center justify-center text-cyber-cyan">
-              <i class="ph-bold ph-shield-check text-2xl"></i>
-            </div>
-            <div>
-              <div class="text-[10px] font-mono text-cyber-cyan uppercase tracking-widest">SECURE VAULT STREAM</div>
-              <h3 id="modalPdfTitle" class="text-lg font-bold font-orbitron text-white uppercase">Vibe Tactic Bible Vol. 3</h3>
-            </div>
-          </div>
-          <button onclick="closeTacticalPdfModal()" class="text-cyber-muted hover:text-white p-1 rounded transition-colors">
-            <i class="ph-bold ph-x text-xl"></i>
-          </button>
-        </div>
-
-        <!-- Modal Body Content -->
-        <div class="my-6 space-y-4 overflow-y-auto pr-2 font-mono text-xs text-slate-300">
-          <div class="p-3 bg-[#080B10] border border-cyber-border rounded-lg flex items-center justify-between">
-            <div>
-              <span class="text-cyber-muted">STORAGE PATH:</span> <span id="modalPdfPath" class="text-cyber-cyan font-bold">vibe-tactic-bible-vol-3.pdf</span>
-            </div>
-            <span class="px-2 py-0.5 bg-cyber-green/15 text-cyber-green text-[10px] rounded border border-cyber-green/40">ENCRYPTED 256-BIT</span>
-          </div>
-
-          <div class="p-4 bg-[#080B10]/90 border border-cyber-border rounded-lg space-y-3 font-sans text-xs">
-            <h4 class="font-orbitron font-bold text-cyber-cyan uppercase tracking-wider text-sm flex items-center space-x-2">
-              <i class="ph-bold ph-file-lock text-base"></i>
-              <span>CLASSIFIED TACTICAL BRIEFING PREVIEW</span>
-            </h4>
-            <p class="leading-relaxed text-slate-300">
-              You are accessing tactical intelligence from Googol Inc. e-sports vault. This document contains detailed zone mapping algorithms, execution line-ups, macro callout indexes, and competitive tournament setups.
-            </p>
-            <div class="grid grid-cols-2 gap-3 pt-2 text-xs font-mono text-slate-400">
-              <div>• Squad: Googol Pro Division</div>
-              <div>• Tier: Alpha Tournament</div>
-              <div>• Clearance: Level 5 Verified</div>
-              <div>• Author: Head Coach & Strat Team</div>
-            </div>
-          </div>
-
-          <div id="modalSignedUrlNotice" class="text-[11px] text-cyber-muted">
-            Direct download request sent to Supabase bucket <code class="text-cyber-cyan">premium-vault-pdfs</code>. If bucket is freshly provisioned, you can also view or print the tactical briefing report directly.
-          </div>
-        </div>
-
-        <!-- Modal Actions -->
-        <div class="pt-4 border-t border-cyber-border/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <button 
-            type="button" 
-            onclick="window.print()" 
-            class="w-full sm:w-auto px-4 py-2.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-300 hover:text-white text-xs font-mono uppercase tracking-wider transition-colors flex items-center justify-center space-x-2"
-          >
-            <i class="ph-bold ph-printer text-base"></i>
-            <span>PRINT / SAVE AS PDF</span>
-          </button>
-
-          <button 
-            type="button" 
-            onclick="closeTacticalPdfModal()" 
-            class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-cyber-cyan text-black font-orbitron font-bold text-xs uppercase tracking-wider hover:bg-cyan-300 transition-colors shadow-cyan-glow flex items-center justify-center space-x-2"
-          >
-            <i class="ph-bold ph-check text-base"></i>
-            <span>ACKNOWLEDGE & CLOSE</span>
-          </button>
-        </div>
-
-      </div>
     </div>
 
     <!-- Global Toast Container -->
@@ -1101,14 +875,14 @@
     </div>
 
     <!-- Footer -->
-    <footer class="w-full bg-[#05070A] border-t border-cyber-border/60 py-6 px-4 text-center text-xs font-mono text-cyber-muted relative z-20">
-      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+    <footer class="w-full bg-[#05070A] border-t border-cyber-border/60 py-5 px-4 text-center text-xs font-mono text-cyber-muted relative z-20">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
           <span class="text-cyber-cyan font-bold font-orbitron">GOOGOL INC.</span>
-          <span>// PRO PLAYER VAULT PORTAL</span>
+          <span>// PRO PLAYER VAULT</span>
         </div>
-        <div class="text-[11px] text-slate-500">
-          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT ENGINE
+        <div class="text-slate-500 text-[11px]">
+          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT
         </div>
       </div>
     </footer>
@@ -1121,7 +895,6 @@
   <script>
     const SUPABASE_URL = "https://kttshkoadnkemknjajsp.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_bP4lKOy_mlwzCwChDfMx1g_tG4wghWl";
-    const STORAGE_BUCKET_NAME = "premium-vault-pdfs";
 
     let supabaseClient = null;
     try {
@@ -1133,16 +906,15 @@
             detectSessionInUrl: true
           }
         });
-        console.log("Googol Inc. // Supabase v2 Client initialized successfully.");
+        console.log("Googol Inc. // Supabase Client Initialized.");
       }
     } catch (err) {
-      console.error("Supabase Initialization Error:", err);
+      console.error("Supabase Init Error:", err);
     }
 
     let currentUserSession = null;
     let sfxEnabled = true;
 
-    // Web Audio Synthesizer
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) {
@@ -1182,25 +954,25 @@
           osc.frequency.setValueAtTime(783.99, now + 0.16);
           osc.frequency.setValueAtTime(1046.50, now + 0.24);
           gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
           osc.start(now);
-          osc.stop(now + 0.45);
+          osc.stop(now + 0.4);
         } else if (type === 'error') {
           osc.type = 'sawtooth';
           osc.frequency.setValueAtTime(160, now);
           osc.frequency.setValueAtTime(110, now + 0.1);
-          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.setValueAtTime(0.18, now);
           gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
           osc.start(now);
           osc.stop(now + 0.3);
         } else if (type === 'download') {
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(400, now);
-          osc.frequency.exponentialRampToValueAtTime(1200, now + 0.18);
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+          osc.frequency.setValueAtTime(450, now);
+          osc.frequency.exponentialRampToValueAtTime(1100, now + 0.15);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
           osc.start(now);
-          osc.stop(now + 0.2);
+          osc.stop(now + 0.18);
         }
       } catch (e) {}
     }
@@ -1223,11 +995,8 @@
 
     function renderAuthenticatedState(session) {
       currentUserSession = session;
-      const authView = document.getElementById('authView');
-      const dashboardView = document.getElementById('dashboardView');
-
-      authView.classList.add('hidden');
-      dashboardView.classList.remove('hidden');
+      document.getElementById('authView').classList.add('hidden');
+      document.getElementById('dashboardView').classList.remove('hidden');
 
       const userEmail = session?.user?.email || 'player@googol.esports';
       const emailElem = document.getElementById('sessionUserEmail');
@@ -1259,11 +1028,8 @@
 
     function renderUnauthenticatedState() {
       currentUserSession = null;
-      const authView = document.getElementById('authView');
-      const dashboardView = document.getElementById('dashboardView');
-
-      dashboardView.classList.add('hidden');
-      authView.classList.remove('hidden');
+      document.getElementById('dashboardView').classList.add('hidden');
+      document.getElementById('authView').classList.remove('hidden');
       dismissAuthAlert();
     }
 
@@ -1282,7 +1048,7 @@
       const password = passwordInput.value;
 
       if (!email || !password) {
-        showAuthAlert("Please supply both Player Email and Passcode.");
+        showAuthAlert("Please provide both Player Email and Passcode.");
         return;
       }
 
@@ -1294,7 +1060,7 @@
 
       try {
         if (!supabaseClient) {
-          throw new Error("Supabase client is offline or not configured.");
+          throw new Error("Supabase client is not initialized.");
         }
 
         const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -1302,16 +1068,13 @@
           password: password
         });
 
-        if (error) {
-          throw error;
-        }
+        if (error) throw error;
 
         if (data && data.session) {
-          console.log("Supabase Auth Success:", data.session.user);
           renderAuthenticatedState(data.session);
           showToast(`Access Authorized: ${data.session.user.email}`, 'ph-shield-check');
         } else {
-          throw new Error("No active session returned from gateway.");
+          throw new Error("No active session returned.");
         }
 
       } catch (err) {
@@ -1320,7 +1083,7 @@
         
         let errorMsg = err.message || "Invalid Player Credentials";
         if (errorMsg.includes("Invalid login credentials") || errorMsg.includes("invalid_credentials")) {
-          errorMsg = "ACCESS DENIED: Invalid Player Credentials. Check email and passcode or use the simulation mode.";
+          errorMsg = "ACCESS DENIED: Invalid Player Credentials. Check email and passcode or use Instant Demo Access.";
         }
         showAuthAlert(errorMsg);
       } finally {
@@ -1341,20 +1104,20 @@
         console.warn("Sign out error:", err);
       }
       renderUnauthenticatedState();
-      showToast("Session Terminated. Re-authenticate to access Vault.", 'ph-lock');
+      showToast("Session Terminated.", 'ph-lock');
     }
 
     function launchSimulationSession() {
       playCyberSFX('success');
       const simulatedSession = {
         user: {
-          id: "usr_" + Math.random().toString(36).substring(2, 11),
-          email: "alpha_lead@googol.esports",
+          id: "usr_" + Math.random().toString(36).substring(2, 10),
+          email: "pro_player@googol.esports",
           role: "authenticated"
         }
       };
       renderAuthenticatedState(simulatedSession);
-      showToast("Entered Simulation Vault Mode (Level 5 Pro)", 'ph-sparkle');
+      showToast("Entered Pro Vault Mode", 'ph-sparkle');
     }
 
     function togglePasswordVisibility() {
@@ -1390,7 +1153,7 @@
       if (!file) return;
 
       if (!file.type.startsWith('image/')) {
-        showToast("Invalid file type. Please select an image.", "ph-warning");
+        showToast("Please select a valid image file.", "ph-warning");
         return;
       }
 
@@ -1405,7 +1168,7 @@
         saveLocalDossier(currentDossier);
 
         playCyberSFX('success');
-        showToast("Avatar image updated & cached.", "ph-camera");
+        showToast("Avatar image updated.", "ph-camera");
       };
       reader.readAsDataURL(file);
     }
@@ -1428,10 +1191,10 @@
       toastElem.classList.remove('hidden');
       setTimeout(() => {
         toastElem.classList.add('hidden');
-      }, 4000);
+      }, 3500);
 
       playCyberSFX('success');
-      showToast("Player Dossier successfully synchronized.", "ph-floppy-disk");
+      showToast("Profile changes saved successfully.", "ph-floppy-disk");
     }
 
     function loadLocalDossier() {
@@ -1447,97 +1210,8 @@
       try {
         localStorage.setItem('googol_player_dossier', JSON.stringify(dossier));
       } catch (e) {
-        console.warn("Could not save to localStorage", e);
+        console.warn("localStorage error", e);
       }
-    }
-
-    async function downloadVaultPDF(fileName, title, buttonElem) {
-      playCyberSFX('download');
-      
-      const originalHtml = buttonElem.innerHTML;
-      buttonElem.disabled = true;
-      buttonElem.innerHTML = `<i class="ph-bold ph-spinner-gap text-base animate-spin"></i><span>GENERATING SECURE LINK...</span>`;
-
-      try {
-        let signedUrl = null;
-
-        if (supabaseClient) {
-          console.log(`Requesting signed URL for: ${STORAGE_BUCKET_NAME}/${fileName}`);
-          const { data, error } = await supabaseClient
-            .storage
-            .from(STORAGE_BUCKET_NAME)
-            .createSignedUrl(fileName, 60);
-
-          if (error) {
-            console.warn("Supabase Signed URL error:", error);
-          } else if (data && data.signedUrl) {
-            signedUrl = data.signedUrl;
-          }
-        }
-
-        if (signedUrl) {
-          console.log("Supabase Signed URL generated:", signedUrl);
-          window.open(signedUrl, '_blank');
-          showToast(`Encrypted Link Generated: ${title}`, "ph-download-simple");
-        } else {
-          openTacticalPdfModal(fileName, title);
-          showToast(`Vault Stream Decrypted: ${title}`, "ph-file-lock");
-        }
-
-      } catch (err) {
-        console.error("Vault download exception:", err);
-        openTacticalPdfModal(fileName, title);
-      } finally {
-        buttonElem.disabled = false;
-        buttonElem.innerHTML = originalHtml;
-      }
-    }
-
-    function openTacticalPdfModal(fileName, title) {
-      document.getElementById('modalPdfTitle').textContent = title;
-      document.getElementById('modalPdfPath').textContent = fileName;
-      document.getElementById('tacticalPdfModal').classList.remove('hidden');
-    }
-
-    function closeTacticalPdfModal() {
-      playCyberSFX('click');
-      document.getElementById('tacticalPdfModal').classList.add('hidden');
-    }
-
-    async function pingSupabaseHealth() {
-      playCyberSFX('click');
-      const pingElem = document.getElementById('livePingValue');
-      pingElem.textContent = '...';
-      const start = performance.now();
-
-      try {
-        const response = await fetch(`${SUPABASE_URL}/auth/v1/health`, {
-          method: 'GET',
-          headers: { 'apikey': SUPABASE_ANON_KEY }
-        });
-        const duration = Math.round(performance.now() - start);
-        pingElem.textContent = `${duration} ms`;
-        showToast(`Supabase Edge Ping: ${duration}ms (Healthy)`, 'ph-activity');
-      } catch (err) {
-        const duration = Math.floor(Math.random() * 15) + 12;
-        pingElem.textContent = `${duration} ms`;
-        showToast(`Supabase Edge Ping: ${duration}ms`, 'ph-activity');
-      }
-    }
-
-    function copyHostAddress() {
-      playCyberSFX('click');
-      navigator.clipboard.writeText("kttshkoadnkemknjajsp.supabase.co").then(() => {
-        showToast("Host address copied to clipboard", "ph-copy");
-      });
-    }
-
-    function copySessionInfo() {
-      playCyberSFX('click');
-      const user = currentUserSession?.user?.email || "player@googol.esports";
-      navigator.clipboard.writeText(user).then(() => {
-        showToast("Player ID copied to clipboard", "ph-copy");
-      });
     }
 
     function updateMilitaryClock() {
@@ -1568,16 +1242,14 @@
     document.addEventListener('DOMContentLoaded', async () => {
       if (supabaseClient) {
         try {
-          const { data: { session }, error } = await supabaseClient.auth.getSession();
+          const { data: { session } } = await supabaseClient.auth.getSession();
           if (session) {
-            console.log("Active Supabase Session Restored:", session.user.email);
             renderAuthenticatedState(session);
           } else {
             renderUnauthenticatedState();
           }
 
           supabaseClient.auth.onAuthStateChange((event, session) => {
-            console.log("Supabase Auth State Changed:", event);
             if (event === 'SIGNED_IN' && session) {
               renderAuthenticatedState(session);
             } else if (event === 'SIGNED_OUT') {
@@ -1617,7 +1289,7 @@
           y: Math.random() * height,
           vx: (Math.random() - 0.5) * 0.4,
           vy: (Math.random() - 0.5) * 0.4,
-          radius: Math.random() * 1.8 + 0.6,
+          radius: Math.random() * 1.6 + 0.6,
           color: Math.random() > 0.3 ? '#00F0FF' : '#FF0055'
         });
       }
@@ -1633,7 +1305,7 @@
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 110) {
-              const alpha = (1 - dist / 110) * 0.15;
+              const alpha = (1 - dist / 110) * 0.14;
               ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
               ctx.beginPath();
               ctx.moveTo(nodes[i].x, nodes[i].y);
