@@ -993,11 +993,16 @@
       </div>
     </div>
 
-    <!-- Global Toast Container -->
-    <div id="globalToast" class="fixed bottom-6 right-6 z-50 hidden transition-all duration-300">
-      <div class="glass-panel p-4 rounded-2xl border border-cyber-cyan shadow-cyan-glow flex items-center space-x-3 text-xs font-mono text-white">
-        <i id="globalToastIcon" class="ph-bold ph-info text-xl text-cyber-cyan"></i>
-        <span id="globalToastText">Operation completed successfully.</span>
+    <!-- Global Toast Container (Positioned at Top-Right to prevent clashing with BGM Audio Controller) -->
+    <div id="globalToast" class="fixed top-14 right-4 sm:top-16 sm:right-8 z-50 hidden transition-all duration-300 transform">
+      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyber-cyan/80 bg-[#0C1018]/95 backdrop-blur-xl shadow-cyan-glow flex items-center space-x-3.5 text-xs font-mono text-white max-w-sm">
+        <div class="w-9 h-9 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan/40 flex items-center justify-center flex-shrink-0">
+          <i id="globalToastIcon" class="ph-bold ph-info text-xl text-cyber-cyan"></i>
+        </div>
+        <div class="flex flex-col pr-2">
+          <span class="text-[10px] text-cyber-cyan font-bold tracking-wider uppercase font-orbitron">PORTAL NOTIFICATION</span>
+          <span id="globalToastText" class="font-medium text-slate-100 mt-0.5 leading-snug">Operation completed successfully.</span>
+        </div>
       </div>
     </div>
 
