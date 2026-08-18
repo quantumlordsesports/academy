@@ -1,0 +1,22 @@
+# =============================================================================
+# QUANTUM LORDS ESPORTS — NETLIFY CONFIGURATION
+# =============================================================================
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# API Redirects for Clean Serverless Function Endpoints
+[[redirects]]
+  from = "/api/verify-turnstile"
+  to = "/.netlify/functions/verify-turnstile"
+  status = 200
+
+# Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

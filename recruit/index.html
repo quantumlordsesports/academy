@@ -142,6 +142,9 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
+  <!-- Cloudflare Turnstile Bot Protection API -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
 
@@ -405,6 +408,157 @@
           <img src="../assets/matches/academy.png" alt="QuantumLords Academy recruitment banner"
             onerror="this.src='../folder/Academy Graduatiom.png.png'" />
         </div>
+      </div>
+
+      <!-- Online Academy Trial Registration Form (Protected by Cloudflare Turnstile) -->
+      <div style="margin-top: 3rem; background: rgba(15, 19, 29, 0.85); border: 2px solid rgba(0, 240, 255, 0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+          <div>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00F0FF; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">DIRECT TRIAL REGISTRATION</span>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900; color: #fff; margin-top: 0.25rem;">Submit Your Trial Application</h3>
+          </div>
+          <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00FF66; padding: 6px 12px; background: rgba(0,255,102,0.1); border: 1px solid rgba(0,255,102,0.3); border-radius: 8px;">
+            🛡️ CLOUDFLARE TURNSTILE VERIFIED
+          </span>
+        </div>
+
+        <form id="recruitTrialForm" onsubmit="handleRecruitTrialSubmit(event)" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <div id="trialAlert" style="display: none; padding: 0.85rem 1.25rem; border-radius: 10px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;"></div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+            <div>
+              <label for="trialIGN" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Free Fire In-Game Name (IGN) *</label>
+              <input type="text" id="trialIGN" name="ign" required placeholder="e.g. QLD・SHADOW" style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;" />
+            </div>
+
+            <div>
+              <label for="trialUID" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Free Fire UID Number *</label>
+              <input type="text" id="trialUID" name="uid" required placeholder="e.g. 1928374650" style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;" />
+            </div>
+
+            <div>
+              <label for="trialDiscord" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Discord Username / Tag *</label>
+              <input type="text" id="trialDiscord" name="discord" required placeholder="e.g. shadow_player#1234" style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;" />
+            </div>
+
+            <div>
+              <label for="trialRole" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Preferred Roster Role *</label>
+              <select id="trialRole" name="role" style="width: 100%; padding: 0.75rem 1rem; background: #0A0C11; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: inherit; font-size: 0.9rem;">
+                <option value="Primary Entry Rusher">Primary Entry Rusher</option>
+                <option value="In-Game Leader (IGL) & Shot Caller">In-Game Leader (IGL) & Shot Caller</option>
+                <option value="Dedicated Long-Range Sniper">Dedicated Long-Range Sniper</option>
+                <option value="Support & Gloo Wall Anchor">Support & Gloo Wall Anchor</option>
+                <option value="Clash Squad Specialist">Clash Squad Specialist</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+            <div>
+              <label for="trialKD" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Rank & Lifetime K/D Ratio *</label>
+              <input type="text" id="trialKD" name="kd" required placeholder="e.g. Grandmaster / 4.2 K/D" style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;" />
+            </div>
+
+            <div>
+              <label for="trialVod" style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: #94A3B8;">Gameplay VOD / Highlight Link</label>
+              <input type="url" id="trialVod" name="vod" placeholder="https://youtube.com/watch?v=..." style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;" />
+            </div>
+          </div>
+
+          <!-- Cloudflare Turnstile Challenge Widget -->
+          <div style="margin: 0.5rem 0; display: flex; justify-content: flex-start;">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEUXTyqZ1EGIr5ag" data-theme="dark"></div>
+          </div>
+
+          <div>
+            <button type="submit" id="trialSubmitBtn" class="button button-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 2.5rem; font-size: 0.95rem; font-family: 'Orbitron', sans-serif; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 25px rgba(0,240,255,0.4);">
+              <span>Submit Trial Dossier</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+
+        <script>
+          async function handleRecruitTrialSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('trialAlert');
+            const submitBtn = document.getElementById('trialSubmitBtn');
+            const ign = document.getElementById('trialIGN').value.trim();
+            const uid = document.getElementById('trialUID').value.trim();
+            const discord = document.getElementById('trialDiscord').value.trim();
+            const role = document.getElementById('trialRole').value;
+            const kd = document.getElementById('trialKD').value.trim();
+            const vod = document.getElementById('trialVod').value.trim();
+
+            alertBox.style.display = 'none';
+
+            // 1. Check Cloudflare Turnstile token
+            const turnstileToken = document.querySelector('#recruitTrialForm [name="cf-turnstile-response"]')?.value || 
+                                   (window.turnstile ? window.turnstile.getResponse() : null);
+
+            if (!turnstileToken) {
+              alertBox.style.display = 'block';
+              alertBox.style.background = 'rgba(255,0,85,0.15)';
+              alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
+              alertBox.style.color = '#ff0055';
+              alertBox.textContent = '⚠️ Bot Verification Required: Please complete the Cloudflare security challenge.';
+              return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Verifying Security...</span>';
+
+            try {
+              // 2. Verify with serverless endpoint
+              const verifyRes = await fetch('/api/verify-turnstile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: turnstileToken })
+              });
+
+              if (verifyRes.status === 400 || verifyRes.status === 403) {
+                const errData = await verifyRes.json().catch(() => ({}));
+                if (window.turnstile) window.turnstile.reset();
+                throw new Error(errData.error || 'Security verification failed.');
+              }
+            } catch (err) {
+              console.warn('[Turnstile Notice]', err.message);
+              if (err.message.includes('Security verification failed')) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Submit Trial Dossier</span> →';
+                alertBox.style.display = 'block';
+                alertBox.style.background = 'rgba(255,0,85,0.15)';
+                alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
+                alertBox.style.color = '#ff0055';
+                alertBox.textContent = '❌ Security check failed: ' + err.message;
+                return;
+              }
+            }
+
+            // 3. Human Verified Success
+            alertBox.style.display = 'block';
+            alertBox.style.background = 'rgba(0,255,102,0.15)';
+            alertBox.style.border = '1px solid rgba(0,255,102,0.5)';
+            alertBox.style.color = '#00ff66';
+            alertBox.textContent = '✅ Application Verified! Dispatching your dossier to Quantum Lords Recruitment...';
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Dossier Submitted ✓</span>';
+
+            const emailBody = `QUANTUM LORDS ACADEMY TRIAL APPLICATION\n` +
+                              `========================================\n` +
+                              `IGN: ${ign}\n` +
+                              `UID: ${uid}\n` +
+                              `Discord: ${discord}\n` +
+                              `Preferred Role: ${role}\n` +
+                              `Rank & K/D: ${kd}\n` +
+                              `VOD Link: ${vod || 'None provided'}\n\n` +
+                              `Verification: Cloudflare Turnstile Human Token Verified`;
+
+            const mailtoUrl = `mailto:quantumlordsesports@gmail.com?subject=${encodeURIComponent('[ACADEMY TRIAL] ' + ign + ' (' + role + ')')}&body=${encodeURIComponent(emailBody)}`;
+            window.open(mailtoUrl, '_blank');
+          }
+        </script>
       </div>
     </section>
 
