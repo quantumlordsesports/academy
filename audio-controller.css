@@ -1,0 +1,279 @@
+/* ============================================================
+   QuantumLords Esports — Background Music Controller (BGM)
+   Cyberpunk / Obsidian Glass / Gold & Cyan Glow
+   ============================================================ */
+
+.bgm-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(8, 11, 18, 0.88);
+  border: 1px solid rgba(232, 197, 106, 0.3);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(232, 197, 106, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 6px;
+  color: #f4f3ee;
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  max-width: calc(100vw - 32px);
+}
+
+.bgm-widget:hover {
+  border-color: rgba(232, 197, 106, 0.6);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(232, 197, 106, 0.28);
+  transform: translateY(-2px);
+}
+
+/* Playing Glow State */
+.bgm-widget.is-playing {
+  border-color: rgba(232, 197, 106, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 24px rgba(232, 197, 106, 0.22);
+}
+
+/* Play/Pause Button */
+.bgm-toggle-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(232, 197, 106, 0.2), rgba(20, 24, 36, 0.9));
+  border: 1.5px solid var(--accent, #e8c56a);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px rgba(232, 197, 106, 0.25);
+}
+
+.bgm-toggle-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, rgba(232, 197, 106, 0.35), rgba(30, 36, 52, 0.95));
+  box-shadow: 0 0 18px rgba(232, 197, 106, 0.45);
+}
+
+.bgm-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* Icon image (on.png / off.png) */
+.bgm-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(232, 197, 106, 0.5));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.bgm-widget.is-playing .bgm-icon-img {
+  animation: pulseIcon 2s ease-in-out infinite;
+}
+
+@keyframes pulseIcon {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(232, 197, 106, 0.6)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(246, 223, 156, 0.9)); }
+}
+
+/* BGM Content Info */
+.bgm-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.bgm-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent, #e8c56a);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bgm-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64748b;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bgm-widget.is-playing .bgm-status-dot {
+  background: #00ff66;
+  box-shadow: 0 0 8px #00ff66;
+  animation: blinkStatus 1.5s infinite;
+}
+
+@keyframes blinkStatus {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.bgm-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+/* Equalizer Bars */
+.bgm-equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  padding-left: 2px;
+}
+
+.bgm-eq-bar {
+  width: 2.5px;
+  height: 3px;
+  background: var(--accent, #e8c56a);
+  border-radius: 2px;
+  transition: height 0.2s ease, background 0.3s ease;
+}
+
+.bgm-widget.is-playing .bgm-eq-bar:nth-child(1) {
+  animation: eqJump 0.8s ease-in-out infinite alternate;
+}
+.bgm-widget.is-playing .bgm-eq-bar:nth-child(2) {
+  animation: eqJump 0.6s ease-in-out infinite alternate 0.15s;
+}
+.bgm-widget.is-playing .bgm-eq-bar:nth-child(3) {
+  animation: eqJump 0.9s ease-in-out infinite alternate 0.3s;
+}
+.bgm-widget.is-playing .bgm-eq-bar:nth-child(4) {
+  animation: eqJump 0.7s ease-in-out infinite alternate 0.1s;
+}
+
+@keyframes eqJump {
+  0% { height: 3px; }
+  50% { height: 13px; }
+  100% { height: 6px; }
+}
+
+/* Volume Slider Controls */
+.bgm-volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 6px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bgm-vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.bgm-vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent, #e8c56a);
+  box-shadow: 0 0 6px rgba(232, 197, 106, 0.7);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.bgm-vol-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.bgm-vol-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent, #e8c56a);
+  box-shadow: 0 0 6px rgba(232, 197, 106, 0.7);
+  border: none;
+  cursor: pointer;
+}
+
+/* Floating Entrance Prompt Tooltip */
+.bgm-entrance-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  background: rgba(10, 14, 24, 0.95);
+  border: 1px solid rgba(232, 197, 106, 0.45);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #f6df9c;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(232, 197, 106, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.bgm-entrance-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(232, 197, 106, 0.45) transparent transparent transparent;
+}
+
+.bgm-entrance-tooltip.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Compact Mode / Responsive */
+@media (max-width: 640px) {
+  .bgm-widget {
+    bottom: 16px;
+    right: 16px;
+    padding: 5px;
+    gap: 8px;
+  }
+
+  .bgm-info {
+    display: none;
+  }
+
+  .bgm-volume-wrap {
+    display: none;
+  }
+
+  .bgm-toggle-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .bgm-icon-img {
+    width: 22px;
+    height: 22px;
+  }
+}
