@@ -23,6 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   
   <script src="../audio-controller.js" defer></script>
+  <script src="../app.js" defer></script>
 </head>
 <body class="theme-obsidian">
 
@@ -37,9 +38,17 @@
         </span>
         <span class="brand-label">QuantumLords</span>
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation"><span>Menu</span></button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon" aria-hidden="true">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
       
       <ul id="primary-navigation" class="nav-list">
+        <li><a href="../index.html">Home</a></li>
         <li><a href="../roster/index.html">Roster</a></li>
         <li><a href="../achievements/index.html">Achievements</a></li>
         <li><a href="../news/index.html">News</a></li>
@@ -48,7 +57,7 @@
         <li><a href="../recruit/index.html">Recruit</a></li>
         <li><a href="../sponsors/index.html" class="active">Sponsors</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
-        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700; text-shadow: 0 0 8px rgba(0,240,255,0.6);">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>

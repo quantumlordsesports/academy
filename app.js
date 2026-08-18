@@ -3,11 +3,31 @@ const setText = (selector, text) => {
   if (element && text) element.textContent = text;
 };
 
+/* ---------- Site data builders (guarded for multi-page safety) ---------- */
+
+const applySiteData = () => {
+  if (typeof siteData === 'undefined') return;
+  document.documentElement.style.setProperty('--accent', siteData.accentColor || '#e8c56a');
+  document.documentElement.style.setProperty('--accent-soft', `${siteData.accentColor || '#e8c56a'}20`);
+  document.documentElement.style.setProperty('--accent-glow', `${siteData.accentColor || '#e8c56a'}59`);
+  setText('#hero-title', siteData.teamName);
+
+  const emailContainer = document.getElementById('contact-emails');
+  if (emailContainer) {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteData.contactEmail || 'quantumlordsesports@gmail.com')}`;
+    emailContainer.innerHTML = `
+      <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="email-card">
+        <span class="social-icon" aria-hidden="true"><img class="social-logo" src="assets/social/gmail.webp" alt="Gmail" onerror="this.src='../assets/social/gmail.webp'" /></span>
+        <span>${siteData.contactEmail}</span>
+      </a>`;
+  }
+};
+
 /* ---------- Social links ---------- */
 
 const buildSocialLinks = () => {
   const socialList = document.getElementById('social-links');
-  if (!socialList) return;
+  if (!socialList || typeof siteData === 'undefined' || !siteData.socials) return;
   const icons = {
     twitter: 'X',
     instagram: '<img class="social-logo" src="assets/social/instagram 02.png" alt="Instagram" />',
@@ -60,7 +80,7 @@ const createImageWithFallback = (src, alt, fallbackText) => {
 
 const buildRoster = () => {
   const rosterGrid = document.getElementById('roster-grid');
-  if (!rosterGrid) return;
+  if (!rosterGrid || typeof siteData === 'undefined' || !siteData.roster) return;
   siteData.roster.forEach((player) => {
     const card = document.createElement('article');
     card.className = 'card player-card tilt-card';
@@ -91,7 +111,7 @@ const buildRoster = () => {
 
 const buildAchievements = () => {
   const achievementsGrid = document.getElementById('achievements-grid');
-  if (!achievementsGrid) return;
+  if (!achievementsGrid || typeof siteData === 'undefined' || !siteData.achievements) return;
   siteData.achievements.forEach((achievement, index) => {
     const card = document.createElement('article');
     card.className = 'achievement-card';
@@ -110,7 +130,7 @@ const buildAchievements = () => {
 
 const buildNews = () => {
   const newsGrid = document.getElementById('news-grid');
-  if (!newsGrid) return;
+  if (!newsGrid || typeof siteData === 'undefined' || !siteData.news) return;
   siteData.news.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'card highlight-card';
@@ -158,10 +178,10 @@ const buildNews = () => {
 const buildSponsors = () => {
   const sponsorGrid = document.getElementById('sponsor-grid');
   const sponsorText = document.getElementById('sponsor-text');
-  if (!sponsorGrid || !sponsorText) return;
+  if (!sponsorGrid || !sponsorText || typeof siteData === 'undefined') return;
 
-  if (!siteData.sponsors.length) {
-    sponsorText.textContent = siteData.sponsorText;
+  if (!siteData.sponsors || !siteData.sponsors.length) {
+    sponsorText.textContent = siteData.sponsorText || '';
     sponsorGrid.style.display = 'none';
     return;
   }
@@ -206,44 +226,87 @@ const updateHeroLogoFallback = () => {
   };
 };
 
-/* ---------- Mobile nav ---------- */
+/* ---------- Mobile nav & Universal Menu Handling ---------- */
 
 const setupNavToggle = () => {
   const toggle = document.querySelector('.nav-toggle');
   const navList = document.getElementById('primary-navigation');
   if (!toggle || !navList) return;
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    navList.classList.toggle('open', !expanded);
+
+  const toggleLabel = toggle.querySelector('.nav-toggle-label') || toggle.querySelector('span:not(.nav-toggle-bar)');
+
+  const openMenu = () => {
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.classList.add('is-open');
+    navList.classList.add('open');
+    if (toggleLabel) toggleLabel.textContent = 'Close';
+    if (window.AudioController && typeof window.AudioController.play === 'function') {
+      window.AudioController.play('click');
+    }
+  };
+
+  const closeMenu = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.classList.remove('is-open');
+    navList.classList.remove('open');
+    if (toggleLabel) toggleLabel.textContent = 'Menu';
+  };
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    if (isExpanded) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
+  // Close when clicking any nav link
   navList.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      if (navList.classList.contains('open')) {
-        navList.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
+      closeMenu();
     });
   });
-};
 
-/* ---------- Site data ---------- */
+  // Close when clicking outside the navigation
+  document.addEventListener('click', (e) => {
+    if (navList.classList.contains('open')) {
+      const isInsideNav = toggle.contains(e.target) || navList.contains(e.target);
+      if (!isInsideNav) {
+        closeMenu();
+      }
+    }
+  });
 
-const applySiteData = () => {
-  document.documentElement.style.setProperty('--accent', siteData.accentColor || '#e8c56a');
-  document.documentElement.style.setProperty('--accent-soft', `${siteData.accentColor || '#e8c56a'}20`);
-  document.documentElement.style.setProperty('--accent-glow', `${siteData.accentColor || '#e8c56a'}59`);
-  setText('#hero-title', siteData.teamName);
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navList.classList.contains('open')) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
 
-  const emailContainer = document.getElementById('contact-emails');
-  if (emailContainer) {
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteData.contactEmail || 'quantumlordsesports@gmail.com')}`;
-    emailContainer.innerHTML = `
-      <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="email-card">
-        <span class="social-icon" aria-hidden="true"><img class="social-logo" src="assets/social/gmail.webp" alt="Gmail" onerror="this.src='../assets/social/gmail.webp'" /></span>
-        <span>${siteData.contactEmail}</span>
-      </a>`;
+  // Auto-close on viewport resize past mobile breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 860 && navList.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+
+  // Automatically ensure the active link is highlighted if not manually set
+  const currentPath = window.location.pathname.replace(/\\/g, '/');
+  const hasManualActive = navList.querySelector('a.active');
+  if (!hasManualActive) {
+    navList.querySelectorAll('a').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (href) {
+        const cleanHref = href.split('#')[0].split('?')[0];
+        if (cleanHref && (currentPath.endsWith(cleanHref) || (cleanHref === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('index.html'))))) {
+          a.classList.add('active');
+        }
+      }
+    });
   }
 };
 
