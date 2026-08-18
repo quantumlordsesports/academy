@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roster - QuantumLords</title>
+  <title>Active Roster - QuantumLords Esports</title>
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="site-header">
@@ -14,15 +16,13 @@
         <span class="brand-mark">
           <span class="glitch-wrap">
             <img class="glitch-img" src="../assets/logo.png" alt="QuantumLords logo" />
-            <img class="glitch-layer glitch-red" aria-hidden="true" src="../assets/logo.png" />
-            <img class="glitch-layer glitch-green" aria-hidden="true" src="../assets/logo.png" />
           </span>
         </span>
         <span class="brand-label">QuantumLords</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation"><span>Menu</span></button>
       <ul id="primary-navigation" class="nav-list">
-        <li><a href="../roster/index.html">Roster</a></li>
+        <li><a href="../roster/index.html" class="active">Roster</a></li>
         <li><a href="../achievements/index.html">Achievements</a></li>
         <li><a href="../news/index.html">News</a></li>
         <li><a href="../tournaments/index.html">Tournaments</a></li>
@@ -30,24 +30,75 @@
         <li><a href="../recruit/index.html">Recruit</a></li>
         <li><a href="../sponsors/index.html">Sponsors</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="section-block">
-      <div class="section-header">
-        <p class="eyebrow">Roster</p>
-        <h1>Tournament - Coming Soon</h1>
-        <p>Roster page is a placeholder. Add player cards and details here.</p>
+    <section class="section-block" style="padding: 4rem 1.5rem; max-width: 1200px; margin: 0 auto;">
+      <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+        <p class="eyebrow" style="color: #00F0FF; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 2px;">Championship Squad</p>
+        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #fff; text-transform: uppercase; margin: 0.5rem 0;">PRO ROSTER // STARTERS</h1>
+        <p style="color: #94A3B8; max-width: 600px; margin: 0 auto;">Active competitive Free Fire lineup for Googol Inc. / QuantumLords Tier-1 Tournaments.</p>
       </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Placeholder</h3>
-            <p class="card-text">Add roster content here.</p>
+
+      <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        
+        <!-- Player 1: CYBER_NINJA (Captain & IGL) -->
+        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: transform 0.3s ease;">
+          <div style="height: 260px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="CYBER_NINJA" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
+              ACTIVE STARTER
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="color: #00F0FF; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">IGL / RUSHER • #007</div>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">CYBER_NINJA</h3>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Alexander "AK" Vance • 3.84 K/D • 68.2% Win Rate</p>
+            <a href="../profile.html" style="display: block; text-align: center; background: rgba(0, 240, 255, 0.15); border: 1px solid #00F0FF; color: #00F0FF; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none; transition: all 0.2s;">
+              VIEW PLAYER DOSSIER →
+            </a>
           </div>
         </div>
+
+        <!-- Player 2: VORTEX_PRO -->
+        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+          <div style="height: 260px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="VORTEX" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
+              ACTIVE STARTER
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="color: #8B5CF6; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">PRIMARY SNIPER • #012</div>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">VORTEX</h3>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Elena Rostova • 4.12 K/D • 58.4% Headshot</p>
+            <a href="../profile.html" style="display: block; text-align: center; background: rgba(139, 92, 246, 0.15); border: 1px solid #8B5CF6; color: #C084FC; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none;">
+              VIEW PLAYER DOSSIER →
+            </a>
+          </div>
+        </div>
+
+        <!-- Player 3: PHANTOM_X -->
+        <div class="card" style="background: rgba(15, 19, 29, 0.85); border: 1px solid rgba(255, 0, 85, 0.3); border-radius: 1.25rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+          <div style="height: 260px; overflow: hidden; position: relative;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="PHANTOM" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(0, 255, 102, 0.15); border: 1px solid #00FF66; color: #00FF66; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: bold; font-family: monospace;">
+              ACTIVE STARTER
+            </div>
+          </div>
+          <div class="card-body" style="padding: 1.5rem;">
+            <div style="color: #FF0055; font-size: 0.75rem; font-family: monospace; text-transform: uppercase; font-weight: bold;">ENTRY FRAGGER • #009</div>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0.25rem 0;">PHANTOM</h3>
+            <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.25rem;">Marcus Chen • 3.65 K/D • 1,510 ADR</p>
+            <a href="../profile.html" style="display: block; text-align: center; background: rgba(255, 0, 85, 0.15); border: 1px solid #FF0055; color: #FF0055; padding: 0.75rem; border-radius: 0.75rem; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; text-decoration: none;">
+              VIEW PLAYER DOSSIER →
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -58,34 +109,15 @@
         <div class="footer-brand">
           <img src="../assets/logo.png" alt="QuantumLords logo" class="footer-logo" />
           <div>
-            <strong>QuantumLords Esports</strong>
-            <div class="footer-tagline">Rise together. Win together.</div>
-          </div>
-        </div>
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="../roster/index.html">Roster</a>
-          <a href="../achievements/index.html">Achievements</a>
-          <a href="../recruit/index.html">Recruit</a>
-          <a href="../contact/index.html">Contact</a>
-        </nav>
-
-        <div class="footer-contact">
-          <div>Contact: <a href="mailto:quantumlordsesports@gmail.com">quantumlordsesports@gmail.com</a></div>
-          <div class="footer-social">
-            <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noopener noreferrer">Discord</a>
-            <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <span class="footer-title">QuantumLords</span>
+            <p class="footer-text">Rise Together. Win Together. Free Fire Esports Division.</p>
           </div>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <small>© Akreative Studio — All rights reserved.</small>
-        <small class="footer-version">version 2.1.2.0.0 (HJCPP)</small>
+        <p>© 2026 QuantumLords & Googol Inc. All rights reserved.</p>
       </div>
     </div>
   </footer>
 </body>
 </html>
-
-  

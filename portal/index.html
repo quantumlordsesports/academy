@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Googol Inc. // Pro Player Vault & Strategy Portal</title>
-  <meta name="description" content="Googol Inc. Esports Pro Player Portal - Authenticated Strategy Vault, Required Reading & Tactical Intelligence." />
+  <title>Googol Inc. // Pro Esports Player Profile & Strategy Vault</title>
+  <meta name="description" content="Googol Inc. Esports Pro Player Dossier, Combat Telemetry, Tactical Loadouts, and Classified Strategy Books." />
   
   <!-- Favicon -->
   <link rel="icon" href="../assets/logo.png" type="image/png" />
@@ -34,6 +34,8 @@
               'cyan-glow': 'rgba(0, 240, 255, 0.4)',
               crimson: '#FF0055',
               'crimson-glow': 'rgba(255, 0, 85, 0.4)',
+              violet: '#8B5CF6',
+              'violet-glow': 'rgba(139, 92, 246, 0.4)',
               green: '#00FF66',
               'green-glow': 'rgba(0, 255, 102, 0.4)',
               gold: '#FFB800',
@@ -51,6 +53,7 @@
             'cyan-glow': '0 0 25px -5px rgba(0, 240, 255, 0.5)',
             'cyan-glow-lg': '0 0 40px 0px rgba(0, 240, 255, 0.35)',
             'crimson-glow': '0 0 25px -5px rgba(255, 0, 85, 0.5)',
+            'violet-glow': '0 0 25px -5px rgba(139, 92, 246, 0.5)',
             'green-glow': '0 0 20px -3px rgba(0, 255, 102, 0.5)',
             'cyber-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(0, 240, 255, 0.15)',
           },
@@ -99,7 +102,7 @@
       border: 1px solid rgba(0, 240, 255, 0.15);
     }
 
-    /* Book Cover 3D Card Hover */
+    /* Book Cover Card Hover */
     .book-card {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -129,6 +132,7 @@
   <!-- Ambient Glow Spots -->
   <div class="fixed -top-32 -left-32 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none z-0"></div>
   <div class="fixed -bottom-32 -right-32 w-96 h-96 bg-cyber-crimson/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyber-violet/5 rounded-full blur-3xl pointer-events-none z-0"></div>
 
   <!-- App Wrapper -->
   <div id="appContainer" class="relative z-20 min-h-screen flex flex-col justify-between">
@@ -138,7 +142,7 @@
       <div class="flex items-center space-x-3">
         <a href="../index.html" class="flex items-center space-x-1.5 text-cyber-cyan hover:text-white transition-colors duration-200">
           <i class="ph-bold ph-arrow-left"></i>
-          <span class="font-semibold uppercase tracking-wider">Main Squad Site</span>
+          <span class="font-semibold uppercase tracking-wider">Public Squad Page</span>
         </a>
         <span class="text-cyber-border hidden sm:inline">|</span>
         <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">GOOGOL INC.</span></span>
@@ -172,7 +176,6 @@
         <!-- Glowing Card -->
         <div class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-cyber-cyan/30">
           
-          <!-- Subtle Top Border Beam -->
           <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent animate-pulse-slow"></div>
 
           <!-- Header / Brand Section -->
@@ -191,7 +194,7 @@
               PRO PLAYER <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-blue-400">PORTAL</span>
             </h1>
             <p class="text-xs text-cyber-muted font-space mt-1 uppercase tracking-wider">
-              Enter your credentials to access protected strategy documents
+              Authenticate to access your Player Dossier & Strategy Vault
             </p>
           </div>
 
@@ -213,8 +216,6 @@
 
           <!-- Login Form -->
           <form id="loginForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
-            
-            <!-- Email / Player ID Input -->
             <div>
               <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
                 <span>Player Email / ID</span>
@@ -236,7 +237,6 @@
               </div>
             </div>
 
-            <!-- Password Input with Eye Toggle -->
             <div>
               <div class="flex items-center justify-between mb-1.5">
                 <label for="playerPassword" class="block text-xs font-mono text-slate-300 uppercase tracking-wider">
@@ -257,7 +257,6 @@
                   placeholder="••••••••••••"
                   class="w-full pl-10 pr-11 py-3 bg-[#080B10]/90 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan font-mono placeholder:text-slate-600 transition-all"
                 />
-                <!-- Visibility Toggle Button -->
                 <button 
                   type="button" 
                   id="passwordToggleBtn"
@@ -270,7 +269,6 @@
               </div>
             </div>
 
-            <!-- Action Button -->
             <div class="pt-2">
               <button 
                 type="submit" 
@@ -284,7 +282,7 @@
             </div>
           </form>
 
-          <!-- Quick Demo Access Helper -->
+          <!-- Instant Demo Access Bypass -->
           <div class="mt-6 pt-4 border-t border-cyber-border/60 text-center">
             <button 
               type="button" 
@@ -302,7 +300,7 @@
     </main>
 
     <!-- ========================================================================= -->
-    <!-- STATE 2: AUTHENTICATED PLAYER DASHBOARD (PROTECTED VAULT) -->
+    <!-- STATE 2: AUTHENTICATED PLAYER PROFILE & DASHBOARD (PROTECTED VAULT) -->
     <!-- ========================================================================= -->
     <div id="dashboardView" class="hidden flex-grow flex flex-col transition-all duration-500 pb-12">
       
@@ -320,19 +318,19 @@
                 GOOGOL INC. <span class="text-cyber-cyan">// VAULT</span>
               </div>
               <div class="text-[11px] font-mono text-cyber-muted hidden sm:block">
-                PRO PLAYER OPERATIONAL INTELLIGENCE & STRATEGY
+                PRO ESPORTS PLAYER PROFILE & TACTICAL INTELLIGENCE
               </div>
             </div>
           </div>
 
-          <!-- Right: Badges & Logout -->
+          <!-- Right: Badges & Actions -->
           <div class="flex items-center space-x-3 sm:space-x-4">
             <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 shadow-green-glow text-cyber-green text-xs font-mono font-bold tracking-wider">
               <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-green opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-cyber-green"></span>
               </span>
-              <span class="uppercase">AUTHORIZED</span>
+              <span id="navStatusBadge" class="uppercase">ACTIVE STARTER</span>
             </div>
 
             <button 
@@ -351,261 +349,313 @@
       <!-- Main Dashboard Container -->
       <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8 w-full">
         
-        <!-- Welcome Hero Banner -->
-        <div class="relative rounded-2xl overflow-hidden glass-panel p-6 sm:p-7 border border-cyber-cyan/30">
-          <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <div class="inline-flex items-center space-x-2 text-xs font-mono text-cyber-cyan uppercase tracking-widest mb-1">
-                <i class="ph-bold ph-terminal-window text-base"></i>
-                <span>COMBAT TERMINAL // LIVE LINK ACTIVE</span>
+        <!-- ========================================================================= -->
+        <!-- 1. HEADER CARD (PLAYER DOSSIER HERO CARD) -->
+        <!-- ========================================================================= -->
+        <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-cyber-card relative overflow-hidden">
+          <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyber-violet/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
+            
+            <!-- Avatar Container -->
+            <div class="relative group flex-shrink-0">
+              <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer" onclick="document.getElementById('avatarFileInput').click()">
+                <img 
+                  id="avatarPreviewImg" 
+                  src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" 
+                  alt="Player Avatar" 
+                  class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="absolute inset-0 bg-black/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl">
+                  <i class="ph-bold ph-camera text-3xl text-cyber-cyan mb-1 animate-bounce"></i>
+                  <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-center px-2">Change Photo</span>
+                </div>
               </div>
-              <h2 class="text-2xl sm:text-3xl font-black font-orbitron text-white uppercase tracking-wide">
-                OPERATIVE <span id="heroDisplayTag" class="text-cyber-cyan">CYBER_NINJA</span>
-              </h2>
-              <p class="text-xs sm:text-sm text-slate-400 font-space mt-1 max-w-xl">
-                Strategy & Mental Toughness Library unlocked. Access required readings and telemetry metrics below.
-              </p>
+
+              <div class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#080B10] border border-cyber-cyan/60 text-[10px] font-mono text-cyber-cyan font-bold tracking-widest shadow-md">
+                LVL 99 PRO
+              </div>
+
+              <input 
+                type="file" 
+                id="avatarFileInput" 
+                accept="image/*" 
+                class="hidden" 
+                onchange="handleAvatarFileChange(event)"
+              />
             </div>
 
-            <div class="flex items-center space-x-3 bg-[#080B10]/90 border border-cyber-border p-2.5 rounded-xl text-xs font-mono">
-              <i class="ph-bold ph-user-circle text-cyber-cyan text-2xl"></i>
-              <div>
-                <div class="text-[10px] text-cyber-muted uppercase">LOGGED IN AS</div>
-                <div id="sessionUserEmail" class="text-slate-200 font-semibold truncate max-w-[200px]">player@googol.esports</div>
+            <!-- Details & Badges -->
+            <div class="flex-grow text-center lg:text-left space-y-3">
+              
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyber-green/15 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold tracking-wider">
+                  <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+                  <span id="heroStatusBadge">ACTIVE STARTER</span>
+                </span>
+
+                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-cyan/15 border border-cyber-cyan/40 text-cyber-cyan text-xs font-mono font-bold tracking-wider">
+                  <i class="ph-bold ph-shield text-sm"></i>
+                  <span id="heroTeamBadge">Googol Inc.</span>
+                </span>
+
+                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-violet/15 border border-cyber-violet/40 text-purple-300 text-xs font-mono font-bold tracking-wider">
+                  <i class="ph-bold ph-crosshair text-sm"></i>
+                  <span id="heroRoleBadge">IGL / Rusher</span>
+                </span>
+
+                <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
+                  <span id="heroFlagIcon">🇺🇸</span>
+                  <span id="heroRegionText" class="font-bold">USA / NA REGION</span>
+                </span>
               </div>
+
+              <div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
+                  <span id="heroIGN">CYBER_NINJA</span> <span class="text-cyber-cyan font-mono text-2xl sm:text-3xl">#007</span>
+                </h1>
+                <div class="text-sm font-space text-slate-400 mt-1 flex items-center justify-center lg:justify-start space-x-2">
+                  <span id="heroRealName" class="text-slate-300 font-semibold">Alexander "AK" Vance</span>
+                  <span class="text-cyber-border">•</span>
+                  <span class="text-cyber-cyan font-mono text-xs">TIER-1 PRO DIVISION</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center lg:justify-start space-x-3 pt-1">
+                <a id="socialDiscord" href="https://discord.com" target="_blank" class="p-2 rounded-lg bg-[#080B10] border border-cyber-border text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all" title="Discord">
+                  <i class="ph-bold ph-discord-logo text-lg"></i>
+                </a>
+                <a id="socialTwitter" href="https://twitter.com" target="_blank" class="p-2 rounded-lg bg-[#080B10] border border-cyber-border text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan transition-all" title="X / Twitter">
+                  <i class="ph-bold ph-x-logo text-lg"></i>
+                </a>
+                <a id="socialTwitch" href="https://twitch.tv" target="_blank" class="p-2 rounded-lg bg-[#080B10] border border-cyber-border text-slate-300 hover:text-cyber-violet hover:border-cyber-violet transition-all" title="Twitch">
+                  <i class="ph-bold ph-twitch-logo text-lg"></i>
+                </a>
+                <a id="socialYoutube" href="https://youtube.com" target="_blank" class="p-2 rounded-lg bg-[#080B10] border border-cyber-border text-slate-300 hover:text-cyber-crimson hover:border-cyber-crimson transition-all" title="YouTube">
+                  <i class="ph-bold ph-youtube-logo text-lg"></i>
+                </a>
+              </div>
+
             </div>
+
+            <!-- Action Controls -->
+            <div class="flex flex-col sm:flex-row lg:flex-col items-center gap-3 w-full lg:w-auto">
+              <button 
+                type="button" 
+                onclick="openEditProfileModal()" 
+                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-cyan-glow active:scale-95"
+              >
+                <i class="ph-bold ph-pencil-simple-line text-base"></i>
+                <span>EDIT PROFILE</span>
+              </button>
+
+              <button 
+                type="button" 
+                onclick="handleShareDossier()" 
+                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-gradient-to-r from-cyber-violet/20 to-purple-600/20 hover:from-cyber-violet/30 hover:to-purple-600/30 border border-cyber-violet text-purple-300 hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-violet-glow active:scale-95"
+              >
+                <i class="ph-bold ph-share-network text-base"></i>
+                <span>SHARE DOSSIER</span>
+              </button>
+            </div>
+
           </div>
-        </div>
+        </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION A: CLEAN PLAYER PROFILE -->
+        <!-- 2. TELEMETRY & STATS GRID (4 CARDS) -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-cyan rounded-sm"></div>
               <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
-                PLAYER PROFILE
+                COMBAT TELEMETRY
               </h3>
             </div>
             <span class="text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20">
-              CUSTOM DOSSIER
+              SEASON 12 METRICS
             </span>
           </div>
 
-          <div class="glass-panel rounded-2xl p-6 sm:p-8 border border-cyber-border">
-            <form id="dossierForm" onsubmit="handleSaveDossier(event)" class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
-              
-              <!-- Clean Avatar Upload -->
-              <div class="flex flex-col items-center justify-center text-center space-y-3 lg:border-r lg:border-cyber-border/80 lg:pr-6">
-                <div class="relative group cursor-pointer" onclick="document.getElementById('avatarFileInput').click()">
-                  <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-cyber-cyan to-cyber-crimson p-[2px] shadow-cyan-glow group-hover:scale-105 transition-all">
-                    <img 
-                      id="avatarPreviewImg" 
-                      src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" 
-                      alt="Player Avatar" 
-                      class="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                  <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-lg bg-cyber-cyan text-black flex items-center justify-center shadow-lg border border-black font-bold">
-                    <i class="ph-bold ph-camera text-base"></i>
-                  </div>
-                </div>
-
-                <input 
-                  type="file" 
-                  id="avatarFileInput" 
-                  accept="image/*" 
-                  class="hidden" 
-                  onchange="handleAvatarFileChange(event)"
-                />
-
-                <button 
-                  type="button" 
-                  onclick="document.getElementById('avatarFileInput').click()" 
-                  class="text-xs font-mono text-cyber-cyan hover:text-white transition-colors"
-                >
-                  Change Photo
-                </button>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
+              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
+                <span>K/D RATIO</span>
+                <i class="ph-bold ph-crosshair text-cyber-cyan text-xl"></i>
               </div>
-
-              <!-- Clean Profile Fields -->
-              <div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                
-                <!-- Display Tag -->
-                <div>
-                  <label for="dossierTag" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                    Display Tag / IGN
-                  </label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
-                      <i class="ph-bold ph-identification-badge text-base"></i>
-                    </div>
-                    <input 
-                      type="text" 
-                      id="dossierTag" 
-                      value="CYBER_NINJA // 007" 
-                      required
-                      class="w-full pl-9 pr-3 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono"
-                    />
-                  </div>
-                </div>
-
-                <!-- Combat Role -->
-                <div>
-                  <label for="dossierRole" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                    Combat Role
-                  </label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
-                      <i class="ph-bold ph-crosshair text-base"></i>
-                    </div>
-                    <select 
-                      id="dossierRole" 
-                      class="w-full pl-9 pr-8 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono appearance-none"
-                    >
-                      <option value="Entry Fragger">Entry Fragger</option>
-                      <option value="In-Game Leader (IGL)">In-Game Leader (IGL)</option>
-                      <option value="Primary Sniper">Primary Sniper</option>
-                      <option value="Support / Utility">Support / Utility</option>
-                      <option value="Flex Operative">Flex Operative</option>
-                    </select>
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-cyber-muted">
-                      <i class="ph-bold ph-caret-down text-sm"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Team Name -->
-                <div>
-                  <label for="dossierTeam" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
-                    Team Name
-                  </label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-cyber-muted">
-                      <i class="ph-bold ph-users-three text-base"></i>
-                    </div>
-                    <input 
-                      type="text" 
-                      id="dossierTeam" 
-                      value="GOOGOL ALPHA SQUAD" 
-                      required
-                      class="w-full pl-9 pr-3 py-2.5 bg-[#080B10] border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-cyan font-mono"
-                    />
-                  </div>
-                </div>
-
-                <!-- Save Action Row -->
-                <div class="sm:col-span-3 flex items-center justify-between pt-2">
-                  <div id="dossierSaveToast" class="hidden text-xs font-mono text-cyber-green flex items-center space-x-2 bg-cyber-green/10 border border-cyber-green/30 px-3 py-1.5 rounded-lg animate-pulse">
-                    <i class="ph-bold ph-check-circle text-base"></i>
-                    <span>PROFILE UPDATED & SAVED</span>
-                  </div>
-                  <div class="ml-auto">
-                    <button 
-                      type="submit" 
-                      class="px-5 py-2 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center space-x-2 shadow-cyan-glow active:scale-95"
-                    >
-                      <i class="ph-bold ph-floppy-disk text-base"></i>
-                      <span>SAVE PROFILE</span>
-                    </button>
-                  </div>
-                </div>
-
+              <div class="text-4xl font-black font-orbitron text-white">3.84</div>
+              <div class="mt-2.5 text-xs font-mono text-cyber-green flex items-center space-x-1.5">
+                <i class="ph-bold ph-trend-up"></i>
+                <span>+14% vs league avg</span>
               </div>
+              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+                <span>Total Frags</span>
+                <span class="text-slate-300 font-bold">1,428 Kills</span>
+              </div>
+            </div>
 
-            </form>
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-gold/50 transition-all group">
+              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
+                <span>WIN RATE</span>
+                <i class="ph-bold ph-trophy text-cyber-gold text-xl"></i>
+              </div>
+              <div class="text-4xl font-black font-orbitron text-white">68.2%</div>
+              <div class="mt-2.5 text-xs font-mono text-cyber-gold flex items-center space-x-1.5">
+                <i class="ph-bold ph-medal"></i>
+                <span>Champion Bracket</span>
+              </div>
+              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+                <span>Matches</span>
+                <span class="text-slate-300 font-bold">142 Matches</span>
+              </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-crimson/50 transition-all group">
+              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
+                <span>AVG DAMAGE / ADR</span>
+                <i class="ph-bold ph-lightning text-cyber-crimson text-xl"></i>
+              </div>
+              <div class="text-4xl font-black font-orbitron text-white">1,420</div>
+              <div class="mt-2.5 text-xs font-mono text-cyber-crimson flex items-center space-x-1.5">
+                <i class="ph-bold ph-fire"></i>
+                <span>Tier-1 Firepower</span>
+              </div>
+              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+                <span>Peak Dmg</span>
+                <span class="text-slate-300 font-bold">3,890 Dmg</span>
+              </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
+              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
+                <span>HEADSHOT %</span>
+                <i class="ph-bold ph-target text-cyber-cyan text-xl"></i>
+              </div>
+              <div class="text-4xl font-black font-orbitron text-white">42.8%</div>
+              <div class="mt-2.5 text-xs font-mono text-cyber-cyan flex items-center space-x-1.5">
+                <i class="ph-bold ph-sparkle"></i>
+                <span>Precision Rating</span>
+              </div>
+              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+                <span>HS Frags</span>
+                <span class="text-slate-300 font-bold">611 HS</span>
+              </div>
+            </div>
+
           </div>
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION B: COMBAT TELEMETRY -->
+        <!-- 3. TACTICAL LOADOUT & SPECIALIZATION -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
-              <div class="w-2.5 h-6 bg-cyber-crimson rounded-sm"></div>
+              <div class="w-2.5 h-6 bg-cyber-violet rounded-sm"></div>
               <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
-                COMBAT TELEMETRY
+                TACTICAL LOADOUT & SPEC SHEET
               </h3>
             </div>
-            <span class="text-xs font-mono text-cyber-crimson bg-cyber-crimson/10 px-2.5 py-1 rounded border border-cyber-crimson/20">
-              LIVE STATS FEED
+            <span class="text-xs font-mono text-purple-300 bg-cyber-violet/10 px-2.5 py-1 rounded border border-cyber-violet/20">
+              HARDWARE & SENSITIVITY
             </span>
           </div>
 
-          <!-- Stat Cards Grid -->
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            <!-- Stat 1: K/D Ratio -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
-              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span>K/D RATIO</span>
-                <i class="ph-bold ph-crosshair text-cyber-cyan text-lg"></i>
+            <!-- Signature Picks & Roles -->
+            <div class="glass-panel rounded-2xl p-6 border border-cyber-border space-y-4">
+              <div class="flex items-center space-x-2 text-cyber-cyan text-xs font-mono uppercase font-bold tracking-wider">
+                <i class="ph-bold ph-crosshair-simple text-base"></i>
+                <span>SIGNATURE SPECIALIZATION</span>
               </div>
-              <div class="text-3xl font-black font-orbitron text-white">3.84</div>
-              <div class="mt-2 text-[11px] font-mono text-cyber-green flex items-center space-x-1">
-                <i class="ph-bold ph-trend-up"></i>
-                <span>+14.2% THIS SPLIT</span>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <div class="bg-[#080B10] p-4 rounded-xl border border-cyber-border/80">
+                  <div class="text-[10px] font-mono text-cyber-muted uppercase">MAIN CHARACTER / ABILITY</div>
+                  <div id="specCharacter" class="text-sm font-bold font-orbitron text-white mt-1">Alok (Drop The Beat)</div>
+                  <div class="text-xs text-cyber-cyan font-mono mt-0.5">Speed Buff + HP Aura</div>
+                </div>
+
+                <div class="bg-[#080B10] p-4 rounded-xl border border-cyber-border/80">
+                  <div class="text-[10px] font-mono text-cyber-muted uppercase">PRIMARY RUSH WEAPON</div>
+                  <div id="specWeapon" class="text-sm font-bold font-orbitron text-white mt-1">M1887 Shotgun / MP40</div>
+                  <div class="text-xs text-cyber-crimson font-mono mt-0.5">Close-Range Burst</div>
+                </div>
+
+                <div class="bg-[#080B10] p-4 rounded-xl border border-cyber-border/80">
+                  <div class="text-[10px] font-mono text-cyber-muted uppercase">PREFERRED DROP ZONE</div>
+                  <div id="specDropZone" class="text-sm font-bold font-orbitron text-white mt-1">Clock Tower (Bermuda)</div>
+                  <div class="text-xs text-cyber-green font-mono mt-0.5">High Loot & Hot Drop</div>
+                </div>
+
+                <div class="bg-[#080B10] p-4 rounded-xl border border-cyber-border/80">
+                  <div class="text-[10px] font-mono text-cyber-muted uppercase">COMBAT TACTICAL ROLE</div>
+                  <div id="specRole" class="text-sm font-bold font-orbitron text-white mt-1">IGL / Entry Rusher</div>
+                  <div class="text-xs text-purple-300 font-mono mt-0.5">Micro-Caller & First Blood</div>
+                </div>
+
               </div>
             </div>
 
-            <!-- Stat 2: Win Rate -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
-              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span>WIN RATE</span>
-                <i class="ph-bold ph-trophy text-cyber-gold text-lg"></i>
+            <!-- Sensitivity & Hardware Spec Sheet -->
+            <div class="glass-panel rounded-2xl p-6 border border-cyber-border space-y-4">
+              <div class="flex items-center space-x-2 text-cyber-violet text-xs font-mono uppercase font-bold tracking-wider">
+                <i class="ph-bold ph-sliders text-base"></i>
+                <span>SENSITIVITY & DEVICE SPEC SHEET</span>
               </div>
-              <div class="text-3xl font-black font-orbitron text-white">68.2%</div>
-              <div class="mt-2 text-[11px] font-mono text-cyber-gold">142 MATCHES PLAYED</div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs font-mono">
+                
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">POLLING / DPI</span>
+                  <span id="specDPI" class="text-sm font-bold text-white font-orbitron">800 DPI</span>
+                </div>
+
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">GENERAL SENS</span>
+                  <span id="specGeneralSens" class="text-sm font-bold text-cyber-cyan font-orbitron">95%</span>
+                </div>
+
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">RED DOT / 2X</span>
+                  <span id="specRedDotSens" class="text-sm font-bold text-white font-orbitron">88% / 82%</span>
+                </div>
+
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">DEVICE</span>
+                  <span id="specDevice" class="text-xs font-bold text-slate-200 font-orbitron truncate block">ROG Phone 8 Pro</span>
+                </div>
+
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">REFRESH RATE</span>
+                  <span id="specRefresh" class="text-sm font-bold text-cyber-green font-orbitron">165 Hz</span>
+                </div>
+
+                <div class="bg-[#080B10] p-3.5 rounded-xl border border-cyber-border/80">
+                  <span class="text-cyber-muted text-[10px] block uppercase">CONTROL STYLE</span>
+                  <span id="specGrip" class="text-xs font-bold text-purple-300 font-orbitron truncate block">4-Finger Claw</span>
+                </div>
+
+              </div>
             </div>
 
-            <!-- Stat 3: Avg APM -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-crimson/40 transition-all">
-              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span>AVG APM</span>
-                <i class="ph-bold ph-lightning text-cyber-crimson text-lg"></i>
-              </div>
-              <div class="text-3xl font-black font-orbitron text-white">294</div>
-              <div class="mt-2 text-[11px] font-mono text-cyber-crimson">PEAK: 348 APM</div>
-            </div>
-
-            <!-- Stat 4: Headshot % -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/40 transition-all">
-              <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
-                <span>HEADSHOT %</span>
-                <i class="ph-bold ph-target text-cyber-cyan text-lg"></i>
-              </div>
-              <div class="text-3xl font-black font-orbitron text-white">42.8%</div>
-              <div class="mt-2 text-[11px] font-mono text-cyber-cyan">CRITICAL EFFICIENCY</div>
-            </div>
-
-          </div>
-
-          <!-- Tournament Readiness Score -->
-          <div class="glass-panel rounded-2xl p-5 border border-cyber-border space-y-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <i class="ph-bold ph-gauge text-cyber-cyan text-lg"></i>
-                <span class="text-xs font-bold font-orbitron text-white uppercase tracking-wider">Tournament Readiness Score</span>
-              </div>
-              <span class="text-lg font-black font-orbitron text-cyber-green">94.0% • S-TIER</span>
-            </div>
-            <div class="w-full bg-[#080B10] h-3 rounded-full border border-cyber-border overflow-hidden">
-              <div class="h-full rounded-full bg-gradient-to-r from-cyber-cyan to-cyber-green" style="width: 94%;"></div>
-            </div>
           </div>
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION C: REQUIRED READING & STRATEGY PDF VAULT -->
+        <!-- 4. REQUIRED READING & STRATEGY PDF VAULT (6 BOOKS IN PROFILE) -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-green rounded-sm"></div>
               <h3 class="text-lg font-bold font-orbitron text-white uppercase tracking-wider">
-                STRATEGY & MENTAL MASTERY VAULT
+                STRATEGY & MENTAL MASTERY VAULT (REQUIRED READING)
               </h3>
             </div>
             <span class="text-xs font-mono text-cyber-green bg-cyber-green/10 px-2.5 py-1 rounded border border-cyber-green/20">
@@ -810,7 +860,6 @@
                     alt="Strategical Esports by AK"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <!-- Custom Cyber Playbook Overlay Badge -->
                   <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4">
                     <div class="text-cyber-cyan font-orbitron font-extrabold text-sm tracking-wider">STRATEGICAL ESPORTS</div>
                     <div class="text-[10px] font-mono text-slate-300">CUSTOM PLAYBOOK • BY AK</div>
@@ -845,30 +894,132 @@
           </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- SECTION D: CLEAN CLOUD STATUS -->
-        <!-- ========================================================================= -->
-        <section class="glass-panel rounded-2xl p-5 border border-cyber-border flex flex-col sm:flex-row items-center justify-between text-xs font-mono gap-4 text-cyber-muted">
+      </main>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- EDIT PROFILE CYBER MODAL -->
+    <!-- ========================================================================= -->
+    <div id="editProfileModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+      <div class="glass-panel w-full max-w-2xl rounded-3xl border border-cyber-cyan/60 p-6 sm:p-8 shadow-cyan-glow-lg relative max-h-[90vh] overflow-y-auto">
+        
+        <div class="flex items-center justify-between border-b border-cyber-border/80 pb-4 mb-6">
           <div class="flex items-center space-x-3">
-            <span class="w-2.5 h-2.5 rounded-full bg-cyber-green animate-pulse"></span>
+            <div class="w-10 h-10 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
+              <i class="ph-bold ph-user-gear text-2xl"></i>
+            </div>
             <div>
-              <span class="text-white font-bold">SUPABASE HOST:</span> 
-              <span class="text-cyber-cyan">kttshkoadnkemknjajsp.supabase.co</span>
+              <div class="text-[10px] font-mono text-cyber-cyan uppercase tracking-widest">CONFIGURATION MATRIX</div>
+              <h3 class="text-lg font-bold font-orbitron text-white uppercase">EDIT ESPORTS PROFILE</h3>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <span>VAULT ENGINE: <span class="text-slate-300">v2.4 ONLINE</span></span>
-            <span class="text-cyber-border">|</span>
-            <span class="text-cyber-green">AES-256 ENCRYPTED</span>
-          </div>
-        </section>
+          <button onclick="closeEditProfileModal()" class="text-cyber-muted hover:text-white p-1 rounded transition-colors">
+            <i class="ph-bold ph-x text-xl"></i>
+          </button>
+        </div>
 
-      </main>
+        <form onsubmit="handleSaveProfileModal(event)" class="space-y-4 text-xs font-mono">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">In-Game Name (IGN)</label>
+              <input type="text" id="modalInputIGN" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Real Name</label>
+              <input type="text" id="modalInputRealName" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Team / Org</label>
+              <input type="text" id="modalInputTeam" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Role</label>
+              <select id="modalInputRole" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none appearance-none">
+                <option value="IGL / Rusher">IGL / Rusher</option>
+                <option value="Entry Fragger">Entry Fragger</option>
+                <option value="Primary Sniper">Primary Sniper</option>
+                <option value="Support / Utility">Support / Utility</option>
+                <option value="Flex Operative">Flex Operative</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Status</label>
+              <select id="modalInputStatus" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none appearance-none">
+                <option value="ACTIVE STARTER">ACTIVE STARTER</option>
+                <option value="ROSTER CAPTAIN">ROSTER CAPTAIN</option>
+                <option value="STAND-IN">STAND-IN</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Main Character</label>
+              <input type="text" id="modalInputChar" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Main Weapon</label>
+              <input type="text" id="modalInputWeapon" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Drop Zone</label>
+              <input type="text" id="modalInputDropZone" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">DPI / Polling</label>
+              <input type="text" id="modalInputDPI" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">General Sens</label>
+              <input type="text" id="modalInputSens" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Device Model</label>
+              <input type="text" id="modalInputDevice" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">Discord / Community Link</label>
+              <input type="text" id="modalInputDiscord" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+            <div>
+              <label class="block text-slate-300 uppercase tracking-wider mb-1">X / Twitter URL</label>
+              <input type="text" id="modalInputTwitter" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-cyber-border/80 flex items-center justify-end space-x-3">
+            <button 
+              type="button" 
+              onclick="closeEditProfileModal()" 
+              class="px-4 py-2.5 rounded-xl bg-cyber-card border border-cyber-border text-slate-300 hover:text-white"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="px-6 py-2.5 rounded-xl bg-cyber-cyan text-black font-orbitron font-bold uppercase tracking-wider hover:bg-cyan-300 shadow-cyan-glow transition-all"
+            >
+              Commit Changes
+            </button>
+          </div>
+
+        </form>
+      </div>
     </div>
 
     <!-- Global Toast Container -->
     <div id="globalToast" class="fixed bottom-6 right-6 z-50 hidden transition-all duration-300">
-      <div class="glass-panel p-4 rounded-xl border border-cyber-cyan shadow-cyan-glow flex items-center space-x-3 text-xs font-mono text-white">
+      <div class="glass-panel p-4 rounded-2xl border border-cyber-cyan shadow-cyan-glow flex items-center space-x-3 text-xs font-mono text-white">
         <i id="globalToastIcon" class="ph-bold ph-info text-xl text-cyber-cyan"></i>
         <span id="globalToastText">Operation completed successfully.</span>
       </div>
@@ -879,10 +1030,10 @@
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
           <span class="text-cyber-cyan font-bold font-orbitron">GOOGOL INC.</span>
-          <span>// PRO PLAYER VAULT</span>
+          <span>// PRO ESPORTS PROFILE & VAULT</span>
         </div>
         <div class="text-slate-500 text-[11px]">
-          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT
+          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT ENGINE
         </div>
       </div>
     </footer>
@@ -993,36 +1144,168 @@
       }
     }
 
+    const defaultProfile = {
+      ign: "CYBER_NINJA",
+      realName: "Alexander \"AK\" Vance",
+      team: "Googol Inc.",
+      role: "IGL / Rusher",
+      status: "ACTIVE STARTER",
+      flag: "🇺🇸",
+      region: "USA / NA REGION",
+      char: "Alok (Drop The Beat)",
+      weapon: "M1887 Shotgun / MP40",
+      dropZone: "Clock Tower (Bermuda)",
+      dpi: "800 DPI",
+      generalSens: "95%",
+      redDotSens: "88% / 82%",
+      device: "ROG Phone 8 Pro",
+      refresh: "165 Hz",
+      grip: "4-Finger Claw",
+      discord: "https://discord.com",
+      twitter: "https://twitter.com",
+      twitch: "https://twitch.tv",
+      youtube: "https://youtube.com",
+      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
+    };
+
+    function loadUserProfile() {
+      try {
+        const raw = localStorage.getItem('googol_esports_player_profile');
+        return raw ? Object.assign({}, defaultProfile, JSON.parse(raw)) : defaultProfile;
+      } catch (e) {
+        return defaultProfile;
+      }
+    }
+
+    function saveUserProfile(profile) {
+      try {
+        localStorage.setItem('googol_esports_player_profile', JSON.stringify(profile));
+      } catch (e) {
+        console.warn("Error saving profile to localStorage:", e);
+      }
+    }
+
+    function updateProfileUI() {
+      const p = loadUserProfile();
+
+      document.getElementById('heroIGN').textContent = p.ign;
+      document.getElementById('heroRealName').textContent = p.realName;
+      document.getElementById('heroTeamBadge').textContent = p.team;
+      document.getElementById('heroRoleBadge').textContent = p.role;
+      document.getElementById('heroStatusBadge').textContent = p.status;
+      document.getElementById('navStatusBadge').textContent = p.status;
+      document.getElementById('heroFlagIcon').textContent = p.flag || "🇺🇸";
+      document.getElementById('heroRegionText').textContent = p.region || "USA / NA REGION";
+      document.getElementById('avatarPreviewImg').src = p.avatar;
+
+      document.getElementById('specCharacter').textContent = p.char;
+      document.getElementById('specWeapon').textContent = p.weapon;
+      document.getElementById('specDropZone').textContent = p.dropZone;
+      document.getElementById('specRole').textContent = p.role;
+      document.getElementById('specDPI').textContent = p.dpi;
+      document.getElementById('specGeneralSens').textContent = p.generalSens;
+      document.getElementById('specDevice').textContent = p.device;
+
+      if (document.getElementById('socialDiscord')) document.getElementById('socialDiscord').href = p.discord;
+      if (document.getElementById('socialTwitter')) document.getElementById('socialTwitter').href = p.twitter;
+      if (document.getElementById('socialTwitch')) document.getElementById('socialTwitch').href = p.twitch;
+      if (document.getElementById('socialYoutube')) document.getElementById('socialYoutube').href = p.youtube;
+    }
+
+    function openEditProfileModal() {
+      playCyberSFX('click');
+      const p = loadUserProfile();
+
+      document.getElementById('modalInputIGN').value = p.ign;
+      document.getElementById('modalInputRealName').value = p.realName;
+      document.getElementById('modalInputTeam').value = p.team;
+      document.getElementById('modalInputRole').value = p.role;
+      document.getElementById('modalInputStatus').value = p.status;
+      document.getElementById('modalInputChar').value = p.char;
+      document.getElementById('modalInputWeapon').value = p.weapon;
+      document.getElementById('modalInputDropZone').value = p.dropZone;
+      document.getElementById('modalInputDPI').value = p.dpi;
+      document.getElementById('modalInputSens').value = p.generalSens;
+      document.getElementById('modalInputDevice').value = p.device;
+      document.getElementById('modalInputDiscord').value = p.discord;
+      document.getElementById('modalInputTwitter').value = p.twitter;
+
+      document.getElementById('editProfileModal').classList.remove('hidden');
+    }
+
+    function closeEditProfileModal() {
+      playCyberSFX('click');
+      document.getElementById('editProfileModal').classList.add('hidden');
+    }
+
+    function handleSaveProfileModal(event) {
+      event.preventDefault();
+      playCyberSFX('click');
+
+      const p = loadUserProfile();
+      p.ign = document.getElementById('modalInputIGN').value.trim() || p.ign;
+      p.realName = document.getElementById('modalInputRealName').value.trim() || p.realName;
+      p.team = document.getElementById('modalInputTeam').value.trim() || p.team;
+      p.role = document.getElementById('modalInputRole').value || p.role;
+      p.status = document.getElementById('modalInputStatus').value || p.status;
+      p.char = document.getElementById('modalInputChar').value.trim() || p.char;
+      p.weapon = document.getElementById('modalInputWeapon').value.trim() || p.weapon;
+      p.dropZone = document.getElementById('modalInputDropZone').value.trim() || p.dropZone;
+      p.dpi = document.getElementById('modalInputDPI').value.trim() || p.dpi;
+      p.generalSens = document.getElementById('modalInputSens').value.trim() || p.generalSens;
+      p.device = document.getElementById('modalInputDevice').value.trim() || p.device;
+      p.discord = document.getElementById('modalInputDiscord').value.trim() || p.discord;
+      p.twitter = document.getElementById('modalInputTwitter').value.trim() || p.twitter;
+
+      saveUserProfile(p);
+      updateProfileUI();
+      closeEditProfileModal();
+
+      playCyberSFX('success');
+      showToast("Player Dossier updated & committed.", "ph-floppy-disk");
+    }
+
+    function handleShareDossier() {
+      playCyberSFX('click');
+      const shareUrl = window.location.href;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        playCyberSFX('success');
+        showToast("Dossier Link Copied to Clipboard!", "ph-share-network");
+      }).catch(() => {
+        showToast("Profile Link: " + shareUrl, "ph-link");
+      });
+    }
+
+    function handleAvatarFileChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        showToast("Please select a valid image file.", "ph-warning");
+        return;
+      }
+
+      playCyberSFX('click');
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        const p = loadUserProfile();
+        p.avatar = dataUrl;
+        saveUserProfile(p);
+        updateProfileUI();
+
+        playCyberSFX('success');
+        showToast("Avatar image updated & cached.", "ph-camera");
+      };
+      reader.readAsDataURL(file);
+    }
+
     function renderAuthenticatedState(session) {
       currentUserSession = session;
       document.getElementById('authView').classList.add('hidden');
       document.getElementById('dashboardView').classList.remove('hidden');
 
-      const userEmail = session?.user?.email || 'player@googol.esports';
-      const emailElem = document.getElementById('sessionUserEmail');
-      if (emailElem) emailElem.textContent = userEmail;
-
-      const defaultTag = userEmail.split('@')[0].toUpperCase();
-      const savedDossier = loadLocalDossier();
-
-      if (savedDossier && savedDossier.tag) {
-        document.getElementById('heroDisplayTag').textContent = savedDossier.tag;
-        document.getElementById('dossierTag').value = savedDossier.tag;
-      } else {
-        document.getElementById('heroDisplayTag').textContent = defaultTag;
-        document.getElementById('dossierTag').value = defaultTag + " // 007";
-      }
-
-      if (savedDossier && savedDossier.role) {
-        document.getElementById('dossierRole').value = savedDossier.role;
-      }
-      if (savedDossier && savedDossier.team) {
-        document.getElementById('dossierTeam').value = savedDossier.team;
-      }
-      if (savedDossier && savedDossier.avatar) {
-        document.getElementById('avatarPreviewImg').src = savedDossier.avatar;
-      }
-
+      updateProfileUI();
       playCyberSFX('success');
     }
 
@@ -1148,72 +1431,6 @@
       if (alert) alert.classList.add('hidden');
     }
 
-    function handleAvatarFileChange(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      if (!file.type.startsWith('image/')) {
-        showToast("Please select a valid image file.", "ph-warning");
-        return;
-      }
-
-      playCyberSFX('click');
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const dataUrl = e.target.result;
-        document.getElementById('avatarPreviewImg').src = dataUrl;
-        
-        const currentDossier = loadLocalDossier() || {};
-        currentDossier.avatar = dataUrl;
-        saveLocalDossier(currentDossier);
-
-        playCyberSFX('success');
-        showToast("Avatar image updated.", "ph-camera");
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function handleSaveDossier(event) {
-      event.preventDefault();
-      playCyberSFX('click');
-
-      const tag = document.getElementById('dossierTag').value.trim();
-      const role = document.getElementById('dossierRole').value;
-      const team = document.getElementById('dossierTeam').value.trim();
-      const avatar = document.getElementById('avatarPreviewImg').src;
-
-      const dossier = { tag, role, team, avatar };
-      saveLocalDossier(dossier);
-
-      document.getElementById('heroDisplayTag').textContent = tag.split('//')[0].trim() || tag;
-
-      const toastElem = document.getElementById('dossierSaveToast');
-      toastElem.classList.remove('hidden');
-      setTimeout(() => {
-        toastElem.classList.add('hidden');
-      }, 3500);
-
-      playCyberSFX('success');
-      showToast("Profile changes saved successfully.", "ph-floppy-disk");
-    }
-
-    function loadLocalDossier() {
-      try {
-        const raw = localStorage.getItem('googol_player_dossier');
-        return raw ? JSON.parse(raw) : null;
-      } catch (e) {
-        return null;
-      }
-    }
-
-    function saveLocalDossier(dossier) {
-      try {
-        localStorage.setItem('googol_player_dossier', JSON.stringify(dossier));
-      } catch (e) {
-        console.warn("localStorage error", e);
-      }
-    }
-
     function updateMilitaryClock() {
       const now = new Date();
       const utcString = now.toUTCString().split(' ')[4] + ' UTC';
@@ -1240,6 +1457,8 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
+      updateProfileUI();
+
       if (supabaseClient) {
         try {
           const { data: { session } } = await supabaseClient.auth.getSession();
@@ -1290,7 +1509,7 @@
           vx: (Math.random() - 0.5) * 0.4,
           vy: (Math.random() - 0.5) * 0.4,
           radius: Math.random() * 1.6 + 0.6,
-          color: Math.random() > 0.3 ? '#00F0FF' : '#FF0055'
+          color: Math.random() > 0.3 ? '#00F0FF' : '#8B5CF6'
         });
       }
 
