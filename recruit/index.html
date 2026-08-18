@@ -467,7 +467,7 @@
 
           <!-- Cloudflare Turnstile Challenge Widget -->
           <div style="margin: 0.5rem 0; display: flex; justify-content: flex-start;">
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEUXTyqZ1EGIr5ag" data-theme="dark"></div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEUXTyqZ1EGIr5ag" data-action="trial_application" data-theme="dark"></div>
           </div>
 
           <div>
@@ -513,7 +513,7 @@
               const verifyRes = await fetch('/api/verify-turnstile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: turnstileToken })
+                body: JSON.stringify({ token: turnstileToken, action: 'trial_application' })
               });
 
               if (verifyRes.status === 400 || verifyRes.status === 403) {

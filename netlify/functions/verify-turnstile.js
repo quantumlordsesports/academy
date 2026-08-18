@@ -1,9 +1,9 @@
 /**
- * Cloudflare Turnstile Verification — Netlify Serverless Function
+ * Cloudflare Turnstile Canonical Siteverify — Netlify Serverless Function
  * Endpoint: /.netlify/functions/verify-turnstile (or /api/verify-turnstile)
  * 
- * Verifies Turnstile tokens against https://challenges.cloudflare.com/turnstile/v0/siteverify
- * Uses process.env.TURNSTILE_SECRET_KEY strictly on the server side.
+ * Spec: https://developers.cloudflare.com/turnstile/spin/prompt.md
+ * Validates cf-turnstile-response tokens server-side before allowing form/auth actions.
  */
 
 exports.handler = async function(event, context) {
@@ -24,7 +24,7 @@ exports.handler = async function(event, context) {
     };
   }
 
-  // Only allow POST
+  // Enforce POST method
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -39,18 +39,30 @@ exports.handler = async function(event, context) {
       try {
         body = JSON.parse(event.body);
       } catch (e) {
-        // Fallback for urlencoded
         const params = new URLSearchParams(event.body);
         body = Object.fromEntries(params.entries());
       }
     }
 
-    // Extract Turnstile token
+    // Extract Turnstile token and parameters
     const token = body.token || body['cf-turnstile-response'] || body.turnstileToken;
-    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    const requestedAction = body.action || body['data-action'];
+    const secretKey = process.env.TURNSTILE_SECRET || process.env.TURNSTILE_SECRET_KEY;
+
+    // Validate token presence and constraints (1-2048 chars)
+    if (typeof token !== 'string' || token.length === 0 || token.length > 2048) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          error: 'Turnstile verification token is invalid or missing.'
+        })
+      };
+    }
 
     if (!secretKey) {
-      console.error('[Turnstile] TURNSTILE_SECRET_KEY is not configured in server environment.');
+      console.error('[Turnstile] Server Secret Key is not configured in environment variables.');
       return {
         statusCode: 500,
         headers,
@@ -61,66 +73,95 @@ exports.handler = async function(event, context) {
       };
     }
 
-    if (!token) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({
-          success: false,
-          error: 'Turnstile verification token is missing. Please complete the security challenge.'
-        })
-      };
-    }
-
-    // Extract user IP if available
-    const remoteIp = event.headers['x-forwarded-for'] || 
+    // Extract client IP address for enhanced security check
+    const clientIp = event.headers['x-forwarded-for'] || 
                      event.headers['x-nf-client-connection-ip'] || 
                      event.headers['client-ip'] || '';
 
-    // Prepare FormData for Cloudflare siteverify
-    const formData = new URLSearchParams();
-    formData.append('secret', secretKey);
-    formData.append('response', token);
-    if (remoteIp) {
-      formData.append('remoteip', remoteIp.split(',')[0].trim());
+    // Prepare URL-encoded form data for Cloudflare siteverify
+    const siteverifyParams = new URLSearchParams();
+    siteverifyParams.append('secret', secretKey);
+    siteverifyParams.append('response', token);
+    if (clientIp) {
+      siteverifyParams.append('remoteip', clientIp.split(',')[0].trim());
     }
 
-    // Call Cloudflare Turnstile Verification API
+    // Perform canonical Siteverify fetch with 10-second timeout
     const cfResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      body: formData,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: siteverifyParams,
+      signal: AbortSignal.timeout(10_000)
     });
 
-    const cfData = await cfResponse.json();
+    if (!cfResponse.ok) {
+      throw new Error(`Cloudflare Siteverify HTTP Error ${cfResponse.status}`);
+    }
 
-    if (cfData.success) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          success: true,
-          message: 'Human verification successful.',
-          hostname: cfData.hostname,
-          action: cfData.action
-        })
-      };
-    } else {
-      console.warn('[Turnstile] Bot verification failed:', cfData['error-codes']);
+    const result = await cfResponse.json();
+
+    // Check success status
+    if (!result.success) {
+      console.warn('[Turnstile] Verification rejected by Cloudflare:', result['error-codes']);
       return {
         statusCode: 403,
         headers,
         body: JSON.stringify({
           success: false,
-          error: 'Security challenge failed or expired. Please refresh and try again.',
-          errorCodes: cfData['error-codes']
+          error: 'Bot verification challenge failed or expired. Please retry.',
+          errorCodes: result['error-codes']
         })
       };
     }
+
+    // Validate Action if specified
+    if (requestedAction && result.action && result.action !== requestedAction) {
+      console.warn(`[Turnstile] Action mismatch: expected "${requestedAction}", received "${result.action}"`);
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          error: 'Security action verification mismatch.'
+        })
+      };
+    }
+
+    // Validate Hostname against allowed list if configured
+    const configuredHostnames = (process.env.TURNSTILE_HOSTNAMES || 'quantumlordsesports.netlify.app,localhost,127.0.0.1')
+      .split(',')
+      .map(h => h.trim())
+      .filter(Boolean);
+
+    if (configuredHostnames.length > 0 && result.hostname) {
+      const isAllowedHostname = configuredHostnames.includes(result.hostname);
+      if (!isAllowedHostname) {
+        console.warn(`[Turnstile] Hostname mismatch: received "${result.hostname}"`);
+        return {
+          statusCode: 403,
+          headers,
+          body: JSON.stringify({
+            success: false,
+            error: 'Security hostname verification mismatch.'
+          })
+        };
+      }
+    }
+
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({
+        success: true,
+        message: 'Turnstile verification successful.',
+        action: result.action,
+        hostname: result.hostname,
+        challenge_ts: result.challenge_ts
+      })
+    };
+
   } catch (error) {
-    console.error('[Turnstile] Verification exception:', error);
+    console.error('[Turnstile Exception]', error.message);
     return {
       statusCode: 500,
       headers,
