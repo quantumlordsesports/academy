@@ -87,7 +87,7 @@ const siteData = {
       title: 'QuantumLords secure crowd-favorite finals push',
       date: 'July 8, 2026',
       blurb: 'A clutch late-round comeback turned the final into an unforgettable victory.',
-      thumbnail: 'folder/Result-FFBPL.png'
+      thumbnail: 'assets/matches/png result.png'
     },
     {
       title: 'Promo spotlight: QuantumLords academy launch',
