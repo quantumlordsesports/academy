@@ -12,7 +12,7 @@ const buildSocialLinks = () => {
     twitter: 'X',
     instagram: '<img class="social-logo" src="assets/social/instagram 02.png" alt="Instagram" />',
     youtube: '<img class="social-logo" src="assets/social/youtube 02.webp" alt="YouTube" />',
-    discord: '<img class="social-logo" src="assets/social/discord.png" alt="Discord" />',
+    discord: '<img class="social-logo" src="assets/social/discord Logo.png" alt="Discord" onerror="this.src=\'assets/social/discord.png\'" />',
     tiktok: 'TT',
     facebook: '<img class="social-logo" src="assets/social/facebook.png" alt="Facebook" />'
   };
