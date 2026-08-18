@@ -125,7 +125,7 @@
   <!-- App Wrapper -->
   <div id="appContainer" class="relative z-20 min-h-screen flex flex-col justify-between">
 
-    <!-- Top Utility Bar -->
+    <!-- Top Utility Bar with Bangladesh Time Zone (BST) -->
     <div class="w-full bg-[#07090D]/85 border-b border-cyber-border/60 py-2 px-4 sm:px-8 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md">
       <div class="flex items-center space-x-3">
         <a href="index.html" class="flex items-center space-x-1.5 text-cyber-cyan hover:text-white transition-colors duration-200">
@@ -136,10 +136,11 @@
         <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">GOOGOL INC.</span></span>
       </div>
       <div class="flex items-center space-x-4">
-        <!-- Live UTC Clock -->
-        <div class="flex items-center space-x-1.5">
+        <!-- Live Bangladesh Time Clock (BST) -->
+        <div class="flex items-center space-x-2 bg-cyber-card/80 border border-cyber-cyan/30 px-3 py-1 rounded-lg shadow-sm">
           <span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
-          <span id="militaryClock" class="text-slate-200 font-bold">00:00:00 UTC</span>
+          <span class="text-[11px] text-cyber-cyan font-bold uppercase tracking-wider hidden xs:inline">🇧🇩 BD TIME:</span>
+          <span id="militaryClock" class="text-white font-bold tracking-widest font-mono">00:00:00 BST</span>
         </div>
         <!-- SFX Toggle -->
         <button id="sfxToggleBtn" onclick="toggleAudioSFX()" class="flex items-center space-x-1 hover:text-cyber-cyan transition-colors" title="Toggle UI Sound Effects">
@@ -345,16 +346,21 @@
           
           <div class="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
             
-            <!-- Avatar Container with Instant Upload -->
+            <!-- Avatar Container with Instant Auto-Compressed Upload -->
             <div class="relative group flex-shrink-0">
-              <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer" onclick="document.getElementById('avatarFileInput').click()">
+              <div 
+                id="avatarTriggerBox" 
+                class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer"
+                onclick="triggerAvatarUpload()"
+                title="Click to change profile picture"
+              >
                 <img 
                   id="avatarPreviewImg" 
                   src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" 
                   alt="Player Avatar" 
-                  class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300 pointer-events-none"
                 />
-                <div class="absolute inset-0 bg-black/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl">
+                <div class="absolute inset-0 bg-black/65 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl pointer-events-none">
                   <i class="ph-bold ph-camera text-3xl text-cyber-cyan mb-1 animate-bounce"></i>
                   <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-center px-2">Change Photo</span>
                 </div>
@@ -393,8 +399,8 @@
                 </span>
 
                 <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
-                  <span>🇺🇸</span>
-                  <span class="font-bold">USA / NA REGION</span>
+                  <span>🇧🇩</span>
+                  <span class="font-bold">BANGLADESH / BD REGION</span>
                 </span>
               </div>
 
@@ -647,7 +653,7 @@
             <!-- Book 2: The Champion's Mind -->
             <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
                   <img 
                     src="https://covers.openlibrary.org/b/isbn/9781623365622-L.jpg" 
                     alt="The Champion's Mind"
@@ -866,7 +872,7 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- EDIT DOSSIER MODAL -->
+    <!-- EDIT DOSSIER MODAL WITH DIRECT PHOTO UPLOAD & URL -->
     <!-- ========================================================================= -->
     <div id="editDossierModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
       <div class="glass-panel w-full max-w-lg rounded-3xl border border-cyber-cyan/60 p-6 sm:p-8 shadow-cyan-glow-lg relative max-h-[90vh] overflow-y-auto">
@@ -886,6 +892,36 @@
         </div>
 
         <form onsubmit="handleSaveDossierModal(event)" class="space-y-4 text-xs font-mono">
+          
+          <!-- Avatar Preview & Upload in Modal -->
+          <div class="bg-[#080B10] p-3.5 rounded-2xl border border-cyber-border flex items-center space-x-4">
+            <img id="modalAvatarPreview" src="" alt="Avatar Preview" class="w-16 h-16 rounded-2xl object-cover border border-cyber-cyan/40 flex-shrink-0" />
+            <div class="flex-grow space-y-1.5">
+              <div class="text-[11px] font-bold text-white uppercase">Player Photo / Avatar</div>
+              <div class="flex items-center space-x-2">
+                <button 
+                  type="button" 
+                  onclick="triggerAvatarUpload()" 
+                  class="px-3 py-1.5 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold uppercase transition-colors"
+                >
+                  <i class="ph-bold ph-upload-simple mr-1"></i> Upload File
+                </button>
+                <span class="text-[10px] text-slate-500">Auto-compressed HD</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 uppercase tracking-wider mb-1">Avatar Image URL (Optional)</label>
+            <input 
+              type="url" 
+              id="modalInputAvatarUrl" 
+              placeholder="https://example.com/photo.jpg" 
+              oninput="handleModalAvatarUrlChange(this.value)"
+              class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none placeholder:text-slate-600" 
+            />
+          </div>
+
           <div>
             <label class="block text-slate-300 uppercase tracking-wider mb-1">In-Game Name (Display Tag)</label>
             <input type="text" id="modalInputIGN" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
@@ -937,7 +973,7 @@
           <span>// PRO PLAYER PORTAL & VAULT</span>
         </div>
         <div class="text-slate-500 text-[11px]">
-          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT ENGINE
+          ALL RIGHTS RESERVED • SUPABASE JS v2 CLIENT ENGINE • BANGLADESH STANDARD TIME (BST)
         </div>
       </div>
     </footer>
@@ -1074,19 +1110,126 @@
       try {
         localStorage.setItem('googol_esports_player_dossier', JSON.stringify(profile));
       } catch (e) {
-        console.warn("Error saving dossier to localStorage:", e);
+        console.warn("Storage quota warning, clearing unnecessary cache:", e);
+        try {
+          // If storage full, preserve only essentials
+          const compact = {
+            ign: profile.ign,
+            uuid: profile.uuid,
+            realName: profile.realName,
+            team: profile.team,
+            role: profile.role,
+            status: profile.status,
+            avatar: profile.avatar
+          };
+          localStorage.setItem('googol_esports_player_dossier', JSON.stringify(compact));
+        } catch (inner) {
+          console.error("Local storage error:", inner);
+        }
       }
     }
 
     function updateProfileUI() {
       const p = loadUserProfile();
-      document.getElementById('heroIGN').textContent = p.ign;
-      document.getElementById('heroRealName').textContent = p.realName;
-      document.getElementById('heroTeamBadge').textContent = p.team;
-      document.getElementById('heroRoleBadge').textContent = p.role;
-      document.getElementById('heroStatusBadge').textContent = p.status;
-      document.getElementById('heroUUID').textContent = p.uuid;
-      document.getElementById('avatarPreviewImg').src = p.avatar;
+      const ignElem = document.getElementById('heroIGN');
+      const nameElem = document.getElementById('heroRealName');
+      const teamElem = document.getElementById('heroTeamBadge');
+      const roleElem = document.getElementById('heroRoleBadge');
+      const statusElem = document.getElementById('heroStatusBadge');
+      const uuidElem = document.getElementById('heroUUID');
+      const avatarElem = document.getElementById('avatarPreviewImg');
+
+      if (ignElem) ignElem.textContent = p.ign;
+      if (nameElem) nameElem.textContent = p.realName;
+      if (teamElem) teamElem.textContent = p.team;
+      if (roleElem) roleElem.textContent = p.role;
+      if (statusElem) statusElem.textContent = p.status;
+      if (uuidElem) uuidElem.textContent = p.uuid;
+      if (avatarElem && p.avatar) {
+        avatarElem.src = p.avatar;
+      }
+    }
+
+    function triggerAvatarUpload() {
+      playCyberSFX('click');
+      const fileInput = document.getElementById('avatarFileInput');
+      if (fileInput) {
+        fileInput.value = ''; // Reset to allow re-selecting same file
+        fileInput.click();
+      }
+    }
+
+    // Auto image resizing and compression helper to prevent localStorage overflow
+    function compressAndResizeImage(file, maxDimension, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function(readerEvent) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDimension) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Export compressed JPEG
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          callback(dataUrl);
+        };
+        img.onerror = function() {
+          // Fallback to raw data url if canvas draw fails
+          callback(readerEvent.target.result);
+        };
+        img.src = readerEvent.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAvatarFileChange(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        showToast("Please select a valid image file (PNG, JPG, WEBP).", "ph-warning");
+        return;
+      }
+
+      showToast("Optimizing & Updating Avatar...", "ph-spinner-gap");
+
+      compressAndResizeImage(file, 480, 0.85, (compressedDataUrl) => {
+        const p = loadUserProfile();
+        p.avatar = compressedDataUrl;
+        saveUserProfile(p);
+        updateProfileUI();
+
+        // If modal is open, also sync modal preview
+        const modalPreview = document.getElementById('modalAvatarPreview');
+        if (modalPreview) modalPreview.src = compressedDataUrl;
+
+        playCyberSFX('success');
+        showToast("Profile Picture Updated & Saved!", "ph-camera");
+      });
+    }
+
+    function handleModalAvatarUrlChange(url) {
+      if (url && url.startsWith('http')) {
+        const modalPreview = document.getElementById('modalAvatarPreview');
+        if (modalPreview) modalPreview.src = url;
+      }
     }
 
     function openEditDossierModal() {
@@ -1096,6 +1239,17 @@
       document.getElementById('modalInputRealName').value = p.realName;
       document.getElementById('modalInputTeam').value = p.team;
       document.getElementById('modalInputRole').value = p.role;
+      
+      const modalAvatarUrl = document.getElementById('modalInputAvatarUrl');
+      if (modalAvatarUrl) {
+        modalAvatarUrl.value = (p.avatar && p.avatar.startsWith('http')) ? p.avatar : '';
+      }
+
+      const modalPreview = document.getElementById('modalAvatarPreview');
+      if (modalPreview) {
+        modalPreview.src = p.avatar;
+      }
+
       document.getElementById('editDossierModal').classList.remove('hidden');
     }
 
@@ -1113,12 +1267,17 @@
       p.team = document.getElementById('modalInputTeam').value.trim() || p.team;
       p.role = document.getElementById('modalInputRole').value || p.role;
 
+      const customAvatarUrl = document.getElementById('modalInputAvatarUrl').value.trim();
+      if (customAvatarUrl) {
+        p.avatar = customAvatarUrl;
+      }
+
       saveUserProfile(p);
       updateProfileUI();
       closeEditDossierModal();
 
       playCyberSFX('success');
-      showToast("Player Dossier Saved Successfully.", "ph-floppy-disk");
+      showToast("Player Dossier & Profile Saved Successfully.", "ph-floppy-disk");
     }
 
     function copyUUID() {
@@ -1143,22 +1302,6 @@
       navigator.clipboard.writeText(SUPABASE_URL).then(() => {
         showToast("Supabase Endpoint Copied!", "ph-copy");
       });
-    }
-
-    function handleAvatarFileChange(event) {
-      const file = event.target.files[0];
-      if (!file || !file.type.startsWith('image/')) return;
-      playCyberSFX('click');
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const p = loadUserProfile();
-        p.avatar = e.target.result;
-        saveUserProfile(p);
-        updateProfileUI();
-        playCyberSFX('success');
-        showToast("Avatar image updated.", "ph-camera");
-      };
-      reader.readAsDataURL(file);
     }
 
     // Vault Download with Supabase Signed URL + Fallback
@@ -1325,14 +1468,43 @@
       if (alert) alert.classList.add('hidden');
     }
 
-    function updateMilitaryClock() {
+    // Bangladesh Standard Time (BST) Tactical Clock (Asia/Dhaka)
+    function updateBangladeshClock() {
       const now = new Date();
-      const utcString = now.toUTCString().split(' ')[4] + ' UTC';
-      const clockElem = document.getElementById('militaryClock');
-      if (clockElem) clockElem.textContent = utcString;
+      const options = {
+        timeZone: 'Asia/Dhaka',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      
+      try {
+        const formatter = new Intl.DateTimeFormat('en-GB', options);
+        const parts = formatter.formatToParts(now);
+        let hour = '00', minute = '00', second = '00';
+        parts.forEach(p => {
+          if (p.type === 'hour') hour = p.value;
+          if (p.type === 'minute') minute = p.value;
+          if (p.type === 'second') second = p.value;
+        });
+
+        const timeStr = `${hour}:${minute}:${second} BST`;
+        const clockElem = document.getElementById('militaryClock');
+        if (clockElem) clockElem.textContent = timeStr;
+      } catch (e) {
+        // Fallback calculation for UTC+6 (Bangladesh)
+        const utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const bdDate = new Date(utcMs + (6 * 3600000));
+        const hh = String(bdDate.getHours()).padStart(2, '0');
+        const mm = String(bdDate.getMinutes()).padStart(2, '0');
+        const ss = String(bdDate.getSeconds()).padStart(2, '0');
+        const clockElem = document.getElementById('militaryClock');
+        if (clockElem) clockElem.textContent = `${hh}:${mm}:${ss} BST`;
+      }
     }
-    setInterval(updateMilitaryClock, 1000);
-    updateMilitaryClock();
+    setInterval(updateBangladeshClock, 1000);
+    updateBangladeshClock();
 
     let toastTimeout = null;
     function showToast(text, iconClass = 'ph-info') {
