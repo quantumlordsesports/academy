@@ -18,8 +18,8 @@
     const slides = wrapper.querySelectorAll('.reel-slide');
     const segments = wrapper.querySelectorAll('.reel-prog-seg');
     const thumbs = wrapper.querySelectorAll('.reel-thumb-card');
-    const prevBtn = wrapper.querySelector('#reelPrevBtn');
-    const nextBtn = wrapper.querySelector('#reelNextBtn');
+    const prevBtns = wrapper.querySelectorAll('#reelPrevBtn, #reelStagePrevBtn, .reel-side-nav-btn.prev-btn');
+    const nextBtns = wrapper.querySelectorAll('#reelNextBtn, #reelStageNextBtn, .reel-side-nav-btn.next-btn');
     const playPauseBtn = wrapper.querySelector('#reelPlayPauseBtn');
     const counterText = wrapper.querySelector('#reelCounterText');
 
@@ -143,8 +143,20 @@
     }
 
     // Event Bindings
-    if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
-    if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+    nextBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextSlide();
+      });
+    });
+
+    prevBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevSlide();
+      });
+    });
+
     if (playPauseBtn) playPauseBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePause(); });
 
     // Thumbnail Clicks

@@ -156,6 +156,66 @@
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75), 0 0 35px rgba(232, 197, 106, 0.12);
 }
 
+/* Big Side Navigation Buttons (Middle Left / Middle Right) */
+.reel-side-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(8, 12, 22, 0.82);
+  border: 1.5px solid rgba(232, 197, 106, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65), 0 0 15px rgba(232, 197, 106, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f6df9c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  outline: none;
+}
+
+.reel-side-nav-btn.prev-btn {
+  left: 18px;
+}
+
+.reel-side-nav-btn.next-btn {
+  right: 18px;
+}
+
+.reel-side-nav-btn:hover {
+  background: linear-gradient(135deg, rgba(232, 197, 106, 0.35), rgba(15, 20, 36, 0.95));
+  border-color: var(--accent, #e8c56a);
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75), 0 0 24px rgba(232, 197, 106, 0.5);
+  transform: translateY(-50%) scale(1.12);
+}
+
+.reel-side-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.reel-side-nav-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 4px rgba(232, 197, 106, 0.6));
+  transition: transform 0.2s ease;
+}
+
+.reel-side-nav-btn.prev-btn:hover svg {
+  transform: translateX(-2px);
+}
+
+.reel-side-nav-btn.next-btn:hover svg {
+  transform: translateX(2px);
+}
+
 /* Flexible Continuous Sliding Track */
 .reel-track {
   display: flex;
