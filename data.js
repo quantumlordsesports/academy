@@ -84,6 +84,12 @@ const siteData = {
   ],
   news: [
     {
+      title: 'Free Fire Bangladesh Premier League (FFBPL) Championship Result',
+      date: 'July 15, 2026',
+      blurb: 'Dominant finals lobby performance securing 1st place regional championship trophy and glory.',
+      thumbnail: 'assets/matches/Result-FFBPL.png'
+    },
+    {
       title: 'QuantumLords secure crowd-favorite finals push',
       date: 'July 8, 2026',
       blurb: 'A clutch late-round comeback turned the final into an unforgettable victory.',

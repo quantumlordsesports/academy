@@ -33,7 +33,14 @@
         if (!img.dataset.src) return;
         img.src = img.dataset.src;
         img.onload = ()=>{ img.classList.add('loaded'); if (skeleton) skeleton.remove(); };
-        img.onerror = ()=>{ if (skeleton) skeleton.style.background = 'linear-gradient(90deg,#111 0,#222 50%,#111 100%)'; };
+        img.onerror = ()=>{
+          if (img.dataset.src && !img.dataset.retried) {
+            img.dataset.retried = 'true';
+            img.src = 'folder/' + img.dataset.src.split('/').pop();
+          } else if (skeleton) {
+            skeleton.style.background = 'linear-gradient(90deg,#111 0,#222 50%,#111 100%)';
+          }
+        };
       };
       if ('loading' in HTMLImageElement.prototype) {
         img.loading = 'lazy'; loadSrc();
