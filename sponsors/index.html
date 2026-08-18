@@ -3,21 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sponsors - QuantumLords</title>
+  <title>Sponsors // QuantumLords Esports</title>
+  <meta name="description" content="Trusted partner brands that keep QuantumLords Esports supported and in the fight." />
+  
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <script src="../audio-controller.js" defer></script>
 </head>
-<body>
+<body class="theme-obsidian">
+
+  <!-- Header -->
   <header class="site-header">
     <nav class="nav-bar" aria-label="Primary navigation">
       <a class="brand" href="../index.html">
         <span class="brand-mark">
           <span class="glitch-wrap">
             <img class="glitch-img" src="../assets/logo.png" alt="QuantumLords logo" />
-            <img class="glitch-layer glitch-red" aria-hidden="true" src="../assets/logo.png" />
-            <img class="glitch-layer glitch-green" aria-hidden="true" src="../assets/logo.png" />
           </span>
         </span>
         <span class="brand-label">QuantumLords</span>
@@ -31,23 +39,37 @@
         <li><a href="../tournaments/index.html">Tournaments</a></li>
         <li><a href="../free-fire/index.html">Free Fire</a></li>
         <li><a href="../recruit/index.html">Recruit</a></li>
-        <li><a href="../sponsors/index.html">Sponsors</a></li>
+        <li><a href="../sponsors/index.html" class="active">Sponsors</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="section-block section-alt">
+  <!-- Main Content -->
+  <main id="content">
+    <section id="sponsors" class="section-block section-alt" style="padding-top: 4rem; padding-bottom: 5rem;">
       <div class="section-header">
         <p class="eyebrow">Sponsors</p>
-        <h1>Sponsors - Coming Soon</h1>
-        <p>Placeholder for sponsor logos and partner information.</p>
+        <h1>Trusted partners</h1>
+        <p>Partner brands that help keep the squad sharp, supported, and in the fight.</p>
       </div>
-      <div id="sponsor-grid" class="sponsor-grid"></div>
+
+      <div id="sponsor-grid" class="sponsor-grid" style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+        <div class="sponsor-card" style="padding: 1.5rem; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(232,197,106,0.3); text-align: center; max-width: 320px;">
+          <img src="../assets/sponsors/sponsor.jpg" alt="Googol Inc Sponsor" style="max-height: 120px; object-fit: contain; margin: 0 auto 1rem; border-radius: 8px;" onerror="this.style.display='none'" />
+          <h3 style="color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem;">GOOGOL INC.</h3>
+          <p style="color: #94a3b8; font-size: 0.85rem;">Official Title Guild Partner & Esports Sponsor</p>
+        </div>
+      </div>
+
+      <p id="sponsor-text" class="sponsor-text" style="text-align: center; margin-top: 2rem; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 700;">
+        Esport team sponsored By googol INC Guild.
+      </p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-grid">
@@ -77,11 +99,10 @@
 
       <div class="footer-bottom">
         <small>© Akreative Studio — All rights reserved.</small>
-        <small class="footer-version">version 2.1.2.0.0 (HJCPP)</small>
+        <small class="footer-version">version 2.2.0.0.0 (CINEMATIC)</small>
       </div>
     </div>
   </footer>
 
-  
 </body>
 </html>

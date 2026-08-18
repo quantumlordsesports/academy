@@ -3,21 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact - QuantumLords</title>
+  <title>Contact // QuantumLords Esports</title>
+  <meta name="description" content="Get in touch with QuantumLords Esports for scrim inquiries, media calls, and sponsorship partnerships." />
+  
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <script src="../audio-controller.js" defer></script>
 </head>
-<body>
+<body class="theme-obsidian">
+
+  <!-- Header -->
   <header class="site-header">
     <nav class="nav-bar" aria-label="Primary navigation">
       <a class="brand" href="../index.html">
         <span class="brand-mark">
           <span class="glitch-wrap">
             <img class="glitch-img" src="../assets/logo.png" alt="QuantumLords logo" />
-            <img class="glitch-layer glitch-red" aria-hidden="true" src="../assets/logo.png" />
-            <img class="glitch-layer glitch-green" aria-hidden="true" src="../assets/logo.png" />
           </span>
         </span>
         <span class="brand-label">QuantumLords</span>
@@ -32,29 +40,68 @@
         <li><a href="../free-fire/index.html">Free Fire</a></li>
         <li><a href="../recruit/index.html">Recruit</a></li>
         <li><a href="../sponsors/index.html">Sponsors</a></li>
-        <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../contact/index.html" class="active">Contact</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="section-block contact-section">
+  <!-- Main Content -->
+  <main id="content">
+    <section id="contact" class="section-block contact-section" style="padding-top: 4rem; padding-bottom: 5rem;">
       <div class="section-header">
         <p class="eyebrow">Contact</p>
-        <h1>Contact - Coming Soon</h1>
-        <p>Placeholder for contact details and forms.</p>
+        <h1>Get in touch</h1>
+        <p>Follow the squad, book a media call, or reach out for sponsorship inquiries.</p>
       </div>
+
       <div class="contact-panel">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">Contact</h3>
-            <p class="card-text">Add contact information or a contact form here.</p>
+        <div class="contact-card">
+          <h3>Socials</h3>
+          <ul id="social-links" class="social-list">
+            <li>
+              <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener">
+                <span class="social-icon"><img class="social-logo" src="../assets/social/discord.png" alt="Discord" onerror="this.src='../folder/discord.png.jpg'" /></span>
+                <span>Discord</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noreferrer noopener">
+                <span class="social-icon"><img class="social-logo" src="../assets/social/instagram 02.png" alt="Instagram" onerror="this.src='../assets/social/instagram.jpg'" /></span>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@QuantimLordsEsports" target="_blank" rel="noreferrer noopener">
+                <span class="social-icon"><img class="social-logo" src="../assets/social/youtube 02.webp" alt="YouTube" onerror="this.src='../assets/social/youtube.jpg'" /></span>
+                <span>YouTube</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://web.facebook.com/profile.php?id=61575173494169" target="_blank" rel="noreferrer noopener">
+                <span class="social-icon"><img class="social-logo" src="../assets/social/facebook.png" alt="Facebook" onerror="this.src='../folder/facebook.png.jpg'" /></span>
+                <span>Facebook</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-card">
+          <h3>Email</h3>
+          <div id="contact-emails" class="contact-emails">
+            <div class="email-card">
+              <span class="social-icon" aria-hidden="true">
+                <img class="social-logo" src="../assets/social/gmail.webp" alt="Gmail" onerror="this.innerHTML='✉'" />
+              </span>
+              <a href="mailto:quantumlordsesports@gmail.com">quantumlordsesports@gmail.com</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-grid">
@@ -84,11 +131,10 @@
 
       <div class="footer-bottom">
         <small>© Akreative Studio — All rights reserved.</small>
-        <small class="footer-version">version 2.1.2.0.0 (HJCPP)</small>
+        <small class="footer-version">version 2.2.0.0.0 (CINEMATIC)</small>
       </div>
     </div>
   </footer>
 
-  
 </body>
 </html>

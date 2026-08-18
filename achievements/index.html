@@ -3,57 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Achievements - QuantumLords</title>
+  <title>Achievements // QuantumLords Esports</title>
+  <meta name="description" content="Title-winning moments and tournament achievements of QuantumLords Esports." />
+  
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <script src="../audio-controller.js" defer></script>
 </head>
-<body>
+<body class="theme-obsidian">
+
+  <!-- Header -->
   <header class="site-header">
     <nav class="nav-bar" aria-label="Primary navigation">
       <a class="brand" href="../index.html">
         <span class="brand-mark">
           <span class="glitch-wrap">
             <img class="glitch-img" src="../assets/logo.png" alt="QuantumLords logo" />
-            <img class="glitch-layer glitch-red" aria-hidden="true" src="../assets/logo.png" />
-            <img class="glitch-layer glitch-green" aria-hidden="true" src="../assets/logo.png" />
           </span>
         </span>
         <span class="brand-label">QuantumLords</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation"><span>Menu</span></button>
+      
       <ul id="primary-navigation" class="nav-list">
         <li><a href="../roster/index.html">Roster</a></li>
-        <li><a href="../achievements/index.html">Achievements</a></li>
+        <li><a href="../achievements/index.html" class="active">Achievements</a></li>
         <li><a href="../news/index.html">News</a></li>
         <li><a href="../tournaments/index.html">Tournaments</a></li>
         <li><a href="../free-fire/index.html">Free Fire</a></li>
         <li><a href="../recruit/index.html">Recruit</a></li>
         <li><a href="../sponsors/index.html">Sponsors</a></li>
         <li><a href="../contact/index.html">Contact</a></li>
+        <li><a href="../portal.html" style="color: #00F0FF; font-weight: 700;">⚡ Pro Portal</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="section-block section-alt">
+  <!-- Main Content -->
+  <main id="content">
+    <section id="achievements" class="section-block section-alt" style="padding-top: 4rem; padding-bottom: 5rem;">
       <div class="section-header">
         <p class="eyebrow">Achievements</p>
-        <h1>Achievements - Coming Soon</h1>
-        <p>Placeholder for achievements and title-winning moments.</p>
+        <h1>Title-winning moments</h1>
+        <p>Recent tournament results that shaped the squad’s momentum and identity.</p>
       </div>
-      <div class="achievement-grid">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">No content yet</h3>
-            <p class="card-text">Add achievement entries here.</p>
-          </div>
-        </div>
+
+      <div id="achievements-grid" class="achievement-grid">
+        <article class="achievement-card" data-rank="01">
+          <h3>Quantum Cup</h3>
+          <p class="achievement-meta">1st Place · June 2026</p>
+          <p class="card-text">$18,000</p>
+        </article>
+
+        <article class="achievement-card" data-rank="02">
+          <h3>Neon Arena Invitational</h3>
+          <p class="achievement-meta">Top 4 · April 2026</p>
+          <p class="card-text">$7,500</p>
+        </article>
+
+        <article class="achievement-card" data-rank="03">
+          <h3>Shadow Strike Open</h3>
+          <p class="achievement-meta">2nd Place · February 2026</p>
+          <p class="card-text">$12,000</p>
+        </article>
+
+        <article class="achievement-card" data-rank="04">
+          <h3>Phoenix Clash</h3>
+          <p class="achievement-meta">Semi-Finalist · December 2025</p>
+          <p class="card-text">$4,000</p>
+        </article>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-grid">
@@ -83,11 +113,10 @@
 
       <div class="footer-bottom">
         <small>© Akreative Studio — All rights reserved.</small>
-        <small class="footer-version">version 2.1.2.0.0 (HJCPP)</small>
+        <small class="footer-version">version 2.2.0.0.0 (CINEMATIC)</small>
       </div>
     </div>
   </footer>
+
 </body>
 </html>
-
- 
