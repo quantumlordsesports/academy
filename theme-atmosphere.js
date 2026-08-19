@@ -1,7 +1,7 @@
 /**
  * QuantumLords Theme Atmosphere System
  * - Bright Mode: Flying sakura flower petals & golden/emerald leaves drifting with breeze.
- * - Dark Mode: Drifting volumetric nebula clouds, twinkling multi-depth moving stars, and realistic subtle thunderbolt lightning flashes.
+ * - Dark Mode: Drifting volumetric nebula clouds and twinkling multi-depth moving cosmic stars.
  */
 
 (function () {
@@ -122,7 +122,7 @@
     }
   }
 
-  // --- Dark Mode Atmosphere (Stars, Nebula Clouds & Lightning) ---
+  // --- Dark Mode Atmosphere (Cosmic Stars & Volumetric Nebula Clouds) ---
   const stars = [];
   const STAR_COUNT = 90;
   const nebulaClouds = [];
@@ -231,153 +231,6 @@
     }
   }
 
-  // --- Flying Nocturnal Bats System (Dark Mode Swarm) ---
-  const bats = [];
-  const BAT_COUNT = 32; // Handsome amount of bats flying across the night sky
-
-  class Bat {
-    constructor(randomizePos = true) {
-      this.reset(randomizePos);
-    }
-
-    reset(randomizePos = true) {
-      // 1 = flying right, -1 = flying left
-      this.direction = Math.random() > 0.45 ? 1 : -1;
-      this.scale = Math.random() * 0.75 + 0.40; // Multi-depth scale (0.40x to 1.15x)
-      this.x = randomizePos ? Math.random() * width : (this.direction === 1 ? -70 : width + 70);
-      this.y = Math.random() * (height * 0.88) + 20;
-
-      // Flight velocity calibrated to depth scale
-      this.baseSpeedX = (Math.random() * 1.9 + 1.2) * this.direction * this.scale;
-      this.baseSpeedY = (Math.random() * 0.7 - 0.35) * this.scale;
-      this.speedX = this.baseSpeedX;
-      this.speedY = this.baseSpeedY;
-
-      // Wing flapping animation phase
-      this.wingPhase = Math.random() * Math.PI * 2;
-      this.wingSpeed = Math.random() * 0.22 + 0.16;
-      this.glideTimer = Math.floor(Math.random() * 100);
-      this.isGliding = false;
-
-      // Swooping wave physics
-      this.swoopPhase = Math.random() * Math.PI * 2;
-      this.swoopSpeed = Math.random() * 0.035 + 0.018;
-      this.swoopAmp = Math.random() * 1.8 + 0.7;
-
-      // Glowing Eyes (Cyber Crimson, Neon Cyan, or Imperial Gold)
-      const eyeColors = ['#FF0055', '#00F0FF', '#FFD700', '#FF2A6D'];
-      this.eyeColor = eyeColors[Math.floor(Math.random() * eyeColors.length)];
-      this.alpha = Math.min(0.92, this.scale * 0.80 + 0.25);
-    }
-
-    update() {
-      this.swoopPhase += this.swoopSpeed;
-      this.glideTimer++;
-
-      // Periodic natural gliding intervals
-      if (this.glideTimer > 110 && Math.random() < 0.04) {
-        this.isGliding = true;
-        if (this.glideTimer > 165) {
-          this.isGliding = false;
-          this.glideTimer = 0;
-        }
-      } else {
-        this.isGliding = false;
-      }
-
-      if (!this.isGliding) {
-        this.wingPhase += this.wingSpeed;
-      }
-
-      this.y += Math.sin(this.swoopPhase) * this.swoopAmp + this.speedY;
-      this.x += this.speedX;
-
-      // Wrap around with margins
-      if (this.direction === 1 && this.x > width + 90) {
-        this.reset(false);
-      } else if (this.direction === -1 && this.x < -90) {
-        this.reset(false);
-      }
-
-      if (this.y < -60) this.y = height + 40;
-      if (this.y > height + 60) this.y = -40;
-    }
-
-    draw(ctx) {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.scale(this.scale * this.direction, this.scale);
-      ctx.globalAlpha = this.alpha;
-
-      // Aerodynamic banking rotation
-      const bankAngle = Math.sin(this.swoopPhase) * 0.22;
-      ctx.rotate(bankAngle);
-
-      // Flapping position (-1 to 1)
-      const flap = this.isGliding ? 0.25 : Math.sin(this.wingPhase);
-      const wingY = flap * 13;
-
-      // Silhouette & Rim Light
-      ctx.fillStyle = '#04060b';
-      ctx.strokeStyle = 'rgba(0, 240, 255, 0.18)';
-      ctx.lineWidth = 0.8;
-
-      // Left Scalloped Bat Wing
-      ctx.beginPath();
-      ctx.moveTo(0, -2);
-      ctx.bezierCurveTo(-8, -11 - wingY, -19, -15 - wingY, -27, -6 - wingY * 0.8);
-      ctx.quadraticCurveTo(-21, 2 - wingY * 0.3, -17, 4);
-      ctx.quadraticCurveTo(-12, 3, -9, 5);
-      ctx.quadraticCurveTo(-4, 4, 0, 3);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-
-      // Right Scalloped Bat Wing
-      ctx.beginPath();
-      ctx.moveTo(0, -2);
-      ctx.bezierCurveTo(8, -11 - wingY, 19, -15 - wingY, 27, -6 - wingY * 0.8);
-      ctx.quadraticCurveTo(21, 2 - wingY * 0.3, 17, 4);
-      ctx.quadraticCurveTo(12, 3, 9, 5);
-      ctx.quadraticCurveTo(4, 4, 0, 3);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
-
-      // Bat Body Torso
-      ctx.fillStyle = '#080c14';
-      ctx.beginPath();
-      ctx.ellipse(0, 2, 3.5, 6.5, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Head
-      ctx.beginPath();
-      ctx.arc(0, -4.5, 3.2, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Pointed Ears
-      ctx.beginPath();
-      ctx.moveTo(-2.6, -4.5);
-      ctx.lineTo(-4.5, -10);
-      ctx.lineTo(-1.2, -6.5);
-      ctx.moveTo(2.6, -4.5);
-      ctx.lineTo(4.5, -10);
-      ctx.lineTo(1.2, -6.5);
-      ctx.fill();
-
-      // Glowing Eyes
-      ctx.fillStyle = this.eyeColor;
-      ctx.shadowColor = this.eyeColor;
-      ctx.shadowBlur = 4;
-      ctx.beginPath();
-      ctx.arc(-1.3, -5, 0.8, 0, Math.PI * 2);
-      ctx.arc(1.3, -5, 0.8, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-    }
-  }
-
   // --- Main Init and Animation Loop ---
   function initAtmosphere() {
     canvas = document.getElementById('themeAtmosphereCanvas');
@@ -416,11 +269,6 @@
       nebulaClouds.push(new NebulaCloud(i));
     }
 
-    bats.length = 0;
-    for (let i = 0; i < BAT_COUNT; i++) {
-      bats.push(new Bat(true));
-    }
-
     checkCurrentTheme();
     startLoop();
   }
@@ -451,7 +299,7 @@
         p.draw(ctx);
       });
     } else {
-      // Render Dark Cosmic Night Sky (Nebula Clouds, Stars & Flying Bats)
+      // Render Dark Cosmic Night Sky (Nebula Clouds & Twinkling Stars)
       nebulaClouds.forEach(c => {
         c.update();
         c.draw(ctx);
@@ -460,12 +308,6 @@
       stars.forEach(s => {
         s.update();
         s.draw(ctx);
-      });
-
-      // Render Flying Nocturnal Bats across the night sky
-      bats.forEach(b => {
-        b.update();
-        b.draw(ctx);
       });
     }
 
