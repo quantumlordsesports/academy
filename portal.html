@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -10,8 +11,10 @@
   <meta name="apple-mobile-web-app-title" content="QuantumLords" />
   <meta name="format-detection" content="telephone=no" />
   <title>Player Profile & Strategy Vault // Quantum Lords Esports</title>
-  <meta name="description" content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
-  <meta name="keywords" content="Quantum Lords Profile, Player Vault, Free Fire Tactical Playbook, Quantum Lords Member Login" />
+  <meta name="description"
+    content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
+  <meta name="keywords"
+    content="Quantum Lords Profile, Player Vault, Free Fire Tactical Playbook, Quantum Lords Member Login" />
   <link rel="canonical" href="https://quantumlordsesports.netlify.app/portal.html" />
 
   <!-- Open Graph / Facebook -->
@@ -19,14 +22,16 @@
   <meta property="og:url" content="https://quantumlordsesports.netlify.app/portal.html" />
   <meta property="og:site_name" content="Quantum Lords Esports" />
   <meta property="og:title" content="Player Profile & Strategy Vault // Quantum Lords Esports" />
-  <meta property="og:description" content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
+  <meta property="og:description"
+    content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
   <meta property="og:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://quantumlordsesports.netlify.app/portal.html" />
   <meta name="twitter:title" content="Player Profile & Strategy Vault // Quantum Lords Esports" />
-  <meta name="twitter:description" content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
+  <meta name="twitter:description"
+    content="Quantum Lords Esports secure player profile authentication, telemetry analytics, and classified tactical strategy vault." />
   <meta name="twitter:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
 
   <!-- JSON-LD Structured Data: ItemPage -->
@@ -45,7 +50,7 @@
     }
   }
   </script>
-  
+
   <!-- Favicon -->
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link rel="apple-touch-icon" href="assets/logo.png" />
@@ -53,14 +58,16 @@
   <!-- Google Fonts: Orbitron, Space Grotesk, JetBrains Mono, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="audio-controller.css" />
   <script>
-    (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
   </script>
   <script src="audio-controller.js" defer></script>
   <script src="app.js" defer></script>
@@ -121,14 +128,28 @@
 
   <style>
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0A0C11; }
-    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; border: 1px solid rgba(232, 197, 106, 0.2); }
-    ::-webkit-scrollbar-thumb:hover { background: #E8C56A; }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0A0C11;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 4px;
+      border: 1px solid rgba(232, 197, 106, 0.2);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E8C56A;
+    }
 
     /* Cyber Grid */
     .cyber-grid-bg {
-      background-image: 
+      background-image:
         linear-gradient(to right, rgba(232, 197, 106, 0.04) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(232, 197, 106, 0.04) 1px, transparent 1px);
       background-size: 36px 36px;
@@ -146,6 +167,7 @@
     .vault-card {
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .vault-card:hover {
       transform: translateY(-4px);
       border-color: rgba(232, 197, 106, 0.6);
@@ -154,25 +176,37 @@
 
     /* Shake on alert */
     @keyframes shake {
-      10%, 90% { transform: translate3d(-1px, 0, 0); }
-      20%, 80% { transform: translate3d(2px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
-      40%, 60% { transform: translate3d(3px, 0, 0); }
+
+      10%,
+      90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+
+      20%,
+      80% {
+        transform: translate3d(2px, 0, 0);
+      }
+
+      30%,
+      50%,
+      70% {
+        transform: translate3d(-3px, 0, 0);
+      }
+
+      40%,
+      60% {
+        transform: translate3d(3px, 0, 0);
+      }
     }
+
     .shake-alert {
-      animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
+      animation: shake 0.45s cubic-bezier(.36, .07, .19, .97) both;
     }
   </style>
 </head>
-<body class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-[#E8C56A] selection:text-black">
 
-  <!-- Fixed Universal Background Video -->
-  <div class="global-video-bg" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="assets/matches/promo.mp4" type="video/mp4" />
-      <source src="folder/promo.mp4.mp4" type="video/mp4" />
-    </video>
-  </div>
+<body
+  class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-[#E8C56A] selection:text-black">
 
   <!-- Background Animated Cyber Canvas -->
   <canvas id="cyberCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-35"></canvas>
@@ -180,26 +214,32 @@
 
   <!-- Ambient Glow Spots -->
   <div class="fixed -top-32 -left-32 w-96 h-96 bg-[#E8C56A]/10 rounded-full blur-3xl pointer-events-none z-0"></div>
-  <div class="fixed -bottom-32 -right-32 w-96 h-96 bg-cyber-crimson/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed -bottom-32 -right-32 w-96 h-96 bg-cyber-crimson/10 rounded-full blur-3xl pointer-events-none z-0">
+  </div>
 
   <!-- App Wrapper -->
   <div id="appContainer" class="relative z-20 min-h-screen flex flex-col justify-between">
 
     <!-- Top Utility Bar with Bangladesh Time Zone (BST) -->
-    <div class="w-full bg-[#07090D]/85 border-b border-cyber-border/60 py-2 px-3 sm:px-8 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md flex-wrap gap-2">
+    <div
+      class="w-full bg-[#07090D]/85 border-b border-cyber-border/60 py-2 px-3 sm:px-8 flex items-center justify-between text-xs font-mono text-cyber-muted backdrop-blur-md flex-wrap gap-2">
       <div class="flex items-center space-x-3">
-        <a href="index.html" class="flex items-center space-x-1.5 text-[#E8C56A] hover:text-white transition-colors duration-200">
+        <a href="index.html"
+          class="flex items-center space-x-1.5 text-[#E8C56A] hover:text-white transition-colors duration-200">
           <i class="ph-bold ph-arrow-left"></i>
           <span class="font-semibold uppercase tracking-wider">Main Home Page</span>
         </a>
         <span class="text-cyber-border hidden sm:inline">|</span>
-        <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">QUANTUMLORDS ESPORTS</span></span>
+        <span class="hidden sm:inline text-slate-400">ORGANIZATION: <span class="text-white font-semibold">QUANTUMLORDS
+            ESPORTS</span></span>
       </div>
       <div class="flex items-center space-x-4">
         <!-- Live Bangladesh Time Clock (BST) -->
-        <div class="flex items-center space-x-2 bg-cyber-card/80 border border-[#E8C56A]/30 px-3 py-1 rounded-lg shadow-sm">
+        <div
+          class="flex items-center space-x-2 bg-cyber-card/80 border border-[#E8C56A]/30 px-3 py-1 rounded-lg shadow-sm">
           <span class="inline-block w-2 h-2 rounded-full bg-[#E8C56A] animate-pulse"></span>
-          <span class="text-[11px] text-[#E8C56A] font-bold uppercase tracking-wider hidden xs:inline">🇧🇩 BD TIME:</span>
+          <span class="text-[11px] text-[#E8C56A] font-bold uppercase tracking-wider hidden xs:inline">🇧🇩 BD
+            TIME:</span>
           <span id="militaryClock" class="text-white font-bold tracking-widest font-mono">00:00:00 BST</span>
         </div>
         <!-- Theme Toggle -->
@@ -208,7 +248,8 @@
           <span class="theme-toggle-text">Dark</span>
         </button>
         <!-- SFX Toggle -->
-        <button id="sfxToggleBtn" onclick="toggleAudioSFX()" class="flex items-center space-x-1 hover:text-[#E8C56A] transition-colors" title="Toggle UI Sound Effects">
+        <button id="sfxToggleBtn" onclick="toggleAudioSFX()"
+          class="flex items-center space-x-1 hover:text-[#E8C56A] transition-colors" title="Toggle UI Sound Effects">
           <i id="sfxIcon" class="ph-bold ph-speaker-high text-[#E8C56A]"></i>
           <span id="sfxLabel" class="hidden md:inline">SFX: ON</span>
         </button>
@@ -218,31 +259,44 @@
     <!-- ========================================================================= -->
     <!-- STATE 1: UNAUTHENTICATED SYSTEM ACCESS CARD -->
     <!-- ========================================================================= -->
-    <main id="authView" class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8 transition-all duration-500">
+    <main id="authView"
+      class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8 transition-all duration-500">
       <div class="w-full max-w-md relative group">
-        
+
         <!-- Cyber Corner Accents -->
-        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none"></div>
-        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none"></div>
-        <div class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none"></div>
+        <div class="absolute -top-2 -left-2 w-5 h-5 border-t-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none">
+        </div>
+        <div class="absolute -top-2 -right-2 w-5 h-5 border-t-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none">
+        </div>
+        <div class="absolute -bottom-2 -left-2 w-5 h-5 border-b-2 border-l-2 border-[#E8C56A] z-30 pointer-events-none">
+        </div>
+        <div
+          class="absolute -bottom-2 -right-2 w-5 h-5 border-b-2 border-r-2 border-[#E8C56A] z-30 pointer-events-none">
+        </div>
 
         <!-- Glowing Login Card -->
-        <div class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-[#E8C56A]/30">
-          
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E8C56A] to-transparent animate-pulse-slow"></div>
+        <div
+          class="glass-panel rounded-2xl shadow-cyber-card relative p-7 sm:p-9 overflow-hidden border border-[#E8C56A]/30">
+
+          <div
+            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E8C56A] to-transparent animate-pulse-slow">
+          </div>
 
           <!-- Header / Brand Section -->
           <div class="text-center mb-6">
-            <div class="mx-auto w-16 h-16 mb-3 p-1 rounded-2xl bg-gradient-to-b from-[#E8C56A]/30 to-transparent border border-[#E8C56A]/40 shadow-gold-glow flex items-center justify-center">
-              <img src="assets/logo.png" alt="QuantumLords Esports Logo" class="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(232,197,106,0.4)]" />
+            <div
+              class="mx-auto w-16 h-16 mb-3 p-1 rounded-2xl bg-gradient-to-b from-[#E8C56A]/30 to-transparent border border-[#E8C56A]/40 shadow-gold-glow flex items-center justify-center">
+              <img src="assets/logo.png" alt="QuantumLords Esports Logo"
+                class="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(232,197,106,0.4)]" />
             </div>
 
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#E8C56A]/10 border border-[#E8C56A]/30 text-[#E8C56A] text-[11px] font-mono tracking-widest uppercase mb-1.5">
+            <div
+              class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#E8C56A]/10 border border-[#E8C56A]/30 text-[#E8C56A] text-[11px] font-mono tracking-widest uppercase mb-1.5">
               <span>QUANTUMLORDS ESPORTS</span>
             </div>
             <h1 class="text-2xl sm:text-3xl font-black font-orbitron text-white tracking-wider uppercase">
-              PLAYER <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C56A] via-[#FFD700] to-[#FFA500]">PROFILE</span>
+              PLAYER <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C56A] via-[#FFD700] to-[#FFA500]">PROFILE</span>
             </h1>
             <p class="text-xs text-slate-400 font-space mt-1">
               Sign in to access your Player Dossier & Strategy Vault
@@ -250,7 +304,8 @@
           </div>
 
           <!-- Error Alert Banner -->
-          <div id="authAlert" class="hidden mb-5 p-3.5 rounded-xl bg-cyber-crimson/15 border border-cyber-crimson/60 text-cyber-crimson text-xs font-mono relative overflow-hidden shake-alert">
+          <div id="authAlert"
+            class="hidden mb-5 p-3.5 rounded-xl bg-cyber-crimson/15 border border-cyber-crimson/60 text-cyber-crimson text-xs font-mono relative overflow-hidden shake-alert">
             <div class="flex items-start space-x-2.5">
               <i class="ph-fill ph-warning-octagon text-lg flex-shrink-0 mt-0.5 text-cyber-crimson"></i>
               <div class="flex-grow">
@@ -275,53 +330,35 @@
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <i class="ph-bold ph-envelope-simple text-lg text-[#E8C56A]"></i>
                 </div>
-                <input 
-                  type="email" 
-                  id="playerEmail" 
-                  name="email"
-                  required 
-                  autocomplete="email"
+                <input type="email" id="playerEmail" name="email" required autocomplete="email"
                   placeholder="player@quantumlords.com"
-                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all"
-                />
+                  class="w-full pl-10 pr-4 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all" />
               </div>
             </div>
 
             <div>
-              <label for="playerPassword" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+              <label for="playerPassword"
+                class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
                 Passcode / Key
               </label>
               <div class="relative rounded-xl">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <i class="ph-bold ph-lock-key text-lg text-[#E8C56A]"></i>
                 </div>
-                <input 
-                  type="password" 
-                  id="playerPassword" 
-                  name="password"
-                  required 
-                  autocomplete="current-password"
+                <input type="password" id="playerPassword" name="password" required autocomplete="current-password"
                   placeholder="••••••••••••"
-                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all"
-                />
-                <button 
-                  type="button" 
-                  id="passwordToggleBtn"
-                  onclick="togglePasswordVisibility()" 
+                  class="w-full pl-10 pr-11 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all" />
+                <button type="button" id="passwordToggleBtn" onclick="togglePasswordVisibility()"
                   class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-[#E8C56A] transition-colors"
-                  aria-label="Toggle password visibility"
-                >
+                  aria-label="Toggle password visibility">
                   <i id="passwordToggleIcon" class="ph-bold ph-eye text-lg"></i>
                 </button>
               </div>
             </div>
 
             <div class="pt-2">
-              <button 
-                type="submit" 
-                id="authSubmitBtn"
-                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]"
-              >
+              <button type="submit" id="authSubmitBtn"
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]">
                 <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl text-[#06080F]"></i>
                 <span id="authBtnText">AUTHENTICATE</span>
                 <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden text-[#06080F]"></i>
@@ -338,14 +375,16 @@
     <!-- STATE 2: AUTHENTICATED PLAYER DASHBOARD & VAULT -->
     <!-- ========================================================================= -->
     <div id="dashboardView" class="hidden flex-grow flex flex-col transition-all duration-500 pb-12">
-      
+
       <!-- Top Navigation Bar -->
       <header class="sticky top-0 z-40 bg-[#0A0C11]/90 backdrop-blur-xl border-b border-[#E8C56A]/20 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-2 flex items-center justify-between flex-wrap gap-2">
-          
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-2 flex items-center justify-between flex-wrap gap-2">
+
           <!-- Left: Brand -->
           <div class="flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-xl bg-cyber-card border border-[#E8C56A]/50 flex items-center justify-center shadow-gold-glow flex-shrink-0">
+            <div
+              class="w-10 h-10 rounded-xl bg-cyber-card border border-[#E8C56A]/50 flex items-center justify-center shadow-gold-glow flex-shrink-0">
               <img src="assets/logo.png" alt="QuantumLords Logo" class="w-7 h-7 object-contain" />
             </div>
             <div>
@@ -360,19 +399,18 @@
 
           <!-- Right: Badges & Logout -->
           <div class="flex items-center space-x-3 sm:space-x-4">
-            <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 shadow-green-glow text-cyber-green text-xs font-mono font-bold tracking-wider">
+            <div
+              class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 shadow-green-glow text-cyber-green text-xs font-mono font-bold tracking-wider">
               <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-green opacity-75"></span>
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-green opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-cyber-green"></span>
               </span>
               <span id="navStatusBadge" class="uppercase">AUTHORIZED</span>
             </div>
 
-            <button 
-              id="logoutBtn"
-              onclick="handleSignOut()" 
-              class="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/50 text-cyber-crimson hover:text-white transition-all text-xs font-mono font-bold uppercase tracking-wider active:scale-95"
-            >
+            <button id="logoutBtn" onclick="handleSignOut()"
+              class="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/50 text-cyber-crimson hover:text-white transition-all text-xs font-mono font-bold uppercase tracking-wider active:scale-95">
               <i class="ph-bold ph-sign-out text-base"></i>
               <span class="hidden sm:inline">LOGOUT</span>
             </button>
@@ -383,106 +421,110 @@
 
       <!-- Main Dashboard Container -->
       <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8 w-full">
-        
+
         <!-- ========================================================================= -->
         <!-- SECTION A: PLAYER DOSSIER -->
         <!-- ========================================================================= -->
-        <section class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-cyber-card relative overflow-hidden">
-          <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
-          
-          <div class="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
-            
+        <section
+          class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-cyber-card relative overflow-hidden">
+          <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none">
+          </div>
+
+          <div
+            class="relative z-10 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-6 lg:gap-8">
+
             <!-- Avatar Container with Prominently Displayed "Change Photo" Button & Badge -->
             <div class="relative flex-shrink-0 flex flex-col items-center">
-              
+
               <!-- Photo Box -->
-              <div 
-                id="avatarTriggerBox" 
+              <div id="avatarTriggerBox"
                 class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden cursor-pointer group"
-                onclick="triggerAvatarUpload()"
-                title="Click to Change Photo"
-              >
-                <img 
-                  id="avatarPreviewImg" 
-                  src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" 
-                  alt="Player Avatar" 
-                  class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300 pointer-events-none"
-                />
+                onclick="triggerAvatarUpload()" title="Click to Change Photo">
+                <img id="avatarPreviewImg"
+                  src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
+                  alt="Player Avatar"
+                  class="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300 pointer-events-none" />
 
                 <!-- Permanently visible bottom gradient bar with Change Photo icon -->
-                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-4 pb-2 px-2 flex items-center justify-center text-cyber-cyan space-x-1.5 pointer-events-none">
+                <div
+                  class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-4 pb-2 px-2 flex items-center justify-center text-cyber-cyan space-x-1.5 pointer-events-none">
                   <i class="ph-bold ph-camera text-sm"></i>
-                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">Change Photo</span>
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300">Change
+                    Photo</span>
                 </div>
 
                 <!-- Hover Overlay with Glowing Camera Circle -->
-                <div class="absolute inset-0 bg-black/75 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl pointer-events-none">
-                  <div class="w-12 h-12 rounded-full bg-cyber-cyan/20 border border-cyber-cyan flex items-center justify-center mb-1.5 shadow-cyan-glow">
+                <div
+                  class="absolute inset-0 bg-black/75 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white rounded-3xl pointer-events-none">
+                  <div
+                    class="w-12 h-12 rounded-full bg-cyber-cyan/20 border border-cyber-cyan flex items-center justify-center mb-1.5 shadow-cyan-glow">
                     <i class="ph-bold ph-camera text-2xl text-cyber-cyan animate-pulse"></i>
                   </div>
-                  <span class="text-xs font-mono font-bold uppercase tracking-wider text-center text-cyber-cyan">Upload Photo</span>
+                  <span class="text-xs font-mono font-bold uppercase tracking-wider text-center text-cyber-cyan">Upload
+                    Photo</span>
                   <span class="text-[10px] text-slate-300 font-mono mt-0.5">Click to browse</span>
                 </div>
               </div>
 
               <!-- Dedicated, Always-Visible "CHANGE PHOTO" Cyber Button -->
-              <button 
-                type="button" 
-                onclick="triggerAvatarUpload()" 
-                class="mt-3 w-full py-2 px-3 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan/60 text-cyber-cyan hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95 group"
-              >
+              <button type="button" onclick="triggerAvatarUpload()"
+                class="mt-3 w-full py-2 px-3 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan/60 text-cyber-cyan hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95 group">
                 <i class="ph-bold ph-camera text-base group-hover:scale-110 transition-transform"></i>
                 <span>CHANGE PHOTO</span>
               </button>
 
-              <div class="mt-1.5 px-3 py-0.5 rounded-full bg-[#080B10] border border-cyber-cyan/40 text-[10px] font-mono text-slate-400 font-semibold tracking-wider">
+              <div
+                class="mt-1.5 px-3 py-0.5 rounded-full bg-[#080B10] border border-cyber-cyan/40 text-[10px] font-mono text-slate-400 font-semibold tracking-wider">
                 PRO OPERATIVE
               </div>
 
               <!-- Hidden Native File Input -->
-              <input 
-                type="file" 
-                id="avatarFileInput" 
-                accept="image/*" 
-                class="hidden" 
-                onchange="handleAvatarFileChange(event)"
-              />
+              <input type="file" id="avatarFileInput" accept="image/*" class="hidden"
+                onchange="handleAvatarFileChange(event)" />
             </div>
 
             <!-- Details & Editable Dossier Inputs -->
             <div class="flex-grow text-center lg:text-left space-y-3 w-full">
-              
+
               <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyber-green/15 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold tracking-wider">
+                <span
+                  class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyber-green/15 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold tracking-wider">
                   <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
                   <span id="heroStatusBadge">ACTIVE STARTER</span>
                 </span>
 
-                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-gold/15 border border-[#E8C56A]/40 text-[#E8C56A] text-xs font-mono font-bold tracking-wider">
+                <span
+                  class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-gold/15 border border-[#E8C56A]/40 text-[#E8C56A] text-xs font-mono font-bold tracking-wider">
                   <i class="ph-bold ph-shield text-sm"></i>
                   <span id="heroTeamBadge">QuantumLords Esports</span>
                 </span>
 
-                <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-violet/15 border border-cyber-violet/40 text-purple-300 text-xs font-mono font-bold tracking-wider">
+                <span
+                  class="inline-flex items-center space-x-1 px-3 py-1 rounded-full bg-cyber-violet/15 border border-cyber-violet/40 text-purple-300 text-xs font-mono font-bold tracking-wider">
                   <i class="ph-bold ph-crosshair text-sm"></i>
                   <span id="heroRoleBadge">IGL / Entry Rusher</span>
                 </span>
 
-                <span class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
+                <span
+                  class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
                   <span>🇧🇩</span>
                   <span class="font-bold">BANGLADESH / BD REGION</span>
                 </span>
               </div>
 
               <div>
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
-                  <span id="heroIGN">CYBER_NINJA</span> <span class="text-cyber-cyan font-mono text-2xl sm:text-3xl">#007</span>
+                <h1
+                  class="text-3xl sm:text-4xl lg:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
+                  <span id="heroIGN">CYBER_NINJA</span> <span
+                    class="text-cyber-cyan font-mono text-2xl sm:text-3xl">#007</span>
                 </h1>
-                <div class="text-sm font-space text-slate-400 mt-1 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <div
+                  class="text-sm font-space text-slate-400 mt-1 flex flex-wrap items-center justify-center lg:justify-start gap-2">
                   <span id="heroRealName" class="text-slate-300 font-semibold">Alexander "AK" Vance</span>
                   <span class="text-cyber-border">•</span>
                   <!-- User UUID Copy Badge -->
-                  <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-md bg-[#080B10] border border-cyber-cyan/40 text-cyber-cyan font-mono text-xs">
+                  <div
+                    class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-md bg-[#080B10] border border-cyber-cyan/40 text-cyber-cyan font-mono text-xs">
                     <i class="ph-bold ph-fingerprint text-sm"></i>
                     <span>UUID: <strong id="heroUUID" class="text-white">usr_9482fa81</strong></span>
                     <button onclick="copyUUID()" class="hover:text-white transition-colors" title="Copy UUID">
@@ -496,20 +538,14 @@
 
             <!-- Action Controls -->
             <div class="flex flex-col sm:flex-row lg:flex-col items-center gap-3 w-full lg:w-auto">
-              <button 
-                type="button" 
-                onclick="openEditDossierModal()" 
-                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-cyan-glow active:scale-95"
-              >
+              <button type="button" onclick="openEditDossierModal()"
+                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-cyan-glow active:scale-95">
                 <i class="ph-bold ph-pencil-simple-line text-base"></i>
                 <span>SAVE DOSSIER</span>
               </button>
 
-              <button 
-                type="button" 
-                onclick="copyShareProfile()" 
-                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-gradient-to-r from-cyber-violet/25 to-purple-600/25 hover:from-cyber-violet/35 hover:to-purple-600/35 border border-cyber-violet text-purple-300 hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-violet-glow active:scale-95"
-              >
+              <button type="button" onclick="copyShareProfile()"
+                class="w-full sm:w-auto lg:w-48 py-3 px-5 rounded-xl bg-gradient-to-r from-cyber-violet/25 to-purple-600/25 hover:from-cyber-violet/35 hover:to-purple-600/35 border border-cyber-violet text-purple-300 hover:text-white font-orbitron font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-violet-glow active:scale-95">
                 <i class="ph-bold ph-share-network text-base"></i>
                 <span>SHARE PROFILE</span>
               </button>
@@ -529,14 +565,16 @@
                 COMBAT TELEMETRY
               </h3>
             </div>
-            <span class="text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20">
+            <span
+              class="text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20">
               REAL-TIME S12 METRICS
             </span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
+
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
                 <span>K/D RATIO</span>
                 <i class="ph-bold ph-crosshair text-cyber-cyan text-xl"></i>
@@ -546,13 +584,15 @@
                 <i class="ph-bold ph-trend-up"></i>
                 <span>+14% vs league avg</span>
               </div>
-              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+              <div
+                class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
                 <span>Total Frags</span>
                 <span class="text-slate-300 font-bold">1,428 Kills</span>
               </div>
             </div>
 
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-gold/50 transition-all group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-gold/50 transition-all group">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
                 <span>WIN RATE</span>
                 <i class="ph-bold ph-trophy text-cyber-gold text-xl"></i>
@@ -562,13 +602,15 @@
                 <i class="ph-bold ph-medal"></i>
                 <span>Champion Bracket</span>
               </div>
-              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+              <div
+                class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
                 <span>Matches</span>
                 <span class="text-slate-300 font-bold">142 Matches</span>
               </div>
             </div>
 
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-violet/50 transition-all group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-violet/50 transition-all group">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
                 <span>ACTIONS / APM</span>
                 <i class="ph-bold ph-lightning text-cyber-violet text-xl"></i>
@@ -578,13 +620,15 @@
                 <i class="ph-bold ph-sparkle"></i>
                 <span>Pro Reflex Tier</span>
               </div>
-              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+              <div
+                class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
                 <span>Peak APM</span>
                 <span class="text-slate-300 font-bold">382 APM</span>
               </div>
             </div>
 
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
               <div class="flex items-center justify-between text-cyber-muted text-xs font-mono mb-2">
                 <span>HEADSHOT %</span>
                 <i class="ph-bold ph-target text-cyber-cyan text-xl"></i>
@@ -594,7 +638,8 @@
                 <i class="ph-bold ph-crosshair-simple"></i>
                 <span>Precision Rating</span>
               </div>
-              <div class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
+              <div
+                class="mt-3 text-[11px] font-mono text-slate-500 border-t border-cyber-border/60 pt-2 flex justify-between">
                 <span>HS Frags</span>
                 <span class="text-slate-300 font-bold">611 HS</span>
               </div>
@@ -604,7 +649,7 @@
 
           <!-- Tournament Readiness & Weapon Mastery Row -->
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2">
-            
+
             <!-- Tournament Readiness Score -->
             <div class="glass-panel rounded-2xl p-6 border border-cyber-border space-y-3">
               <div class="flex items-center justify-between">
@@ -616,7 +661,8 @@
                 <span class="text-xs font-mono text-slate-400">Combat Efficiency</span>
               </div>
               <div class="w-full bg-[#080B10] h-3 rounded-full overflow-hidden p-0.5 border border-cyber-border">
-                <div class="bg-gradient-to-r from-cyber-cyan to-cyber-green h-full rounded-full w-[94%] animate-pulse"></div>
+                <div class="bg-gradient-to-r from-cyber-cyan to-cyber-green h-full rounded-full w-[94%] animate-pulse">
+                </div>
               </div>
               <p class="text-[11px] font-mono text-slate-400">
                 Squad synergy, tactical callouts, and macro-rotations exceed championship entry benchmark.
@@ -629,7 +675,7 @@
                 <span class="text-xs font-mono text-cyber-muted uppercase">WEAPON MASTERY BREAKDOWN</span>
                 <span class="text-xs font-mono text-cyber-cyan">TIER-1 WEAPONS</span>
               </div>
-              
+
               <div class="space-y-2.5 text-xs font-mono">
                 <div>
                   <div class="flex justify-between text-slate-300 mb-1">
@@ -678,42 +724,44 @@
                 PREMIUM STRATEGY & PDF VAULT
               </h3>
             </div>
-            <span class="text-xs font-mono text-cyber-green bg-cyber-green/10 px-2.5 py-1 rounded border border-cyber-green/20">
+            <span
+              class="text-xs font-mono text-cyber-green bg-cyber-green/10 px-2.5 py-1 rounded border border-cyber-green/20">
               SUPABASE STORAGE: premium-vault-pdfs
             </span>
           </div>
 
           <!-- 6 Strategy Books / Documents -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
             <!-- Book 1: The Book of Five Rings -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
-                  <img 
-                    src="https://covers.openlibrary.org/b/isbn/9781590302484-L.jpg" 
-                    alt="The Book of Five Rings"
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img src="https://covers.openlibrary.org/b/isbn/9781590302484-L.jpg" alt="The Book of Five Rings"
                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';"
-                  />
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';" />
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
                     MARTIAL STRATEGY
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   The Book of Five Rings
                 </h4>
                 <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Miyamoto Musashi</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  Classic treatise on the psychology of combat, positioning, seizing rhythm, and decisive engagement mastery.
+                  Classic treatise on the psychology of combat, positioning, seizing rhythm, and decisive engagement
+                  mastery.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('the-book-of-five-rings.pdf', 'https://drive.google.com/file/d/1JgGL3XnhkpORJUMDBm8MMCLFgk5LxO1_/view?usp=sharing')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('the-book-of-five-rings.pdf', 'https://drive.google.com/file/d/1JgGL3XnhkpORJUMDBm8MMCLFgk5LxO1_/view?usp=sharing')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-download-simple text-base"></i>
                   <span>DOWNLOAD / ACCESS PDF</span>
                 </button>
@@ -721,33 +769,34 @@
             </div>
 
             <!-- Book 2: The Champion's Mind -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
-                  <img 
-                    src="https://covers.openlibrary.org/b/isbn/9781623365622-L.jpg" 
-                    alt="The Champion's Mind"
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
+                  <img src="https://covers.openlibrary.org/b/isbn/9781623365622-L.jpg" alt="The Champion's Mind"
                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=600&q=80';"
-                  />
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=600&q=80';" />
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-green/40 text-[10px] font-mono text-cyber-green uppercase font-bold">
                     SPORTS PSYCHOLOGY
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   The Champion's Mind
                 </h4>
                 <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Jim Afremow</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  How elite athletes cultivate relentless focus, recover from in-game mistakes, and achieve peak flow state under extreme pressure.
+                  How elite athletes cultivate relentless focus, recover from in-game mistakes, and achieve peak flow
+                  state under extreme pressure.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('the-champions-mind.pdf', 'https://drive.google.com/file/d/1q_A7kBkC-w4BYW2j--bXpQ1zNFb8OC2G/view?usp=drive_link')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-green/15 hover:bg-cyber-green/30 border border-cyber-green text-cyber-green hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('the-champions-mind.pdf', 'https://drive.google.com/file/d/1q_A7kBkC-w4BYW2j--bXpQ1zNFb8OC2G/view?usp=drive_link')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-green/15 hover:bg-cyber-green/30 border border-cyber-green text-cyber-green hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-download-simple text-base"></i>
                   <span>DOWNLOAD / ACCESS PDF</span>
                 </button>
@@ -755,33 +804,34 @@
             </div>
 
             <!-- Book 3: Thinking in Bets -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
-                  <img 
-                    src="https://covers.openlibrary.org/b/isbn/9780735216358-L.jpg" 
-                    alt="Thinking in Bets"
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img src="https://covers.openlibrary.org/b/isbn/9780735216358-L.jpg" alt="Thinking in Bets"
                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=600&q=80';"
-                  />
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-gold/40 text-[10px] font-mono text-cyber-gold uppercase font-bold">
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511193311914-0346f16efe90?auto=format&fit=crop&w=600&q=80';" />
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-gold/40 text-[10px] font-mono text-cyber-gold uppercase font-bold">
                     DECISION THEORY
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   Thinking in Bets
                 </h4>
                 <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Annie Duke</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  Making smarter, probabilistic decisions when you don't have all the facts. Eliminates tilt and outcome bias in competitive games.
+                  Making smarter, probabilistic decisions when you don't have all the facts. Eliminates tilt and outcome
+                  bias in competitive games.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('thinking-in-bets.pdf', 'https://drive.google.com/file/d/14ctzeDcpP60UzWxkrU-XlVzpneXai3Qj/view?usp=drive_link')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/30 border border-cyber-gold text-cyber-gold hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('thinking-in-bets.pdf', 'https://drive.google.com/file/d/14ctzeDcpP60UzWxkrU-XlVzpneXai3Qj/view?usp=drive_link')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/30 border border-cyber-gold text-cyber-gold hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-download-simple text-base"></i>
                   <span>DOWNLOAD / ACCESS PDF</span>
                 </button>
@@ -789,33 +839,34 @@
             </div>
 
             <!-- Book 4: The Art of War -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
-                  <img 
-                    src="https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg" 
-                    alt="The Art of War"
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img src="https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg" alt="The Art of War"
                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80';"
-                  />
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-crimson/40 text-[10px] font-mono text-cyber-crimson uppercase font-bold">
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=600&q=80';" />
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-crimson/40 text-[10px] font-mono text-cyber-crimson uppercase font-bold">
                     WARFARE & TACTICS
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   The Art of War
                 </h4>
                 <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Sun Tzu</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  The quintessential strategic text on deception, map control, reading opponent psychological weaknesses, and winning before fighting.
+                  The quintessential strategic text on deception, map control, reading opponent psychological
+                  weaknesses, and winning before fighting.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('the-art-of-war.pdf', 'https://drive.google.com/file/d/1pxUFb_SDDWj1duQtT99QbTXNEYdiKJYW/view?usp=drive_link')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-crimson/15 hover:bg-cyber-crimson/30 border border-cyber-crimson text-cyber-crimson hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('the-art-of-war.pdf', 'https://drive.google.com/file/d/1pxUFb_SDDWj1duQtT99QbTXNEYdiKJYW/view?usp=drive_link')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-crimson/15 hover:bg-cyber-crimson/30 border border-cyber-crimson text-cyber-crimson hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-download-simple text-base"></i>
                   <span>DOWNLOAD / ACCESS PDF</span>
                 </button>
@@ -823,33 +874,35 @@
             </div>
 
             <!-- Book 5: The Art of Strategy -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
-                  <img 
-                    src="https://covers.openlibrary.org/b/isbn/9780393062434-L.jpg" 
-                    alt="The Art of Strategy"
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-border/80 flex items-center justify-center">
+                  <img src="https://covers.openlibrary.org/b/isbn/9780393062434-L.jpg" alt="The Art of Strategy"
                     class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
-                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=600&q=80';"
-                  />
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1528747045269-390fe33c19f2?auto=format&fit=crop&w=600&q=80';" />
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-cyber-cyan/40 text-[10px] font-mono text-cyber-cyan uppercase font-bold">
                     GAME THEORY
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   The Art of Strategy
                 </h4>
-                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Avinash K. Dixit & Barry J. Nalebuff</div>
+                <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: Avinash K. Dixit & Barry J. Nalebuff
+                </div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  A game theorist's master guide to anticipating opponent reactions, designing dominant strategies, and out-maneuvering rival teams.
+                  A game theorist's master guide to anticipating opponent reactions, designing dominant strategies, and
+                  out-maneuvering rival teams.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('the-art-of-strategy.pdf', 'https://drive.google.com/file/d/1rQu6lCRm1I_oRqxmhSxdTc1BOriF8EEi/view?usp=drive_link')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('the-art-of-strategy.pdf', 'https://drive.google.com/file/d/1rQu6lCRm1I_oRqxmhSxdTc1BOriF8EEi/view?usp=drive_link')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-download-simple text-base"></i>
                   <span>DOWNLOAD / ACCESS PDF</span>
                 </button>
@@ -857,36 +910,40 @@
             </div>
 
             <!-- Book 6: Strategical Esports by AK -->
-            <div class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
+            <div
+              class="glass-panel rounded-2xl p-5 border border-cyber-border vault-card flex flex-col justify-between group">
               <div>
-                <div class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-cyan/40 flex items-center justify-center relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" 
-                    alt="Strategical Esports by AK" 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4">
-                    <div class="text-cyber-cyan font-orbitron font-extrabold text-sm tracking-wider">STRATEGICAL ESPORTS</div>
+                <div
+                  class="relative w-full h-56 rounded-xl overflow-hidden mb-4 bg-[#080B10] border border-cyber-cyan/40 flex items-center justify-center relative">
+                  <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80"
+                    alt="Strategical Esports by AK"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-4">
+                    <div class="text-cyber-cyan font-orbitron font-extrabold text-sm tracking-wider">STRATEGICAL ESPORTS
+                    </div>
                     <div class="text-[10px] font-mono text-slate-300">CUSTOM PLAYBOOK • BY AK</div>
                   </div>
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-cyber-crimson/90 border border-white/20 text-[10px] font-mono text-white uppercase font-bold">
+                  <div
+                    class="absolute top-2 right-2 px-2 py-0.5 rounded bg-cyber-crimson/90 border border-white/20 text-[10px] font-mono text-white uppercase font-bold">
                     INTERNAL SQUAD DOC
                   </div>
                 </div>
-                <h4 class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
+                <h4
+                  class="text-base font-bold font-orbitron text-white group-hover:text-cyber-cyan transition-colors line-clamp-1">
                   Strategical Esports
                 </h4>
                 <div class="text-xs font-mono text-cyber-muted mt-0.5">Author: AK (QuantumLords Strat Lead)</div>
                 <p class="text-xs text-slate-400 font-space mt-2 leading-relaxed">
-                  Squad tactical playbook covering competitive zone rotations, micro-comms protocol, trade setups, and end-circle win conditions.
+                  Squad tactical playbook covering competitive zone rotations, micro-comms protocol, trade setups, and
+                  end-circle win conditions.
                 </p>
               </div>
 
               <div class="mt-5 pt-4 border-t border-cyber-border/60">
-                <button 
-                  onclick="handleVaultFileDownload('strategical-esports-by-ak.docx', 'https://docs.google.com/document/d/1U_9-LltnT0WOipK9Jnq6iMd-MKNPIS4H/edit?usp=drive_link&ouid=107954101100984058702&rtpof=true&sd=true')" 
-                  class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyber-cyan/20 to-blue-600/20 hover:from-cyber-cyan/30 hover:to-blue-600/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm"
-                >
+                <button
+                  onclick="handleVaultFileDownload('strategical-esports-by-ak.docx', 'https://docs.google.com/document/d/1U_9-LltnT0WOipK9Jnq6iMd-MKNPIS4H/edit?usp=drive_link&ouid=107954101100984058702&rtpof=true&sd=true')"
+                  class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyber-cyan/20 to-blue-600/20 hover:from-cyber-cyan/30 hover:to-blue-600/30 border border-cyber-cyan text-cyber-cyan hover:text-white font-orbitron text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center space-x-2 shadow-sm">
                   <i class="ph-bold ph-file-doc text-base"></i>
                   <span>OPEN SQUAD DOCUMENT</span>
                 </button>
@@ -905,7 +962,8 @@
               <i class="ph-bold ph-cloud-check text-xl text-cyber-cyan"></i>
               <span class="font-orbitron font-bold text-white text-sm uppercase">SUPABASE INFRASTRUCTURE STATUS</span>
             </div>
-            <span class="text-xs font-mono text-cyber-green bg-cyber-green/10 border border-cyber-green/30 px-2.5 py-0.5 rounded">
+            <span
+              class="text-xs font-mono text-cyber-green bg-cyber-green/10 border border-cyber-green/30 px-2.5 py-0.5 rounded">
               OPERATIONAL
             </span>
           </div>
@@ -931,7 +989,8 @@
                 <span class="text-cyber-muted text-[10px] block uppercase">NETWORK PING</span>
                 <span id="networkPingVal" class="text-cyber-green font-bold">24 ms</span>
               </div>
-              <button onclick="copySupabaseEndpoint()" class="text-cyber-cyan hover:text-white p-1 rounded" title="Copy Endpoint">
+              <button onclick="copySupabaseEndpoint()" class="text-cyber-cyan hover:text-white p-1 rounded"
+                title="Copy Endpoint">
                 <i class="ph-bold ph-copy text-base"></i>
               </button>
             </div>
@@ -944,11 +1003,14 @@
     <!-- ========================================================================= -->
     <!-- EDIT DOSSIER MODAL WITH DIRECT PHOTO UPLOAD & URL -->
     <!-- ========================================================================= -->
-    <div id="editDossierModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-      <div class="glass-panel w-full max-w-lg rounded-3xl border border-cyber-cyan/60 p-6 sm:p-8 shadow-cyan-glow-lg relative max-h-[90vh] overflow-y-auto">
+    <div id="editDossierModal"
+      class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+      <div
+        class="glass-panel w-full max-w-lg rounded-3xl border border-cyber-cyan/60 p-6 sm:p-8 shadow-cyan-glow-lg relative max-h-[90vh] overflow-y-auto">
         <div class="flex items-center justify-between border-b border-cyber-border/80 pb-4 mb-6">
           <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
+            <div
+              class="w-10 h-10 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan flex items-center justify-center text-cyber-cyan shadow-cyan-glow">
               <i class="ph-bold ph-user-gear text-2xl"></i>
             </div>
             <div>
@@ -956,24 +1018,25 @@
               <h3 class="text-lg font-bold font-orbitron text-white uppercase">UPDATE PLAYER DOSSIER</h3>
             </div>
           </div>
-          <button onclick="closeEditDossierModal()" class="text-cyber-muted hover:text-white p-1 rounded transition-colors">
+          <button onclick="closeEditDossierModal()"
+            class="text-cyber-muted hover:text-white p-1 rounded transition-colors">
             <i class="ph-bold ph-x text-xl"></i>
           </button>
         </div>
 
         <form onsubmit="handleSaveDossierModal(event)" class="space-y-4 text-xs font-mono">
-          
+
           <!-- Avatar Preview & Upload in Modal -->
           <div class="bg-[#080B10] p-4 rounded-2xl border border-cyber-border flex items-center space-x-4">
-            <img id="modalAvatarPreview" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Avatar Preview" class="w-16 h-16 rounded-2xl object-cover border border-cyber-cyan/60 shadow-cyan-glow flex-shrink-0" />
+            <img id="modalAvatarPreview"
+              src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
+              alt="Avatar Preview"
+              class="w-16 h-16 rounded-2xl object-cover border border-cyber-cyan/60 shadow-cyan-glow flex-shrink-0" />
             <div class="flex-grow space-y-1.5">
               <div class="text-[11px] font-bold text-white uppercase">Player Photo / Avatar</div>
               <div class="flex items-center space-x-2">
-                <button 
-                  type="button" 
-                  onclick="triggerAvatarUpload()" 
-                  class="px-3.5 py-1.5 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold uppercase transition-colors shadow-sm"
-                >
+                <button type="button" onclick="triggerAvatarUpload()"
+                  class="px-3.5 py-1.5 rounded-lg bg-cyber-cyan/20 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold uppercase transition-colors shadow-sm">
                   <i class="ph-bold ph-camera mr-1"></i> Choose New Photo
                 </button>
                 <span class="text-[10px] text-slate-500">Auto-compressed</span>
@@ -983,33 +1046,33 @@
 
           <div>
             <label class="block text-slate-300 uppercase tracking-wider mb-1">Avatar Image URL (Optional)</label>
-            <input 
-              type="url" 
-              id="modalInputAvatarUrl" 
-              placeholder="https://example.com/photo.jpg" 
+            <input type="url" id="modalInputAvatarUrl" placeholder="https://example.com/photo.jpg"
               oninput="handleModalAvatarUrlChange(this.value)"
-              class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none placeholder:text-slate-600" 
-            />
+              class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none placeholder:text-slate-600" />
           </div>
 
           <div>
             <label class="block text-slate-300 uppercase tracking-wider mb-1">In-Game Name (Display Tag)</label>
-            <input type="text" id="modalInputIGN" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            <input type="text" id="modalInputIGN" required
+              class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
           </div>
 
           <div>
             <label class="block text-slate-300 uppercase tracking-wider mb-1">Real Name</label>
-            <input type="text" id="modalInputRealName" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+            <input type="text" id="modalInputRealName" required
+              class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
           </div>
 
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="block text-slate-300 uppercase tracking-wider mb-1">Team / Org</label>
-              <input type="text" id="modalInputTeam" required class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
+              <input type="text" id="modalInputTeam" required
+                class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none" />
             </div>
             <div>
               <label class="block text-slate-300 uppercase tracking-wider mb-1">Combat Role</label>
-              <select id="modalInputRole" class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none appearance-none">
+              <select id="modalInputRole"
+                class="w-full px-3.5 py-2.5 bg-[#080B10] border border-cyber-border text-white rounded-xl focus:border-cyber-cyan focus:outline-none appearance-none">
                 <option value="IGL / Entry Rusher">IGL / Entry Rusher</option>
                 <option value="Entry Fragger">Entry Fragger</option>
                 <option value="Primary Sniper">Primary Sniper</option>
@@ -1020,28 +1083,37 @@
           </div>
 
           <div class="pt-4 border-t border-cyber-border/80 flex items-center justify-end space-x-3">
-            <button type="button" onclick="closeEditDossierModal()" class="px-4 py-2.5 rounded-xl bg-cyber-card border border-cyber-border text-slate-300 hover:text-white">Cancel</button>
-            <button type="submit" class="px-6 py-2.5 rounded-xl bg-cyber-cyan text-black font-orbitron font-bold uppercase tracking-wider hover:bg-cyan-300 shadow-cyan-glow transition-all">Save Dossier</button>
+            <button type="button" onclick="closeEditDossierModal()"
+              class="px-4 py-2.5 rounded-xl bg-cyber-card border border-cyber-border text-slate-300 hover:text-white">Cancel</button>
+            <button type="submit"
+              class="px-6 py-2.5 rounded-xl bg-cyber-cyan text-black font-orbitron font-bold uppercase tracking-wider hover:bg-cyan-300 shadow-cyan-glow transition-all">Save
+              Dossier</button>
           </div>
         </form>
       </div>
     </div>
 
     <!-- Global Toast Container (Positioned at Top-Right to prevent clashing with BGM Audio Controller) -->
-    <div id="globalToast" class="fixed top-14 right-4 sm:top-16 sm:right-8 z-50 hidden transition-all duration-300 transform">
-      <div class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyber-cyan/80 bg-[#0C1018]/95 backdrop-blur-xl shadow-cyan-glow flex items-center space-x-3.5 text-xs font-mono text-white max-w-sm">
-        <div class="w-9 h-9 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan/40 flex items-center justify-center flex-shrink-0">
+    <div id="globalToast"
+      class="fixed top-14 right-4 sm:top-16 sm:right-8 z-50 hidden transition-all duration-300 transform">
+      <div
+        class="glass-panel p-3.5 sm:p-4 rounded-2xl border border-cyber-cyan/80 bg-[#0C1018]/95 backdrop-blur-xl shadow-cyan-glow flex items-center space-x-3.5 text-xs font-mono text-white max-w-sm">
+        <div
+          class="w-9 h-9 rounded-xl bg-cyber-cyan/15 border border-cyber-cyan/40 flex items-center justify-center flex-shrink-0">
           <i id="globalToastIcon" class="ph-bold ph-info text-xl text-cyber-cyan"></i>
         </div>
         <div class="flex flex-col pr-2">
-          <span class="text-[10px] text-cyber-cyan font-bold tracking-wider uppercase font-orbitron">PORTAL NOTIFICATION</span>
-          <span id="globalToastText" class="font-medium text-slate-100 mt-0.5 leading-snug">Operation completed successfully.</span>
+          <span class="text-[10px] text-cyber-cyan font-bold tracking-wider uppercase font-orbitron">PORTAL
+            NOTIFICATION</span>
+          <span id="globalToastText" class="font-medium text-slate-100 mt-0.5 leading-snug">Operation completed
+            successfully.</span>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="w-full bg-[#05070A] border-t border-cyber-border/60 py-5 px-4 text-center text-xs font-mono text-cyber-muted relative z-20">
+    <footer
+      class="w-full bg-[#05070A] border-t border-cyber-border/60 py-5 px-4 text-center text-xs font-mono text-cyber-muted relative z-20">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
         <div class="flex items-center space-x-2">
           <span class="text-cyber-gold font-bold font-orbitron">QUANTUMLORDS ESPORTS</span>
@@ -1142,7 +1214,7 @@
           osc.start(now);
           osc.stop(now + 0.18);
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     function toggleAudioSFX() {
@@ -1236,9 +1308,9 @@
     // Auto image resizing and compression helper to prevent localStorage overflow
     function compressAndResizeImage(file, maxDimension, quality, callback) {
       const reader = new FileReader();
-      reader.onload = function(readerEvent) {
+      reader.onload = function (readerEvent) {
         const img = new Image();
-        img.onload = function() {
+        img.onload = function () {
           const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
@@ -1264,7 +1336,7 @@
           const dataUrl = canvas.toDataURL('image/jpeg', quality);
           callback(dataUrl);
         };
-        img.onerror = function() {
+        img.onerror = function () {
           // Fallback to raw data url if canvas draw fails
           callback(readerEvent.target.result);
         };
@@ -1318,7 +1390,7 @@
       document.getElementById('modalInputRealName').value = p.realName;
       document.getElementById('modalInputTeam').value = p.team;
       document.getElementById('modalInputRole').value = p.role;
-      
+
       const modalAvatarUrl = document.getElementById('modalInputAvatarUrl');
       if (modalAvatarUrl) {
         modalAvatarUrl.value = (p.avatar && p.avatar.startsWith('http')) ? p.avatar : '';
@@ -1479,7 +1551,7 @@
       } catch (err) {
         console.warn("Supabase Auth Failure:", err);
         playCyberSFX('error');
-        
+
         let errorMsg = err.message || "Invalid Player Credentials";
         if (errorMsg.includes("Invalid login credentials") || errorMsg.includes("invalid_credentials")) {
           errorMsg = "ACCESS DENIED: Invalid Player Credentials. Please check your email and passcode.";
@@ -1544,7 +1616,7 @@
         minute: '2-digit',
         second: '2-digit'
       };
-      
+
       try {
         const formatter = new Intl.DateTimeFormat('en-GB', options);
         const parts = formatter.formatToParts(now);
@@ -1687,4 +1759,5 @@
     }
   </script>
 </body>
+
 </html>
