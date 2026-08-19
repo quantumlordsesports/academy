@@ -299,8 +299,20 @@
                 class="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C56A] via-[#FFD700] to-[#FFA500]">PROFILE</span>
             </h1>
             <p class="text-xs text-slate-400 font-space mt-1">
-              Sign in to access your Player Dossier & Strategy Vault
+              Sign in or create an athlete account to access Realtime Dossier
             </p>
+
+            <!-- Auth Mode Switcher -->
+            <div class="mt-4 grid grid-cols-2 p-1 rounded-xl bg-[#080B10] border border-[#E8C56A]/20 text-xs font-mono">
+              <button type="button" id="tabSignIn" onclick="setAuthMode('signin')"
+                class="py-1.5 px-3 rounded-lg font-bold uppercase transition-all bg-[#E8C56A] text-black shadow-sm">
+                Sign In
+              </button>
+              <button type="button" id="tabSignUp" onclick="setAuthMode('signup')"
+                class="py-1.5 px-3 rounded-lg font-bold uppercase transition-all text-slate-400 hover:text-white">
+                Register
+              </button>
+            </div>
           </div>
 
           <!-- Error Alert Banner -->
@@ -309,7 +321,7 @@
             <div class="flex items-start space-x-2.5">
               <i class="ph-fill ph-warning-octagon text-lg flex-shrink-0 mt-0.5 text-cyber-crimson"></i>
               <div class="flex-grow">
-                <div class="font-bold uppercase tracking-wider font-orbitron">ACCESS DENIED</div>
+                <div id="authAlertTitle" class="font-bold uppercase tracking-wider font-orbitron">ACCESS DENIED</div>
                 <div id="authAlertMessage" class="mt-0.5 text-slate-300 font-sans text-xs">
                   Invalid Player Credentials. Please verify your email & password.
                 </div>
@@ -320,7 +332,7 @@
             </div>
           </div>
 
-          <!-- Login Form -->
+          <!-- Login / Signup Form -->
           <form id="loginForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
             <div>
               <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
@@ -346,7 +358,7 @@
                   <i class="ph-bold ph-lock-key text-lg text-[#E8C56A]"></i>
                 </div>
                 <input type="password" id="playerPassword" name="password" required autocomplete="current-password"
-                  placeholder="••••••••••••"
+                  placeholder="••••••••••••" minlength="6"
                   class="w-full pl-10 pr-11 py-3 bg-[#080B10]/95 border border-[#E8C56A]/25 text-white text-sm rounded-xl focus:outline-none focus:border-[#E8C56A] focus:ring-1 focus:ring-[#E8C56A] font-mono placeholder:text-slate-600 transition-all" />
                 <button type="button" id="passwordToggleBtn" onclick="togglePasswordVisibility()"
                   class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-[#E8C56A] transition-colors"
@@ -356,12 +368,18 @@
               </div>
             </div>
 
-            <div class="pt-2">
+            <div class="pt-2 space-y-2.5">
               <button type="submit" id="authSubmitBtn"
                 class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]">
                 <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl text-[#06080F]"></i>
                 <span id="authBtnText">AUTHENTICATE</span>
                 <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden text-[#06080F]"></i>
+              </button>
+
+              <button type="button" onclick="handleDemoLogin()"
+                class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 text-cyber-cyan font-mono font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2">
+                <i class="ph-bold ph-lightning text-sm"></i>
+                <span>Instant Demo Operative Access</span>
               </button>
             </div>
           </form>
@@ -555,7 +573,181 @@
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SECTION B: COMBAT TELEMETRY & METRICS -->
+        <!-- REALTIME PROFILE CREATION & EDIT CARD (SUPABASE REALTIME) -->
+        <!-- ========================================================================= -->
+        <section class="profile-card glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-gold/40 shadow-cyber-card relative overflow-hidden">
+          <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyber-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Section Header -->
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-cyber-border/70 pb-4 mb-6 relative z-10">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-cyber-gold/15 border border-[#E8C56A]/50 flex items-center justify-center text-[#E8C56A] shadow-gold-glow">
+                <i class="ph-bold ph-broadcast text-xl animate-pulse"></i>
+              </div>
+              <div>
+                <div class="flex items-center space-x-2">
+                  <span class="w-2 h-2 rounded-full bg-cyber-green animate-ping"></span>
+                  <span class="text-xs font-mono font-bold text-cyber-gold tracking-widest uppercase">REALTIME DOSSIER ENGINE</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-black font-orbitron text-white tracking-wider uppercase">
+                  LIVE PROFILE CREATOR & SYNCHRONIZER
+                </h2>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold">
+              <span class="inline-block w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+              <span id="realtimeStatusText">REALTIME SYNC ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+            
+            <!-- Left: Avatar Upload Area -->
+            <div class="lg:col-span-4 flex flex-col items-center text-center p-6 rounded-2xl bg-[#080B10]/80 border border-cyber-border">
+              <div class="avatar-container relative group mb-4">
+                <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden">
+                  <img id="avatar-preview" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Avatar" class="w-full h-full object-cover rounded-3xl" />
+                </div>
+                <input type="file" id="avatar-input" accept="image/*" class="hidden" />
+              </div>
+
+              <label for="avatar-input" class="upload-btn cursor-pointer w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan/60 text-cyber-cyan hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95">
+                <i class="ph-bold ph-camera text-base"></i>
+                <span>Upload Avatar</span>
+              </label>
+              <p class="text-[11px] font-mono text-slate-400 mt-2">
+                PNG, JPG or WEBP • Uploads directly to Supabase Storage
+              </p>
+
+              <!-- Session Telemetry Tag -->
+              <div class="mt-4 w-full p-3 rounded-xl bg-black/40 border border-cyber-border/60 text-left font-mono text-xs space-y-1 text-slate-400">
+                <div class="flex justify-between">
+                  <span>ACCOUNT ID:</span>
+                  <strong id="sessionUserIdText" class="text-slate-200">Authenticated</strong>
+                </div>
+                <div class="flex justify-between">
+                  <span>STORAGE BUCKET:</span>
+                  <span class="text-cyber-cyan">avatars</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>TABLE:</span>
+                  <span class="text-[#E8C56A]">profiles</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Profile Form -->
+            <div class="lg:col-span-8">
+              <form id="profile-form" class="space-y-4">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- IGN -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      In-Game Name (IGN) <span class="text-cyber-gold">*</span>
+                    </label>
+                    <div class="relative">
+                      <input type="text" id="ign" placeholder="e.g. QLD · SHADOW" required
+                        class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                    </div>
+                  </div>
+
+                  <!-- UID Number -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      In-Game UID <span class="text-cyber-gold">*</span>
+                    </label>
+                    <div class="relative">
+                      <input type="text" id="uid-number" placeholder="e.g. 1928374650" required
+                        class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <!-- Roster Role -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      Roster Role
+                    </label>
+                    <select id="role"
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono transition-all">
+                      <option value="Primary Entry Rusher">Primary Entry Rusher</option>
+                      <option value="Sniper / Support">Sniper / Support</option>
+                      <option value="In-Game Leader (IGL)">In-Game Leader (IGL)</option>
+                      <option value="Flanker / Fragger">Flanker / Fragger</option>
+                    </select>
+                  </div>
+
+                  <!-- Discord Tag -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      Discord Tag
+                    </label>
+                    <input type="text" id="discord-tag" placeholder="shadow#1234"
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+
+                  <!-- Current Rank -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      Current Rank
+                    </label>
+                    <input type="text" id="rank-tier" placeholder="Grandmaster"
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <!-- K/D Ratio -->
+                  <div class="form-group space-y-1.5">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      K/D Ratio
+                    </label>
+                    <input type="number" step="0.01" id="kd-ratio" placeholder="4.20"
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+
+                  <!-- Athlete Real Name -->
+                  <div class="form-group space-y-1.5 sm:col-span-2">
+                    <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                      Athlete Real Name
+                    </label>
+                    <input type="text" id="real-name" placeholder="e.g. Alexander Vance"
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+                </div>
+
+                <!-- Player Bio -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    Player Bio
+                  </label>
+                  <textarea id="bio" rows="3" placeholder="Device, sensitivity, tournament goals..."
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all resize-none"></textarea>
+                </div>
+
+                <!-- Actions & Status Message -->
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <button type="submit" id="save-profile-btn"
+                    class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-95">
+                    <i id="saveBtnIcon" class="ph-bold ph-floppy-disk text-lg text-[#06080F]"></i>
+                    <span id="saveBtnText">Save Profile Changes</span>
+                    <i id="saveBtnSpinner" class="ph-bold ph-spinner-gap text-lg animate-spin hidden text-[#06080F]"></i>
+                  </button>
+
+                  <p id="status-msg" class="text-xs font-mono font-bold transition-all"></p>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SECTION C: COMBAT TELEMETRY & METRICS -->
         <!-- ========================================================================= -->
         <section class="space-y-4">
           <div class="flex items-center justify-between">
@@ -1131,27 +1323,34 @@
   <!-- JAVASCRIPT LOGIC & SUPABASE INTEGRATION -->
   <!-- ========================================================================= -->
   <script>
+    // 1. Initialize Supabase Client
     const SUPABASE_URL = "https://kttshkoadnkemknjajsp.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_bP4lKOy_mlwzCwChDfMx1g_tG4wghWl";
-    const STORAGE_BUCKET_NAME = "premium-vault-pdfs";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0dHNoa29hZG5rZW1rbmphanNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwMzY4NTksImV4cCI6MjEwMjYxMjg1OX0.KehzblSOgF5T3blQWPz13WnA0QNKHhj2GuLOJABU9go";
+    const STORAGE_BUCKET_NAME = "avatars";
 
-    let supabaseClient = null;
+    let supabase = null;
     try {
       if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
           auth: {
             persistSession: true,
             autoRefreshToken: true,
             detectSessionInUrl: true
           }
         });
+        window.supabaseClient = supabase;
         console.log("QuantumLords Esports // Supabase Client Initialized.");
       }
     } catch (err) {
       console.error("Supabase Init Error:", err);
     }
+    const supabaseClient = supabase;
 
+    let currentUser = null;
     let currentUserSession = null;
+    let currentAvatarUrl = '';
+    let realtimeChannel = null;
+    let authMode = 'signin';
     let sfxEnabled = true;
 
     // Web Audio Synthesizer
@@ -1233,20 +1432,44 @@
       }
     }
 
+    function setAuthMode(mode) {
+      authMode = mode;
+      playCyberSFX('click');
+      const tabIn = document.getElementById('tabSignIn');
+      const tabUp = document.getElementById('tabSignUp');
+      const btnText = document.getElementById('authBtnText');
+      const btnIcon = document.getElementById('authBtnIcon');
+      if (mode === 'signup') {
+        tabIn.className = 'py-1.5 px-3 rounded-lg font-bold uppercase transition-all text-slate-400 hover:text-white';
+        tabUp.className = 'py-1.5 px-3 rounded-lg font-bold uppercase transition-all bg-[#E8C56A] text-black shadow-sm';
+        btnText.textContent = 'REGISTER ATHLETE';
+        btnIcon.className = 'ph-bold ph-user-plus text-xl text-[#06080F]';
+      } else {
+        tabUp.className = 'py-1.5 px-3 rounded-lg font-bold uppercase transition-all text-slate-400 hover:text-white';
+        tabIn.className = 'py-1.5 px-3 rounded-lg font-bold uppercase transition-all bg-[#E8C56A] text-black shadow-sm';
+        btnText.textContent = 'AUTHENTICATE';
+        btnIcon.className = 'ph-bold ph-fingerprint text-xl text-[#06080F]';
+      }
+      dismissAuthAlert();
+    }
+
     // Default Profile Dataset
     const defaultProfile = {
-      ign: "CYBER_NINJA",
-      uuid: "usr_9482fa81",
-      realName: "Alexander \"AK\" Vance",
+      ign: "QLD · SHADOW",
+      uuid_number: "1928374650",
+      real_name: "Alexander \"AK\" Vance",
       team: "QuantumLords Esports",
-      role: "IGL / Entry Rusher",
-      status: "ACTIVE STARTER",
-      avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
+      role: "Primary Entry Rusher",
+      discord_tag: "shadow#1234",
+      rank_tier: "Grandmaster",
+      kd_ratio: 4.20,
+      bio: "Active Starter • QuantumLords Free Fire Pro Division",
+      avatar_url: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
     };
 
     function loadUserProfile() {
       try {
-        const raw = localStorage.getItem('qld_esports_player_dossier') || localStorage.getItem('googol_esports_player_dossier');
+        const raw = localStorage.getItem('qld_esports_player_dossier');
         return raw ? Object.assign({}, defaultProfile, JSON.parse(raw)) : defaultProfile;
       } catch (e) {
         return defaultProfile;
@@ -1257,55 +1480,326 @@
       try {
         localStorage.setItem('qld_esports_player_dossier', JSON.stringify(profile));
       } catch (e) {
-        console.warn("Storage quota warning, saving compact record:", e);
-        try {
-          const compact = {
-            ign: profile.ign,
-            uuid: profile.uuid,
-            realName: profile.realName,
-            team: profile.team,
-            role: profile.role,
-            status: profile.status,
-            avatar: profile.avatar
-          };
-          localStorage.setItem('qld_esports_player_dossier', JSON.stringify(compact));
-        } catch (inner) {
-          console.error("Local storage error:", inner);
+        console.warn("Storage quota warning:", e);
+      }
+    }
+
+    // 2. Fetch logged-in user and existing profile data
+    async function initProfile() {
+      if (!supabase) {
+        console.warn("Supabase SDK is not available.");
+        return;
+      }
+
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user) {
+          renderUnauthenticatedState();
+          return;
         }
+
+        currentUser = user;
+        renderAuthenticatedState({ user: currentUser });
+
+        const sessionUserIdText = document.getElementById('sessionUserIdText');
+        if (sessionUserIdText) {
+          sessionUserIdText.textContent = currentUser.email || currentUser.id.substring(0, 12);
+        }
+
+        // Load existing profile row
+        const { data: profile, error: profileErr } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', currentUser.id)
+          .single();
+
+        if (profile) {
+          populateForm(profile);
+        } else {
+          // Pre-populate with defaults
+          const initial = Object.assign({}, defaultProfile, {
+            ign: (currentUser.user_metadata && currentUser.user_metadata.ign) || "QLD · SHADOW",
+            uid_number: (currentUser.user_metadata && currentUser.user_metadata.uid_number) || "1928374650",
+            discord_tag: (currentUser.user_metadata && currentUser.user_metadata.discord_tag) || ""
+          });
+          populateForm(initial);
+        }
+
+        // 3. Listen for REALTIME database changes for this user
+        if (realtimeChannel) {
+          supabase.removeChannel(realtimeChannel);
+        }
+
+        realtimeChannel = supabase
+          .channel(`profile-${currentUser.id}`)
+          .on(
+            'postgres_changes',
+            { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${currentUser.id}` },
+            (payload) => {
+              console.log("Supabase Realtime Update:", payload);
+              if (payload.new) {
+                populateForm(payload.new);
+                const statusMsg = document.getElementById('status-msg');
+                if (statusMsg) {
+                  statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+                  statusMsg.innerText = '⚡ Realtime Profile Synced!';
+                  setTimeout(() => { if (statusMsg && statusMsg.innerText.includes('Realtime')) statusMsg.innerText = ''; }, 4000);
+                }
+                playCyberSFX('success');
+                showToast("Realtime Profile Updated from Cloud!", "ph-broadcast");
+              }
+            }
+          )
+          .subscribe((status) => {
+            const rtText = document.getElementById('realtimeStatusText');
+            if (rtText) {
+              if (status === 'SUBSCRIBED') {
+                rtText.textContent = 'REALTIME SYNC ACTIVE';
+              } else {
+                rtText.textContent = `REALTIME: ${status}`;
+              }
+            }
+          });
+
+      } catch (err) {
+        console.warn("initProfile notice:", err);
       }
     }
 
-    function updateProfileUI() {
-      const p = loadUserProfile();
-      const ignElem = document.getElementById('heroIGN');
-      const nameElem = document.getElementById('heroRealName');
-      const teamElem = document.getElementById('heroTeamBadge');
-      const roleElem = document.getElementById('heroRoleBadge');
-      const statusElem = document.getElementById('heroStatusBadge');
-      const uuidElem = document.getElementById('heroUUID');
-      const avatarElem = document.getElementById('avatarPreviewImg');
+    function populateForm(data) {
+      if (!data) return;
+      const ignElem = document.getElementById('ign');
+      const uidElem = document.getElementById('uid-number');
+      const roleElem = document.getElementById('role');
+      const discordElem = document.getElementById('discord-tag');
+      const rankElem = document.getElementById('rank-tier');
+      const kdElem = document.getElementById('kd-ratio');
+      const bioElem = document.getElementById('bio');
+      const realNameElem = document.getElementById('real-name');
+      const avatarPreview = document.getElementById('avatar-preview');
+      const avatarMain = document.getElementById('avatarPreviewImg');
 
-      if (ignElem) ignElem.textContent = p.ign;
-      if (nameElem) nameElem.textContent = p.realName;
-      if (teamElem) teamElem.textContent = p.team;
-      if (roleElem) roleElem.textContent = p.role;
-      if (statusElem) statusElem.textContent = p.status;
-      if (uuidElem) uuidElem.textContent = p.uuid;
-      if (avatarElem && p.avatar) {
-        avatarElem.src = p.avatar;
+      if (ignElem) ignElem.value = data.ign || '';
+      if (uidElem) uidElem.value = data.uid_number || data.uid || '';
+      if (roleElem) roleElem.value = data.role || 'Primary Entry Rusher';
+      if (discordElem) discordElem.value = data.discord_tag || data.discord || '';
+      if (rankElem) rankElem.value = data.rank_tier || data.rank || '';
+      if (kdElem) kdElem.value = (data.kd_ratio !== undefined && data.kd_ratio !== null) ? data.kd_ratio : (data.kd || '');
+      if (bioElem) bioElem.value = data.bio || '';
+      if (realNameElem && data.real_name) realNameElem.value = data.real_name;
+
+      if (data.avatar_url) {
+        currentAvatarUrl = data.avatar_url;
+        if (avatarPreview) avatarPreview.src = data.avatar_url;
+        if (avatarMain) avatarMain.src = data.avatar_url;
       }
+
+      // Update Live HUD Elements
+      const heroIGN = document.getElementById('heroIGN');
+      const heroUUID = document.getElementById('heroUUID');
+      const heroRole = document.getElementById('heroRoleBadge');
+      const heroRealName = document.getElementById('heroRealName');
+      if (heroIGN && data.ign) heroIGN.textContent = data.ign;
+      if (heroUUID && (data.uid_number || data.id)) heroUUID.textContent = data.uid_number || (data.id ? data.id.substring(0, 12) : '1928374650');
+      if (heroRole && data.role) heroRole.textContent = data.role;
+      if (heroRealName && data.real_name) heroRealName.textContent = data.real_name;
     }
 
-    function triggerAvatarUpload() {
-      playCyberSFX('click');
-      const fileInput = document.getElementById('avatarFileInput');
-      if (fileInput) {
-        fileInput.value = ''; // Reset to allow re-selecting same file
-        fileInput.click();
-      }
+    // 4. Handle Avatar File Upload
+    const avatarInput = document.getElementById('avatar-input');
+    if (avatarInput) {
+      avatarInput.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+          showToast("Please select a valid image file (PNG, JPG, WEBP).", "ph-warning");
+          return;
+        }
+
+        // Instant local preview
+        const tempUrl = URL.createObjectURL(file);
+        const avatarPreview = document.getElementById('avatar-preview');
+        const avatarMain = document.getElementById('avatarPreviewImg');
+        if (avatarPreview) avatarPreview.src = tempUrl;
+        if (avatarMain) avatarMain.src = tempUrl;
+
+        const statusMsg = document.getElementById('status-msg');
+        if (statusMsg) {
+          statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+          statusMsg.innerText = 'Uploading avatar to Supabase Storage...';
+        }
+
+        try {
+          if (!currentUser || !currentUser.id) {
+            compressAndResizeImage(file, 480, 0.85, (dataUrl) => {
+              currentAvatarUrl = dataUrl;
+              if (avatarPreview) avatarPreview.src = dataUrl;
+              if (avatarMain) avatarMain.src = dataUrl;
+              if (statusMsg) {
+                statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+                statusMsg.innerText = 'Avatar updated locally.';
+              }
+            });
+            return;
+          }
+
+          const fileExt = file.name.split('.').pop() || 'png';
+          const filePath = `${currentUser.id}/avatar.${fileExt}`;
+
+          // Upload to Supabase Storage Bucket 'avatars'
+          const { error: uploadError } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, file, { upsert: true });
+
+          if (uploadError) {
+            console.warn("Storage upload note:", uploadError.message);
+            // Graceful fallback to client-side compressed base64
+            compressAndResizeImage(file, 480, 0.85, (dataUrl) => {
+              currentAvatarUrl = dataUrl;
+              if (avatarPreview) avatarPreview.src = dataUrl;
+              if (avatarMain) avatarMain.src = dataUrl;
+              if (statusMsg) {
+                statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+                statusMsg.innerText = 'Avatar processed & ready to save.';
+              }
+            });
+            return;
+          }
+
+          // Get the public image URL
+          const { data: { publicUrl } } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(filePath);
+
+          currentAvatarUrl = publicUrl;
+          if (avatarPreview) avatarPreview.src = publicUrl;
+          if (avatarMain) avatarMain.src = publicUrl;
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+            statusMsg.innerText = 'Avatar uploaded successfully!';
+          }
+          playCyberSFX('success');
+          showToast("Avatar Uploaded to Supabase Storage!", "ph-camera");
+
+        } catch (err) {
+          console.error("Avatar upload error:", err);
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-crimson';
+            statusMsg.innerText = 'Failed to upload image: ' + err.message;
+          }
+        }
+      });
     }
 
-    // Auto image resizing and compression helper to prevent localStorage overflow
+    // 5. Handle Form Submission (Create or Update Profile)
+    const profileForm = document.getElementById('profile-form');
+    if (profileForm) {
+      profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        playCyberSFX('click');
+
+        const statusMsg = document.getElementById('status-msg');
+        if (statusMsg) {
+          statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+          statusMsg.innerText = 'Saving...';
+        }
+
+        const saveBtn = document.getElementById('save-profile-btn');
+        const saveBtnText = document.getElementById('saveBtnText');
+        const saveBtnSpinner = document.getElementById('saveBtnSpinner');
+        const saveBtnIcon = document.getElementById('saveBtnIcon');
+
+        if (saveBtn) saveBtn.disabled = true;
+        if (saveBtnIcon) saveBtnIcon.classList.add('hidden');
+        if (saveBtnSpinner) saveBtnSpinner.classList.remove('hidden');
+        if (saveBtnText) saveBtnText.textContent = 'SAVING...';
+
+        const ign = document.getElementById('ign').value.trim();
+        const uidNumber = document.getElementById('uid-number').value.trim();
+        const role = document.getElementById('role').value;
+        const discordTag = document.getElementById('discord-tag').value.trim();
+        const rankTier = document.getElementById('rank-tier').value.trim();
+        const kdRatio = parseFloat(document.getElementById('kd-ratio').value) || 0.00;
+        const bio = document.getElementById('bio').value.trim();
+        const realName = document.getElementById('real-name') ? document.getElementById('real-name').value.trim() : '';
+
+        const updates = {
+          id: currentUser ? currentUser.id : 'guest_' + Date.now(),
+          ign: ign,
+          uid_number: uidNumber,
+          role: role,
+          discord_tag: discordTag,
+          rank_tier: rankTier,
+          kd_ratio: kdRatio,
+          bio: bio,
+          avatar_url: currentAvatarUrl,
+          updated_at: new Date()
+        };
+
+        try {
+          if (supabase && currentUser) {
+            // Upsert: updates if row exists, inserts if it doesn't
+            const { error } = await supabase.from('profiles').upsert(updates);
+            if (error) throw error;
+          }
+
+          // Local persistence mirror
+          saveUserProfile(Object.assign({}, updates, { real_name: realName }));
+          updateProfileUI();
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+            statusMsg.innerText = 'Profile updated successfully!';
+          }
+          playCyberSFX('success');
+          showToast("Profile Updated & Synced to Supabase!", "ph-check-circle");
+
+        } catch (err) {
+          console.warn("Supabase upsert note:", err.message);
+          // Still save locally
+          saveUserProfile(Object.assign({}, updates, { real_name: realName }));
+          updateProfileUI();
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-crimson';
+            statusMsg.innerText = 'Error: ' + err.message;
+          }
+          showToast("Profile Saved Locally", "ph-floppy-disk");
+        } finally {
+          if (saveBtn) saveBtn.disabled = false;
+          if (saveBtnIcon) saveBtnIcon.classList.remove('hidden');
+          if (saveBtnSpinner) saveBtnSpinner.classList.add('hidden');
+          if (saveBtnText) saveBtnText.textContent = 'Save Profile Changes';
+        }
+      });
+    }
+
+    // Live typing HUD preview sync
+    ['ign', 'uid-number', 'role', 'discord-tag', 'rank-tier', 'kd-ratio', 'bio', 'real-name'].forEach(id => {
+      const elem = document.getElementById(id);
+      if (elem) {
+        elem.addEventListener('input', () => {
+          const ign = document.getElementById('ign').value.trim();
+          const uidNumber = document.getElementById('uid-number').value.trim();
+          const role = document.getElementById('role').value;
+          const realName = document.getElementById('real-name') ? document.getElementById('real-name').value.trim() : '';
+
+          const heroIGN = document.getElementById('heroIGN');
+          const heroUUID = document.getElementById('heroUUID');
+          const heroRole = document.getElementById('heroRoleBadge');
+          const heroRealName = document.getElementById('heroRealName');
+
+          if (heroIGN && ign) heroIGN.textContent = ign;
+          if (heroUUID && uidNumber) heroUUID.textContent = uidNumber;
+          if (heroRole && role) heroRole.textContent = role;
+          if (heroRealName && realName) heroRealName.textContent = realName;
+        });
+      }
+    });
+
+    // Image resizing and compression helper
     function compressAndResizeImage(file, maxDimension, quality, callback) {
       const reader = new FileReader();
       reader.onload = function (readerEvent) {
@@ -1332,12 +1826,10 @@
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Export compressed JPEG
           const dataUrl = canvas.toDataURL('image/jpeg', quality);
           callback(dataUrl);
         };
         img.onerror = function () {
-          // Fallback to raw data url if canvas draw fails
           callback(readerEvent.target.result);
         };
         img.src = readerEvent.target.result;
@@ -1345,41 +1837,31 @@
       reader.readAsDataURL(file);
     }
 
-    function handleAvatarFileChange(event) {
-      const file = event.target.files && event.target.files[0];
-      if (!file) return;
-
-      if (!file.type.startsWith('image/')) {
-        showToast("Please select a valid image file (PNG, JPG, WEBP).", "ph-warning");
-        return;
+    function triggerAvatarUpload() {
+      playCyberSFX('click');
+      const fileInput = document.getElementById('avatar-input') || document.getElementById('avatarFileInput');
+      if (fileInput) {
+        fileInput.value = '';
+        fileInput.click();
       }
-
-      // Immediately render local instant preview in 0ms
-      const tempUrl = URL.createObjectURL(file);
-      const avatarElem = document.getElementById('avatarPreviewImg');
-      if (avatarElem) avatarElem.src = tempUrl;
-      const modalPreview = document.getElementById('modalAvatarPreview');
-      if (modalPreview) modalPreview.src = tempUrl;
-
-      showToast("Optimizing & Updating Avatar...", "ph-spinner-gap");
-
-      compressAndResizeImage(file, 480, 0.85, (compressedDataUrl) => {
-        const p = loadUserProfile();
-        p.avatar = compressedDataUrl;
-        saveUserProfile(p);
-        updateProfileUI();
-
-        if (modalPreview) modalPreview.src = compressedDataUrl;
-
-        playCyberSFX('success');
-        showToast("Profile Picture Updated & Saved!", "ph-camera");
-      });
     }
 
-    function handleModalAvatarUrlChange(url) {
-      if (url && url.startsWith('http')) {
-        const modalPreview = document.getElementById('modalAvatarPreview');
-        if (modalPreview) modalPreview.src = url;
+    function updateProfileUI() {
+      const p = loadUserProfile();
+      const ignElem = document.getElementById('heroIGN');
+      const nameElem = document.getElementById('heroRealName');
+      const teamElem = document.getElementById('heroTeamBadge');
+      const roleElem = document.getElementById('heroRoleBadge');
+      const uuidElem = document.getElementById('heroUUID');
+      const avatarElem = document.getElementById('avatarPreviewImg');
+
+      if (ignElem) ignElem.textContent = p.ign;
+      if (nameElem) nameElem.textContent = p.real_name || p.realName || "Alexander \"AK\" Vance";
+      if (teamElem) teamElem.textContent = p.team || "QuantumLords Esports";
+      if (roleElem) roleElem.textContent = p.role || "Primary Entry Rusher";
+      if (uuidElem) uuidElem.textContent = p.uid_number || p.uuid || "1928374650";
+      if (avatarElem && (p.avatar_url || p.avatar)) {
+        avatarElem.src = p.avatar_url || p.avatar;
       }
     }
 
@@ -1387,18 +1869,18 @@
       playCyberSFX('click');
       const p = loadUserProfile();
       document.getElementById('modalInputIGN').value = p.ign;
-      document.getElementById('modalInputRealName').value = p.realName;
-      document.getElementById('modalInputTeam').value = p.team;
+      document.getElementById('modalInputRealName').value = p.real_name || p.realName || '';
+      document.getElementById('modalInputTeam').value = p.team || 'QuantumLords Esports';
       document.getElementById('modalInputRole').value = p.role;
 
       const modalAvatarUrl = document.getElementById('modalInputAvatarUrl');
       if (modalAvatarUrl) {
-        modalAvatarUrl.value = (p.avatar && p.avatar.startsWith('http')) ? p.avatar : '';
+        modalAvatarUrl.value = (p.avatar_url && p.avatar_url.startsWith('http')) ? p.avatar_url : '';
       }
 
       const modalPreview = document.getElementById('modalAvatarPreview');
-      if (modalPreview) {
-        modalPreview.src = p.avatar;
+      if (modalPreview && (p.avatar_url || p.avatar)) {
+        modalPreview.src = p.avatar_url || p.avatar;
       }
 
       document.getElementById('editDossierModal').classList.remove('hidden');
@@ -1414,16 +1896,18 @@
       playCyberSFX('click');
       const p = loadUserProfile();
       p.ign = document.getElementById('modalInputIGN').value.trim() || p.ign;
-      p.realName = document.getElementById('modalInputRealName').value.trim() || p.realName;
+      p.real_name = document.getElementById('modalInputRealName').value.trim() || p.real_name;
       p.team = document.getElementById('modalInputTeam').value.trim() || p.team;
       p.role = document.getElementById('modalInputRole').value || p.role;
 
       const customAvatarUrl = document.getElementById('modalInputAvatarUrl').value.trim();
       if (customAvatarUrl) {
+        p.avatar_url = customAvatarUrl;
         p.avatar = customAvatarUrl;
       }
 
       saveUserProfile(p);
+      populateForm(p);
       updateProfileUI();
       closeEditDossierModal();
 
@@ -1434,8 +1918,9 @@
     function copyUUID() {
       playCyberSFX('click');
       const p = loadUserProfile();
-      navigator.clipboard.writeText(p.uuid).then(() => {
-        showToast("UUID Copied: " + p.uuid, "ph-fingerprint");
+      const val = p.uid_number || p.uuid || "1928374650";
+      navigator.clipboard.writeText(val).then(() => {
+        showToast("UID Copied: " + val, "ph-fingerprint");
       });
     }
 
@@ -1448,57 +1933,17 @@
       });
     }
 
-    function copySupabaseEndpoint() {
-      playCyberSFX('click');
-      navigator.clipboard.writeText(SUPABASE_URL).then(() => {
-        showToast("Supabase Endpoint Copied!", "ph-copy");
-      });
-    }
-
-    // Vault Download with Supabase Signed URL + Fallback
-    async function handleVaultFileDownload(fileName, fallbackUrl) {
-      playCyberSFX('download');
-      showToast(`Accessing ${fileName}...`, 'ph-file-pdf');
-
-      try {
-        if (supabaseClient) {
-          const { data, error } = await supabaseClient.storage
-            .from(STORAGE_BUCKET_NAME)
-            .createSignedUrl(fileName, 60);
-
-          if (!error && data && data.signedUrl) {
-            window.open(data.signedUrl, '_blank');
-            return;
-          }
-        }
-      } catch (e) {
-        console.warn("Storage signed URL notice:", e);
-      }
-
-      // Smooth fallback to direct Google Drive / Document link
-      if (fallbackUrl) {
-        window.open(fallbackUrl, '_blank');
-      }
-    }
-
-    // Auth State Transitions
     function renderAuthenticatedState(session) {
       currentUserSession = session;
       document.getElementById('authView').classList.add('hidden');
       document.getElementById('dashboardView').classList.remove('hidden');
-
-      if (session && session.user && session.user.id) {
-        const p = loadUserProfile();
-        p.uuid = session.user.id.substring(0, 12);
-        saveUserProfile(p);
-      }
-
       updateProfileUI();
       playCyberSFX('success');
     }
 
     function renderUnauthenticatedState() {
       currentUserSession = null;
+      currentUser = null;
       document.getElementById('dashboardView').classList.add('hidden');
       document.getElementById('authView').classList.remove('hidden');
       dismissAuthAlert();
@@ -1526,30 +1971,65 @@
       submitBtn.disabled = true;
       btnIcon.classList.add('hidden');
       btnSpinner.classList.remove('hidden');
-      btnText.textContent = 'AUTHENTICATING...';
+      btnText.textContent = authMode === 'signup' ? 'REGISTERING...' : 'AUTHENTICATING...';
       dismissAuthAlert();
 
       try {
-        if (!supabaseClient) {
+        if (!supabase) {
           throw new Error("Supabase client is not initialized.");
         }
 
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-          email: email,
-          password: password
-        });
+        if (authMode === 'signup') {
+          // Register new player account
+          const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+              data: {
+                ign: "QLD · " + email.split('@')[0].toUpperCase(),
+                role: "Primary Entry Rusher"
+              }
+            }
+          });
 
-        if (error) throw error;
+          if (error) throw error;
 
-        if (data && data.session) {
-          renderAuthenticatedState(data.session);
-          showToast(`Access Authorized: ${data.session.user.email}`, 'ph-shield-check');
+          if (data && data.user) {
+            currentUser = data.user;
+            if (data.session) {
+              renderAuthenticatedState(data.session);
+            } else {
+              // Sign-in directly or show confirmation
+              const signInRes = await supabase.auth.signInWithPassword({ email, password });
+              if (signInRes.data && signInRes.data.session) {
+                renderAuthenticatedState(signInRes.data.session);
+              }
+            }
+            await initProfile();
+            showToast(`Athlete Account Created: ${email}`, 'ph-user-check');
+          }
+
         } else {
-          throw new Error("No active session returned.");
+          // Sign-in
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+          if (error) throw error;
+
+          if (data && data.session) {
+            currentUser = data.session.user;
+            renderAuthenticatedState(data.session);
+            await initProfile();
+            showToast(`Access Authorized: ${data.session.user.email}`, 'ph-shield-check');
+          } else {
+            throw new Error("No active session returned.");
+          }
         }
 
       } catch (err) {
-        console.warn("Supabase Auth Failure:", err);
+        console.warn("Supabase Auth Error:", err);
         playCyberSFX('error');
 
         let errorMsg = err.message || "Invalid Player Credentials";
@@ -1561,15 +2041,46 @@
         submitBtn.disabled = false;
         btnIcon.classList.remove('hidden');
         btnSpinner.classList.add('hidden');
-        btnText.textContent = 'AUTHENTICATE';
+        btnText.textContent = authMode === 'signup' ? 'REGISTER ATHLETE' : 'AUTHENTICATE';
       }
+    }
+
+    async function handleDemoLogin() {
+      playCyberSFX('click');
+      showToast("Accessing Demo Operative Profile...", "ph-lightning");
+
+      // Auto fill and mock auth
+      currentUser = {
+        id: "demo-operative-9482",
+        email: "operative@quantumlords.com",
+        user_metadata: { ign: "QLD · SHADOW", uid_number: "1928374650" }
+      };
+      renderAuthenticatedState({ user: currentUser });
+
+      const sessionUserIdText = document.getElementById('sessionUserIdText');
+      if (sessionUserIdText) {
+        sessionUserIdText.textContent = "operative@quantumlords.com";
+      }
+
+      populateForm({
+        ign: "QLD · SHADOW",
+        uid_number: "1928374650",
+        role: "Primary Entry Rusher",
+        discord_tag: "shadow#1234",
+        rank_tier: "Grandmaster",
+        kd_ratio: 4.20,
+        bio: "Demo Operative • QuantumLords Esports Realtime Playbook",
+        avatar_url: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
+      });
+
+      showToast("⚡ Demo Operative Mode Active - Ready for Realtime Editing!", "ph-check-circle");
     }
 
     async function handleSignOut() {
       playCyberSFX('click');
       try {
-        if (supabaseClient) {
-          await supabaseClient.auth.signOut();
+        if (supabase) {
+          await supabase.auth.signOut();
         }
       } catch (err) {
         console.warn("Sign out error:", err);
@@ -1631,7 +2142,6 @@
         const clockElem = document.getElementById('militaryClock');
         if (clockElem) clockElem.textContent = timeStr;
       } catch (e) {
-        // Fallback calculation for UTC+6 (Bangladesh)
         const utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
         const bdDate = new Date(utcMs + (6 * 3600000));
         const hh = String(bdDate.getHours()).padStart(2, '0');
@@ -1663,18 +2173,22 @@
     document.addEventListener('DOMContentLoaded', async () => {
       updateProfileUI();
 
-      if (supabaseClient) {
+      if (supabase) {
         try {
-          const { data: { session } } = await supabaseClient.auth.getSession();
-          if (session) {
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session && session.user) {
+            currentUser = session.user;
             renderAuthenticatedState(session);
+            await initProfile();
           } else {
             renderUnauthenticatedState();
           }
 
-          supabaseClient.auth.onAuthStateChange((event, session) => {
+          supabase.auth.onAuthStateChange((event, session) => {
             if (event === 'SIGNED_IN' && session) {
+              currentUser = session.user;
               renderAuthenticatedState(session);
+              initProfile();
             } else if (event === 'SIGNED_OUT') {
               renderUnauthenticatedState();
             }

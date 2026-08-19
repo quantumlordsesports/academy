@@ -39,6 +39,8 @@
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Supabase JS SDK via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="audio-controller.css" />
   <script>
@@ -274,6 +276,180 @@
               <i class="ph-bold ph-identification-card text-base"></i>
               <span>SHARE ID CARD</span>
             </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- REALTIME PROFILE CREATION & EDIT CARD (SUPABASE REALTIME) -->
+      <!-- ========================================================================= -->
+      <section class="profile-card glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-gold/40 shadow-cyber-card relative overflow-hidden">
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-cyber-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Section Header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-cyber-border/70 pb-4 mb-6 relative z-10">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-cyber-gold/15 border border-[#E8C56A]/50 flex items-center justify-center text-[#E8C56A] shadow-gold-glow">
+              <i class="ph-bold ph-broadcast text-xl animate-pulse"></i>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-cyber-green animate-ping"></span>
+                <span class="text-xs font-mono font-bold text-cyber-gold tracking-widest uppercase">REALTIME DOSSIER ENGINE</span>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-black font-orbitron text-white tracking-wider uppercase">
+                LIVE PROFILE CREATOR & SYNCHRONIZER
+              </h2>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyber-green/10 border border-cyber-green/40 text-cyber-green text-xs font-mono font-bold">
+            <span class="inline-block w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+            <span id="realtimeStatusText">REALTIME SYNC ACTIVE</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+          
+          <!-- Left: Avatar Upload Area -->
+          <div class="lg:col-span-4 flex flex-col items-center text-center p-6 rounded-2xl bg-[#080B10]/80 border border-cyber-border">
+            <div class="avatar-container relative group mb-4">
+              <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-3xl bg-gradient-to-tr from-cyber-cyan via-cyber-violet to-cyber-crimson p-[2px] shadow-cyan-glow relative overflow-hidden">
+                <img id="avatar-preview" src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80" alt="Avatar" class="w-full h-full object-cover rounded-3xl" />
+              </div>
+              <input type="file" id="avatar-input" accept="image/*" class="hidden" />
+            </div>
+
+            <label for="avatar-input" class="upload-btn cursor-pointer w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/15 hover:bg-cyber-cyan/30 border border-cyber-cyan/60 text-cyber-cyan hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-sm active:scale-95">
+              <i class="ph-bold ph-camera text-base"></i>
+              <span>Upload Avatar</span>
+            </label>
+            <p class="text-[11px] font-mono text-slate-400 mt-2">
+              PNG, JPG or WEBP • Uploads directly to Supabase Storage
+            </p>
+
+            <!-- Session Telemetry Tag -->
+            <div class="mt-4 w-full p-3 rounded-xl bg-black/40 border border-cyber-border/60 text-left font-mono text-xs space-y-1 text-slate-400">
+              <div class="flex justify-between">
+                <span>ACCOUNT ID:</span>
+                <strong id="sessionUserIdText" class="text-slate-200">Active Operative</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>STORAGE BUCKET:</span>
+                <span class="text-cyber-cyan">avatars</span>
+              </div>
+              <div class="flex justify-between">
+                <span>TABLE:</span>
+                <span class="text-[#E8C56A]">profiles</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Profile Form -->
+          <div class="lg:col-span-8">
+            <form id="profile-form" class="space-y-4">
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- IGN -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    In-Game Name (IGN) <span class="text-cyber-gold">*</span>
+                  </label>
+                  <div class="relative">
+                    <input type="text" id="ign" placeholder="e.g. QLD · SHADOW" required
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+                </div>
+
+                <!-- UID Number -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    In-Game UID <span class="text-cyber-gold">*</span>
+                  </label>
+                  <div class="relative">
+                    <input type="text" id="uid-number" placeholder="e.g. 1928374650" required
+                      class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- Roster Role -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    Roster Role
+                  </label>
+                  <select id="role"
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono transition-all">
+                    <option value="Primary Entry Rusher">Primary Entry Rusher</option>
+                    <option value="Sniper / Support">Sniper / Support</option>
+                    <option value="In-Game Leader (IGL)">In-Game Leader (IGL)</option>
+                    <option value="Flanker / Fragger">Flanker / Fragger</option>
+                  </select>
+                </div>
+
+                <!-- Discord Tag -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    Discord Tag
+                  </label>
+                  <input type="text" id="discord-tag" placeholder="shadow#1234"
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                </div>
+
+                <!-- Current Rank -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    Current Rank
+                  </label>
+                  <input type="text" id="rank-tier" placeholder="Grandmaster"
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- K/D Ratio -->
+                <div class="form-group space-y-1.5">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    K/D Ratio
+                  </label>
+                  <input type="number" step="0.01" id="kd-ratio" placeholder="4.20"
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                </div>
+
+                <!-- Athlete Real Name -->
+                <div class="form-group space-y-1.5 sm:col-span-2">
+                  <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                    Athlete Real Name
+                  </label>
+                  <input type="text" id="real-name" placeholder="e.g. Alexander Vance"
+                    class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all" />
+                </div>
+              </div>
+
+              <!-- Player Bio -->
+              <div class="form-group space-y-1.5">
+                <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider font-bold">
+                  Player Bio
+                </label>
+                <textarea id="bio" rows="3" placeholder="Device, sensitivity, tournament goals..."
+                  class="w-full px-4 py-3 bg-[#080B10]/95 border border-cyber-border text-white text-sm rounded-xl focus:outline-none focus:border-cyber-gold focus:ring-1 focus:ring-cyber-gold font-mono placeholder:text-slate-600 transition-all resize-none"></textarea>
+              </div>
+
+              <!-- Actions & Status Message -->
+              <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <button type="submit" id="save-profile-btn"
+                  class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-95">
+                  <i id="saveBtnIcon" class="ph-bold ph-floppy-disk text-lg text-[#06080F]"></i>
+                  <span id="saveBtnText">Save Profile Changes</span>
+                  <i id="saveBtnSpinner" class="ph-bold ph-spinner-gap text-lg animate-spin hidden text-[#06080F]"></i>
+                </button>
+
+                <p id="status-msg" class="text-xs font-mono font-bold transition-all"></p>
+              </div>
+
+            </form>
           </div>
 
         </div>
@@ -878,23 +1054,49 @@
   </div>
 
   <script>
+    // 1. Initialize Supabase Client
+    const SUPABASE_URL = "https://kttshkoadnkemknjajsp.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0dHNoa29hZG5rZW1rbmphanNwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcwMzY4NTksImV4cCI6MjEwMjYxMjg1OX0.KehzblSOgF5T3blQWPz13WnA0QNKHhj2GuLOJABU9go";
+    const STORAGE_BUCKET_NAME = "avatars";
+
+    let supabase = null;
+    try {
+      if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        });
+        window.supabaseClient = supabase;
+        console.log("QuantumLords Esports Profile // Supabase Initialized.");
+      }
+    } catch (err) {
+      console.error("Supabase Init Error:", err);
+    }
+
+    let currentUser = null;
+    let currentAvatarUrl = '';
+    let realtimeChannel = null;
+
     const defaultProfile = {
-      ign: "CYBER_NINJA",
+      ign: "QLD · SHADOW",
       ffUid: "1849204921",
       realName: "Alexander \"AK\" Vance",
       team: "QuantumLords Esports",
-      role: "IGL / Rusher",
+      role: "Primary Entry Rusher",
       status: "ACTIVE STARTER",
       flag: "🇧🇩",
-      region: "BANGLADESH / SA REGION",
+      region: "BANGLADESH / BD REGION",
       email: "player@quantumlords.com",
       phone: "+880 1700-000000",
-      discord: "quantumlords#0001",
+      discord: "shadow#1234",
       instagram: "@quantumlordsesports",
       facebook: "fb.com/quantumlordsesports",
       twitter: "@QuantumLords",
       youtube: "@QuantumLordsEsports",
-      kdRatio: "3.84",
+      kdRatio: "4.20",
       winRate: "68.2%",
       adr: "1,420",
       headshot: "42.8%",
@@ -904,12 +1106,13 @@
       dpi: "800 DPI",
       generalSens: "95%",
       device: "ROG Phone 8 Pro",
+      bio: "Active Starter • QuantumLords Free Fire Pro Division",
       avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
     };
 
     function loadUserProfile() {
       try {
-        const raw = localStorage.getItem('qld_esports_player_profile') || localStorage.getItem('googol_esports_player_profile');
+        const raw = localStorage.getItem('qld_esports_player_profile') || localStorage.getItem('qld_esports_player_dossier');
         return raw ? Object.assign({}, defaultProfile, JSON.parse(raw)) : defaultProfile;
       } catch (e) {
         return defaultProfile;
@@ -919,58 +1122,470 @@
     function saveUserProfile(profile) {
       try {
         localStorage.setItem('qld_esports_player_profile', JSON.stringify(profile));
+        localStorage.setItem('qld_esports_player_dossier', JSON.stringify(profile));
       } catch (e) {
         console.warn("Error saving profile to localStorage:", e);
       }
     }
 
+    // 2. Fetch logged-in user and existing profile data
+    async function initProfile() {
+      if (!supabase) {
+        console.warn("Supabase SDK is not available.");
+        return;
+      }
+
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (user) {
+          currentUser = user;
+          const sessionUserIdText = document.getElementById('sessionUserIdText');
+          if (sessionUserIdText) {
+            sessionUserIdText.textContent = currentUser.email || currentUser.id.substring(0, 12);
+          }
+
+          // Load profile from Supabase
+          const { data: profile, error: profileErr } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', currentUser.id)
+            .single();
+
+          if (profile) {
+            populateForm(profile);
+          }
+
+          // 3. Listen for REALTIME database changes for this user
+          if (realtimeChannel) {
+            supabase.removeChannel(realtimeChannel);
+          }
+
+          realtimeChannel = supabase
+            .channel(`profile-${currentUser.id}`)
+            .on(
+              'postgres_changes',
+              { event: 'UPDATE', schema: 'public', table: 'profiles', filter: `id=eq.${currentUser.id}` },
+              (payload) => {
+                console.log("Supabase Realtime Update:", payload);
+                if (payload.new) {
+                  populateForm(payload.new);
+                  const statusMsg = document.getElementById('status-msg');
+                  if (statusMsg) {
+                    statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+                    statusMsg.innerText = '⚡ Realtime Profile Synced!';
+                    setTimeout(() => { if (statusMsg && statusMsg.innerText.includes('Realtime')) statusMsg.innerText = ''; }, 4000);
+                  }
+                  showToast("Realtime Profile Updated from Cloud!", "ph-broadcast");
+                }
+              }
+            )
+            .subscribe((status) => {
+              const rtText = document.getElementById('realtimeStatusText');
+              if (rtText) {
+                if (status === 'SUBSCRIBED') {
+                  rtText.textContent = 'REALTIME SYNC ACTIVE';
+                } else {
+                  rtText.textContent = `REALTIME: ${status}`;
+                }
+              }
+            });
+
+        } else {
+          // Pre-populate with local defaults
+          populateForm(loadUserProfile());
+        }
+
+      } catch (err) {
+        console.warn("initProfile notice:", err);
+      }
+    }
+
+    function populateForm(data) {
+      if (!data) return;
+      const ignElem = document.getElementById('ign');
+      const uidElem = document.getElementById('uid-number');
+      const roleElem = document.getElementById('role');
+      const discordElem = document.getElementById('discord-tag');
+      const rankElem = document.getElementById('rank-tier');
+      const kdElem = document.getElementById('kd-ratio');
+      const bioElem = document.getElementById('bio');
+      const realNameElem = document.getElementById('real-name');
+      const avatarPreview = document.getElementById('avatar-preview');
+      const avatarMain = document.getElementById('avatarPreviewImg');
+
+      if (ignElem) ignElem.value = data.ign || '';
+      if (uidElem) uidElem.value = data.uid_number || data.ffUid || data.uid || '';
+      if (roleElem) roleElem.value = data.role || 'Primary Entry Rusher';
+      if (discordElem) discordElem.value = data.discord_tag || data.discord || '';
+      if (rankElem) rankElem.value = data.rank_tier || data.rank || 'Grandmaster';
+      if (kdElem) kdElem.value = (data.kd_ratio !== undefined && data.kd_ratio !== null) ? data.kd_ratio : (data.kdRatio || '4.20');
+      if (bioElem) bioElem.value = data.bio || '';
+      if (realNameElem && data.real_name) realNameElem.value = data.real_name;
+
+      if (data.avatar_url || data.avatar) {
+        currentAvatarUrl = data.avatar_url || data.avatar;
+        if (avatarPreview) avatarPreview.src = currentAvatarUrl;
+        if (avatarMain) avatarMain.src = currentAvatarUrl;
+      }
+
+      // Live update main dossier
+      const p = loadUserProfile();
+      if (data.ign) p.ign = data.ign;
+      if (data.uid_number) p.ffUid = data.uid_number;
+      if (data.role) p.role = data.role;
+      if (data.discord_tag) p.discord = data.discord_tag;
+      if (data.kd_ratio) p.kdRatio = String(data.kd_ratio);
+      if (data.real_name) p.realName = data.real_name;
+      if (data.avatar_url) p.avatar = data.avatar_url;
+      if (data.bio) p.bio = data.bio;
+      saveUserProfile(p);
+      updateProfileUI();
+    }
+
+    // 4. Handle Avatar File Upload
+    const avatarInput = document.getElementById('avatar-input');
+    if (avatarInput) {
+      avatarInput.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+          showToast("Please select a valid image file (PNG, JPG, WEBP).", "ph-warning");
+          return;
+        }
+
+        const tempUrl = URL.createObjectURL(file);
+        const avatarPreview = document.getElementById('avatar-preview');
+        const avatarMain = document.getElementById('avatarPreviewImg');
+        if (avatarPreview) avatarPreview.src = tempUrl;
+        if (avatarMain) avatarMain.src = tempUrl;
+
+        const statusMsg = document.getElementById('status-msg');
+        if (statusMsg) {
+          statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+          statusMsg.innerText = 'Uploading avatar to Supabase Storage...';
+        }
+
+        try {
+          if (!currentUser || !currentUser.id) {
+            compressAndResizeImage(file, 480, 0.85, (dataUrl) => {
+              currentAvatarUrl = dataUrl;
+              if (avatarPreview) avatarPreview.src = dataUrl;
+              if (avatarMain) avatarMain.src = dataUrl;
+              const p = loadUserProfile();
+              p.avatar = dataUrl;
+              saveUserProfile(p);
+              updateProfileUI();
+              if (statusMsg) {
+                statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+                statusMsg.innerText = 'Avatar updated locally.';
+              }
+            });
+            return;
+          }
+
+          const fileExt = file.name.split('.').pop() || 'png';
+          const filePath = `${currentUser.id}/avatar.${fileExt}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from('avatars')
+            .upload(filePath, file, { upsert: true });
+
+          if (uploadError) {
+            console.warn("Storage upload note:", uploadError.message);
+            compressAndResizeImage(file, 480, 0.85, (dataUrl) => {
+              currentAvatarUrl = dataUrl;
+              if (avatarPreview) avatarPreview.src = dataUrl;
+              if (avatarMain) avatarMain.src = dataUrl;
+              const p = loadUserProfile();
+              p.avatar = dataUrl;
+              saveUserProfile(p);
+              updateProfileUI();
+              if (statusMsg) {
+                statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+                statusMsg.innerText = 'Avatar processed & ready to save.';
+              }
+            });
+            return;
+          }
+
+          const { data: { publicUrl } } = supabase.storage
+            .from('avatars')
+            .getPublicUrl(filePath);
+
+          currentAvatarUrl = publicUrl;
+          if (avatarPreview) avatarPreview.src = publicUrl;
+          if (avatarMain) avatarMain.src = publicUrl;
+
+          const p = loadUserProfile();
+          p.avatar = publicUrl;
+          saveUserProfile(p);
+          updateProfileUI();
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+            statusMsg.innerText = 'Avatar uploaded successfully!';
+          }
+          showToast("Avatar Uploaded to Supabase Storage!", "ph-camera");
+
+        } catch (err) {
+          console.error("Avatar upload error:", err);
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-crimson';
+            statusMsg.innerText = 'Failed to upload image: ' + err.message;
+          }
+        }
+      });
+    }
+
+    // 5. Handle Form Submission (Create or Update Profile)
+    const profileForm = document.getElementById('profile-form');
+    if (profileForm) {
+      profileForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const statusMsg = document.getElementById('status-msg');
+        if (statusMsg) {
+          statusMsg.className = 'text-xs font-mono font-bold text-cyber-cyan animate-pulse';
+          statusMsg.innerText = 'Saving...';
+        }
+
+        const saveBtn = document.getElementById('save-profile-btn');
+        const saveBtnText = document.getElementById('saveBtnText');
+        const saveBtnSpinner = document.getElementById('saveBtnSpinner');
+        const saveBtnIcon = document.getElementById('saveBtnIcon');
+
+        if (saveBtn) saveBtn.disabled = true;
+        if (saveBtnIcon) saveBtnIcon.classList.add('hidden');
+        if (saveBtnSpinner) saveBtnSpinner.classList.remove('hidden');
+        if (saveBtnText) saveBtnText.textContent = 'SAVING...';
+
+        const ign = document.getElementById('ign').value.trim();
+        const uidNumber = document.getElementById('uid-number').value.trim();
+        const role = document.getElementById('role').value;
+        const discordTag = document.getElementById('discord-tag').value.trim();
+        const rankTier = document.getElementById('rank-tier').value.trim();
+        const kdRatio = parseFloat(document.getElementById('kd-ratio').value) || 0.00;
+        const bio = document.getElementById('bio').value.trim();
+        const realName = document.getElementById('real-name') ? document.getElementById('real-name').value.trim() : '';
+
+        const updates = {
+          id: currentUser ? currentUser.id : 'guest_' + Date.now(),
+          ign: ign,
+          uid_number: uidNumber,
+          role: role,
+          discord_tag: discordTag,
+          rank_tier: rankTier,
+          kd_ratio: kdRatio,
+          bio: bio,
+          avatar_url: currentAvatarUrl,
+          updated_at: new Date()
+        };
+
+        try {
+          if (supabase && currentUser) {
+            const { error } = await supabase.from('profiles').upsert(updates);
+            if (error) throw error;
+          }
+
+          // Local persistence
+          const p = loadUserProfile();
+          p.ign = ign;
+          p.ffUid = uidNumber;
+          p.role = role;
+          p.discord = discordTag;
+          p.kdRatio = String(kdRatio);
+          if (realName) p.realName = realName;
+          if (currentAvatarUrl) p.avatar = currentAvatarUrl;
+          p.bio = bio;
+          saveUserProfile(p);
+          updateProfileUI();
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-green';
+            statusMsg.innerText = 'Profile updated successfully!';
+          }
+          showToast("Profile Updated & Synced to Supabase!", "ph-check-circle");
+
+        } catch (err) {
+          console.warn("Supabase upsert note:", err.message);
+          const p = loadUserProfile();
+          p.ign = ign;
+          p.ffUid = uidNumber;
+          p.role = role;
+          p.discord = discordTag;
+          p.kdRatio = String(kdRatio);
+          if (realName) p.realName = realName;
+          if (currentAvatarUrl) p.avatar = currentAvatarUrl;
+          p.bio = bio;
+          saveUserProfile(p);
+          updateProfileUI();
+
+          if (statusMsg) {
+            statusMsg.className = 'text-xs font-mono font-bold text-cyber-crimson';
+            statusMsg.innerText = 'Saved locally: ' + err.message;
+          }
+          showToast("Profile Saved Locally", "ph-floppy-disk");
+        } finally {
+          if (saveBtn) saveBtn.disabled = false;
+          if (saveBtnIcon) saveBtnIcon.classList.remove('hidden');
+          if (saveBtnSpinner) saveBtnSpinner.classList.add('hidden');
+          if (saveBtnText) saveBtnText.textContent = 'Save Profile Changes';
+        }
+      });
+    }
+
+    // Live typing sync
+    ['ign', 'uid-number', 'role', 'discord-tag', 'rank-tier', 'kd-ratio', 'bio', 'real-name'].forEach(id => {
+      const elem = document.getElementById(id);
+      if (elem) {
+        elem.addEventListener('input', () => {
+          const ign = document.getElementById('ign').value.trim();
+          const uidNumber = document.getElementById('uid-number').value.trim();
+          const role = document.getElementById('role').value;
+          const realName = document.getElementById('real-name') ? document.getElementById('real-name').value.trim() : '';
+          const discord = document.getElementById('discord-tag').value.trim();
+
+          const heroIGN = document.getElementById('heroIGN');
+          const heroFFUid = document.getElementById('heroFFUid');
+          const heroRole = document.getElementById('heroRoleBadge');
+          const heroRealName = document.getElementById('heroRealName');
+          const heroDiscordTag = document.getElementById('heroDiscordTag');
+
+          if (heroIGN && ign) heroIGN.textContent = ign;
+          if (heroFFUid && uidNumber) heroFFUid.textContent = uidNumber;
+          if (heroRole && role) heroRole.textContent = role;
+          if (heroRealName && realName) heroRealName.textContent = realName;
+          if (heroDiscordTag && discord) heroDiscordTag.textContent = discord;
+        });
+      }
+    });
+
+    function compressAndResizeImage(file, maxDimension, quality, callback) {
+      const reader = new FileReader();
+      reader.onload = function (readerEvent) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxDimension) {
+              height = Math.round((height * maxDimension) / width);
+              width = maxDimension;
+            }
+          } else {
+            if (height > maxDimension) {
+              width = Math.round((width * maxDimension) / height);
+              height = maxDimension;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          callback(dataUrl);
+        };
+        img.onerror = function () {
+          callback(readerEvent.target.result);
+        };
+        img.src = readerEvent.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
     function updateProfileUI() {
       const p = loadUserProfile();
-      document.getElementById('heroIGN').textContent = p.ign;
-      document.getElementById('heroFFUid').textContent = p.ffUid;
-      document.getElementById('heroRealName').textContent = p.realName;
-      document.getElementById('heroTeamBadge').textContent = p.team;
-      document.getElementById('heroRoleBadge').textContent = p.role;
-      document.getElementById('heroStatusBadge').textContent = p.status;
-      document.getElementById('heroFlagIcon').textContent = p.flag || "🇺🇸";
-      document.getElementById('heroRegionText').textContent = p.region || "USA / NA REGION";
-      document.getElementById('avatarPreviewImg').src = p.avatar;
+      const heroIGN = document.getElementById('heroIGN');
+      const heroFFUid = document.getElementById('heroFFUid');
+      const heroRealName = document.getElementById('heroRealName');
+      const heroTeamBadge = document.getElementById('heroTeamBadge');
+      const heroRoleBadge = document.getElementById('heroRoleBadge');
+      const heroStatusBadge = document.getElementById('heroStatusBadge');
+      const heroFlagIcon = document.getElementById('heroFlagIcon');
+      const heroRegionText = document.getElementById('heroRegionText');
+      const avatarPreviewImg = document.getElementById('avatarPreviewImg');
 
-      document.getElementById('heroEmailTag').textContent = p.email;
-      document.getElementById('heroPhoneTag').textContent = p.phone;
-      document.getElementById('heroDiscordTag').textContent = p.discord;
+      if (heroIGN) heroIGN.textContent = p.ign;
+      if (heroFFUid) heroFFUid.textContent = p.ffUid;
+      if (heroRealName) heroRealName.textContent = p.realName;
+      if (heroTeamBadge) heroTeamBadge.textContent = p.team;
+      if (heroRoleBadge) heroRoleBadge.textContent = p.role;
+      if (heroStatusBadge) heroStatusBadge.textContent = p.status;
+      if (heroFlagIcon) heroFlagIcon.textContent = p.flag || "🇧🇩";
+      if (heroRegionText) heroRegionText.textContent = p.region || "BANGLADESH / BD REGION";
+      if (avatarPreviewImg && p.avatar) avatarPreviewImg.src = p.avatar;
 
-      document.getElementById('contactFFUid').textContent = p.ffUid;
-      document.getElementById('contactEmail').textContent = p.email;
-      document.getElementById('contactPhone').textContent = p.phone;
-      document.getElementById('contactDiscord').textContent = p.discord;
+      const heroEmailTag = document.getElementById('heroEmailTag');
+      const heroPhoneTag = document.getElementById('heroPhoneTag');
+      const heroDiscordTag = document.getElementById('heroDiscordTag');
+      if (heroEmailTag) heroEmailTag.textContent = p.email;
+      if (heroPhoneTag) heroPhoneTag.textContent = p.phone;
+      if (heroDiscordTag) heroDiscordTag.textContent = p.discord;
 
-      document.getElementById('statKD').textContent = p.kdRatio;
-      document.getElementById('statWinRate').textContent = p.winRate;
-      document.getElementById('statADR').textContent = p.adr;
-      document.getElementById('statHeadshot').textContent = p.headshot;
+      const contactFFUid = document.getElementById('contactFFUid');
+      const contactEmail = document.getElementById('contactEmail');
+      const contactPhone = document.getElementById('contactPhone');
+      const contactDiscord = document.getElementById('contactDiscord');
+      if (contactFFUid) contactFFUid.textContent = p.ffUid;
+      if (contactEmail) contactEmail.textContent = p.email;
+      if (contactPhone) contactPhone.textContent = p.phone;
+      if (contactDiscord) contactDiscord.textContent = p.discord;
 
-      document.getElementById('specCharacter').textContent = p.char;
-      document.getElementById('specWeapon').textContent = p.weapon;
-      document.getElementById('specDropZone').textContent = p.dropZone;
-      document.getElementById('specRole').textContent = p.role;
-      document.getElementById('specDPI').textContent = p.dpi;
-      document.getElementById('specGeneralSens').textContent = p.generalSens;
-      document.getElementById('specDevice').textContent = p.device;
+      const statKD = document.getElementById('statKD');
+      const statWinRate = document.getElementById('statWinRate');
+      const statADR = document.getElementById('statADR');
+      const statHeadshot = document.getElementById('statHeadshot');
+      if (statKD) statKD.textContent = p.kdRatio;
+      if (statWinRate) statWinRate.textContent = p.winRate;
+      if (statADR) statADR.textContent = p.adr;
+      if (statHeadshot) statHeadshot.textContent = p.headshot;
 
-      document.getElementById('cardIGN').textContent = p.ign;
-      document.getElementById('cardFFUid').textContent = p.ffUid;
-      document.getElementById('cardRealName').textContent = p.realName;
-      document.getElementById('cardTeam').textContent = p.team;
-      document.getElementById('cardRole').textContent = p.role;
-      document.getElementById('cardStatus').textContent = p.status;
-      document.getElementById('cardKD').textContent = p.kdRatio;
-      document.getElementById('cardWinRate').textContent = p.winRate;
-      document.getElementById('cardADR').textContent = p.adr;
-      document.getElementById('cardHeadshot').textContent = p.headshot;
-      document.getElementById('cardEmail').textContent = p.email;
-      document.getElementById('cardDiscord').textContent = "DC: " + p.discord;
-      document.getElementById('cardAvatar').src = p.avatar;
+      const specCharacter = document.getElementById('specCharacter');
+      const specWeapon = document.getElementById('specWeapon');
+      const specDropZone = document.getElementById('specDropZone');
+      const specRole = document.getElementById('specRole');
+      const specDPI = document.getElementById('specDPI');
+      const specGeneralSens = document.getElementById('specGeneralSens');
+      const specDevice = document.getElementById('specDevice');
+      if (specCharacter) specCharacter.textContent = p.char;
+      if (specWeapon) specWeapon.textContent = p.weapon;
+      if (specDropZone) specDropZone.textContent = p.dropZone;
+      if (specRole) specRole.textContent = p.role;
+      if (specDPI) specDPI.textContent = p.dpi;
+      if (specGeneralSens) specGeneralSens.textContent = p.generalSens;
+      if (specDevice) specDevice.textContent = p.device;
+
+      const cardIGN = document.getElementById('cardIGN');
+      const cardFFUid = document.getElementById('cardFFUid');
+      const cardRealName = document.getElementById('cardRealName');
+      const cardTeam = document.getElementById('cardTeam');
+      const cardRole = document.getElementById('cardRole');
+      const cardStatus = document.getElementById('cardStatus');
+      const cardKD = document.getElementById('cardKD');
+      const cardWinRate = document.getElementById('cardWinRate');
+      const cardADR = document.getElementById('cardADR');
+      const cardHeadshot = document.getElementById('cardHeadshot');
+      const cardEmail = document.getElementById('cardEmail');
+      const cardDiscord = document.getElementById('cardDiscord');
+      const cardAvatar = document.getElementById('cardAvatar');
+      if (cardIGN) cardIGN.textContent = p.ign;
+      if (cardFFUid) cardFFUid.textContent = p.ffUid;
+      if (cardRealName) cardRealName.textContent = p.realName;
+      if (cardTeam) cardTeam.textContent = p.team;
+      if (cardRole) cardRole.textContent = p.role;
+      if (cardStatus) cardStatus.textContent = p.status;
+      if (cardKD) cardKD.textContent = p.kdRatio;
+      if (cardWinRate) cardWinRate.textContent = p.winRate;
+      if (cardADR) cardADR.textContent = p.adr;
+      if (cardHeadshot) cardHeadshot.textContent = p.headshot;
+      if (cardEmail) cardEmail.textContent = p.email;
+      if (cardDiscord) cardDiscord.textContent = "DC: " + p.discord;
+      if (cardAvatar && p.avatar) cardAvatar.src = p.avatar;
     }
 
     function openEditProfileModal() {
@@ -1032,6 +1647,7 @@
       p.dropZone = document.getElementById('modalInputDropZone').value.trim() || p.dropZone;
 
       saveUserProfile(p);
+      populateForm(p);
       updateProfileUI();
       closeEditProfileModal();
       showToast("Player Dossier updated & saved.", "ph-floppy-disk");
@@ -1104,20 +1720,6 @@
       });
     }
 
-    function handleAvatarFileChange(event) {
-      const file = event.target.files[0];
-      if (!file || !file.type.startsWith('image/')) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const p = loadUserProfile();
-        p.avatar = e.target.result;
-        saveUserProfile(p);
-        updateProfileUI();
-        showToast("Avatar photo updated.", "ph-camera");
-      };
-      reader.readAsDataURL(file);
-    }
-
     let toastTimeout = null;
     function showToast(text, iconClass = 'ph-info') {
       const toast = document.getElementById('globalToast');
@@ -1128,8 +1730,9 @@
       toastTimeout = setTimeout(() => toast.classList.add('hidden'), 3500);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       updateProfileUI();
+      await initProfile();
       initCyberCanvas();
     });
 
