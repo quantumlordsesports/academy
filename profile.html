@@ -166,6 +166,10 @@
             <i class="ph-bold ph-identification-card"></i>
             <span>PRO ID CARD</span>
           </button>
+          <button id="headerAuthBtn" onclick="handleHeaderAuthAction()" class="px-3.5 py-1.5 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan/40 text-cyber-cyan font-mono text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all">
+            <i id="headerAuthIcon" class="ph-bold ph-sign-in"></i>
+            <span id="headerAuthText">LOGIN PORTAL</span>
+          </button>
         </div>
       </div>
     </header>
@@ -1137,8 +1141,16 @@
 
       try {
         const { data: { user }, error } = await supabase.auth.getUser();
+        const headerBtn = document.getElementById('headerAuthBtn');
+        const headerText = document.getElementById('headerAuthText');
+        const headerIcon = document.getElementById('headerAuthIcon');
+
         if (user) {
           currentUser = user;
+          if (headerText) headerText.textContent = "LOG OUT";
+          if (headerIcon) headerIcon.className = "ph-bold ph-sign-out text-cyber-crimson";
+          if (headerBtn) headerBtn.className = "px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/40 text-cyber-crimson font-mono text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all";
+
           const sessionUserIdText = document.getElementById('sessionUserIdText');
           if (sessionUserIdText) {
             sessionUserIdText.textContent = currentUser.email || currentUser.id.substring(0, 12);
@@ -1191,12 +1203,31 @@
             });
 
         } else {
+          currentUser = null;
+          if (headerText) headerText.textContent = "LOGIN PORTAL";
+          if (headerIcon) headerIcon.className = "ph-bold ph-sign-in text-cyber-cyan";
+          if (headerBtn) headerBtn.className = "px-3.5 py-1.5 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan/40 text-cyber-cyan font-mono text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all";
           // Pre-populate with local defaults
           populateForm(loadUserProfile());
         }
 
       } catch (err) {
         console.warn("initProfile notice:", err);
+      }
+    }
+
+    async function handleHeaderAuthAction() {
+      if (currentUser) {
+        try {
+          if (supabase) await supabase.auth.signOut();
+        } catch (e) { }
+        currentUser = null;
+        showToast("Signed out successfully. Redirecting to Portal...", "ph-lock");
+        setTimeout(() => {
+          window.location.href = "portal.html";
+        }, 500);
+      } else {
+        window.location.href = "portal.html";
       }
     }
 

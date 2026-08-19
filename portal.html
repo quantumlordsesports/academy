@@ -299,20 +299,8 @@
                 class="text-transparent bg-clip-text bg-gradient-to-r from-[#E8C56A] via-[#FFD700] to-[#FFA500]">PROFILE</span>
             </h1>
             <p class="text-xs text-slate-400 font-space mt-1">
-              Sign in or create an athlete account to access Realtime Dossier
+              Sign in to access your Player Dossier & Strategy Vault
             </p>
-
-            <!-- Auth Mode Switcher -->
-            <div class="mt-4 grid grid-cols-2 p-1 rounded-xl bg-[#080B10] border border-[#E8C56A]/20 text-xs font-mono">
-              <button type="button" id="tabSignIn" onclick="setAuthMode('signin')"
-                class="py-1.5 px-3 rounded-lg font-bold uppercase transition-all bg-[#E8C56A] text-black shadow-sm">
-                Sign In
-              </button>
-              <button type="button" id="tabSignUp" onclick="setAuthMode('signup')"
-                class="py-1.5 px-3 rounded-lg font-bold uppercase transition-all text-slate-400 hover:text-white">
-                Register
-              </button>
-            </div>
           </div>
 
           <!-- Error Alert Banner -->
@@ -332,7 +320,7 @@
             </div>
           </div>
 
-          <!-- Login / Signup Form -->
+          <!-- Login Form -->
           <form id="loginForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
             <div>
               <label for="playerEmail" class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
@@ -368,18 +356,12 @@
               </div>
             </div>
 
-            <div class="pt-2 space-y-2.5">
+            <div class="pt-2">
               <button type="submit" id="authSubmitBtn"
                 class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#E8C56A] via-[#F4D068] to-[#D4A738] hover:from-[#FFDF80] hover:to-[#E8C56A] text-[#06080F] font-orbitron font-extrabold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_30px_rgba(232,197,106,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 active:scale-[0.98]">
                 <i id="authBtnIcon" class="ph-bold ph-fingerprint text-xl text-[#06080F]"></i>
                 <span id="authBtnText">AUTHENTICATE</span>
                 <i id="authBtnSpinner" class="ph-bold ph-spinner-gap text-xl animate-spin hidden text-[#06080F]"></i>
-              </button>
-
-              <button type="button" onclick="handleDemoLogin()"
-                class="w-full py-2.5 px-4 rounded-xl bg-cyber-cyan/10 hover:bg-cyber-cyan/20 border border-cyber-cyan/40 text-cyber-cyan font-mono font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2">
-                <i class="ph-bold ph-lightning text-sm"></i>
-                <span>Instant Demo Operative Access</span>
               </button>
             </div>
           </form>
@@ -1971,7 +1953,7 @@
       submitBtn.disabled = true;
       btnIcon.classList.add('hidden');
       btnSpinner.classList.remove('hidden');
-      btnText.textContent = authMode === 'signup' ? 'REGISTERING...' : 'AUTHENTICATING...';
+      btnText.textContent = 'AUTHENTICATING...';
       dismissAuthAlert();
 
       try {
@@ -1979,9 +1961,15 @@
           throw new Error("Supabase client is not initialized.");
         }
 
-        if (authMode === 'signup') {
-          // Register new player account
-          const { data, error } = await supabase.auth.signUp({
+        // Attempt sign-in with password
+        let { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        // If credentials are not yet created in Supabase Auth, auto-provision the user account
+        if (error && (error.message.includes("Invalid login credentials") || error.message.includes("invalid_credentials") || error.status === 400)) {
+          const signUpRes = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {
@@ -1992,41 +1980,31 @@
             }
           });
 
-          if (error) throw error;
-
-          if (data && data.user) {
-            currentUser = data.user;
-            if (data.session) {
-              renderAuthenticatedState(data.session);
-            } else {
-              // Sign-in directly or show confirmation
-              const signInRes = await supabase.auth.signInWithPassword({ email, password });
-              if (signInRes.data && signInRes.data.session) {
-                renderAuthenticatedState(signInRes.data.session);
-              }
-            }
-            await initProfile();
-            showToast(`Athlete Account Created: ${email}`, 'ph-user-check');
-          }
-
-        } else {
-          // Sign-in
-          const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-          });
-
-          if (error) throw error;
-
-          if (data && data.session) {
-            currentUser = data.session.user;
-            renderAuthenticatedState(data.session);
-            await initProfile();
-            showToast(`Access Authorized: ${data.session.user.email}`, 'ph-shield-check');
-          } else {
-            throw new Error("No active session returned.");
+          if (!signUpRes.error && signUpRes.data) {
+            data = signUpRes.data;
+            error = null;
           }
         }
+
+        if (error) throw error;
+
+        // Save session / profile locally
+        const user = (data && data.user) || (data && data.session && data.session.user);
+        if (user) {
+          currentUser = user;
+          const p = loadUserProfile();
+          p.email = user.email || email;
+          p.uuid_number = user.id ? user.id.substring(0, 12) : p.uuid_number;
+          saveUserProfile(p);
+        }
+
+        playCyberSFX('success');
+        showToast("Access Granted! Redirecting to Profile...", "ph-check-circle");
+
+        // Redirect to profile page
+        setTimeout(() => {
+          window.location.href = "profile.html";
+        }, 600);
 
       } catch (err) {
         console.warn("Supabase Auth Error:", err);
@@ -2041,39 +2019,8 @@
         submitBtn.disabled = false;
         btnIcon.classList.remove('hidden');
         btnSpinner.classList.add('hidden');
-        btnText.textContent = authMode === 'signup' ? 'REGISTER ATHLETE' : 'AUTHENTICATE';
+        btnText.textContent = 'AUTHENTICATE';
       }
-    }
-
-    async function handleDemoLogin() {
-      playCyberSFX('click');
-      showToast("Accessing Demo Operative Profile...", "ph-lightning");
-
-      // Auto fill and mock auth
-      currentUser = {
-        id: "demo-operative-9482",
-        email: "operative@quantumlords.com",
-        user_metadata: { ign: "QLD · SHADOW", uid_number: "1928374650" }
-      };
-      renderAuthenticatedState({ user: currentUser });
-
-      const sessionUserIdText = document.getElementById('sessionUserIdText');
-      if (sessionUserIdText) {
-        sessionUserIdText.textContent = "operative@quantumlords.com";
-      }
-
-      populateForm({
-        ign: "QLD · SHADOW",
-        uid_number: "1928374650",
-        role: "Primary Entry Rusher",
-        discord_tag: "shadow#1234",
-        rank_tier: "Grandmaster",
-        kd_ratio: 4.20,
-        bio: "Demo Operative • QuantumLords Esports Realtime Playbook",
-        avatar_url: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=400&q=80"
-      });
-
-      showToast("⚡ Demo Operative Mode Active - Ready for Realtime Editing!", "ph-check-circle");
     }
 
     async function handleSignOut() {
