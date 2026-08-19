@@ -231,6 +231,156 @@
     }
   }
 
+  // --- Glowing Nocturnal Cyber Bats (Dark Mode Background) ---
+  const bats = [];
+  const BAT_COUNT = 28;
+
+  class GlowingBat {
+    constructor(randomizePos = true) {
+      this.reset(randomizePos);
+    }
+
+    reset(randomizePos = true) {
+      this.direction = Math.random() > 0.45 ? 1 : -1;
+      this.scale = Math.random() * 0.70 + 0.38; // Multi-depth scale (0.38x to 1.08x)
+      this.x = randomizePos ? Math.random() * width : (this.direction === 1 ? -60 : width + 60);
+      this.y = Math.random() * (height * 0.85) + 30;
+
+      this.speedX = (Math.random() * 1.8 + 1.1) * this.direction * this.scale;
+      this.speedY = (Math.random() * 0.6 - 0.3) * this.scale;
+
+      this.wingPhase = Math.random() * Math.PI * 2;
+      this.wingSpeed = Math.random() * 0.22 + 0.16;
+      this.glideTimer = Math.floor(Math.random() * 120);
+      this.isGliding = false;
+
+      this.swoopPhase = Math.random() * Math.PI * 2;
+      this.swoopSpeed = Math.random() * 0.032 + 0.016;
+      this.swoopAmp = Math.random() * 1.7 + 0.6;
+
+      // Luminous Glow Aura & Eye Colors (Cyan, Violet, Gold, Crimson)
+      const glowPalettes = [
+        { glow: 'rgba(0, 240, 255, 0.65)', eye: '#00F0FF', rim: 'rgba(0, 240, 255, 0.40)' },
+        { glow: 'rgba(192, 132, 252, 0.60)', eye: '#C084FC', rim: 'rgba(192, 132, 252, 0.35)' },
+        { glow: 'rgba(255, 215, 0, 0.60)', eye: '#FFD700', rim: 'rgba(255, 215, 0, 0.35)' },
+        { glow: 'rgba(255, 0, 85, 0.60)', eye: '#FF0055', rim: 'rgba(255, 0, 85, 0.35)' }
+      ];
+      this.theme = glowPalettes[Math.floor(Math.random() * glowPalettes.length)];
+      this.alpha = Math.min(0.92, this.scale * 0.75 + 0.25);
+    }
+
+    update() {
+      this.swoopPhase += this.swoopSpeed;
+      this.glideTimer++;
+
+      // Periodic natural gliding intervals
+      if (this.glideTimer > 115 && Math.random() < 0.04) {
+        this.isGliding = true;
+        if (this.glideTimer > 175) {
+          this.isGliding = false;
+          this.glideTimer = 0;
+        }
+      } else {
+        this.isGliding = false;
+      }
+
+      if (!this.isGliding) {
+        this.wingPhase += this.wingSpeed;
+      }
+
+      this.y += Math.sin(this.swoopPhase) * this.swoopAmp + this.speedY;
+      this.x += this.speedX;
+
+      // Wrap around screen bounds
+      if (this.direction === 1 && this.x > width + 80) {
+        this.reset(false);
+      } else if (this.direction === -1 && this.x < -80) {
+        this.reset(false);
+      }
+
+      if (this.y < -50) this.y = height + 30;
+      if (this.y > height + 50) this.y = -30;
+    }
+
+    draw(ctx) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.scale(this.scale * this.direction, this.scale);
+      ctx.globalAlpha = this.alpha;
+
+      // Aerodynamic banking rotation
+      const bankAngle = Math.sin(this.swoopPhase) * 0.22;
+      ctx.rotate(bankAngle);
+
+      // Flapping position (-1 to 1)
+      const flap = this.isGliding ? 0.22 : Math.sin(this.wingPhase);
+      const wingY = flap * 12;
+
+      // Luminous Glow Aura
+      ctx.shadowColor = this.theme.glow;
+      ctx.shadowBlur = 10 * this.scale;
+
+      // Scalloped Wings (Dark silhouette with glowing luminous rim)
+      ctx.fillStyle = '#060911';
+      ctx.strokeStyle = this.theme.rim;
+      ctx.lineWidth = 1.0;
+
+      // Left Scalloped Bat Wing
+      ctx.beginPath();
+      ctx.moveTo(0, -2);
+      ctx.bezierCurveTo(-8, -11 - wingY, -19, -15 - wingY, -27, -6 - wingY * 0.8);
+      ctx.quadraticCurveTo(-21, 2 - wingY * 0.3, -17, 4);
+      ctx.quadraticCurveTo(-12, 3, -9, 5);
+      ctx.quadraticCurveTo(-4, 4, 0, 3);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Right Scalloped Bat Wing
+      ctx.beginPath();
+      ctx.moveTo(0, -2);
+      ctx.bezierCurveTo(8, -11 - wingY, 19, -15 - wingY, 27, -6 - wingY * 0.8);
+      ctx.quadraticCurveTo(21, 2 - wingY * 0.3, 17, 4);
+      ctx.quadraticCurveTo(12, 3, 9, 5);
+      ctx.quadraticCurveTo(4, 4, 0, 3);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Bat Body Torso
+      ctx.fillStyle = '#0a0f1c';
+      ctx.beginPath();
+      ctx.ellipse(0, 2, 3.2, 6.2, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Head
+      ctx.beginPath();
+      ctx.arc(0, -4.5, 3.0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Pointed Ears
+      ctx.beginPath();
+      ctx.moveTo(-2.4, -4.5);
+      ctx.lineTo(-4.2, -9.5);
+      ctx.lineTo(-1.1, -6.2);
+      ctx.moveTo(2.4, -4.5);
+      ctx.lineTo(4.2, -9.5);
+      ctx.lineTo(1.1, -6.2);
+      ctx.fill();
+
+      // Glowing Cyber Eyes with Radiant Flare
+      ctx.fillStyle = this.theme.eye;
+      ctx.shadowColor = this.theme.eye;
+      ctx.shadowBlur = 6;
+      ctx.beginPath();
+      ctx.arc(-1.2, -4.8, 0.85, 0, Math.PI * 2);
+      ctx.arc(1.2, -4.8, 0.85, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+  }
+
   // --- Main Init and Animation Loop ---
   function initAtmosphere() {
     canvas = document.getElementById('themeAtmosphereCanvas');
@@ -269,6 +419,11 @@
       nebulaClouds.push(new NebulaCloud(i));
     }
 
+    bats.length = 0;
+    for (let i = 0; i < BAT_COUNT; i++) {
+      bats.push(new GlowingBat(true));
+    }
+
     checkCurrentTheme();
     startLoop();
   }
@@ -299,7 +454,7 @@
         p.draw(ctx);
       });
     } else {
-      // Render Dark Cosmic Night Sky (Nebula Clouds & Twinkling Stars)
+      // Render Dark Cosmic Night Sky (Nebula Clouds, Twinkling Stars & Glowing Bats)
       nebulaClouds.forEach(c => {
         c.update();
         c.draw(ctx);
@@ -308,6 +463,12 @@
       stars.forEach(s => {
         s.update();
         s.draw(ctx);
+      });
+
+      // Render Glowing Nocturnal Bats across the night sky
+      bats.forEach(b => {
+        b.update();
+        b.draw(ctx);
       });
     }
 
