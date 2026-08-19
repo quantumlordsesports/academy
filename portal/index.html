@@ -63,6 +63,9 @@
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
   
+  <!-- Google reCAPTCHA v2 API -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
 
@@ -309,6 +312,10 @@
               </div>
             </div>
 
+            <!-- Google reCAPTCHA v2 Checkbox Widget -->
+            <div class="pt-1 flex justify-center overflow-hidden">
+              <div class="g-recaptcha" data-sitekey="6Lf1pI0tAAAAAMehJIQ_Dwm9f5o6ZBYsB0Lzc_sA"></div>
+            </div>
 
             <div class="pt-2">
               <button 
@@ -1445,11 +1452,46 @@
         return;
       }
 
+      // Check Google reCAPTCHA v2 Verification
+      const recaptchaToken = (window.grecaptcha ? window.grecaptcha.getResponse() : '') || 
+                             document.querySelector('[name="g-recaptcha-response"]')?.value;
+
+      if (!recaptchaToken) {
+        playCyberSFX('alert');
+        showAuthAlert("Bot Verification Required: Please complete the Google reCAPTCHA challenge.");
+        return;
+      }
+
       submitBtn.disabled = true;
       btnIcon.classList.add('hidden');
       btnSpinner.classList.remove('hidden');
       btnText.textContent = 'AUTHENTICATING...';
       dismissAuthAlert();
+
+      // Verify reCAPTCHA Token with backend serverless endpoint
+      try {
+        const verifyRes = await fetch('/api/verify-recaptcha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken })
+        });
+
+        if (verifyRes.status === 400 || verifyRes.status === 403) {
+          const errData = await verifyRes.json().catch(() => ({}));
+          if (window.grecaptcha) window.grecaptcha.reset();
+          throw new Error(errData.error || "Security verification failed. Please tick the checkbox again.");
+        }
+      } catch (verifyErr) {
+        console.warn("[reCAPTCHA Verification]", verifyErr.message);
+        if (verifyErr.message.includes("Security verification failed")) {
+          submitBtn.disabled = false;
+          btnIcon.classList.remove('hidden');
+          btnSpinner.classList.add('hidden');
+          btnText.textContent = 'AUTHENTICATE';
+          showAuthAlert(verifyErr.message);
+          return;
+        }
+      }
 
       try {
         if (!supabaseClient) {

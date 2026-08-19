@@ -1588,6 +1588,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     font-size: clamp(2.2rem, 9vw, 3.4rem);
   }
 
+  /* Responsive Google reCAPTCHA v2 widget */
+  .g-recaptcha {
+    max-width: 100%;
+    overflow-x: auto;
+    transform-origin: 0 0;
+  }
 }
 
 @keyframes navMenuSlideDown {
@@ -1609,7 +1615,12 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .player-card__photo { min-height: 14rem; }
   .marquee-track { animation-duration: calc(var(--marquee-duration, 14s) * 1.4); }
   .stats-band { grid-template-columns: 1fr !important; }
-  
+  /* Scale reCAPTCHA v2 slightly on narrow phones to guarantee zero horizontal scroll */
+  .g-recaptcha {
+    transform: scale(0.88);
+    transform-origin: left top;
+    margin-bottom: -6px;
+  }
 }
 
 /* ============================================================
