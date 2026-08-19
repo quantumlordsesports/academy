@@ -2422,18 +2422,68 @@ html[data-theme="light"] .logo-frame {
   box-shadow: 0 10px 30px rgba(18, 22, 36, 0.08), 0 0 25px rgba(184, 130, 12, 0.12);
 }
 
+/* Welcome Panel — Bright Theme: Jet-black frosted glass card */
 html[data-theme="light"] .welcome-panel {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(184, 130, 12, 0.25);
-  box-shadow: 0 14px 35px rgba(18, 22, 36, 0.07);
+  background: linear-gradient(135deg, rgba(8, 10, 18, 0.96), rgba(4, 5, 12, 0.92)) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
 }
 
-html[data-theme="light"] .welcome-line {
-  color: #272c3d;
+html[data-theme="light"] .welcome-panel::before {
+  background: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.2)) !important;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.6) !important;
 }
 
-html[data-theme="light"] .welcome-line--accent {
-  color: var(--accent-deep);
+/* #QLD badge — pure black stamp */
+html[data-theme="light"] .welcome-badge {
+  background: linear-gradient(135deg, #1a1a1a, #000000) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+/* Main quote text */
+html[data-theme="light"] .hero-section .welcome-line {
+  color: rgba(230, 228, 220, 0.92) !important;
+  text-shadow: none !important;
+  font-style: italic !important;
+}
+
+/* "Welcome, you son of a Human.!⚡" — animated electric accent */
+@keyframes electricPulse {
+  0%, 100% {
+    color: #ffffff;
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.9),
+      0 0 14px rgba(200, 220, 255, 0.7),
+      0 0 28px rgba(150, 190, 255, 0.4);
+  }
+  30% {
+    color: #e8f4ff;
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 10px rgba(180, 210, 255, 0.5),
+      0 0 22px rgba(120, 170, 255, 0.3);
+  }
+  60% {
+    color: #ffffff;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 1),
+      0 0 18px rgba(210, 230, 255, 0.8),
+      0 0 35px rgba(160, 200, 255, 0.5),
+      0 0 55px rgba(100, 160, 255, 0.2);
+  }
+}
+
+html[data-theme="light"] .hero-section .welcome-line--accent {
+  color: #ffffff !important;
+  animation: electricPulse 2.8s ease-in-out infinite !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 800 !important;
 }
 
 /* ============================================================
@@ -2941,14 +2991,9 @@ html[data-theme="light"] .hero-section h1:not(#hero-title) {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
 }
 
-html[data-theme="light"] .hero-section .welcome-line {
-  color: #ffffff !important;
-  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95) !important;
-}
-
+/* (hero welcome-line & accent already handled above in the welcome panel block) */
 html[data-theme="light"] .hero-section .welcome-line--accent {
-  color: #00F0FF !important;
-  text-shadow: 0 0 15px rgba(0, 240, 255, 0.7) !important;
+  animation: electricPulse 2.8s ease-in-out infinite !important;
 }
 
 html[data-theme="light"] .hero-section .eyebrow {
