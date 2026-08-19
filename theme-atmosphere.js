@@ -517,29 +517,25 @@
       });
     }
 
-    // 55% chance of secondary multi-bolt burst in another quadrant
-    if (Math.random() < 0.55 && activeStrikes.length < 7) {
+    // Rare 15% chance of secondary multi-bolt burst
+    if (Math.random() < 0.15 && activeStrikes.length < 2) {
       setTimeout(() => {
         if (currentTheme === 'dark') {
           spawnStrike();
         }
-      }, Math.random() * 110 + 40);
+      }, Math.random() * 180 + 90);
     }
   }
 
   let lightningTimer = 0;
-  let nextLightningInterval = Math.floor(Math.random() * 25) + 15; // Non-stop action (~0.25s to 0.65s)
+  let nextLightningInterval = Math.floor(Math.random() * 200) + 180; // Relaxed cinematic pacing (~3s to 6.5s)
 
   function updateAndDrawLightning(ctx) {
     lightningTimer++;
     if (lightningTimer >= nextLightningInterval) {
-      // Spawn 1 to 2 simultaneous strikes in different page parts
-      const count = Math.random() < 0.4 ? 2 : 1;
-      for (let k = 0; k < count; k++) {
-        spawnStrike();
-      }
+      spawnStrike();
       lightningTimer = 0;
-      nextLightningInterval = Math.floor(Math.random() * 30) + 15; // 0.25 to 0.75 seconds
+      nextLightningInterval = Math.floor(Math.random() * 220) + 180; // 3.0 to 6.5 seconds
     }
 
     for (let i = activeStrikes.length - 1; i >= 0; i--) {
@@ -553,56 +549,37 @@
 
       ctx.save();
       const currentIntensity = strike.flicker && Math.random() < 0.30 
-        ? strike.intensity * 0.65 
+        ? strike.intensity * 0.45 
         : strike.intensity;
 
-      // 1. Ambient Sky Flash Glow
-      const flashRadius = strike.type === 'sheet-flash' ? width * 1.2 : width * 0.9;
-      const flashGrad = ctx.createRadialGradient(
-        strike.x, strike.y, 0,
-        strike.x, strike.y, flashRadius
-      );
-      flashGrad.addColorStop(0, strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.40})`));
-      flashGrad.addColorStop(0.4, strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.15})`));
-      flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = flashGrad;
+      // Full screen atmospheric sheet flash
+      ctx.fillStyle = strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.35})`);
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Draw Lightning Bolt Paths
-      if (strike.bolts.length > 0) {
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-
-        // Outer Wide Electric Aura
-        ctx.strokeStyle = strike.color.glow.replace(/[\d\.]+\)$/, `${currentIntensity * 0.9})`);
-        ctx.lineWidth = 6.5;
-        ctx.beginPath();
-        strike.bolts.forEach(seg => {
-          ctx.moveTo(seg.x1, seg.y1);
-          ctx.lineTo(seg.x2, seg.y2);
-        });
-        ctx.stroke();
-
-        // Saturated Mid Core
-        ctx.strokeStyle = strike.color.glow;
-        ctx.lineWidth = 3.5;
-        ctx.beginPath();
-        strike.bolts.forEach(seg => {
-          ctx.moveTo(seg.x1, seg.y1);
-          ctx.lineTo(seg.x2, seg.y2);
-        });
-        ctx.stroke();
-
-        // High-Voltage White Core
-        ctx.strokeStyle = strike.color.core;
-        ctx.lineWidth = 1.6;
-        ctx.beginPath();
-        strike.bolts.forEach(seg => {
-          ctx.moveTo(seg.x1, seg.y1);
-          ctx.lineTo(seg.x2, seg.y2);
-        });
-        ctx.stroke();
+      // Outer glow layer
+      ctx.strokeStyle = strike.color.glow;
+      ctx.lineWidth = 4.5;
+      ctx.shadowColor = strike.color.glow;
+      ctx.shadowBlur = 18;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      for (const seg of strike.bolts) {
+        ctx.moveTo(seg.x1, seg.y1);
+        ctx.lineTo(seg.x2, seg.y2);
       }
+      ctx.stroke();
+
+      // Inner intense core layer
+      ctx.strokeStyle = strike.color.core;
+      ctx.lineWidth = 1.8;
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      for (const seg of strike.bolts) {
+        ctx.moveTo(seg.x1, seg.y1);
+        ctx.lineTo(seg.x2, seg.y2);
+      }
+      ctx.stroke();
 
       ctx.restore();
     }
@@ -630,21 +607,13 @@
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Interactive pointerdown thunderbolt strike at touch / click coordinates
+    // Interactive pointerdown thunderbolt strike with 1.5s cooldown
+    let lastClickStrike = 0;
     window.addEventListener('pointerdown', (e) => {
-      if (currentTheme === 'dark') {
+      const now = Date.now();
+      if (currentTheme === 'dark' && now - lastClickStrike > 1500) {
+        lastClickStrike = now;
         spawnStrike('sky-to-ground', e.clientX, e.clientY);
-      }
-    }, { passive: true });
-
-    // Dynamic scroll thunder burst
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-      if (currentTheme === 'dark' && Math.abs(window.scrollY - lastScrollY) > 150) {
-        lastScrollY = window.scrollY;
-        if (Math.random() < 0.7) {
-          spawnStrike();
-        }
       }
     }, { passive: true });
 
