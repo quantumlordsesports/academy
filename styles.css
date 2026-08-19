@@ -3322,6 +3322,170 @@ html[data-theme="light"] .sponsor-card {
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
 }
 
+/* ============================================================
+   Title Guild Sponsor Card (Google Inc) — Bright Theme
+   Jet-black frosted glass on light background
+   ============================================================ */
+
+/* --- Card shell --- */
+html[data-theme="light"] .title-sponsor-hero {
+  background: linear-gradient(145deg, rgba(6, 8, 16, 0.97), rgba(10, 12, 22, 0.94)) !important;
+  border: 1px solid rgba(232, 197, 106, 0.55) !important;
+  border-radius: 24px !important;
+  box-shadow:
+    0 20px 55px -10px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 45px rgba(232, 197, 106, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Top shimmer sweep */
+html[data-theme="light"] .title-sponsor-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(232, 197, 106, 0.07), transparent);
+  pointer-events: none;
+  animation: sponsorShimmer 4s ease-in-out infinite;
+}
+
+@keyframes sponsorShimmer {
+  0%   { left: -60%; }
+  60%  { left: 120%; }
+  100% { left: 120%; }
+}
+
+/* --- 👑 OFFICIAL TITLE GUILD SPONSOR badge pill --- */
+html[data-theme="light"] .title-sponsor-hero > div:first-child {
+  background: linear-gradient(135deg, rgba(232, 197, 106, 0.18), rgba(185, 143, 47, 0.12)) !important;
+  border: 1px solid rgba(232, 197, 106, 0.5) !important;
+  color: #E8C56A !important;
+  text-shadow: 0 0 12px rgba(232, 197, 106, 0.55) !important;
+  box-shadow: 0 4px 16px rgba(232, 197, 106, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* --- GOOGLE INC. heading (h3 inside card) --- */
+html[data-theme="light"] .title-sponsor-hero h3 {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 18px rgba(232, 197, 106, 0.45),
+    0 0 40px rgba(232, 197, 106, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.8) !important;
+  letter-spacing: 3px !important;
+}
+
+/* --- Description paragraph --- */
+html[data-theme="light"] .title-sponsor-hero p {
+  color: rgba(210, 215, 230, 0.88) !important;
+  text-shadow: none !important;
+}
+
+/* --- Logo image: keep it bright & visible --- */
+html[data-theme="light"] .title-sponsor-hero img {
+  filter: drop-shadow(0 0 18px rgba(232, 197, 106, 0.4)) brightness(1.05) !important;
+}
+
+/* --- Sponsor pills row (🏆 ⚡ 🎯) --- */
+html[data-theme="light"] .title-sponsor-hero .sponsor-pill {
+  background: rgba(232, 197, 106, 0.14) !important;
+  border: 1px solid rgba(232, 197, 106, 0.45) !important;
+  color: #F0CF7A !important;
+  text-shadow: 0 0 10px rgba(232, 197, 106, 0.4) !important;
+  box-shadow: 0 3px 12px rgba(232, 197, 106, 0.12) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all 0.25s ease !important;
+}
+
+html[data-theme="light"] .title-sponsor-hero .sponsor-pill:hover {
+  background: rgba(232, 197, 106, 0.25) !important;
+  border-color: rgba(232, 197, 106, 0.7) !important;
+  color: #FFD700 !important;
+  box-shadow: 0 0 18px rgba(232, 197, 106, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ============================================================
+   Priority Routing / Fast Dispatch Panel — Bright Theme
+   Jet-black frosted glass, gold accents, vivid category cards
+   ============================================================ */
+
+/* Outer wrapper: the classless div wrapping the whole routing block */
+html[data-theme="light"] .contact-section > div:last-child {
+  background: linear-gradient(145deg, rgba(5, 7, 14, 0.97), rgba(8, 10, 20, 0.93)) !important;
+  border: 1px solid rgba(232, 197, 106, 0.45) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 24px 60px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 40px rgba(232, 197, 106, 0.1) !important;
+  backdrop-filter: blur(26px) !important;
+  -webkit-backdrop-filter: blur(26px) !important;
+}
+
+/* ⚡ PRIORITY ROUTING PROTOCOL — gold badge text */
+html[data-theme="light"] .contact-section > div:last-child span[style*="color: #E8C56A"],
+html[data-theme="light"] .contact-section > div:last-child span[style*="color:#E8C56A"] {
+  color: #F0CF7A !important;
+  text-shadow: 0 0 12px rgba(232, 197, 106, 0.5) !important;
+}
+
+/* FAST DISPATCH GUIDELINES — h4 heading */
+html[data-theme="light"] .contact-section > div:last-child h4 {
+  color: #ffffff !important;
+  text-shadow:
+    0 0 16px rgba(232, 197, 106, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* TYPICAL RESPONSE: < 12 HOURS — response time badge */
+html[data-theme="light"] .contact-section > div:last-child span[style*="color: #94a3b8"],
+html[data-theme="light"] .contact-section > div:last-child span[style*="color:#94a3b8"] {
+  color: rgba(210, 220, 240, 0.85) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* .routing-tag cards — override the generic white-card rule specifically here */
+html[data-theme="light"] .contact-section .routing-tag {
+  background: linear-gradient(145deg, rgba(12, 15, 26, 0.96), rgba(8, 10, 20, 0.92)) !important;
+  border: 1px solid rgba(232, 197, 106, 0.28) !important;
+  box-shadow:
+    0 8px 24px -6px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.04) !important;
+  border-radius: 14px !important;
+  transition: all 0.3s ease !important;
+}
+
+html[data-theme="light"] .contact-section .routing-tag:hover {
+  border-color: rgba(232, 197, 106, 0.6) !important;
+  background: linear-gradient(145deg, rgba(18, 22, 36, 0.98), rgba(10, 14, 24, 0.95)) !important;
+  box-shadow:
+    0 14px 36px -8px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(232, 197, 106, 0.12) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Category title text inside each .routing-tag (inline color: #fff) */
+html[data-theme="light"] .contact-section .routing-tag div[style*="color: #fff"],
+html[data-theme="light"] .contact-section .routing-tag div[style*="color:#fff"] {
+  color: #f0ede4 !important;
+  text-shadow: 0 0 10px rgba(232, 197, 106, 0.2) !important;
+}
+
+/* Description text inside each .routing-tag (inline color: #94a3b8) */
+html[data-theme="light"] .contact-section .routing-tag div[style*="color: #94a3b8"],
+html[data-theme="light"] .contact-section .routing-tag div[style*="color:#94a3b8"] {
+  color: rgba(185, 195, 218, 0.82) !important;
+}
+
 /* Contact in Light Theme */
 html[data-theme="light"] .social-list a,
 html[data-theme="light"] .email-card {
