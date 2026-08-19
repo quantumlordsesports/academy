@@ -2940,4 +2940,164 @@ html[data-theme="light"] .preloader-bar {
 .cyber-modal-backdrop.active .cyber-modal-box {
   transform: scale(1);
 }
+
+/* ==========================================================================
+   Smooth Cyber Communications Hub (Contact Section & Page)
+   ========================================================================== */
+.contact-hero-glow {
+  position: relative;
+  overflow: hidden;
+}
+.contact-hero-glow::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, rgba(232, 197, 106, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.comms-card {
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.25rem;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px -10px rgba(0,0,0,0.85);
+}
+.comms-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 22px 45px -10px rgba(0,0,0,0.95), 0 0 30px rgba(0, 240, 255, 0.2);
+}
+.comms-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.comms-card:hover::after {
+  opacity: 1;
+}
+.social-pill-card {
+  background: rgba(15, 20, 28, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.social-pill-card:hover {
+  background: rgba(26, 35, 48, 0.95);
+  border-color: rgba(0, 240, 255, 0.5);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.25);
+}
+.action-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.action-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.action-btn-secondary:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: rgba(0, 240, 255, 0.5);
+  color: #00F0FF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+.routing-tag {
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: all 0.25s ease;
+}
+.routing-tag:hover {
+  border-color: rgba(232, 197, 106, 0.4);
+  background: rgba(22, 27, 34, 0.9);
+  transform: translateY(-3px);
+}
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00FF66;
+  box-shadow: 0 0 10px #00FF66;
+  animation: pulseGreen 2s infinite;
+}
+@keyframes pulseGreen {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+.toast-copy {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid #00F0FF;
+  color: #00F0FF;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(0, 240, 255, 0.35);
+  z-index: 10000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.toast-copy.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 

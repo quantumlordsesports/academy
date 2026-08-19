@@ -1098,22 +1098,213 @@
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
 
-    <section id="contact" class="section-block contact-section">
-      <div class="section-header">
-        <p class="eyebrow">Contact</p>
-        <h2>Get in touch</h2>
-        <p>Follow the squad, book a media call, or reach out for sponsorship inquiries.</p>
+    <section id="contact" class="section-block contact-section contact-hero-glow" style="padding: 4rem 1.5rem 5rem; max-width: 1200px; margin: 0 auto;">
+      
+      <!-- Section Header -->
+      <div class="section-header" style="text-align: center; margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        <p class="eyebrow" style="color: #00F0FF; letter-spacing: 2px;">OFFICIAL COMMUNICATIONS</p>
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: clamp(2.2rem, 5vw, 3.2rem); color: #fff; letter-spacing: 2px; margin: 0.5rem 0 1rem; text-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
+          GET IN TOUCH
+        </h2>
+        <p style="max-width: 640px; margin: 0 auto; color: #94a3b8; font-size: 1.05rem; line-height: 1.6;">
+          Direct communication channels with QuantumLords Esports management for official tournament invitations, scrim bookings, commercial brand sponsorships, and press inquiries.
+        </p>
       </div>
-      <div class="contact-panel">
-        <div class="contact-card">
-          <h3>Socials</h3>
-          <ul id="social-links" class="social-list"></ul>
+
+      <!-- Primary Management Dispatch Cards (Discord & Email) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        
+        <!-- 1. Official Discord Headquarters Card -->
+        <div class="comms-card" style="border-color: rgba(88, 101, 242, 0.35); background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(18, 20, 36, 0.9) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: rgba(0, 255, 102, 0.1); border: 1px solid rgba(0, 255, 102, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00FF66; font-weight: 700;">
+              <span class="pulse-dot"></span>
+              <span>LIVE SQUAD DISPATCH</span>
+            </div>
+            <img src="assets/social/discord Logo.png" alt="Discord" style="width: 32px; height: 32px; object-fit: contain;" onerror="this.src='assets/social/discord.png'" />
+          </div>
+
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0 0 0.5rem;">
+            Discord HQ
+          </h3>
+          <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Fastest communication channel. Connect directly with coaches, management, and roster players for scrim scheduling and live support.
+          </p>
+
+          <!-- Discord Direction Pill -->
+          <div style="background: rgba(10, 14, 22, 0.85); border: 1px solid rgba(88, 101, 242, 0.25); border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Direct Management DM</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #5865F2; font-weight: 700;">@ak47shahriar_31706</div>
+            </div>
+            <button type="button" onclick="copyText('@ak47shahriar_31706', 'Discord Handle Copied ✓')" class="action-btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">
+              📋 Copy
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener" class="action-btn-primary" style="background: linear-gradient(135deg, #5865F2, #4752C4); color: #fff; box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4); flex-grow: 1;">
+              <span>Join Discord Server</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
-        <div class="contact-card">
-          <h3>Email</h3>
-          <div id="contact-emails" class="contact-emails"></div>
+
+        <!-- 2. Official Management Email Card -->
+        <div class="comms-card" style="border-color: rgba(0, 240, 255, 0.35); background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(10, 22, 32, 0.9) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00F0FF; font-weight: 700;">
+              ⚡ BUSINESS & INQUIRIES
+            </div>
+            <img src="assets/social/gmail.webp" alt="Gmail" style="width: 30px; height: 30px; object-fit: contain;" onerror="this.src='assets/social/gmail.webp'" />
+          </div>
+
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0 0 0.5rem;">
+            Official Email
+          </h3>
+          <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Formal business communications, commercial sponsorship agreements, tournament registrations, and media relations.
+          </p>
+
+          <!-- Email Address Display & Copy Pill -->
+          <div style="background: rgba(10, 14, 22, 0.85); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; overflow: hidden;">
+            <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.5rem;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Management Inbox</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #00F0FF; font-weight: 700; overflow: hidden; text-overflow: ellipsis;">quantumlordsesports@gmail.com</div>
+            </div>
+            <button type="button" onclick="copyText('quantumlordsesports@gmail.com', 'Email Address Copied ✓')" class="action-btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; flex-shrink: 0;">
+              📋 Copy
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=quantumlordsesports@gmail.com" target="_blank" rel="noopener noreferrer" class="action-btn-primary" style="background: linear-gradient(135deg, #00F0FF, #0284c7); color: #06080F; box-shadow: 0 6px 20px rgba(0, 240, 255, 0.35); flex-grow: 1;">
+              <span>Send via Gmail</span>
+              <span>→</span>
+            </a>
+            <a href="mailto:quantumlordsesports@gmail.com" class="action-btn-secondary" style="display: inline-flex; align-items: center; justify-content: center;">
+              <span>Mail App</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Official Social Channels Network Grid -->
+      <div style="margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+          <p class="eyebrow" style="color: #E8C56A; letter-spacing: 2px;">SOCIAL MEDIA BROADCASTS</p>
+          <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin: 0;">
+            OFFICIAL CHANNELS & COMMUNITY
+          </h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+          
+          <!-- Discord -->
+          <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(88, 101, 242, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(88, 101, 242, 0.3);">
+                <img src="assets/social/discord Logo.png" alt="Discord" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='assets/social/discord.png'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Discord</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #5865F2;">Community & Scrims</div>
+              </div>
+            </div>
+            <span style="font-size: 1.2rem; color: #5865F2;">→</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(225, 48, 108, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(225, 48, 108, 0.3);">
+                <img src="assets/social/instagram 02.png" alt="Instagram" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='assets/social/instagram.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Instagram</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #E1306C;">@quantumlordsesports</div>
+              </div>
+            </div>
+            <span style="font-size: 1.2rem; color: #E1306C;">→</span>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@QuantimLordsEsports" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 0, 0, 0.3);">
+                <img src="assets/social/youtube 02.webp" alt="YouTube" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='assets/social/youtube.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">YouTube</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #FF0000;">Highlights & Matches</div>
+              </div>
+            </div>
+            <span style="font-size: 1.2rem; color: #FF0000;">→</span>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://web.facebook.com/profile.php?id=61575173494169" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(24, 119, 242, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(24, 119, 242, 0.3);">
+                <img src="assets/social/facebook.png" alt="Facebook" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='folder/facebook.png.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Facebook</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #1877F2;">Official Community Page</div>
+              </div>
+            </div>
+            <span style="font-size: 1.2rem; color: #1877F2;">→</span>
+          </a>
+
         </div>
       </div>
+
+      <!-- Fast Inquiry Routing & Response Guidelines -->
+      <div style="background: rgba(15, 20, 28, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(232, 197, 106, 0.3); border-radius: 20px; padding: 2rem; position: relative; z-index: 1;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #E8C56A; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+              ⚡ PRIORITY ROUTING PROTOCOL
+            </span>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; color: #fff; margin: 0.25rem 0 0;">
+              FAST DISPATCH GUIDELINES
+            </h4>
+          </div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);">
+            TYPICAL RESPONSE: &lt; 12 HOURS
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+          
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🏆</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Scrims & Tournaments</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Custom room invites, tournament slot bookings, and tier-1 matches.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🤝</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Sponsorships & Brands</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Jersey placement, hardware reviews, and commercial partnerships.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🎬</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Media & Creators</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Interviews, press releases, creator crossovers, and streaming collabs.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🛡️</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Talent & Academy</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Roster trials, recruitment forms, and coaching program inquiries.</div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
   </main>
 
@@ -1203,7 +1394,45 @@
     </div>
   </div>
 
+  <!-- Interactive Copy Toast Notification -->
+  <div id="copyToast" class="toast-copy" role="status" aria-live="polite">
+    Copied to Clipboard ✓
+  </div>
+
   <script>
+    function copyText(text, message) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => fallbackCopy(text, message));
+      } else {
+        fallbackCopy(text, message);
+      }
+    }
+
+    function fallbackCopy(text, message) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(message);
+      } catch (err) {
+        alert('Copied: ' + text);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copyToast');
+      if (toast) {
+        toast.textContent = message || 'Copied to Clipboard ✓';
+        toast.classList.add('active');
+        setTimeout(() => toast.classList.remove('active'), 2500);
+      }
+    }
+
     function openBookLockModal(bookUrl, bookTitle) {
       const modal = document.getElementById('bookLockModal');
       const input = document.getElementById('bookLockPassword');
