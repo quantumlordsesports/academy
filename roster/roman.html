@@ -229,7 +229,7 @@
             aria-label="Toggle Video Sound"
           >
             <span id="spotlightMuteIcon">🔇</span>
-            <span id="spotlightMuteText">UNMUTE AUDIO</span>
+            <span id="spotlightMuteText">UNMUTE</span>
           </button>
 
           <!-- Pause / Play Button -->
@@ -240,7 +240,7 @@
             aria-label="Pause/Play Video"
           >
             <span id="spotlightPlayIcon">❚❚</span>
-            <span id="spotlightPlayText">PAUSE FEED</span>
+            <span id="spotlightPlayText">PAUSE</span>
           </button>
 
         </div>
@@ -438,11 +438,11 @@
           video.muted = !video.muted;
           if (video.muted) {
             muteIcon.textContent = '🔇';
-            muteText.textContent = 'UNMUTE AUDIO';
+            muteText.textContent = 'UNMUTE';
             muteBtn.classList.remove('bg-cyber-cyan/30', 'border-cyber-cyan');
           } else {
             muteIcon.textContent = '🔊';
-            muteText.textContent = 'MUTE AUDIO';
+            muteText.textContent = 'MUTE';
             muteBtn.classList.add('bg-cyber-cyan/30', 'border-cyber-cyan');
           }
         });
@@ -454,12 +454,12 @@
           if (video.paused) {
             video.play();
             playIcon.textContent = '❚❚';
-            playText.textContent = 'PAUSE FEED';
+            playText.textContent = 'PAUSE';
             playBtn.classList.remove('bg-cyber-gold/30', 'border-cyber-gold');
           } else {
             video.pause();
             playIcon.textContent = '▶';
-            playText.textContent = 'RESUME FEED';
+            playText.textContent = 'RESUME';
             playBtn.classList.add('bg-cyber-gold/30', 'border-cyber-gold');
           }
         });

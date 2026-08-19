@@ -340,7 +340,7 @@
               class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-black/80 hover:bg-cyber-cyan/20 border border-cyber-cyan/70 text-cyber-cyan font-mono text-xs font-bold tracking-wider flex items-center space-x-2 backdrop-blur-md transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]"
               title="Toggle Audio" aria-label="Toggle Audio">
               <span id="recruitMuteIcon">🔇</span>
-              <span id="recruitMuteText" class="hidden sm:inline">UNMUTE AUDIO</span>
+              <span id="recruitMuteText" class="hidden sm:inline">UNMUTE</span>
             </button>
 
             <!-- Pause / Play Button -->
@@ -700,11 +700,11 @@
               video.muted = !video.muted;
               if (video.muted) {
                 muteIcon.textContent = '🔇';
-                if (muteText) muteText.textContent = 'UNMUTE AUDIO';
+                if (muteText) muteText.textContent = 'UNMUTE';
                 muteBtn.classList.remove('bg-cyber-cyan/40');
               } else {
                 muteIcon.textContent = '🔊';
-                if (muteText) muteText.textContent = 'MUTE AUDIO';
+                if (muteText) muteText.textContent = 'MUTE';
                 muteBtn.classList.add('bg-cyber-cyan/40');
               }
             });
@@ -721,7 +721,7 @@
               } else {
                 video.pause();
                 playIcon.textContent = '▶';
-                if (playText) playText.textContent = 'PLAY';
+                if (playText) playText.textContent = 'RESUME';
                 playBtn.classList.add('bg-cyber-crimson/40');
               }
             });
