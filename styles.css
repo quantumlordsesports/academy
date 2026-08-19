@@ -2894,6 +2894,182 @@ html[data-theme="light"] .italic.font-space {
   color: #1e293b !important;
 }
 
+/* 10. Main Page Video Hero Title & Branding (Preserve crisp white branding over dark background video) */
+html[data-theme="light"] .hero-section #hero-title,
+html[data-theme="light"] .hero-section h1,
+html[data-theme="light"] .hero-section .welcome-line {
+  color: #ffffff !important;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 240, 255, 0.4) !important;
+}
+
+html[data-theme="light"] .hero-section .welcome-line--accent {
+  color: #00F0FF !important;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.7) !important;
+}
+
+html[data-theme="light"] .hero-section .eyebrow {
+  color: #00F0FF !important;
+}
+
+/* 11. Roster Tree Section on Main Page */
+html[data-theme="light"] .tree-origin-node {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08), 0 0 25px rgba(217, 119, 6, 0.12) !important;
+}
+
+html[data-theme="light"] .tree-origin-title {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .tree-origin-desc {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .tree-origin-tag {
+  color: #b45309 !important;
+  background: rgba(217, 119, 6, 0.10) !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+html[data-theme="light"] .tree-root-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07) !important;
+}
+
+html[data-theme="light"] .tree-root-card:hover {
+  background: #ffffff !important;
+  border-color: rgba(217, 119, 6, 0.5) !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 0 25px rgba(217, 119, 6, 0.18) !important;
+}
+
+html[data-theme="light"] .tree-player-ign {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .tree-player-name {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .tree-player-district {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .tree-role-tag {
+  background: rgba(217, 119, 6, 0.10) !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .tree-in-game-tag {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0284c7 !important;
+}
+
+html[data-theme="light"] .tree-action-cta {
+  color: #b45309 !important;
+  border-top-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Roster Menu Section (roster/index.html) */
+html[data-theme="light"] .roster-hero-title,
+html[data-theme="light"] .division-heading,
+html[data-theme="light"] .player-card h3,
+html[data-theme="light"] .player-card .font-orbitron {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .player-card p,
+html[data-theme="light"] .player-card .text-slate-300,
+html[data-theme="light"] .player-card .text-slate-400 {
+  color: #334155 !important;
+}
+
+/* 12. Sponsors Section on Main Page */
+html[data-theme="light"] .sponsor-pill {
+  background: rgba(217, 119, 6, 0.10) !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .floating-sponsor-card h4 {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .floating-sponsor-card p {
+  color: #334155 !important;
+}
+
+/* 13. Communications & Contact Hub (Main Page & Contact Page) */
+html[data-theme="light"] .comms-card h3 {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .comms-card p {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .comms-card [style*="background: rgba(10, 14, 22"] {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html[data-theme="light"] .social-pill-card h4 {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .social-pill-card span {
+  color: #475569 !important;
+}
+
+/* 14. Tactical Library Character Skill Meta & Weapon Meta Matrix (tactics/index.html) */
+html[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+html[data-theme="light"] .glass-card:hover {
+  background: #ffffff !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .glass-card h3,
+html[data-theme="light"] .glass-card h4 {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] .glass-card p {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .glass-card .bg-\[\#080B10\] {
+  background-color: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .glass-card .bg-\[\#080B10\] strong,
+html[data-theme="light"] .glass-card .bg-\[\#080B10\] .text-white {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .glass-card .bg-\[\#080B10\] p {
+  color: #475569 !important;
+}
+
+/* 15. Player Profiles (nishad, roman, santo, shahriar) */
+html[data-theme="light"] main section h2,
+html[data-theme="light"] main section h3 {
+  color: #020617 !important;
+}
+
+html[data-theme="light"] main section p,
+html[data-theme="light"] main section li {
+  color: #334155 !important;
+}
+
 /* 10. Tables & Forms in Light Theme */
 html[data-theme="light"] input,
 html[data-theme="light"] textarea,
