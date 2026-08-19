@@ -298,12 +298,9 @@
       <ul id="primary-navigation" class="nav-list">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="roster/index.html">Roster</a></li>
-        <li><a href="achievements/index.html">Achievements</a></li>
-        <li><a href="news/index.html">News</a></li>
-        <li><a href="tournaments/index.html">Tournaments</a></li>
-        <li><a href="free-fire/index.html">Free Fire</a></li>
+        <li><a href="team-updates/index.html">Team Updates</a></li>
+        <li><a href="tactics/index.html">Tactics Library</a></li>
         <li><a href="recruit/index.html">Recruit</a></li>
-        <li><a href="sponsors/index.html">Sponsors</a></li>
         <li><a href="contact/index.html">Contact</a></li>
         <li class="nav-theme-item">
           <button class="theme-toggle" aria-label="Toggle Bright/Dark Theme" title="Toggle Dark / Bright Theme">
@@ -573,56 +570,123 @@
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
 
-    <section id="highlights" class="section-block">
+    <!-- Team Updates Consolidated Section -->
+    <section id="team-updates" class="section-block section-alt">
       <div class="section-header">
-        <p class="eyebrow">News & Highlights</p>
-        <h2>Fresh coverage and highlights</h2>
+        <p class="eyebrow">Team Updates</p>
+        <h2>Championship Log & News</h2>
+        <p>Title-winning trophies, fresh match coverage, and upcoming tournament scrims.</p>
       </div>
-      <div id="news-grid" class="card-grid"></div>
-    </section>
 
-    <div class="section-divider" aria-hidden="true"><span></span></div>
-
-    <section id="achievements" class="section-block section-alt">
-      <div class="section-header">
-        <p class="eyebrow">Achievements</p>
-        <h2>Title-winning moments</h2>
-        <p>Recent tournament results that shaped the squad’s momentum and identity.</p>
-      </div>
-      <div id="achievements-grid" class="achievement-grid"></div>
-    </section>
-
-    <div class="section-divider" aria-hidden="true"><span></span></div>
-
-    <section id="tournament" class="section-block">
-      <div class="section-header">
-        <p class="eyebrow">Tournament</p>
-        <h2>Upcoming & Past Tournaments</h2>
-        <p>Schedule, results, and highlights from our competitive events.</p>
-      </div>
-      <div id="tournament-grid" class="card-grid">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title">No tournaments yet</h3>
-            <p class="card-text">We'll list upcoming matches and past results here.</p>
+      <div class="card-grid">
+        <!-- Card 1: 1st Place Championship -->
+        <article class="card highlight-card">
+          <div class="highlight-thumb">
+            <img src="assets/matches/Result-FFBPL.png" alt="FFBPL Championship" onerror="this.src='folder/Result-FFBPL.png'" />
+            <div class="highlight-overlay">
+              <div class="overlay-content">
+                <span class="play-btn">🏆</span>
+                <h4>1ST PLACE CHAMPION</h4>
+              </div>
+            </div>
           </div>
-        </div>
+          <div class="card-body">
+            <p class="achievement-meta">July 15, 2026 · Regional Finals</p>
+            <h3>Free Fire Bangladesh Premier League (FFBPL)</h3>
+            <p class="card-text">Dominant finals lobby performance securing 1st place championship trophy and $18,000 USD prize.</p>
+          </div>
+        </article>
+
+        <!-- Card 2: Clutch Match Comeback -->
+        <article class="card highlight-card">
+          <div class="highlight-thumb">
+            <img src="assets/matches/png result.png" alt="Finals Push Comeback" onerror="this.src='folder/Result-FFBPL.png'" />
+            <div class="highlight-overlay">
+              <div class="overlay-content">
+                <span class="play-btn">▶</span>
+                <h4>VIEW RECAP</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="achievement-meta">July 8, 2026 · Highlights</p>
+            <h3>QuantumLords Secure Crowd-Favorite Finals Push</h3>
+            <p class="card-text">A clutch late-round 1v3 turnaround became an unforgettable victory across regional broadcasts.</p>
+          </div>
+        </article>
+
+        <!-- Card 3: Upcoming Scrims & Season Open -->
+        <article class="card highlight-card">
+          <div class="highlight-thumb">
+            <img src="assets/matches/promo.png" alt="Season Open Qualifiers" onerror="this.src='folder/promo.png'" />
+            <div class="highlight-overlay">
+              <div class="overlay-content">
+                <span class="play-btn">⚔️</span>
+                <h4>UPCOMING SCRIMS</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="achievement-meta" style="color: #00FF66;">LIVE SCRIMS WEEKLY</p>
+            <h3>Season Open Qualifiers & Scrims</h3>
+            <p class="card-text">Scheduled weekly scrimmages against premier South Asian tier-1 teams with live YouTube feeds.</p>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="team-updates/index.html" class="button button-primary" style="box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);">
+          View All Trophies & Updates →
+        </a>
       </div>
     </section>
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
 
-    <section id="freefire" class="section-block section-alt">
+    <!-- Tactics Library Section -->
+    <section id="tactics" class="section-block">
       <div class="section-header">
-        <p class="eyebrow">FreeFire</p>
-        <h2>FreeFire Squad</h2>
-        <p>News and roster for our FreeFire division.</p>
+        <p class="eyebrow">Tactics Library</p>
+        <h2>Competitive Tactical Playbook</h2>
+        <p>Drop zone rotations, character skill synergy, and weapon meta doctrines.</p>
       </div>
-      <div id="freefire-grid" class="card-grid"></div>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-body">
+            <p class="card-subtitle" style="color: #00F0FF; font-family: 'JetBrains Mono', monospace; font-weight: 700;">MAP BLUEPRINTS</p>
+            <h3 class="card-title">Hot Drops & Zone Rotations</h3>
+            <p class="card-text">Bermuda, Purgatory, Nexterra, and Alpine drop tactics with choke hold analysis.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <p class="card-subtitle" style="color: #8B5CF6; font-family: 'JetBrains Mono', monospace; font-weight: 700;">CHARACTER META</p>
+            <h3 class="card-title">Championship Skill Builds</h3>
+            <p class="card-text">Active and passive character combinations for Entry Rushers, Snipers, and IGLs.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <p class="card-subtitle" style="color: #FF0055; font-family: 'JetBrains Mono', monospace; font-weight: 700;">WEAPON MATRIX</p>
+            <h3 class="card-title">S-Tier Loadout Meta</h3>
+            <p class="card-text">M1887 Burst, MP40 High RPM, Woodpecker Armor Piercing, and AWM One-Tap.</p>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="tactics/index.html" class="button button-secondary" style="border-color: rgba(0, 240, 255, 0.4); color: #00F0FF;">
+          Open Full Tactics Library →
+        </a>
+      </div>
     </section>
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
 
+    <!-- Recruitment Section -->
     <section id="recruitment" class="section-block section-accent">
       <div class="section-header">
         <p class="eyebrow">Recruitment</p>
@@ -657,35 +721,109 @@
 
     <div class="section-divider" aria-hidden="true"><span></span></div>
 
-    <section id="sponsors" class="section-block section-alt sponsor-bg-section"
-      style="background-image: linear-gradient(180deg, rgba(6, 8, 14, 0.85), rgba(6, 8, 14, 0.78)), url('assets/sponsors/png Google Inc.png');">
-      <div class="section-header" style="margin-bottom: 1.8rem;">
-        <p class="eyebrow">Sponsors</p>
-        <h2>Trusted partners</h2>
-        <p>Partner brands that help keep the squad sharp, supported, and in the fight.</p>
+    <!-- Modern Floating Sponsors Section -->
+    <section id="sponsors" class="section-block section-alt sponsor-modern-section" style="padding: 4rem 1.5rem; background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.06), transparent 70%);">
+      <div class="section-header" style="margin-bottom: 2.5rem; text-align: center;">
+        <p class="eyebrow">Trusted Partners & Sponsors</p>
+        <h2 style="font-family: 'Orbitron', sans-serif;">POWERING THE QUANTUM STATE</h2>
+        <p style="max-width: 600px; margin: 0 auto; color: #94a3b8;">
+          Industry-leading global brands fueling QuantumLords Esports with high-performance computing, energy, and tactical infrastructure.
+        </p>
       </div>
 
-      <div class="sponsor-hero-content">
-        <div class="sponsor-badge-tag">OFFICIAL TITLE SPONSOR</div>
-        <h3
-          style="font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin: 0.5rem 0 0.8rem; letter-spacing: 2px; text-shadow: 0 0 25px rgba(232, 197, 106, 0.35);">
+      <!-- Title Guild Partner Hero Card -->
+      <div class="title-sponsor-hero" style="max-width: 800px; margin: 0 auto 3rem; background: rgba(22, 27, 34, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(232, 197, 106, 0.4); border-radius: 24px; padding: 2rem; text-align: center; box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 197, 106, 0.2);">
+        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 999px; background: rgba(232, 197, 106, 0.15); border: 1px solid rgba(232, 197, 106, 0.4); color: #E8C56A; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+          👑 OFFICIAL TITLE GUILD SPONSOR
+        </div>
+        <h3 style="font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); color: #fff; margin: 0.8rem 0 0.5rem; letter-spacing: 2px; text-shadow: 0 0 25px rgba(232, 197, 106, 0.35);">
           GOOGLE INC.
         </h3>
-        <p style="color: #cbd5e1; font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">
-          Official Title Guild Partner & Premier Esports Sponsor powering QuantumLords across Tier-1 competitive
-          battlegrounds.
+        <p style="color: #cbd5e1; font-size: 0.95rem; max-width: 540px; margin: 0 auto 1.2rem; line-height: 1.6;">
+          Official Title Guild Partner & Premier Esports Sponsor powering QuantumLords across Tier-1 competitive battlegrounds.
         </p>
+        <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+          <span class="sponsor-pill" style="font-size: 0.75rem;">🏆 TITLE GUILD SPONSOR</span>
+          <span class="sponsor-pill" style="font-size: 0.75rem;">⚡ TIER-1 INFRASTRUCTURE</span>
+          <span class="sponsor-pill" style="font-size: 0.75rem;">🎯 OFFICIAL GUILD BACKING</span>
+        </div>
+      </div>
 
-        <div class="sponsor-badges-row">
-          <span class="sponsor-pill">🏆 TITLE GUILD SPONSOR</span>
-          <span class="sponsor-pill">⚡ COMPETITIVE INFRASTRUCTURE</span>
-          <span class="sponsor-pill">🎯 FREE FIRE PRO SQUAD</span>
+      <!-- Floating Global Premier Partners Grid -->
+      <div style="max-width: 1100px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #00F0FF; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">
+            GLOBAL PREMIER ESPORTS PARTNERS
+          </span>
         </div>
 
-        <p id="sponsor-text" class="sponsor-text"
-          style="margin-top: 1.5rem; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem;">
-          Esport team sponsored By Google INC Guild.
-        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem;">
+          
+          <!-- Red Bull -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(255, 0, 85, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4s ease-in-out infinite;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">RED BULL</h4>
+            <p style="font-size: 0.75rem; color: #FF0055; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Official Energy Partner</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">High-performance stamina & mental focus.</p>
+          </div>
+
+          <!-- Intel -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.5s ease-in-out infinite 0.6s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">INTEL</h4>
+            <p style="font-size: 0.75rem; color: #00F0FF; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Core Silicon Power</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Unmatched FPS & zero-latency computing.</p>
+          </div>
+
+          <!-- Monster Energy -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(0, 255, 102, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.8s ease-in-out infinite 1.2s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🟢</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">MONSTER</h4>
+            <p style="font-size: 0.75rem; color: #00FF66; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Adrenaline Partner</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Fueling championship clutch moments.</p>
+          </div>
+
+          <!-- Razer -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(0, 255, 102, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.2s ease-in-out infinite 1.8s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐍</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">RAZER</h4>
+            <p style="font-size: 0.75rem; color: #00FF66; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Tactical Peripherals</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Chroma RGB gear & precision audio.</p>
+          </div>
+
+          <!-- Logitech G -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.6s ease-in-out infinite 0.4s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎧</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">LOGITECH G</h4>
+            <p style="font-size: 0.75rem; color: #00F0FF; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">LIGHTSPEED Wireless</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Pro-tier headset & mechanical switches.</p>
+          </div>
+
+          <!-- Alienware -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(139, 92, 246, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 5s ease-in-out infinite 1s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">👽</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">ALIENWARE</h4>
+            <p style="font-size: 0.75rem; color: #8B5CF6; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">High-Refresh Displays</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">240Hz tournament visual clarity.</p>
+          </div>
+
+          <!-- Secretlab -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(232, 197, 106, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.4s ease-in-out infinite 1.5s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💺</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">SECRETLAB</h4>
+            <p style="font-size: 0.75rem; color: #E8C56A; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Pro Gaming Thrones</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Ergonomic support for marathon scrims.</p>
+          </div>
+
+          <!-- SteelSeries -->
+          <div class="floating-sponsor-card" style="background: rgba(22, 27, 34, 0.8); backdrop-filter: blur(14px); border: 1px solid rgba(255, 0, 85, 0.25); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; animation: floatSponsorSlow 4.7s ease-in-out infinite 0.9s;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+            <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: #fff; margin: 0 0 0.25rem;">STEELSERIES</h4>
+            <p style="font-size: 0.75rem; color: #FF0055; font-family: 'JetBrains Mono', monospace; font-weight: 700; text-transform: uppercase;">Precision Audio</p>
+            <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.4rem;">Spatial soundscape & pinpoint footsteps.</p>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -731,9 +869,10 @@
         </div>
 
         <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="#team">Roster</a>
-          <a href="#achievements">Achievements</a>
-          <a href="#recruitment">Recruit</a>
+          <a href="roster/index.html">Roster</a>
+          <a href="team-updates/index.html">Team Updates</a>
+          <a href="tactics/index.html">Tactics Library</a>
+          <a href="recruit/index.html">Recruit</a>
           <a href="#contact">Contact</a>
         </nav>
 

@@ -2599,3 +2599,44 @@ html[data-theme="light"] .preloader-logo {
 html[data-theme="light"] .preloader-bar {
   background: rgba(18, 22, 36, 0.08);
 }
+
+/* ======================================================== */
+/* FLOATING SPONSOR CARDS & GLASSY SHINE AESTHETICS */
+/* ======================================================== */
+@keyframes floatSponsorSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatSponsorFast {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floating-sponsor-card {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.floating-sponsor-card:hover {
+  transform: translateY(-10px) scale(1.03) !important;
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 240, 255, 0.3) !important;
+  border-color: rgba(0, 240, 255, 0.6) !important;
+  z-index: 10;
+}
+
+.glassy-glow-panel {
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.12);
+}

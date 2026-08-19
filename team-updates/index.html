@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#06080f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuantumLords" />
+  <title>Team Updates // Quantum Lords Esports</title>
+  <meta name="description"
+    content="Official championship achievements, news, match highlights, and tournament results from Quantum Lords Esports." />
+  <link rel="canonical" href="https://quantumlordsesports.netlify.app/team-updates/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quantumlordsesports.netlify.app/team-updates/" />
+  <meta property="og:title" content="Team Updates // Quantum Lords Esports" />
+  <meta property="og:description"
+    content="Championship achievements, latest news, and tournament results from Quantum Lords Esports." />
+  <meta property="og:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
+
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../audio-controller.css" />
+  <script>
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
+  </script>
+  <script src="../audio-controller.js" defer></script>
+  <script src="../app.js" defer></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              bg: '#0A0C11',
+              surface: '#0D1117',
+              card: '#161B22',
+              border: '#21262D',
+              cyan: '#00F0FF',
+              crimson: '#FF0055',
+              violet: '#8B5CF6',
+              green: '#00FF66',
+              gold: '#E8C56A',
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-card {
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.2);
+      transform: translateY(-3px);
+    }
+    .glass-card-gold {
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(232, 197, 106, 0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-gold:hover {
+      border-color: rgba(232, 197, 106, 0.6);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(232, 197, 106, 0.25);
+      transform: translateY(-3px);
+    }
+    .tab-btn.active {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: #00F0FF;
+      color: #00F0FF;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0A0C11] text-[#F0F6FC] font-sans min-h-screen antialiased flex flex-col justify-between">
+
+  <!-- Header & Navigation -->
+  <header class="site-header sticky top-0 z-40 bg-[#0A0C11]/95 backdrop-blur-xl border-b border-slate-800">
+    <nav class="nav-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between" aria-label="Main navigation">
+      <a href="../index.html" class="brand-link flex items-center space-x-3">
+        <span class="brand-logo-frame w-9 h-9 rounded-xl bg-[#161B22] border border-cyan-400/50 flex items-center justify-center">
+          <img class="w-7 h-7 object-contain" src="../assets/logo.png" alt="QuantumLords logo" />
+        </span>
+        <span class="brand-label font-orbitron font-extrabold tracking-wider text-white text-lg">QuantumLords</span>
+      </a>
+
+      <ul id="primary-navigation" class="nav-list flex items-center space-x-6 text-sm font-space">
+        <li><a href="../index.html" class="text-slate-400 hover:text-white transition-colors">Home</a></li>
+        <li><a href="../roster/index.html" class="text-slate-400 hover:text-white transition-colors">Roster</a></li>
+        <li><a href="index.html" class="active text-[#00F0FF] font-bold">Team Updates</a></li>
+        <li><a href="../tactics/index.html" class="text-slate-400 hover:text-white transition-colors">Tactics Library</a></li>
+        <li><a href="../recruit/index.html" class="text-slate-400 hover:text-white transition-colors">Recruit</a></li>
+        <li><a href="../contact/index.html" class="text-slate-400 hover:text-white transition-colors">Contact</a></li>
+        <li class="nav-theme-item">
+          <button class="theme-toggle" aria-label="Toggle Bright/Dark Theme" title="Toggle Dark / Bright Theme">
+            <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+            <span>Mode: <strong class="theme-toggle-text">Dark</strong></span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-actions flex items-center space-x-3">
+        <button class="theme-toggle" aria-label="Toggle Bright/Dark Theme" title="Toggle Dark / Bright Theme">
+          <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation"
+          aria-label="Toggle navigation menu">
+          <span class="nav-toggle-icon" aria-hidden="true">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 flex-grow w-full">
+
+    <!-- Hero Header -->
+    <section class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-400/40 text-[#00F0FF] text-xs font-mono font-bold tracking-widest uppercase">
+        <i class="ph-bold ph-broadcast text-sm animate-pulse"></i>
+        <span>OFFICIAL TEAM LOGBOOK & NEWSROOM</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
+        TEAM <span class="text-[#00F0FF]">UPDATES</span>
+      </h1>
+      <p class="text-slate-300 font-space text-sm sm:text-base leading-relaxed">
+        Championship trophies, tournament results, scrim analytics, and breaking squad announcements all in one centralized tactical hub.
+      </p>
+    </section>
+
+    <!-- Filter Tabs Navigation -->
+    <section class="flex justify-center">
+      <div class="inline-flex flex-wrap items-center justify-center p-1.5 rounded-2xl bg-[#161B22] border border-slate-800 gap-1.5 text-xs font-mono">
+        <button onclick="filterUpdates('all')" id="tab-all"
+          class="tab-btn active px-4 py-2.5 rounded-xl border border-transparent font-bold uppercase transition-all flex items-center space-x-1.5">
+          <i class="ph-bold ph-squares-four"></i>
+          <span>ALL UPDATES</span>
+        </button>
+        <button onclick="filterUpdates('achievements')" id="tab-achievements"
+          class="tab-btn px-4 py-2.5 rounded-xl border border-transparent text-slate-400 hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+          <i class="ph-bold ph-trophy text-[#E8C56A]"></i>
+          <span>🏆 TROPHIES & ACHIEVEMENTS</span>
+        </button>
+        <button onclick="filterUpdates('news')" id="tab-news"
+          class="tab-btn px-4 py-2.5 rounded-xl border border-transparent text-slate-400 hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+          <i class="ph-bold ph-newspaper text-[#00F0FF]"></i>
+          <span>📰 NEWS & PRESS</span>
+        </button>
+        <button onclick="filterUpdates('tournaments')" id="tab-tournaments"
+          class="tab-btn px-4 py-2.5 rounded-xl border border-transparent text-slate-400 hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+          <i class="ph-bold ph-crosshair text-[#FF0055]"></i>
+          <span>⚔️ TOURNAMENTS & SCRIMS</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Updates Grid -->
+    <section id="updatesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Update Item 1: FFBPL Champions (Achievement + Tournament) -->
+      <article class="update-card filter-item achievements tournaments glass-card-gold rounded-3xl p-6 flex flex-col justify-between" data-category="achievements">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-[#E8C56A]/20 border border-[#E8C56A]/40 text-[#E8C56A] text-[10px] font-mono font-bold tracking-wider uppercase">
+              🏆 GRAND CHAMPION
+            </span>
+            <span class="text-xs font-mono text-slate-400">July 15, 2026</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-video border border-slate-800">
+            <img src="../assets/matches/Result-FFBPL.png" alt="FFBPL Championship Trophy"
+              class="w-full h-full object-cover" onerror="this.src='../folder/Result-FFBPL.png'" />
+            <div class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/70 border border-[#E8C56A]/60 text-[#E8C56A] text-xs font-mono font-bold">
+              1st Place 🥇
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold font-orbitron text-white leading-tight">
+              Free Fire Bangladesh Premier League (FFBPL)
+            </h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Dominant finals lobby performance across all 6 drop maps, securing the 1st place regional championship trophy and MVP honors.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Prize Earnings:</span>
+          <span class="font-bold text-[#E8C56A] font-orbitron text-sm">$18,000 USD</span>
+        </div>
+      </article>
+
+      <!-- Update Item 2: News - Clutch Comeback -->
+      <article class="update-card filter-item news glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="news">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-[#00F0FF] text-[10px] font-mono font-bold tracking-wider uppercase">
+              📰 MATCH HIGHLIGHT
+            </span>
+            <span class="text-xs font-mono text-slate-400">July 8, 2026</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-video border border-slate-800 group">
+            <img src="../assets/matches/png result.png" alt="Match Comeback"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              onerror="this.src='../folder/Result-FFBPL.png'" />
+            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <span class="w-10 h-10 rounded-full bg-[#00F0FF] text-black flex items-center justify-center font-bold">▶</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold font-orbitron text-white leading-tight">
+              QuantumLords Secure Crowd-Favorite Finals Push
+            </h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              A clutch 1v3 late-circle retake turned the entire final bracket into an unforgettable comeback triumph.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Highlights Status:</span>
+          <span class="font-bold text-[#00FF66] text-xs">VOD RECAP AVAILABLE</span>
+        </div>
+      </article>
+
+      <!-- Update Item 3: Academy Launch (News) -->
+      <article class="update-card filter-item news glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="news">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-400/40 text-purple-300 text-[10px] font-mono font-bold tracking-wider uppercase">
+              🚀 ACADEMY PROGRAM
+            </span>
+            <span class="text-xs font-mono text-slate-400">June 20, 2026</span>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden aspect-video border border-slate-800">
+            <img src="../assets/matches/promo.png" alt="Academy Program"
+              class="w-full h-full object-cover" onerror="this.src='../folder/promo.png'" />
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold font-orbitron text-white leading-tight">
+              QuantumLords Academy Open Recruitment Trials
+            </h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Our official tier-2 development program is scouting hungry upcoming talent with structured coaching and tournament slots.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Trial Slots:</span>
+          <a href="../recruit/index.html" class="text-[#00F0FF] hover:underline font-bold">Apply Now →</a>
+        </div>
+      </article>
+
+      <!-- Update Item 4: Quantum Cup (Achievement) -->
+      <article class="update-card filter-item achievements glass-card-gold rounded-3xl p-6 flex flex-col justify-between" data-category="achievements">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-[#E8C56A]/20 border border-[#E8C56A]/40 text-[#E8C56A] text-[10px] font-mono font-bold tracking-wider uppercase">
+              🏆 1ST PLACE TROPHY
+            </span>
+            <span class="text-xs font-mono text-slate-400">June 2026</span>
+          </div>
+
+          <div>
+            <div class="text-3xl font-black font-orbitron text-[#E8C56A] mb-1">01 // APEX</div>
+            <h3 class="text-2xl font-bold font-orbitron text-white">Quantum Cup Grand Finals</h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Decisive first-place victory against premier tier-1 squads, setting a tournament record for cumulative lobby kills.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Earnings:</span>
+          <span class="font-bold text-[#E8C56A] font-orbitron text-sm">$18,000 USD</span>
+        </div>
+      </article>
+
+      <!-- Update Item 5: Neon Arena Invitational (Achievement) -->
+      <article class="update-card filter-item achievements glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="achievements">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-[#00F0FF] text-[10px] font-mono font-bold tracking-wider uppercase">
+              🎖️ TOP 4 PODIUM
+            </span>
+            <span class="text-xs font-mono text-slate-400">April 2026</span>
+          </div>
+
+          <div>
+            <div class="text-3xl font-black font-orbitron text-[#00F0FF] mb-1">02 // INVITATIONAL</div>
+            <h3 class="text-2xl font-bold font-orbitron text-white">Neon Arena Invitational</h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Secured Top-4 finish in an aggressive international lobby, claiming critical South Asia Pro League qualification points.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Earnings:</span>
+          <span class="font-bold text-[#00F0FF] font-orbitron text-sm">$7,500 USD</span>
+        </div>
+      </article>
+
+      <!-- Update Item 6: Shadow Strike Open (Achievement) -->
+      <article class="update-card filter-item achievements glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="achievements">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-slate-500/20 border border-slate-400/40 text-slate-300 text-[10px] font-mono font-bold tracking-wider uppercase">
+              🥈 2ND PLACE PODIUM
+            </span>
+            <span class="text-xs font-mono text-slate-400">February 2026</span>
+          </div>
+
+          <div>
+            <div class="text-3xl font-black font-orbitron text-slate-300 mb-1">03 // RUNNER-UP</div>
+            <h3 class="text-2xl font-bold font-orbitron text-white">Shadow Strike Open</h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Silver medal finish after a thrilling 12-round marathon match against regional contenders.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Earnings:</span>
+          <span class="font-bold text-slate-200 font-orbitron text-sm">$12,000 USD</span>
+        </div>
+      </article>
+
+      <!-- Update Item 7: Upcoming Scrims (Tournaments) -->
+      <article class="update-card filter-item tournaments glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="tournaments">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-500/20 border border-pink-400/40 text-[#FF0055] text-[10px] font-mono font-bold tracking-wider uppercase">
+              ⚔️ UPCOMING EVENT
+            </span>
+            <span class="text-xs font-mono text-[#00FF66] animate-pulse">LIVE WEEKLY</span>
+          </div>
+
+          <div>
+            <div class="text-3xl font-black font-orbitron text-[#FF0055] mb-1">PRO SCRIMS</div>
+            <h3 class="text-2xl font-bold font-orbitron text-white">Season Open Qualifiers & Scrims</h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Scheduled weekly scrimmages against premier South Asian tier-1 teams. Live feeds streamed on YouTube & Discord.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Broadcast:</span>
+          <span class="font-bold text-[#00F0FF] text-xs">YouTube & Discord Live</span>
+        </div>
+      </article>
+
+      <!-- Update Item 8: Phoenix Clash (Achievement) -->
+      <article class="update-card filter-item achievements glass-card rounded-3xl p-6 flex flex-col justify-between" data-category="achievements">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-400/40 text-purple-300 text-[10px] font-mono font-bold tracking-wider uppercase">
+              🔥 SEMI-FINALIST
+            </span>
+            <span class="text-xs font-mono text-slate-400">December 2025</span>
+          </div>
+
+          <div>
+            <div class="text-3xl font-black font-orbitron text-purple-400 mb-1">04 // MAJOR</div>
+            <h3 class="text-2xl font-bold font-orbitron text-white">Phoenix Clash Winter Invitational</h3>
+            <p class="text-xs font-space text-slate-300 mt-2 leading-relaxed">
+              Top 4 placement with aggressive zone control tactics and highest average damage per round.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-400">Earnings:</span>
+          <span class="font-bold text-purple-300 font-orbitron text-sm">$4,000 USD</span>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer bg-[#05070A] border-t border-slate-800 py-8 px-4 text-xs font-mono text-slate-400">
+    <div class="footer-container max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <img src="../assets/logo.png" alt="QuantumLords logo" class="w-8 h-8 object-contain" />
+        <div>
+          <strong class="text-white font-orbitron">QuantumLords Esports</strong>
+          <div class="text-slate-500 text-[11px]">Rise together. Win together.</div>
+        </div>
+      </div>
+
+      <nav class="flex items-center space-x-4 text-xs font-space">
+        <a href="../roster/index.html" class="hover:text-white transition-colors">Roster</a>
+        <a href="index.html" class="text-[#00F0FF]">Team Updates</a>
+        <a href="../tactics/index.html" class="hover:text-white transition-colors">Tactics Library</a>
+        <a href="../recruit/index.html" class="hover:text-white transition-colors">Recruit</a>
+        <a href="../contact/index.html" class="hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <div class="text-slate-500 text-[11px]">
+        © 2026 QuantumLords Esports. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function filterUpdates(category) {
+      // Update tab active states
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('text-slate-400');
+      });
+
+      const activeBtn = document.getElementById(`tab-${category}`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.classList.remove('text-slate-400');
+      }
+
+      // Filter cards
+      const items = document.querySelectorAll('.update-card');
+      items.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

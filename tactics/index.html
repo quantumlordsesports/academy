@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#06080f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QuantumLords" />
+  <title>Tactics Library // Quantum Lords Esports</title>
+  <meta name="description"
+    content="Competitive Tactical Playbook, map drop rotations, character skill combos, and weapon meta tier lists from Quantum Lords Esports." />
+  <link rel="canonical" href="https://quantumlordsesports.netlify.app/tactics/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://quantumlordsesports.netlify.app/tactics/" />
+  <meta property="og:title" content="Tactics Library // Quantum Lords Esports" />
+  <meta property="og:description"
+    content="Competitive Tactical Playbook, map drop rotations, character skill combos, and weapon meta tier lists." />
+  <meta property="og:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
+
+  <link rel="icon" href="../assets/logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="../assets/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../audio-controller.css" />
+  <script>
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
+  </script>
+  <script src="../audio-controller.js" defer></script>
+  <script src="../app.js" defer></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              bg: '#0A0C11',
+              surface: '#0D1117',
+              card: '#161B22',
+              border: '#21262D',
+              cyan: '#00F0FF',
+              crimson: '#FF0055',
+              violet: '#8B5CF6',
+              green: '#00FF66',
+              gold: '#E8C56A',
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-card {
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.2);
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0A0C11] text-[#F0F6FC] font-sans min-h-screen antialiased flex flex-col justify-between">
+
+  <!-- Header & Navigation -->
+  <header class="site-header sticky top-0 z-40 bg-[#0A0C11]/95 backdrop-blur-xl border-b border-slate-800">
+    <nav class="nav-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between" aria-label="Main navigation">
+      <a href="../index.html" class="brand-link flex items-center space-x-3">
+        <span class="brand-logo-frame w-9 h-9 rounded-xl bg-[#161B22] border border-cyan-400/50 flex items-center justify-center">
+          <img class="w-7 h-7 object-contain" src="../assets/logo.png" alt="QuantumLords logo" />
+        </span>
+        <span class="brand-label font-orbitron font-extrabold tracking-wider text-white text-lg">QuantumLords</span>
+      </a>
+
+      <ul id="primary-navigation" class="nav-list flex items-center space-x-6 text-sm font-space">
+        <li><a href="../index.html" class="text-slate-400 hover:text-white transition-colors">Home</a></li>
+        <li><a href="../roster/index.html" class="text-slate-400 hover:text-white transition-colors">Roster</a></li>
+        <li><a href="../team-updates/index.html" class="text-slate-400 hover:text-white transition-colors">Team Updates</a></li>
+        <li><a href="index.html" class="active text-[#00F0FF] font-bold">Tactics Library</a></li>
+        <li><a href="../recruit/index.html" class="text-slate-400 hover:text-white transition-colors">Recruit</a></li>
+        <li><a href="../contact/index.html" class="text-slate-400 hover:text-white transition-colors">Contact</a></li>
+        <li class="nav-theme-item">
+          <button class="theme-toggle" aria-label="Toggle Bright/Dark Theme" title="Toggle Dark / Bright Theme">
+            <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+            <span>Mode: <strong class="theme-toggle-text">Dark</strong></span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-actions flex items-center space-x-3">
+        <button class="theme-toggle" aria-label="Toggle Bright/Dark Theme" title="Toggle Dark / Bright Theme">
+          <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
+        </button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation"
+          aria-label="Toggle navigation menu">
+          <span class="nav-toggle-icon" aria-hidden="true">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 flex-grow w-full">
+
+    <!-- Hero Header -->
+    <section class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-purple-950/60 border border-purple-400/40 text-purple-300 text-xs font-mono font-bold tracking-widest uppercase">
+        <i class="ph-bold ph-shield-chevron text-sm"></i>
+        <span>COMPETITIVE TACTICAL PLAYBOOK</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
+        TACTICS <span class="text-[#00F0FF]">LIBRARY</span>
+      </h1>
+      <p class="text-slate-300 font-space text-sm sm:text-base leading-relaxed">
+        High-tier competitive strategy doctrines, drop zone rotations, weapon meta tier matrix, character skill synergy, and official scrim execution playbooks.
+      </p>
+    </section>
+
+    <!-- 1. Map Drop Zones & Zone Rotations -->
+    <section class="space-y-6">
+      <div class="flex items-center space-x-3">
+        <div class="w-2.5 h-6 bg-[#00F0FF] rounded-sm"></div>
+        <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
+          MAP HOT DROPS & ROTATION BLUEPRINTS
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Bermuda -->
+        <div class="glass-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-[#00F0FF]">
+            <span class="font-bold">BERMUDA</span>
+            <i class="ph-bold ph-map-pin text-base"></i>
+          </div>
+          <h3 class="text-lg font-bold font-orbitron text-white">Clock Tower / Factory</h3>
+          <p class="text-xs font-space text-slate-300 leading-relaxed">
+            High-tier loot density with aggressive roof control. Immediate rotation through Bimasakti Strip to secure central high ground before Circle 3.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono text-cyan-300">
+            <span class="px-2 py-0.5 rounded bg-cyan-950/50 border border-cyan-500/30">Aggressive Rush</span>
+            <span class="px-2 py-0.5 rounded bg-cyan-950/50 border border-cyan-500/30">Tier-1 High Loot</span>
+          </div>
+        </div>
+
+        <!-- Purgatory -->
+        <div class="glass-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-[#E8C56A]">
+            <span class="font-bold">PURGATORY</span>
+            <i class="ph-bold ph-map-pin text-base"></i>
+          </div>
+          <h3 class="text-lg font-bold font-orbitron text-white">Brasilia Central</h3>
+          <p class="text-xs font-space text-slate-300 leading-relaxed">
+            High-intensity multi-squad hot drop. 2-2 split hold across twin red houses with overwatch sniping towards Fields bridge chokepoint.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono text-[#E8C56A]">
+            <span class="px-2 py-0.5 rounded bg-amber-950/50 border border-amber-500/30">Hot Drop Warfare</span>
+            <span class="px-2 py-0.5 rounded bg-amber-950/50 border border-amber-500/30">Bridge Choke Hold</span>
+          </div>
+        </div>
+
+        <!-- Nexterra -->
+        <div class="glass-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-purple-300">
+            <span class="font-bold">NEXTERRA</span>
+            <i class="ph-bold ph-map-pin text-base"></i>
+          </div>
+          <h3 class="text-lg font-bold font-orbitron text-white">Farm & Grav Labs</h3>
+          <p class="text-xs font-space text-slate-300 leading-relaxed">
+            Anti-gravity portal utilization for instant disengagement and cross-quadrant pinch maneuvers on rotating squads.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono text-purple-300">
+            <span class="px-2 py-0.5 rounded bg-purple-950/50 border border-purple-500/30">Portal Flanks</span>
+            <span class="px-2 py-0.5 rounded bg-purple-950/50 border border-purple-500/30">Vertical Retakes</span>
+          </div>
+        </div>
+
+        <!-- Alpine -->
+        <div class="glass-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between text-xs font-mono text-[#00FF66]">
+            <span class="font-bold">ALPINE</span>
+            <i class="ph-bold ph-map-pin text-base"></i>
+          </div>
+          <h3 class="text-lg font-bold font-orbitron text-white">Snowfall & Railroad</h3>
+          <p class="text-xs font-space text-slate-300 leading-relaxed">
+            Elevated mountain ridges with defensive Gloo Wall arrays. Long-range DMR suppression forcing enemies into open freeze zones.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-1.5 text-[10px] font-mono text-[#00FF66]">
+            <span class="px-2 py-0.5 rounded bg-green-950/50 border border-green-500/30">Long-Range Sniping</span>
+            <span class="px-2 py-0.5 rounded bg-green-950/50 border border-green-500/30">Ridge Fortification</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Character Skill Meta Synergy -->
+    <section class="space-y-6">
+      <div class="flex items-center space-x-3">
+        <div class="w-2.5 h-6 bg-[#8B5CF6] rounded-sm"></div>
+        <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
+          CHAMPIONSHIP CHARACTER SKILL BUILDS
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Entry Rusher Build -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-400/40 text-[#00F0FF] text-xs font-mono font-bold uppercase">
+              ENTRY RUSHER BUILD
+            </span>
+            <i class="ph-bold ph-lightning text-xl text-[#00F0FF]"></i>
+          </div>
+
+          <div class="bg-[#080B10] p-3 rounded-2xl border border-cyan-500/30">
+            <span class="text-[10px] font-mono text-[#00F0FF] block uppercase font-bold">ACTIVE ABILITY</span>
+            <h4 class="text-base font-bold font-orbitron text-white">Alok · Drop The Beat</h4>
+            <p class="text-[11px] font-space text-slate-400 mt-1">Aura increasing move speed by 15% and recovering 3 HP/sec for rapid close combat.</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 1</span>
+              <strong class="text-white text-[11px] block mt-0.5">Kelly</strong>
+              <span class="text-[9px] text-[#00FF66]">Dash +6%</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 2</span>
+              <strong class="text-white text-[11px] block mt-0.5">Hayato</strong>
+              <span class="text-[9px] text-[#FF0055]">Bushido +Pen</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 3</span>
+              <strong class="text-white text-[11px] block mt-0.5">Moco</strong>
+              <span class="text-[9px] text-cyan-300">Tag 5s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sniper Specialist Build -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-purple-950/60 border border-purple-400/40 text-purple-300 text-xs font-mono font-bold uppercase">
+              SNIPER & OVERWATCH
+            </span>
+            <i class="ph-bold ph-crosshair text-xl text-purple-400"></i>
+          </div>
+
+          <div class="bg-[#080B10] p-3 rounded-2xl border border-purple-500/30">
+            <span class="text-[10px] font-mono text-purple-400 block uppercase font-bold">ACTIVE ABILITY</span>
+            <h4 class="text-base font-bold font-orbitron text-white">Iris · Wall Breaker</h4>
+            <p class="text-[11px] font-space text-slate-400 mt-1">Allows sniper rounds to penetrate enemy Gloo Walls to finish tagged targets.</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 1</span>
+              <strong class="text-white text-[11px] block mt-0.5">Rafael</strong>
+              <span class="text-[9px] text-purple-300">Silencer</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 2</span>
+              <strong class="text-white text-[11px] block mt-0.5">Laura</strong>
+              <span class="text-[9px] text-cyan-300">Accuracy +50%</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 3</span>
+              <strong class="text-white text-[11px] block mt-0.5">Moco</strong>
+              <span class="text-[9px] text-[#00FF66]">Info Share</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- IGL / Support Build -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-amber-950/60 border border-amber-400/40 text-[#E8C56A] text-xs font-mono font-bold uppercase">
+              TACTICAL IGL / UTILITY
+            </span>
+            <i class="ph-bold ph-shield-check text-xl text-[#E8C56A]"></i>
+          </div>
+
+          <div class="bg-[#080B10] p-3 rounded-2xl border border-amber-500/30">
+            <span class="text-[10px] font-mono text-[#E8C56A] block uppercase font-bold">ACTIVE ABILITY</span>
+            <h4 class="text-base font-bold font-orbitron text-white">Chrono · Time Turner</h4>
+            <p class="text-[11px] font-space text-slate-400 mt-1">Deploys an impenetrable force field blocking 800 damage for squad revives.</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 1</span>
+              <strong class="text-white text-[11px] block mt-0.5">Ford</strong>
+              <span class="text-[9px] text-[#E8C56A]">Zone Shield</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 2</span>
+              <strong class="text-white text-[11px] block mt-0.5">Kelly</strong>
+              <span class="text-[9px] text-[#00FF66]">Speed</span>
+            </div>
+            <div class="bg-[#080B10] p-2 rounded-xl border border-slate-800">
+              <span class="text-[9px] text-slate-400 block uppercase">PASSIVE 3</span>
+              <strong class="text-white text-[11px] block mt-0.5">Alvaro</strong>
+              <span class="text-[9px] text-[#FF0055]">Nade Dmg +20%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Weapon Meta Tier Matrix -->
+    <section class="space-y-6">
+      <div class="flex items-center space-x-3">
+        <div class="w-2.5 h-6 bg-[#FF0055] rounded-sm"></div>
+        <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
+          TIER-1 WEAPON META MATRIX
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-[#E8C56A]">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-[#E8C56A] text-sm font-orbitron">S-TIER RUSH</span>
+            <span class="px-2 py-0.5 bg-[#E8C56A]/20 text-[#E8C56A] rounded text-[10px]">META KING</span>
+          </div>
+          <h4 class="text-base font-bold font-orbitron text-white">M1887 Shotgun</h4>
+          <p class="text-slate-400 text-[11px] font-space mt-1">2-shot instant elimination in sub-5m range. Essential for room clearing and jump peeking.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-[#00F0FF]">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-[#00F0FF] text-sm font-orbitron">S-TIER SMG</span>
+            <span class="px-2 py-0.5 bg-cyan-950/50 text-[#00F0FF] rounded text-[10px]">MAX RPM</span>
+          </div>
+          <h4 class="text-base font-bold font-orbitron text-white">MP40 / Bizon</h4>
+          <p class="text-slate-400 text-[11px] font-space mt-1">Extreme fire rate to shred Armor Level 3 and break Gloo Walls in fast duels.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-purple-500">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-purple-400 text-sm font-orbitron">S-TIER DMR</span>
+            <span class="px-2 py-0.5 bg-purple-950/50 text-purple-300 rounded text-[10px]">ARMOR PIERCE</span>
+          </div>
+          <h4 class="text-base font-bold font-orbitron text-white">Woodpecker / AC80</h4>
+          <p class="text-slate-400 text-[11px] font-space mt-1">High single-shot tap damage with inherent armor piercing for mid-to-long ranges.</p>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-l-[#00FF66]">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-[#00FF66] text-sm font-orbitron">S-TIER SNIPER</span>
+            <span class="px-2 py-0.5 bg-green-950/50 text-[#00FF66] rounded text-[10px]">ONE-TAP HS</span>
+          </div>
+          <h4 class="text-base font-bold font-orbitron text-white">AWM / M82B</h4>
+          <p class="text-slate-400 text-[11px] font-space mt-1">Wall-penetration and massive 150+ body shot damage to break squad momentum.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer bg-[#05070A] border-t border-slate-800 py-8 px-4 text-xs font-mono text-slate-400">
+    <div class="footer-container max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <img src="../assets/logo.png" alt="QuantumLords logo" class="w-8 h-8 object-contain" />
+        <div>
+          <strong class="text-white font-orbitron">QuantumLords Esports</strong>
+          <div class="text-slate-500 text-[11px]">Rise together. Win together.</div>
+        </div>
+      </div>
+
+      <nav class="flex items-center space-x-4 text-xs font-space">
+        <a href="../roster/index.html" class="hover:text-white transition-colors">Roster</a>
+        <a href="../team-updates/index.html" class="hover:text-white transition-colors">Team Updates</a>
+        <a href="index.html" class="text-[#00F0FF]">Tactics Library</a>
+        <a href="../recruit/index.html" class="hover:text-white transition-colors">Recruit</a>
+        <a href="../contact/index.html" class="hover:text-white transition-colors">Contact</a>
+      </nav>
+
+      <div class="text-slate-500 text-[11px]">
+        © 2026 QuantumLords Esports. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
