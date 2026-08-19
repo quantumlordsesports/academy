@@ -381,6 +381,131 @@
     }
   }
 
+  // --- Ethereal Aurora Borealis Curtain System (Dark Mode) ---
+  class AuroraRibbon {
+    constructor(config) {
+      this.baseYRatio = config.baseYRatio || 0.28;
+      this.amplitude = config.amplitude || 45;
+      this.wavelength = config.wavelength || 0.0025;
+      this.speed = config.speed || 0.0008;
+      this.colorStops = config.colorStops;
+      this.verticalHeight = config.verticalHeight || 320;
+      this.phase = config.phase || Math.random() * Math.PI * 2;
+      this.time = Math.random() * 1000;
+      this.harmonicSpeed = config.harmonicSpeed || 0.0015;
+      this.harmonicAmp = config.harmonicAmp || 22;
+      this.harmonicWavelength = config.harmonicWavelength || 0.005;
+      this.opacity = config.opacity || 0.28;
+    }
+
+    update() {
+      this.time += 1;
+    }
+
+    draw(ctx) {
+      const baseY = height * this.baseYRatio;
+      const step = 24;
+      const points = [];
+
+      for (let x = -40; x <= width + 40; x += step) {
+        const primaryWave = Math.sin(x * this.wavelength + this.time * this.speed + this.phase) * this.amplitude;
+        const secondaryWave = Math.cos(x * this.harmonicWavelength - this.time * this.harmonicSpeed + this.phase * 1.5) * this.harmonicAmp;
+        const y = baseY + primaryWave + secondaryWave;
+        points.push({ x, y });
+      }
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = this.opacity * (0.85 + 0.15 * Math.sin(this.time * 0.008));
+
+      // Draw flowing vertical gradient curtain
+      for (let i = 0; i < points.length - 1; i++) {
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const topY = Math.min(p1.y, p2.y) - this.verticalHeight * 0.75;
+        const bottomY = Math.max(p1.y, p2.y) + this.verticalHeight * 0.25;
+
+        const grad = ctx.createLinearGradient(0, topY, 0, bottomY);
+        this.colorStops.forEach(stop => {
+          grad.addColorStop(stop.offset, stop.color);
+        });
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, topY);
+        ctx.lineTo(p2.x, topY);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.lineTo(p1.x, p1.y);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  const auroras = [
+    // 1. Radiant Emerald & Cyan Aurora Wave
+    new AuroraRibbon({
+      baseYRatio: 0.22,
+      amplitude: 55,
+      wavelength: 0.0020,
+      speed: 0.0006,
+      verticalHeight: 380,
+      harmonicSpeed: 0.0012,
+      harmonicAmp: 25,
+      harmonicWavelength: 0.0045,
+      opacity: 0.32,
+      phase: 0,
+      colorStops: [
+        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
+        { offset: 0.25, color: 'rgba(0, 240, 255, 0.08)' }, // Neon Cyan
+        { offset: 0.55, color: 'rgba(0, 255, 102, 0.22)' }, // Emerald Green
+        { offset: 0.85, color: 'rgba(16, 185, 129, 0.15)' }, // Mint Green
+        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
+      ]
+    }),
+    // 2. Cosmic Plasma Violet & Magenta Aurora Wave
+    new AuroraRibbon({
+      baseYRatio: 0.32,
+      amplitude: 65,
+      wavelength: 0.0018,
+      speed: 0.0009,
+      verticalHeight: 340,
+      harmonicSpeed: 0.0018,
+      harmonicAmp: 30,
+      harmonicWavelength: 0.0038,
+      opacity: 0.26,
+      phase: 2.1,
+      colorStops: [
+        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
+        { offset: 0.30, color: 'rgba(139, 92, 246, 0.10)' }, // Violet
+        { offset: 0.65, color: 'rgba(192, 132, 252, 0.24)' }, // Plasma Purple
+        { offset: 0.90, color: 'rgba(236, 72, 153, 0.12)' }, // Magenta
+        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
+      ]
+    }),
+    // 3. Electric Cyan & Solar Amber Ribbon Wave
+    new AuroraRibbon({
+      baseYRatio: 0.18,
+      amplitude: 45,
+      wavelength: 0.0028,
+      speed: 0.0007,
+      verticalHeight: 300,
+      harmonicSpeed: 0.0014,
+      harmonicAmp: 20,
+      harmonicWavelength: 0.006,
+      opacity: 0.22,
+      phase: 4.2,
+      colorStops: [
+        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
+        { offset: 0.35, color: 'rgba(0, 240, 255, 0.14)' }, // Cyan
+        { offset: 0.70, color: 'rgba(232, 197, 106, 0.18)' }, // Imperial Gold
+        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
+      ]
+    })
+  ];
+
   // --- Main Init and Animation Loop ---
   function initAtmosphere() {
     canvas = document.getElementById('themeAtmosphereCanvas');
@@ -454,18 +579,26 @@
         p.draw(ctx);
       });
     } else {
-      // Render Dark Cosmic Night Sky (Nebula Clouds, Twinkling Stars & Glowing Bats)
+      // Render Dark Cosmic Night Sky:
+      // 1. Flowing Aurora Borealis Curtains
+      auroras.forEach(a => {
+        a.update();
+        a.draw(ctx);
+      });
+
+      // 2. Volumetric Nebula Clouds
       nebulaClouds.forEach(c => {
         c.update();
         c.draw(ctx);
       });
 
+      // 3. Twinkling Cosmic Stars
       stars.forEach(s => {
         s.update();
         s.draw(ctx);
       });
 
-      // Render Glowing Nocturnal Bats across the night sky
+      // 4. Glowing Nocturnal Cyber Bats
       bats.forEach(b => {
         b.update();
         b.draw(ctx);
