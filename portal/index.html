@@ -166,6 +166,14 @@
 </head>
 <body class="bg-cyber-bg text-cyber-text font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-[#E8C56A] selection:text-black">
 
+  <!-- Fixed Universal Background Video -->
+  <div class="global-video-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="../assets/matches/promo.mp4" type="video/mp4" />
+      <source src="../folder/promo.mp4.mp4" type="video/mp4" />
+    </video>
+  </div>
+
   <!-- Background Animated Cyber Canvas -->
   <canvas id="cyberCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-35"></canvas>
   <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0 opacity-70"></div>

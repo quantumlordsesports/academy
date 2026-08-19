@@ -149,6 +149,66 @@ a, button, input, select, textarea, [role="button"], .button, .nav-toggle {
 
 /* ---------- Cinematic atmosphere layers ---------- */
 
+/* ---------- Universal Fixed Background Video ---------- */
+
+.global-video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.global-video-bg video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+  filter: saturate(0.7) contrast(1.15) brightness(0.6);
+  pointer-events: none;
+}
+
+.global-video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 20%, rgba(6, 8, 15, 0.4), rgba(6, 8, 15, 0.85)),
+    linear-gradient(180deg, rgba(6, 8, 15, 0.6) 0%, rgba(6, 8, 15, 0.35) 40%, rgba(6, 8, 15, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* Ensure background transparency when global video is present */
+html:has(.global-video-bg),
+body:has(.global-video-bg),
+body.has-global-video {
+  background-color: transparent !important;
+}
+
+/* Light mode adjustment for global video if user toggles theme */
+html[data-theme="light"] .global-video-bg video,
+body.theme-light .global-video-bg video {
+  opacity: 0.18;
+  filter: saturate(0.5) contrast(1.05) brightness(0.9);
+}
+
+html[data-theme="light"] .global-video-bg::after,
+body.theme-light .global-video-bg::after {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 20%, rgba(244, 246, 251, 0.6), rgba(244, 246, 251, 0.92)),
+    linear-gradient(180deg, rgba(244, 246, 251, 0.75) 0%, rgba(244, 246, 251, 0.5) 40%, rgba(244, 246, 251, 0.92) 100%);
+}
+
 .film-grain {
   position: fixed;
   inset: -50%;
@@ -641,7 +701,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   background:
     radial-gradient(ellipse 70% 55% at 20% 20%, rgba(232,197,106,0.1), transparent 55%),
     radial-gradient(ellipse 60% 60% at 85% 80%, rgba(60,48,20,0.25), transparent 60%),
-    linear-gradient(180deg, rgba(5,7,13,0.35), rgba(5,7,13,0.85));
+    linear-gradient(180deg, rgba(5,7,13,0.15), rgba(5,7,13,0.45));
 }
 .hero-video-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-video {
@@ -658,8 +718,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(5,7,13,0.5), transparent 30%, transparent 70%, var(--bg)),
-    radial-gradient(ellipse 90% 60% at 50% 0%, transparent, rgba(5,7,13,0.4));
+    linear-gradient(180deg, rgba(5,7,13,0.3), transparent 30%, transparent 70%, rgba(5,7,13,0.4)),
+    radial-gradient(ellipse 90% 60% at 50% 0%, transparent, rgba(5,7,13,0.3));
   pointer-events: none;
 }
 

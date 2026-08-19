@@ -498,17 +498,95 @@ const initScrollReveal = () => {
   });
 };
 
+/* ---------- Global Background Video Controller ---------- */
+
+const initGlobalBackgroundVideo = () => {
+  try {
+    const pathname = (window.location.pathname || '').toLowerCase();
+    const filename = pathname.substring(pathname.lastIndexOf('/') + 1);
+
+    // List of excluded pages where background video must NEVER render or play
+    const excludedPages = [
+      'profile',
+      'profile.html',
+      'nishad.html',
+      'roman.html',
+      'santo.html',
+      'shahriar.html'
+    ];
+
+    const isExcluded = excludedPages.some(page => 
+      filename === page || 
+      pathname.includes('/' + page) || 
+      pathname.endsWith(page)
+    );
+
+    const existingVideoBg = document.querySelector('.global-video-bg');
+
+    if (isExcluded) {
+      if (existingVideoBg) {
+        existingVideoBg.remove();
+      }
+      document.body.classList.remove('has-global-video');
+      return;
+    }
+
+    if (existingVideoBg) {
+      document.body.classList.add('has-global-video');
+      const video = existingVideoBg.querySelector('video');
+      if (video) {
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('muted', '');
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            const resumeOnInteraction = () => {
+              video.play().catch(() => {});
+              window.removeEventListener('click', resumeOnInteraction);
+              window.removeEventListener('touchstart', resumeOnInteraction);
+              window.removeEventListener('scroll', resumeOnInteraction);
+            };
+            window.addEventListener('click', resumeOnInteraction, { once: true, passive: true });
+            window.addEventListener('touchstart', resumeOnInteraction, { once: true, passive: true });
+            window.addEventListener('scroll', resumeOnInteraction, { once: true, passive: true });
+          });
+        }
+
+        // Performance: Pause video when page is hidden
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            video.pause();
+          } else {
+            video.play().catch(() => {});
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('Global background video init notice:', err);
+  }
+};
+
 /* ---------- Boot ---------- */
 
 // Run theme setup immediately for fast response
 if (document.readyState !== 'loading') {
   initThemeToggle();
+  initGlobalBackgroundVideo();
 } else {
-  document.addEventListener('DOMContentLoaded', initThemeToggle);
+  document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
+    initGlobalBackgroundVideo();
+  });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
+  initGlobalBackgroundVideo();
   applySiteData();
   buildSocialLinks();
   buildRoster();
@@ -534,4 +612,5 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
 
