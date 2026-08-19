@@ -2761,7 +2761,7 @@ html[data-theme="light"] .preloader-bar {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(232, 197, 106, 0.25);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 1.75rem;
   position: relative;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -2782,6 +2782,89 @@ html[data-theme="light"] .preloader-bar {
   border-color: rgba(232, 197, 106, 0.7);
   box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 30px rgba(232, 197, 106, 0.25) !important;
   z-index: 10;
+}
+
+/* 3D Realistic Hardcover Book Thumbnail Component */
+.book-3d-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding: 0.5rem 0;
+}
+
+.book-3d-cover {
+  width: 175px;
+  height: 235px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-20deg) rotateX(8deg);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
+  border-radius: 3px 10px 10px 3px;
+  box-shadow: -10px 12px 24px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: visible;
+}
+
+/* 3D Page Thickness Edge */
+.book-3d-cover::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: -13px;
+  width: 14px;
+  height: calc(100% - 6px);
+  background: repeating-linear-gradient(
+    to bottom,
+    #f1f5f9 0px,
+    #e2e8f0 1px,
+    #cbd5e1 2px,
+    #94a3b8 3px
+  );
+  transform: rotateY(90deg) translateZ(-6px);
+  border-radius: 0 2px 2px 0;
+  box-shadow: inset 2px 0 4px rgba(0,0,0,0.5);
+}
+
+/* Book Spine Crease & Sheen */
+.book-3d-cover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 16px;
+  background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0.15) 45%, rgba(0,0,0,0.3) 100%);
+  border-radius: 3px 0 0 3px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.book-card-3d:hover .book-3d-cover {
+  transform: rotateY(-6deg) rotateX(2deg) translateY(-6px) scale(1.05);
+  box-shadow: -16px 18px 32px rgba(0, 0, 0, 0.95), 0 0 25px rgba(232, 197, 106, 0.35);
+}
+
+/* Inner Cover Art Canvas */
+.book-cover-art {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px 10px 10px 3px;
+  padding: 1rem 0.85rem 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.book-cover-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.12) 45%, transparent 55%);
+  pointer-events: none;
 }
 
 .book-spine-accent {
