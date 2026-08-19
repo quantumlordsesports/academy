@@ -653,7 +653,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .reel-hud-header {
     flex-direction: column;
     align-items: stretch;
@@ -665,7 +665,7 @@
   }
 
   .reel-thumbs-track {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .reel-thumb-avatar {

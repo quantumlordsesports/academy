@@ -189,13 +189,22 @@ a, button, input, select, textarea, [role="button"], .button, .nav-toggle {
   transition: opacity 0.4s ease;
 }
 
-img, video, object { max-width: 100%; display: block; height: auto; }
+img, video, object, iframe, embed, picture, canvas {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+svg {
+  max-width: 100%;
+}
 
-main {
-  width: min(1240px, calc(100% - 2rem));
+main, .main-content {
+  width: 100%;
+  max-width: min(1240px, calc(100% - 2rem));
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 button, input, textarea, a { font: inherit; }
@@ -1442,6 +1451,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1rem;
+    width: 100%;
   }
   .nav-actions {
     display: inline-flex;
@@ -1468,6 +1478,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     border: 1px solid rgba(232, 197, 106, 0.22);
     border-radius: 1rem;
     box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(232, 197, 106, 0.08);
+    max-height: 80vh;
+    overflow-y: auto;
   }
   .nav-list.open {
     display: grid;
@@ -1492,6 +1504,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     padding: 0.75rem 1rem;
     border-radius: 0.65rem;
     font-size: 0.95rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
   }
   .nav-list a::after {
@@ -1509,7 +1524,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
     box-shadow: 0 0 16px rgba(232, 197, 106, 0.25);
     font-weight: 700;
   }
-  .stats-band { grid-template-columns: repeat(2, 1fr); margin-top: -1.5rem; }
+  .stats-band { grid-template-columns: repeat(2, 1fr); margin-top: -1.5rem; width: 100%; }
   .stat { padding: 1.2rem 0.8rem; }
   .section-block { padding: 3rem 1rem; }
   .footer-grid { grid-template-columns: 1fr; }
@@ -1525,6 +1540,62 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .lb-line { opacity: 0; }
 }
 
+/* ---------- Mobile Screens (Under 768px) Clean Single-Column Stacking ---------- */
+@media (max-width: 768px) {
+  .card-grid,
+  .achievement-grid,
+  .sponsor-grid,
+  .recruit-grid,
+  .contact-panel,
+  .code-grid,
+  .topup-grid,
+  .steps-container,
+  .footer-grid,
+  #tournament-grid,
+  #news-grid,
+  #achievements-grid,
+  #roster-grid,
+  .roster-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  /* Stack input grid rows on mobile */
+  form div[style*="grid-template-columns"],
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  .welcome-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.1rem;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .section-header h1 {
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
+  }
+
+  /* Responsive Google reCAPTCHA widget */
+  .g-recaptcha {
+    max-width: 100%;
+    overflow-x: auto;
+    transform-origin: 0 0;
+  }
+}
+
 @keyframes navMenuSlideDown {
   from {
     opacity: 0;
@@ -1538,11 +1609,19 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 
 @media (max-width: 480px) {
   .brand-label { font-size: 1rem; }
-  .hero-section h1, .section-header h2 { font-size: clamp(2.6rem, 12vw, 3.8rem); }
+  .hero-section h1, .section-header h2 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
   .welcome-line { font-size: 0.9rem; }
-  .button { padding: 0.85rem 1.35rem; font-size: 0.95rem; }
+  .button { padding: 0.85rem 1.35rem; font-size: 0.95rem; width: 100%; }
   .player-card__photo { min-height: 14rem; }
   .marquee-track { animation-duration: calc(var(--marquee-duration, 14s) * 1.4); }
+  .stats-band { grid-template-columns: 1fr !important; }
+  
+  /* Scale reCAPTCHA slightly on extra-narrow phones to guarantee zero horizontal scroll */
+  .g-recaptcha {
+    transform: scale(0.86);
+    transform-origin: left top;
+    margin-bottom: -10px;
+  }
 }
 
 /* ============================================================

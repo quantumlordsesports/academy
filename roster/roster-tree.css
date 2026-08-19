@@ -399,19 +399,38 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .tree-nodes-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1.75rem;
+    width: 100%;
   }
   .tree-origin-title {
     font-size: 1.35rem;
   }
   .tree-origin-node {
     padding: 1.25rem 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .tree-avatar-frame {
     width: 120px;
     height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .roster-tree-section {
+    padding: 2rem 1rem 4rem;
+  }
+  .tree-origin-node {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  .tree-root-card {
+    padding: 1.25rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
