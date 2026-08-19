@@ -2567,6 +2567,51 @@ html[data-theme="light"] .text-cyber-violet {
   font-weight: 700;
 }
 
+/* Recruit Hero "JOIN QuantumLordsEsports." in Light Theme */
+html[data-theme="light"] .recruit-hero-gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #d97706 48%, #e11d48 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 8px rgba(2, 132, 199, 0.15)) !important;
+}
+
+/* Player Spotlight Video Hero in Light Theme (Keep cinematic crisp white typography on dark video player) */
+html[data-theme="light"] .player-spotlight-hero h1,
+html[data-theme="light"] .player-spotlight-hero .text-white {
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9) !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero .text-slate-200,
+html[data-theme="light"] .player-spotlight-hero .text-slate-300,
+html[data-theme="light"] .player-spotlight-hero .font-space {
+  color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero .text-cyber-cyan {
+  color: #00F0FF !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero .text-cyber-gold {
+  color: #FFD700 !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero button {
+  background: rgba(0, 0, 0, 0.82) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero #spotlightMuteBtn {
+  border-color: rgba(0, 240, 255, 0.8) !important;
+  color: #00F0FF !important;
+}
+
+html[data-theme="light"] .player-spotlight-hero #spotlightPlayBtn {
+  border-color: rgba(255, 215, 0, 0.8) !important;
+  color: #FFD700 !important;
+}
+
 /* 3. Surface & Card Background Resets in Light Mode */
 html[data-theme="light"] .bg-\[\#080B10\],
 html[data-theme="light"] .bg-\[\#0d1117\],
@@ -2763,6 +2808,23 @@ html[data-theme="light"] .book-btn-download:hover {
   background: #d97706 !important;
   color: #ffffff !important;
   box-shadow: 0 0 20px rgba(217, 119, 6, 0.4) !important;
+}
+
+/* Player Telemetry, Quotes, & Metrics in Light Theme */
+html[data-theme="light"] .bg-white\/\[0\.03\],
+html[data-theme="light"] .bg-white\/\[0\.02\],
+html[data-theme="light"] .bg-white\/5,
+html[data-theme="light"] .bg-white\/10 {
+  background-color: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .border-l-4.border-cyber-cyan {
+  border-left-color: #0284c7 !important;
+}
+
+html[data-theme="light"] .italic.font-space {
+  color: #1e293b !important;
 }
 
 /* 10. Tables & Forms in Light Theme */
