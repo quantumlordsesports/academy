@@ -1,8 +1,8 @@
 /**
- * Google reCAPTCHA v2 Canonical Siteverify — Netlify Serverless Function
+ * Google reCAPTCHA v3 Canonical Siteverify — Netlify Serverless Function
  * Endpoint: /.netlify/functions/verify-recaptcha (or /api/verify-recaptcha)
  * 
- * Validates g-recaptcha-response tokens server-side before allowing form/auth actions.
+ * Validates reCAPTCHA v3 tokens server-side before allowing form/auth actions.
  */
 
 exports.handler = async function(event, context) {
@@ -113,13 +113,28 @@ exports.handler = async function(event, context) {
       };
     }
 
+    // Check reCAPTCHA v3 score if present (human score threshold is typically 0.5; allow >= 0.3)
+    if (typeof result.score === 'number' && result.score < 0.3) {
+      console.warn('[reCAPTCHA v3] Low bot score detected:', result.score);
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({
+          success: false,
+          error: 'Bot verification failed due to low interaction score. Please retry.',
+          score: result.score
+        })
+      };
+    }
+
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
         success: true,
         message: 'Google reCAPTCHA verification successful.',
-        action: requestedAction || undefined,
+        action: result.action || requestedAction || undefined,
+        score: result.score,
         hostname: result.hostname,
         challenge_ts: result.challenge_ts
       })
