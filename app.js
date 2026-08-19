@@ -337,6 +337,10 @@ const initThemeToggle = () => {
       if (document.body) document.body.classList.remove('theme-light');
     }
 
+    if (typeof window.updateAtmosphereTheme === 'function') {
+      window.updateAtmosphereTheme();
+    }
+
     // Update all theme toggle buttons across the page
     document.querySelectorAll('.theme-toggle').forEach((btn) => {
       const isLight = theme === 'light';
@@ -359,6 +363,22 @@ const initThemeToggle = () => {
       window.AudioController.play('click');
     }
   };
+
+  // Auto-inject theme-atmosphere.js if not already present
+  if (!document.querySelector('script[src*="theme-atmosphere.js"]')) {
+    const atmoScript = document.createElement('script');
+    // Detect relative path depth
+    const isSubdir = window.location.pathname.includes('/roster/') || 
+                     window.location.pathname.includes('/team-updates/') || 
+                     window.location.pathname.includes('/tactics/') || 
+                     window.location.pathname.includes('/recruit/') || 
+                     window.location.pathname.includes('/contact/') || 
+                     window.location.pathname.includes('/portal/') || 
+                     window.location.pathname.includes('/rewards/');
+    atmoScript.src = isSubdir ? '../theme-atmosphere.js' : 'theme-atmosphere.js';
+    atmoScript.defer = true;
+    document.head.appendChild(atmoScript);
+  }
 
   // Initial apply
   const currentTheme = getStoredTheme();
