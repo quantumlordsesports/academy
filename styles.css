@@ -2612,6 +2612,73 @@ html[data-theme="light"] .player-spotlight-hero #spotlightPlayBtn {
   color: #FFD700 !important;
 }
 
+/* Universal Inline Color Contrast Safety Rules for Light Mode */
+html[data-theme="light"] [style*="color: #fff"],
+html[data-theme="light"] [style*="color:#fff"],
+html[data-theme="light"] [style*="color: #ffffff"],
+html[data-theme="light"] [style*="color:#ffffff"],
+html[data-theme="light"] [style*="color: white"],
+html[data-theme="light"] [style*="color:white"] {
+  color: #0f172a !important;
+}
+
+/* Preserve bright typography over filled primary action buttons and hero spotlight */
+html[data-theme="light"] .action-btn-primary,
+html[data-theme="light"] .action-btn-primary *,
+html[data-theme="light"] .btn-primary,
+html[data-theme="light"] .btn-primary *,
+html[data-theme="light"] .player-spotlight-hero [style*="color: #fff"],
+html[data-theme="light"] .player-spotlight-hero [style*="color:#fff"],
+html[data-theme="light"] .player-spotlight-hero [style*="color: #ffffff"],
+html[data-theme="light"] .player-spotlight-hero [style*="color:#ffffff"],
+html[data-theme="light"] .player-spotlight-hero [style*="color: white"],
+html[data-theme="light"] .player-spotlight-hero [style*="color:white"] {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] [style*="color: #cbd5e1"],
+html[data-theme="light"] [style*="color:#cbd5e1"],
+html[data-theme="light"] [style*="color: #94a3b8"],
+html[data-theme="light"] [style*="color:#94a3b8"],
+html[data-theme="light"] [style*="color: #64748b"],
+html[data-theme="light"] [style*="color:#64748b"] {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] [style*="color: #00F0FF"],
+html[data-theme="light"] [style*="color:#00F0FF"],
+html[data-theme="light"] [style*="color: #38BDF8"],
+html[data-theme="light"] [style*="color:#38BDF8"] {
+  color: #0284c7 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] [style*="color: #E8C56A"],
+html[data-theme="light"] [style*="color:#E8C56A"],
+html[data-theme="light"] [style*="color: #FFD700"],
+html[data-theme="light"] [style*="color:#FFD700"] {
+  color: #b45309 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] [style*="color: #00FF66"],
+html[data-theme="light"] [style*="color:#00FF66"] {
+  color: #047857 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] [style*="color: #FF0055"],
+html[data-theme="light"] [style*="color:#FF0055"] {
+  color: #be123c !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] [style*="color: #8B5CF6"],
+html[data-theme="light"] [style*="color:#8B5CF6"] {
+  color: #6d28d9 !important;
+  font-weight: 700;
+}
+
 /* 3. Surface & Card Background Resets in Light Mode */
 html[data-theme="light"] .bg-\[\#080B10\],
 html[data-theme="light"] .bg-\[\#0d1117\],
