@@ -2459,48 +2459,152 @@ html[data-theme="light"] .welcome-line--accent {
   color: var(--accent-deep);
 }
 
-/* Headings & Text in Light Theme */
+/* ============================================================
+   QuantumLords Esports — Bright (Light) Theme Overrides
+   High-contrast, Calibrated Typography, Crystal Porcelain Glass
+   ============================================================ */
+
+/* 1. Core Typography Calibration */
 html[data-theme="light"] h1,
 html[data-theme="light"] h2,
 html[data-theme="light"] h3,
 html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
 html[data-theme="light"] .card-title,
-html[data-theme="light"] .section-header h2,
-html[data-theme="light"] .text-white {
-  color: var(--text-heading) !important;
+html[data-theme="light"] .section-header h2 {
+  color: #020617 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-slate-100,
+html[data-theme="light"] .text-slate-200,
+html[data-theme="light"] .text-gray-100,
+html[data-theme="light"] .text-gray-200,
+html[data-theme="light"] .text-zinc-100,
+html[data-theme="light"] .text-zinc-200,
+html[data-theme="light"] .text-neutral-100,
+html[data-theme="light"] .text-neutral-200,
+html[data-theme="light"] .text-cyber-text {
+  color: #0f172a !important;
   text-shadow: none !important;
 }
 
 html[data-theme="light"] p,
 html[data-theme="light"] .text-slate-300,
-html[data-theme="light"] .text-slate-400 {
-  color: var(--muted) !important;
+html[data-theme="light"] .text-gray-300,
+html[data-theme="light"] .text-zinc-300,
+html[data-theme="light"] .text-neutral-300 {
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .text-slate-400,
+html[data-theme="light"] .text-gray-400,
+html[data-theme="light"] .text-zinc-400,
+html[data-theme="light"] .text-neutral-400,
+html[data-theme="light"] .text-cyber-muted {
+  color: #475569 !important;
 }
 
 html[data-theme="light"] .text-slate-500,
-html[data-theme="light"] .text-slate-600 {
+html[data-theme="light"] .text-slate-600,
+html[data-theme="light"] .text-gray-500,
+html[data-theme="light"] .text-zinc-500 {
   color: #64748b !important;
 }
 
 html[data-theme="light"] .eyebrow {
-  color: var(--accent-deep) !important;
+  color: #b45309 !important;
 }
 
-/* Background resets for hardcoded dark classes in Light Mode */
+/* 2. Brand Accent Text Contrast Upgrades (Readable vs Light Alabaster) */
+html[data-theme="light"] .text-\[\#00F0FF\],
+html[data-theme="light"] .text-cyan-400,
+html[data-theme="light"] .text-cyan-300,
+html[data-theme="light"] .text-cyber-cyan,
+html[data-theme="light"] .text-sky-400 {
+  color: #0284c7 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .text-\[\#E8C56A\],
+html[data-theme="light"] .text-\[\#FFD700\],
+html[data-theme="light"] .text-amber-400,
+html[data-theme="light"] .text-amber-300,
+html[data-theme="light"] .text-yellow-400,
+html[data-theme="light"] .text-yellow-300,
+html[data-theme="light"] .text-cyber-gold {
+  color: #b45309 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .text-\[\#00FF66\],
+html[data-theme="light"] .text-green-400,
+html[data-theme="light"] .text-green-300,
+html[data-theme="light"] .text-emerald-400,
+html[data-theme="light"] .text-emerald-300,
+html[data-theme="light"] .text-cyber-green {
+  color: #047857 !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .text-\[\#FF0055\],
+html[data-theme="light"] .text-rose-400,
+html[data-theme="light"] .text-rose-300,
+html[data-theme="light"] .text-red-400,
+html[data-theme="light"] .text-cyber-crimson {
+  color: #be123c !important;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .text-purple-300,
+html[data-theme="light"] .text-purple-400,
+html[data-theme="light"] .text-violet-300,
+html[data-theme="light"] .text-violet-400,
+html[data-theme="light"] .text-cyber-violet {
+  color: #6d28d9 !important;
+  font-weight: 700;
+}
+
+/* 3. Surface & Card Background Resets in Light Mode */
 html[data-theme="light"] .bg-\[\#080B10\],
 html[data-theme="light"] .bg-\[\#0d1117\],
 html[data-theme="light"] .bg-\[\#05070A\],
 html[data-theme="light"] .bg-\[\#06080f\],
-html[data-theme="light"] .bg-\[\#0d1726\] {
-  background-color: rgba(243, 246, 253, 0.95) !important;
+html[data-theme="light"] .bg-\[\#0d1726\],
+html[data-theme="light"] .bg-\[\#06080F\],
+html[data-theme="light"] .bg-\[\#0D111A\],
+html[data-theme="light"] .bg-\[\#131826\],
+html[data-theme="light"] .bg-\[\#0A0C11\],
+html[data-theme="light"] .bg-\[\#0F131D\],
+html[data-theme="light"] .bg-\[\#151B29\],
+html[data-theme="light"] .bg-\[\#161B22\],
+html[data-theme="light"] .bg-slate-900,
+html[data-theme="light"] .bg-slate-950,
+html[data-theme="light"] .bg-gray-900,
+html[data-theme="light"] .bg-gray-950,
+html[data-theme="light"] .bg-zinc-900,
+html[data-theme="light"] .bg-zinc-950,
+html[data-theme="light"] .bg-cyber-bg,
+html[data-theme="light"] .bg-cyber-card,
+html[data-theme="light"] .bg-cyber-cardHover {
+  background-color: #ffffff !important;
 }
 
 html[data-theme="light"] .border-slate-800,
-html[data-theme="light"] .border-slate-700 {
+html[data-theme="light"] .border-slate-700,
+html[data-theme="light"] .border-slate-900,
+html[data-theme="light"] .border-gray-800,
+html[data-theme="light"] .border-zinc-800,
+html[data-theme="light"] .border-white\/5,
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/20,
+html[data-theme="light"] .border-cyber-border {
   border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
-/* Cards & Surfaces in Light Theme */
+/* 4. Crystal Glass Cards & Containers in Light Theme */
 html[data-theme="light"] .card,
 html[data-theme="light"] .player-card,
 html[data-theme="light"] .highlight-card,
@@ -2512,10 +2616,14 @@ html[data-theme="light"] .map-card-3d,
 html[data-theme="light"] .social-pill-card,
 html[data-theme="light"] .routing-tag,
 html[data-theme="light"] .glassy-glow-panel,
-html[data-theme="light"] .glass-panel {
-  background: rgba(255, 255, 255, 0.92) !important;
+html[data-theme="light"] .glass-panel,
+html[data-theme="light"] .update-card,
+html[data-theme="light"] .filter-item,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .module-card {
+  background: rgba(255, 255, 255, 0.94) !important;
   border-color: rgba(15, 23, 42, 0.12) !important;
-  box-shadow: 0 12px 35px -8px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07), 0 0 0 1px rgba(226, 232, 240, 0.9) !important;
 }
 
 html[data-theme="light"] .comms-card:hover,
@@ -2523,17 +2631,18 @@ html[data-theme="light"] .social-pill-card:hover,
 html[data-theme="light"] .floating-sponsor-card:hover,
 html[data-theme="light"] .map-card-3d:hover,
 html[data-theme="light"] .card:hover,
-html[data-theme="light"] .achievement-card:hover {
+html[data-theme="light"] .achievement-card:hover,
+html[data-theme="light"] .update-card:hover {
   background: #ffffff !important;
   border-color: rgba(217, 119, 6, 0.45) !important;
-  box-shadow: 0 20px 45px -8px rgba(15, 23, 42, 0.12), 0 0 25px rgba(217, 119, 6, 0.15) !important;
+  box-shadow: 0 18px 45px -8px rgba(15, 23, 42, 0.12), 0 0 25px rgba(217, 119, 6, 0.15) !important;
 }
 
-/* 3D Strategy Book Cards in Light Theme */
+/* 5. 3D Strategy Book Cards in Light Theme */
 html[data-theme="light"] .book-card-3d {
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   border-color: rgba(15, 23, 42, 0.12) !important;
-  box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 14px 35px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.9) !important;
 }
 
 html[data-theme="light"] .book-card-3d:hover {
@@ -2552,7 +2661,7 @@ html[data-theme="light"] .book-card-3d h4 {
   color: #0f172a !important;
 }
 
-/* Tactical Map Cards in Light Theme */
+/* 6. Tactical Map Cards in Light Theme */
 html[data-theme="light"] .map-card-3d h3,
 html[data-theme="light"] .map-card-3d h4 {
   color: #0f172a !important;
@@ -2563,16 +2672,75 @@ html[data-theme="light"] .map-card-3d p {
 }
 
 html[data-theme="light"] .map-thumb-wrap {
-  background: #e2e8f0 !important;
+  background: #f1f5f9 !important;
 }
 
 html[data-theme="light"] .map-tag-badge {
-  background: rgba(2, 132, 199, 0.12) !important;
+  background: rgba(2, 132, 199, 0.10) !important;
   border-color: rgba(2, 132, 199, 0.35) !important;
   color: #0284c7 !important;
 }
 
-/* Action Buttons in Light Theme */
+/* 7. Badges & Chip Components in Light Theme */
+html[data-theme="light"] .bg-cyan-950\/60,
+html[data-theme="light"] .bg-cyan-950\/40,
+html[data-theme="light"] .bg-cyan-900\/50,
+html[data-theme="light"] .bg-cyan-500\/10 {
+  background: rgba(2, 132, 199, 0.10) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+  color: #0284c7 !important;
+}
+
+html[data-theme="light"] .bg-amber-950\/60,
+html[data-theme="light"] .bg-amber-950\/40,
+html[data-theme="light"] .bg-\[\#E8C56A\]\/20,
+html[data-theme="light"] .bg-amber-500\/10 {
+  background: rgba(217, 119, 6, 0.10) !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+  color: #b45309 !important;
+}
+
+html[data-theme="light"] .bg-purple-950\/60,
+html[data-theme="light"] .bg-purple-950\/40,
+html[data-theme="light"] .bg-purple-500\/10 {
+  background: rgba(124, 58, 237, 0.10) !important;
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  color: #6d28d9 !important;
+}
+
+html[data-theme="light"] .bg-green-950\/60,
+html[data-theme="light"] .bg-green-950\/40,
+html[data-theme="light"] .bg-emerald-500\/10 {
+  background: rgba(5, 150, 105, 0.10) !important;
+  border-color: rgba(5, 150, 105, 0.3) !important;
+  color: #047857 !important;
+}
+
+html[data-theme="light"] .bg-red-950\/60,
+html[data-theme="light"] .bg-rose-950\/60,
+html[data-theme="light"] .bg-rose-500\/10 {
+  background: rgba(225, 29, 72, 0.10) !important;
+  border-color: rgba(225, 29, 72, 0.3) !important;
+  color: #be123c !important;
+}
+
+/* 8. Tabs & Filter Nav in Light Theme */
+html[data-theme="light"] .tab-btn {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .tab-btn:hover {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .tab-btn.active {
+  background: #ffffff !important;
+  color: #b45309 !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 9. Action Buttons & Interactive Controls */
 html[data-theme="light"] .action-btn-secondary {
   background: #ffffff !important;
   color: #0f172a !important;
@@ -2580,13 +2748,13 @@ html[data-theme="light"] .action-btn-secondary {
 }
 
 html[data-theme="light"] .action-btn-secondary:hover {
-  background: rgba(217, 119, 6, 0.12) !important;
+  background: rgba(217, 119, 6, 0.10) !important;
   border-color: rgba(217, 119, 6, 0.5) !important;
   color: #b45309 !important;
 }
 
 html[data-theme="light"] .book-btn-download {
-  background: rgba(217, 119, 6, 0.12) !important;
+  background: rgba(217, 119, 6, 0.10) !important;
   border-color: rgba(217, 119, 6, 0.35) !important;
   color: #b45309 !important;
 }
@@ -2597,7 +2765,40 @@ html[data-theme="light"] .book-btn-download:hover {
   box-shadow: 0 0 20px rgba(217, 119, 6, 0.4) !important;
 }
 
-/* Password Modal in Light Theme */
+/* 10. Tables & Forms in Light Theme */
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html[data-theme="light"] table {
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] th {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+html[data-theme="light"] td {
+  color: #334155 !important;
+  border-color: #f1f5f9 !important;
+}
+
+html[data-theme="light"] tr:hover td {
+  background: #f8fafc !important;
+}
+
+/* 11. Password Lock Modal in Light Theme */
 html[data-theme="light"] .cyber-modal-backdrop {
   background: rgba(15, 23, 42, 0.65) !important;
 }
@@ -2628,12 +2829,49 @@ html[data-theme="light"] #bookLockPassword:focus {
   box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15) !important;
 }
 
-/* Toast Copy in Light Theme */
+/* 12. Toast Copy in Light Theme */
 html[data-theme="light"] .toast-copy {
   background: #ffffff !important;
   border-color: #d97706 !important;
   color: #b45309 !important;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15), 0 0 20px rgba(217, 119, 6, 0.25) !important;
+}
+
+/* 13. Portal Dashboard & Military Clock in Light Theme */
+html[data-theme="light"] .bg-\[\#07090D\]\/85,
+html[data-theme="light"] .bg-\[\#07090D\] {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html[data-theme="light"] #militaryClock {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .vault-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
+}
+
+html[data-theme="light"] .vault-card:hover {
+  border-color: rgba(217, 119, 6, 0.5) !important;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.10) !important;
+}
+
+html[data-theme="light"] .cyber-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px) !important;
+}
+
+html[data-theme="light"] #cyberCanvas {
+  opacity: 0.12 !important;
+}
+
+html[data-theme="light"] select option {
+  background: #ffffff !important;
+  color: #0f172a !important;
 }
 
 html[data-theme="light"] .stat {

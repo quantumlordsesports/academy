@@ -283,31 +283,47 @@
 }
 
 /* Light Theme overrides for BGM Controller */
-html[data-theme="light"] .bgm-widget {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: rgba(184, 130, 12, 0.35);
-  box-shadow: 0 12px 35px rgba(18, 22, 36, 0.12), 0 0 20px rgba(184, 130, 12, 0.12);
-  color: #191c28;
+html[data-theme="light"] .bgm-widget,
+body.theme-light .bgm-widget {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.10), 0 0 20px rgba(217, 119, 6, 0.12);
+  color: #0f172a;
 }
-html[data-theme="light"] .bgm-widget:hover {
-  border-color: rgba(184, 130, 12, 0.6);
-  box-shadow: 0 16px 40px rgba(18, 22, 36, 0.18), 0 0 25px rgba(184, 130, 12, 0.22);
+html[data-theme="light"] .bgm-widget:hover,
+body.theme-light .bgm-widget:hover {
+  border-color: rgba(217, 119, 6, 0.6);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15), 0 0 25px rgba(217, 119, 6, 0.22);
 }
-html[data-theme="light"] .bgm-title {
-  color: #0a0d17;
+html[data-theme="light"] .bgm-tag,
+body.theme-light .bgm-tag {
+  color: #b45309;
 }
-html[data-theme="light"] .bgm-status {
-  color: #5c647b;
+html[data-theme="light"] .bgm-title,
+body.theme-light .bgm-title {
+  color: #020617;
 }
-html[data-theme="light"] .bgm-panel {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: rgba(184, 130, 12, 0.3);
-  box-shadow: 0 20px 50px rgba(18, 22, 36, 0.15);
-  color: #191c28;
+html[data-theme="light"] .bgm-status,
+body.theme-light .bgm-status {
+  color: #475569;
 }
-html[data-theme="light"] .bgm-panel-title {
-  color: #0a0d17;
+html[data-theme="light"] .bgm-panel,
+body.theme-light .bgm-panel {
+  background: #ffffff;
+  border-color: rgba(217, 119, 6, 0.3);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+  color: #0f172a;
 }
-html[data-theme="light"] .bgm-panel-desc {
-  color: #5c647b;
+html[data-theme="light"] .bgm-panel-title,
+body.theme-light .bgm-panel-title {
+  color: #020617;
+}
+html[data-theme="light"] .bgm-panel-desc,
+body.theme-light .bgm-panel-desc {
+  color: #475569;
+}
+html[data-theme="light"] .bgm-toggle-btn,
+body.theme-light .bgm-toggle-btn {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(241, 245, 249, 0.95));
+  border-color: #d97706;
 }
