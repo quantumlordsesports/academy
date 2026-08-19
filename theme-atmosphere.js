@@ -378,213 +378,6 @@
     }
   }
 
-  // --- Full-Spectrum High-Density Thunder & Lightning Storm Engine ---
-  const activeStrikes = [];
-
-  function createLightningBolt(startX, startY, endX, endY, branchLevel = 0) {
-    const segments = [];
-    let curX = startX;
-    let curY = startY;
-    const dx = endX - startX;
-    const dy = endY - startY;
-    const distance = Math.hypot(dx, dy);
-    const steps = Math.max(6, Math.floor(distance / (branchLevel > 0 ? 14 : 20)));
-    const stepX = dx / steps;
-    const stepY = dy / steps;
-    const jitter = branchLevel > 0 ? 20 : 38;
-
-    for (let i = 0; i < steps; i++) {
-      const progress = (i + 1) / steps;
-      const targetX = startX + dx * progress;
-      const targetY = startY + dy * progress;
-      const nextX = targetX + (Math.random() - 0.5) * jitter;
-      const nextY = targetY + (Math.random() - 0.5) * jitter * 0.6;
-      segments.push({ x1: curX, y1: curY, x2: nextX, y2: nextY, branchLevel });
-
-      // Fork branch chance (higher chance for rich lightning trees)
-      if (branchLevel === 0 && Math.random() < 0.45 && segments.length < 32) {
-        const forkAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * 1.3;
-        const forkDist = Math.random() * (distance * 0.5) + 60;
-        const forkEndX = nextX + Math.cos(forkAngle) * forkDist;
-        const forkEndY = nextY + Math.sin(forkAngle) * forkDist;
-        const subBolts = createLightningBolt(nextX, nextY, forkEndX, forkEndY, 1);
-        segments.push(...subBolts);
-      }
-
-      curX = nextX;
-      curY = nextY;
-    }
-    return segments;
-  }
-
-  function spawnStrike(forcedType = null, customX = null, customY = null) {
-    const types = ['sky-to-ground', 'horizontal-crawler', 'diagonal-cutter', 'mid-screen-arc', 'lower-ground-surge', 'sheet-flash'];
-    const type = forcedType || types[Math.floor(Math.random() * types.length)];
-
-    const colors = [
-      { glow: 'rgba(0, 240, 255, 0.85)', core: '#ffffff', flash: 'rgba(0, 240, 255, 0.28)' },   // Cyber Cyan
-      { glow: 'rgba(192, 132, 252, 0.85)', core: '#ffffff', flash: 'rgba(139, 92, 246, 0.25)' }, // Plasma Violet
-      { glow: 'rgba(255, 215, 0, 0.80)', core: '#ffffff', flash: 'rgba(232, 197, 106, 0.22)' },  // Imperial Gold
-      { glow: 'rgba(255, 0, 85, 0.80)', core: '#ffffff', flash: 'rgba(255, 0, 85, 0.22)' }       // Crimson Surge
-    ];
-    const colorScheme = colors[Math.floor(Math.random() * colors.length)];
-
-    let startX, startY, endX, endY, bolts = [];
-
-    if (customX !== null && customY !== null) {
-      // Interactive Click / Tap Strike
-      startX = customX + (Math.random() - 0.5) * 100;
-      startY = Math.max(0, customY - Math.random() * 300 - 150);
-      endX = customX;
-      endY = customY;
-      bolts = createLightningBolt(startX, startY, endX, endY);
-    } else {
-      switch (type) {
-        case 'sky-to-ground':
-          // Vertical strike from top to bottom 60%-95% of screen
-          startX = Math.random() * (width * 0.9) + width * 0.05;
-          startY = 0;
-          endX = startX + (Math.random() - 0.5) * (width * 0.3);
-          endY = Math.random() * (height * 0.5) + height * 0.45;
-          bolts = createLightningBolt(startX, startY, endX, endY);
-          break;
-
-        case 'horizontal-crawler':
-          // High & Mid sky horizontal crawlers across the width
-          startX = Math.random() * (width * 0.35);
-          startY = Math.random() * (height * 0.65) + 30;
-          endX = startX + Math.random() * (width * 0.6) + width * 0.25;
-          endY = startY + (Math.random() - 0.5) * (height * 0.2);
-          bolts = createLightningBolt(startX, startY, endX, endY);
-          break;
-
-        case 'diagonal-cutter':
-          // Giant diagonal bolt cutting across the page
-          const fromLeft = Math.random() > 0.5;
-          startX = fromLeft ? Math.random() * (width * 0.3) : width - Math.random() * (width * 0.3);
-          startY = Math.random() * (height * 0.3);
-          endX = fromLeft ? width - Math.random() * (width * 0.3) : Math.random() * (width * 0.3);
-          endY = Math.random() * (height * 0.4) + height * 0.5;
-          bolts = createLightningBolt(startX, startY, endX, endY);
-          break;
-
-        case 'mid-screen-arc':
-          // Mid-page electric arc across content cards
-          startX = Math.random() * (width * 0.7) + width * 0.15;
-          startY = Math.random() * (height * 0.4) + height * 0.25;
-          endX = startX + (Math.random() - 0.5) * (width * 0.45);
-          endY = startY + Math.random() * (height * 0.35) + 50;
-          bolts = createLightningBolt(startX, startY, endX, endY);
-          break;
-
-        case 'lower-ground-surge':
-          // Lower-screen ground electrical strike
-          startX = Math.random() * (width * 0.8) + width * 0.1;
-          startY = Math.random() * (height * 0.3) + height * 0.55;
-          endX = startX + (Math.random() - 0.5) * (width * 0.35);
-          endY = height;
-          bolts = createLightningBolt(startX, startY, endX, endY);
-          break;
-
-        default: // 'sheet-flash'
-          startX = Math.random() * width;
-          startY = Math.random() * (height * 0.7);
-          break;
-      }
-    }
-
-    activeStrikes.push({
-      type,
-      x: startX,
-      y: startY,
-      bolts,
-      intensity: 1.0,
-      decay: Math.random() * 0.05 + 0.04,
-      color: colorScheme,
-      flicker: true
-    });
-
-    // Startle nearby nocturnal bats on thunderbolt strikes
-    if (bats.length > 0) {
-      bats.forEach(b => {
-        const dist = Math.hypot(b.x - startX, b.y - startY);
-        if (dist < width * 0.5) {
-          b.isGliding = false;
-          b.wingPhase += 0.9;
-          b.swoopPhase += 0.6;
-          b.speedY += (Math.random() - 0.5) * 1.6;
-        }
-      });
-    }
-
-    // Rare 15% chance of secondary multi-bolt burst
-    if (Math.random() < 0.15 && activeStrikes.length < 2) {
-      setTimeout(() => {
-        if (currentTheme === 'dark') {
-          spawnStrike();
-        }
-      }, Math.random() * 180 + 90);
-    }
-  }
-
-  let lightningTimer = 0;
-  let nextLightningInterval = Math.floor(Math.random() * 200) + 180; // Relaxed cinematic pacing (~3s to 6.5s)
-
-  function updateAndDrawLightning(ctx) {
-    lightningTimer++;
-    if (lightningTimer >= nextLightningInterval) {
-      spawnStrike();
-      lightningTimer = 0;
-      nextLightningInterval = Math.floor(Math.random() * 220) + 180; // 3.0 to 6.5 seconds
-    }
-
-    for (let i = activeStrikes.length - 1; i >= 0; i--) {
-      const strike = activeStrikes[i];
-      strike.intensity -= strike.decay;
-
-      if (strike.intensity <= 0) {
-        activeStrikes.splice(i, 1);
-        continue;
-      }
-
-      ctx.save();
-      const currentIntensity = strike.flicker && Math.random() < 0.30 
-        ? strike.intensity * 0.45 
-        : strike.intensity;
-
-      // Full screen atmospheric sheet flash
-      ctx.fillStyle = strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.35})`);
-      ctx.fillRect(0, 0, width, height);
-
-      // Outer glow layer
-      ctx.strokeStyle = strike.color.glow;
-      ctx.lineWidth = 4.5;
-      ctx.shadowColor = strike.color.glow;
-      ctx.shadowBlur = 18;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.beginPath();
-      for (const seg of strike.bolts) {
-        ctx.moveTo(seg.x1, seg.y1);
-        ctx.lineTo(seg.x2, seg.y2);
-      }
-      ctx.stroke();
-
-      // Inner intense core layer
-      ctx.strokeStyle = strike.color.core;
-      ctx.lineWidth = 1.8;
-      ctx.shadowBlur = 8;
-      ctx.beginPath();
-      for (const seg of strike.bolts) {
-        ctx.moveTo(seg.x1, seg.y1);
-        ctx.lineTo(seg.x2, seg.y2);
-      }
-      ctx.stroke();
-
-      ctx.restore();
-    }
-  }
-
   // --- Main Init and Animation Loop ---
   function initAtmosphere() {
     canvas = document.getElementById('themeAtmosphereCanvas');
@@ -606,16 +399,6 @@
     ctx = canvas.getContext('2d');
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
-
-    // Interactive pointerdown thunderbolt strike with 1.5s cooldown
-    let lastClickStrike = 0;
-    window.addEventListener('pointerdown', (e) => {
-      const now = Date.now();
-      if (currentTheme === 'dark' && now - lastClickStrike > 1500) {
-        lastClickStrike = now;
-        spawnStrike('sky-to-ground', e.clientX, e.clientY);
-      }
-    }, { passive: true });
 
     // Initialize particles
     floraParticles.length = 0;
@@ -668,7 +451,7 @@
         p.draw(ctx);
       });
     } else {
-      // Render Dark Cosmic Storm (Clouds, Stars, Flying Bats & Thunderbolts)
+      // Render Dark Cosmic Night Sky (Nebula Clouds, Stars & Flying Bats)
       nebulaClouds.forEach(c => {
         c.update();
         c.draw(ctx);
@@ -684,8 +467,6 @@
         b.update();
         b.draw(ctx);
       });
-
-      updateAndDrawLightning(ctx);
     }
 
     animationFrameId = requestAnimationFrame(render);
