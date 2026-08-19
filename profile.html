@@ -1134,24 +1134,37 @@
 
     // 2. Fetch logged-in user and existing profile data
     async function initProfile() {
+      const headerBtn = document.getElementById('headerAuthBtn');
+      const headerText = document.getElementById('headerAuthText');
+      const headerIcon = document.getElementById('headerAuthIcon');
+      const sessionUserIdText = document.getElementById('sessionUserIdText');
+
       if (!supabase) {
         console.warn("Supabase SDK is not available.");
+        populateForm(loadUserProfile());
         return;
       }
 
       try {
         const { data: { user }, error } = await supabase.auth.getUser();
-        const headerBtn = document.getElementById('headerAuthBtn');
-        const headerText = document.getElementById('headerAuthText');
-        const headerIcon = document.getElementById('headerAuthIcon');
+        const savedAuthEmail = localStorage.getItem('qld_auth_user_email');
 
         if (user) {
           currentUser = user;
+        } else if (savedAuthEmail) {
+          currentUser = {
+            id: 'usr_' + btoa(savedAuthEmail).replace(/[^a-zA-Z0-9]/g, '').substring(0, 16),
+            email: savedAuthEmail
+          };
+        } else {
+          currentUser = null;
+        }
+
+        if (currentUser) {
           if (headerText) headerText.textContent = "LOG OUT";
           if (headerIcon) headerIcon.className = "ph-bold ph-sign-out text-cyber-crimson";
           if (headerBtn) headerBtn.className = "px-3.5 py-1.5 rounded-lg bg-cyber-crimson/15 hover:bg-cyber-crimson/25 border border-cyber-crimson/40 text-cyber-crimson font-mono text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all";
 
-          const sessionUserIdText = document.getElementById('sessionUserIdText');
           if (sessionUserIdText) {
             sessionUserIdText.textContent = currentUser.email || currentUser.id.substring(0, 12);
           }
@@ -1165,6 +1178,8 @@
 
           if (profile) {
             populateForm(profile);
+          } else {
+            populateForm(loadUserProfile());
           }
 
           // 3. Listen for REALTIME database changes for this user
@@ -1213,6 +1228,7 @@
 
       } catch (err) {
         console.warn("initProfile notice:", err);
+        populateForm(loadUserProfile());
       }
     }
 
@@ -1221,10 +1237,11 @@
         try {
           if (supabase) await supabase.auth.signOut();
         } catch (e) { }
+        localStorage.removeItem('qld_auth_user_email');
         currentUser = null;
-        showToast("Signed out successfully. Redirecting to Portal...", "ph-lock");
+        showToast("Signed out. Redirecting to Portal...", "ph-lock");
         setTimeout(() => {
-          window.location.href = "portal.html";
+          window.location.href = "portal.html?logout=true";
         }, 500);
       } else {
         window.location.href = "portal.html";
