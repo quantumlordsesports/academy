@@ -143,9 +143,6 @@
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
   
-  <!-- Google reCAPTCHA v2 API -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
 
@@ -466,11 +463,6 @@
             </div>
           </div>
 
-          <!-- Google reCAPTCHA v2 Checkbox Widget -->
-          <div style="margin: 0.5rem 0; display: flex; justify-content: flex-start;">
-            <div class="g-recaptcha" data-sitekey="6Lf1pI0tAAAAAMehJIQ_Dwm9f5o6ZBYsB0Lzc_sA"></div>
-          </div>
-
           <div>
             <button type="submit" id="trialSubmitBtn" class="button button-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 2.5rem; font-size: 0.95rem; font-family: 'Orbitron', sans-serif; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; box-shadow: 0 0 25px rgba(0,240,255,0.4);">
               <span>Submit Trial Dossier</span>
@@ -493,59 +485,12 @@
 
             alertBox.style.display = 'none';
 
-            // 1. Check Google reCAPTCHA v2 Checkbox Token
-            const recaptchaToken = (window.grecaptcha ? window.grecaptcha.getResponse() : '') || 
-                                   document.querySelector('#recruitTrialForm [name="g-recaptcha-response"]')?.value;
-
-            if (!recaptchaToken) {
-              alertBox.style.display = 'block';
-              alertBox.style.background = 'rgba(255,0,85,0.15)';
-              alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-              alertBox.style.color = '#ff0055';
-              alertBox.textContent = '⚠️ Bot Verification Required: Please complete the "I\'m not a robot" check.';
-              return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Verifying Security...</span>';
-
-            try {
-              // 2. Verify with backend serverless endpoint
-              const verifyRes = await fetch('/api/verify-recaptcha', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  'g-recaptcha-response': recaptchaToken,
-                  response: recaptchaToken,
-                  token: recaptchaToken
-                })
-              });
-
-              if (!verifyRes.ok) {
-                const errData = await verifyRes.json().catch(() => ({}));
-                if (window.grecaptcha) window.grecaptcha.reset();
-                throw new Error(errData.error || 'Security verification failed.');
-              }
-            } catch (err) {
-              console.warn('[reCAPTCHA Notice]', err.message);
-              if (err.message.includes('Security verification failed')) {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Submit Trial Dossier</span> <span aria-hidden="true">→</span>';
-                alertBox.style.display = 'block';
-                alertBox.style.background = 'rgba(255,0,85,0.15)';
-                alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-                alertBox.style.color = '#ff0055';
-                alertBox.textContent = '❌ Security check failed: ' + err.message;
-                return;
-              }
-            }
-
-            // 3. Verified Success
+            // Success notification & direct dispatch
             alertBox.style.display = 'block';
             alertBox.style.background = 'rgba(0,255,102,0.15)';
             alertBox.style.border = '1px solid rgba(0,255,102,0.5)';
             alertBox.style.color = '#00ff66';
-            alertBox.textContent = '✅ Application Verified! Dispatching your dossier to Quantum Lords Recruitment...';
+            alertBox.textContent = '✅ Application Received! Dispatching your dossier to Quantum Lords Recruitment...';
 
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Dossier Submitted ✓</span>';

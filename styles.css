@@ -1587,13 +1587,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .section-header h1 {
     font-size: clamp(2.2rem, 9vw, 3.4rem);
   }
-
-  /* Responsive Google reCAPTCHA v2 widget */
-  .g-recaptcha {
-    max-width: 100%;
-    overflow-x: auto;
-    transform-origin: 0 0;
-  }
 }
 
 @keyframes navMenuSlideDown {
@@ -1608,20 +1601,32 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 
 @media (max-width: 480px) {
-  .brand-label { font-size: 1rem; }
-  .hero-section h1, .section-header h2 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
-  .welcome-line { font-size: 0.9rem; }
-  .button { padding: 0.85rem 1.35rem; font-size: 0.95rem; width: 100%; }
-  .player-card__photo { min-height: 14rem; }
-  .marquee-track { animation-duration: calc(var(--marquee-duration, 14s) * 1.4); }
-  .stats-band { grid-template-columns: 1fr !important; }
-  /* Scale reCAPTCHA v2 slightly on narrow phones to guarantee zero horizontal scroll */
-  .g-recaptcha {
-    transform: scale(0.88);
-    transform-origin: left top;
-    margin-bottom: -6px;
+  .brand-label {
+    font-size: 1rem;
+  }
+  .hero-section h1,
+  .section-header h2 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+  }
+  .welcome-line {
+    font-size: 0.9rem;
+  }
+  .button {
+    padding: 0.85rem 1.35rem;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+  .player-card__photo {
+    min-height: 14rem;
+  }
+  .marquee-track {
+    animation-duration: calc(var(--marquee-duration, 14s) * 1.4);
+  }
+  .stats-band {
+    grid-template-columns: 1fr !important;
   }
 }
+
 
 /* ============================================================
    QuantumLords Esports — Bright (Light) Theme Overrides
