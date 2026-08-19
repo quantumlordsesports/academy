@@ -10,28 +10,28 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="QuantumLords" />
   <meta name="format-detection" content="telephone=no" />
-  <title>Contact & Management Inquiries // Quantum Lords Esports</title>
+  <title>Official Communications & Management // Quantum Lords Esports</title>
   <meta name="description"
-    content="Contact Quantum Lords Esports management for official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
+    content="Direct contact channels for Quantum Lords Esports management. Official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
   <meta name="keywords"
-    content="Quantum Lords Contact, Free Fire Scrim Booking, Esports Inquiries, Quantum Lords Management Email" />
+    content="Quantum Lords Contact, Free Fire Scrim Booking, Esports Inquiries, Quantum Lords Management Email, Discord" />
   <link rel="canonical" href="https://quantumlordsesports.netlify.app/contact/" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://quantumlordsesports.netlify.app/contact/" />
   <meta property="og:site_name" content="Quantum Lords Esports" />
-  <meta property="og:title" content="Contact & Management Inquiries // Quantum Lords Esports" />
+  <meta property="og:title" content="Official Communications & Management // Quantum Lords Esports" />
   <meta property="og:description"
-    content="Contact Quantum Lords Esports management for official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
+    content="Direct contact channels for Quantum Lords Esports management. Official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
   <meta property="og:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://quantumlordsesports.netlify.app/contact/" />
-  <meta name="twitter:title" content="Contact & Management Inquiries // Quantum Lords Esports" />
+  <meta name="twitter:title" content="Official Communications & Management // Quantum Lords Esports" />
   <meta name="twitter:description"
-    content="Contact Quantum Lords Esports management for official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
+    content="Direct contact channels for Quantum Lords Esports management. Official tournament invitations, scrim bookings, commercial sponsorships, and media inquiries." />
   <meta name="twitter:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
 
   <!-- JSON-LD Structured Data: ContactPage -->
@@ -45,7 +45,7 @@
     "mainEntity": {
       "@type": "SportsOrganization",
       "name": "Quantum Lords Esports",
-      "email": "contact@quantumlordsesports.com"
+      "email": "quantumlordsesports@gmail.com"
     }
   }
   </script>
@@ -68,6 +68,164 @@
 
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
+
+  <style>
+    /* Smooth Premium Contact UI Utilities */
+    .contact-hero-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero-glow::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, rgba(232, 197, 106, 0.05) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .comms-card {
+      background: rgba(22, 27, 34, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 2.25rem;
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px -10px rgba(0,0,0,0.85);
+    }
+    .comms-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 22px 45px -10px rgba(0,0,0,0.95), 0 0 30px rgba(0, 240, 255, 0.2);
+    }
+    .comms-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.7), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .comms-card:hover::after {
+      opacity: 1;
+    }
+    .social-pill-card {
+      background: rgba(15, 20, 28, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .social-pill-card:hover {
+      background: rgba(26, 35, 48, 0.95);
+      border-color: rgba(0, 240, 255, 0.5);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.25);
+    }
+    .action-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.75rem;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .action-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .action-btn-secondary:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.5);
+      color: #00F0FF;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+    .routing-tag {
+      background: rgba(13, 17, 23, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.25rem;
+      transition: all 0.25s ease;
+    }
+    .routing-tag:hover {
+      border-color: rgba(232, 197, 106, 0.4);
+      background: rgba(22, 27, 34, 0.9);
+      transform: translateY(-3px);
+    }
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00FF66;
+      box-shadow: 0 0 10px #00FF66;
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .toast-copy {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid #00F0FF;
+      color: #00F0FF;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(0, 240, 255, 0.35);
+      z-index: 10000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+    }
+    .toast-copy.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body class="theme-obsidian">
@@ -116,162 +274,221 @@
   </header>
 
   <!-- Main Content -->
-  <main id="content">
-    <section id="contact" class="section-block contact-section" style="padding-top: 4rem; padding-bottom: 5rem;">
-      <div class="section-header">
-        <p class="eyebrow">Contact</p>
-        <h1>Get in touch</h1>
-        <p>Follow the squad, book a media call, or reach out for sponsorship inquiries.</p>
+  <main id="content" class="contact-hero-glow">
+    <section id="contact" class="section-block contact-section" style="padding: 4.5rem 1.5rem 6rem; max-width: 1200px; margin: 0 auto;">
+      
+      <!-- Section Header -->
+      <div class="section-header" style="text-align: center; margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        <p class="eyebrow" style="color: #00F0FF; letter-spacing: 2px;">OFFICIAL COMMUNICATIONS</p>
+        <h1 style="font-family: 'Orbitron', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; letter-spacing: 2px; margin: 0.5rem 0 1rem; text-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
+          GET IN TOUCH
+        </h1>
+        <p style="max-width: 640px; margin: 0 auto; color: #94a3b8; font-size: 1.05rem; line-height: 1.6;">
+          Direct communication channels with QuantumLords Esports management for official tournament invitations, scrim bookings, commercial brand sponsorships, and press inquiries.
+        </p>
       </div>
 
-      <div class="contact-panel">
-        <div class="contact-card">
-          <h3>Socials</h3>
-          <ul id="social-links" class="social-list">
-            <li>
-              <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener">
-                <span class="social-icon"><img class="social-logo" src="../assets/social/discord Logo.png" alt="Discord"
-                    onerror="this.src='../assets/social/discord.png'" /></span>
-                <span>Discord</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noreferrer noopener">
-                <span class="social-icon"><img class="social-logo" src="../assets/social/instagram 02.png"
-                    alt="Instagram" onerror="this.src='../assets/social/instagram.jpg'" /></span>
-                <span>Instagram</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.youtube.com/@QuantimLordsEsports" target="_blank" rel="noreferrer noopener">
-                <span class="social-icon"><img class="social-logo" src="../assets/social/youtube 02.webp" alt="YouTube"
-                    onerror="this.src='../assets/social/youtube.jpg'" /></span>
-                <span>YouTube</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://web.facebook.com/profile.php?id=61575173494169" target="_blank"
-                rel="noreferrer noopener">
-                <span class="social-icon"><img class="social-logo" src="../assets/social/facebook.png" alt="Facebook"
-                    onerror="this.src='../folder/facebook.png.jpg'" /></span>
-                <span>Facebook</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <!-- Primary Management Dispatch Cards (Discord & Email) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        
+        <!-- 1. Official Discord Headquarters Card -->
+        <div class="comms-card" style="border-color: rgba(88, 101, 242, 0.35); background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(18, 20, 36, 0.9) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: rgba(0, 255, 102, 0.1); border: 1px solid rgba(0, 255, 102, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00FF66; font-weight: 700;">
+              <span class="pulse-dot"></span>
+              <span>LIVE SQUAD DISPATCH</span>
+            </div>
+            <img src="../assets/social/discord Logo.png" alt="Discord" style="width: 32px; height: 32px; object-fit: contain;" onerror="this.src='../assets/social/discord.png'" />
+          </div>
 
-        <div class="contact-card">
-          <h3>Email</h3>
-          <div id="contact-emails" class="contact-emails">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=quantumlordsesports@gmail.com" target="_blank"
-              rel="noopener noreferrer" class="email-card">
-              <span class="social-icon" aria-hidden="true">
-                <img class="social-logo" src="../assets/social/gmail.webp" alt="Gmail"
-                  onerror="this.src='../assets/social/gmail.webp'" />
-              </span>
-              <span>quantumlordsesports@gmail.com</span>
+          <h2 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0 0 0.5rem;">
+            Discord HQ
+          </h2>
+          <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Fastest communication channel. Connect directly with coaches, management, and roster players for scrim scheduling and live support.
+          </p>
+
+          <!-- Discord Direction Pill -->
+          <div style="background: rgba(10, 14, 22, 0.85); border: 1px solid rgba(88, 101, 242, 0.25); border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Direct Management DM</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #5865F2; font-weight: 700;">@ak47shahriar_31706</div>
+            </div>
+            <button type="button" onclick="copyText('@ak47shahriar_31706', 'Discord Handle Copied ✓')" class="action-btn-secondary" style="padding: 6px 12px; font-size: 0.75rem;">
+              📋 Copy
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener" class="action-btn-primary" style="background: linear-gradient(135deg, #5865F2, #4752C4); color: #fff; box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4); flex-grow: 1;">
+              <span>Join Discord Server</span>
+              <span>→</span>
             </a>
           </div>
         </div>
 
-        <!-- Direct Inquiry & Sponsorship Form -->
-        <div class="contact-card" style="grid-column: 1 / -1; margin-top: 1.5rem; text-align: left;">
-          <div
-            style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;">
-            <div>
-              <h3 style="margin-bottom: 0.25rem;">Send an Official Message</h3>
-              <p style="font-size: 0.85rem; color: var(--color-text-muted, #94a3b8); margin: 0;">Inquire for
-                sponsorships, creator partnerships, scrims, or media inquiries.</p>
+        <!-- 2. Official Management Email Card -->
+        <div class="comms-card" style="border-color: rgba(0, 240, 255, 0.35); background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(10, 22, 32, 0.9) 100%);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border-radius: 999px; background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00F0FF; font-weight: 700;">
+              ⚡ BUSINESS & INQUIRIES
             </div>
-            <span
-              style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00F0FF; padding: 4px 10px; background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.3); border-radius: 6px;">
-              ⚡ OFFICIAL INQUIRY
-            </span>
+            <img src="../assets/social/gmail.webp" alt="Gmail" style="width: 30px; height: 30px; object-fit: contain;" onerror="this.src='../assets/social/gmail.webp'" />
           </div>
 
-          <form id="contactForm" onsubmit="handleContactSubmit(event)"
-            style="display: flex; flex-direction: column; gap: 1rem;">
-            <div id="contactAlert"
-              style="display: none; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace;">
-            </div>
+          <h2 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin: 0 0 0.5rem;">
+            Official Email
+          </h2>
+          <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Formal business communications, commercial sponsorship agreements, tournament registrations, and media relations.
+          </p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-              <div>
-                <label for="contactName"
-                  style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--color-text-muted, #94a3b8);">Your
-                  Name / Organization</label>
-                <input type="text" id="contactName" name="name" required placeholder="e.g. RedBull Esports / Apex Media"
-                  style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem;" />
+          <!-- Email Address Display & Copy Pill -->
+          <div style="background: rgba(10, 14, 22, 0.85); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 12px; padding: 0.85rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; overflow: hidden;">
+            <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 0.5rem;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Management Inbox</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #00F0FF; font-weight: 700; overflow: hidden; text-overflow: ellipsis;">quantumlordsesports@gmail.com</div>
+            </div>
+            <button type="button" onclick="copyText('quantumlordsesports@gmail.com', 'Email Address Copied ✓')" class="action-btn-secondary" style="padding: 6px 12px; font-size: 0.75rem; flex-shrink: 0;">
+              📋 Copy
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=quantumlordsesports@gmail.com" target="_blank" rel="noopener noreferrer" class="action-btn-primary" style="background: linear-gradient(135deg, #00F0FF, #0284c7); color: #06080F; box-shadow: 0 6px 20px rgba(0, 240, 255, 0.35); flex-grow: 1;">
+              <span>Send via Gmail</span>
+              <span>→</span>
+            </a>
+            <a href="mailto:quantumlordsesports@gmail.com" class="action-btn-secondary" style="display: inline-flex; align-items: center; justify-content: center;">
+              <span>Mail App</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Official Social Channels Network Grid -->
+      <div style="margin-bottom: 3.5rem; position: relative; z-index: 1;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+          <p class="eyebrow" style="color: #E8C56A; letter-spacing: 2px;">SOCIAL MEDIA BROADCASTS</p>
+          <h2 style="font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin: 0;">
+            OFFICIAL CHANNELS & COMMUNITY
+          </h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+          
+          <!-- Discord -->
+          <a href="https://discord.gg/MTVRBAybwM" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(88, 101, 242, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(88, 101, 242, 0.3);">
+                <img src="../assets/social/discord Logo.png" alt="Discord" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='../assets/social/discord.png'" />
               </div>
               <div>
-                <label for="contactEmail"
-                  style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--color-text-muted, #94a3b8);">Contact
-                  Email</label>
-                <input type="email" id="contactEmail" name="email" required placeholder="contact@company.com"
-                  style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem;" />
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Discord</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #5865F2;">Community & Scrims</div>
               </div>
             </div>
+            <span style="font-size: 1.2rem; color: #5865F2;">→</span>
+          </a>
 
-            <div>
-              <label for="contactSubject"
-                style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--color-text-muted, #94a3b8);">Inquiry
-                Type</label>
-              <select id="contactSubject" name="subject"
-                style="width: 100%; padding: 0.75rem 1rem; background: #0F131D; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem;">
-                <option value="Sponsorship & Brand Partnership">Sponsorship & Brand Partnership</option>
-                <option value="Tournament / Scrim Invitation">Tournament / Scrim Invitation</option>
-                <option value="Media, Press & Interview">Media, Press & Interview</option>
-                <option value="Academy / Roster Inquiry">Academy / Roster Inquiry</option>
-                <option value="General Inquiries">General Inquiries</option>
-              </select>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/quantumlordsesports/" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(225, 48, 108, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(225, 48, 108, 0.3);">
+                <img src="../assets/social/instagram 02.png" alt="Instagram" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='../assets/social/instagram.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Instagram</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #E1306C;">@quantumlordsesports</div>
+              </div>
             </div>
+            <span style="font-size: 1.2rem; color: #E1306C;">→</span>
+          </a>
 
-            <div>
-              <label for="contactMessage"
-                style="display: block; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--color-text-muted, #94a3b8);">Message</label>
-              <textarea id="contactMessage" name="message" rows="4" required placeholder="Write your message here..."
-                style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@QuantimLordsEsports" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 0, 0, 0.3);">
+                <img src="../assets/social/youtube 02.webp" alt="YouTube" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='../assets/social/youtube.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">YouTube</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #FF0000;">Highlights & Matches</div>
+              </div>
             </div>
+            <span style="font-size: 1.2rem; color: #FF0000;">→</span>
+          </a>
 
-            <div>
-              <button type="submit" id="contactSubmitBtn" class="button button-primary"
-                style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.9rem; letter-spacing: 1px; cursor: pointer;">
-                <span>Send Verified Message</span>
-                <span aria-hidden="true">→</span>
-              </button>
+          <!-- Facebook -->
+          <a href="https://web.facebook.com/profile.php?id=61575173494169" target="_blank" rel="noreferrer noopener" class="social-pill-card">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(24, 119, 242, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(24, 119, 242, 0.3);">
+                <img src="../assets/social/facebook.png" alt="Facebook" style="width: 26px; height: 26px; object-fit: contain;" onerror="this.src='../folder/facebook.png.jpg'" />
+              </div>
+              <div>
+                <div style="font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: #fff;">Facebook</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #1877F2;">Official Community Page</div>
+              </div>
             </div>
-          </form>
+            <span style="font-size: 1.2rem; color: #1877F2;">→</span>
+          </a>
 
-          <script>
-            async function handleContactSubmit(event) {
-              event.preventDefault();
-              const alertBox = document.getElementById('contactAlert');
-              const submitBtn = document.getElementById('contactSubmitBtn');
-              const name = document.getElementById('contactName').value.trim();
-              const email = document.getElementById('contactEmail').value.trim();
-              const subject = document.getElementById('contactSubject').value;
-              const message = document.getElementById('contactMessage').value.trim();
-
-              alertBox.style.display = 'none';
-
-              // Success notification & direct dispatch
-              alertBox.style.display = 'block';
-              alertBox.style.background = 'rgba(0,255,102,0.15)';
-              alertBox.style.border = '1px solid rgba(0,255,102,0.5)';
-              alertBox.style.color = '#00ff66';
-              alertBox.textContent = '✅ Message ready! Opening email client to send...';
-
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = '<span>Message Prepared ✓</span>';
-
-              const mailtoUrl = `mailto:quantumlordsesports@gmail.com?subject=${encodeURIComponent('[' + subject + '] ' + name)}&body=${encodeURIComponent('Sender: ' + name + ' (' + email + ')\n\n' + message)}`;
-              window.open(mailtoUrl, '_blank');
-            }
-          </script>
         </div>
       </div>
+
+      <!-- Fast Inquiry Routing & Response Guidelines -->
+      <div style="background: rgba(15, 20, 28, 0.85); backdrop-filter: blur(14px); border: 1px solid rgba(232, 197, 106, 0.3); border-radius: 20px; padding: 2rem; position: relative; z-index: 1;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #E8C56A; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+              ⚡ PRIORITY ROUTING PROTOCOL
+            </span>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; color: #fff; margin: 0.25rem 0 0;">
+              FAST DISPATCH GUIDELINES
+            </h3>
+          </div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);">
+            TYPICAL RESPONSE: &lt; 12 HOURS
+          </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+          
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🏆</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Scrims & Tournaments</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Custom room invites, tournament slot bookings, and tier-1 matches.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🤝</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Sponsorships & Brands</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Jersey placement, hardware reviews, and commercial partnerships.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🎬</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Media & Creators</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Interviews, press releases, creator crossovers, and streaming collabs.</div>
+          </div>
+
+          <div class="routing-tag">
+            <div style="font-size: 1.4rem; margin-bottom: 0.4rem;">🛡️</div>
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff;">Talent & Academy</div>
+            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Roster trials, recruitment forms, and coaching program inquiries.</div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
   </main>
+
+  <!-- Interactive Copy Toast Notification -->
+  <div id="copyToast" class="toast-copy" role="status" aria-live="polite">
+    Copied to Clipboard ✓
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -314,6 +531,41 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function copyText(text, message) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => fallbackCopy(text, message));
+      } else {
+        fallbackCopy(text, message);
+      }
+    }
+
+    function fallbackCopy(text, message) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(message);
+      } catch (err) {
+        alert('Copied: ' + text);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copyToast');
+      if (toast) {
+        toast.textContent = message || 'Copied to Clipboard ✓';
+        toast.classList.add('active');
+        setTimeout(() => toast.classList.remove('active'), 2500);
+      }
+    }
+  </script>
 
 </body>
 
