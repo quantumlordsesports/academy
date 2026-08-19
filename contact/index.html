@@ -58,8 +58,8 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
-  <!-- Google reCAPTCHA v2 API -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Google reCAPTCHA v3 API -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></script>
   
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
@@ -206,9 +206,10 @@
               <textarea id="contactMessage" name="message" rows="4" required placeholder="Write your message here..." style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
             </div>
 
-            <!-- Google reCAPTCHA v2 Widget -->
-            <div style="margin: 0.5rem 0; display: flex; justify-content: flex-start;">
-              <div class="g-recaptcha" data-sitekey="6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></div>
+            <!-- Google reCAPTCHA v3 Security Badge Notice -->
+            <div style="margin: 0.5rem 0; display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: var(--color-text-muted, #94a3b8);">
+              <span style="color: #E8C56A;">🛡️</span>
+              <span>Protected by Google reCAPTCHA</span>
             </div>
 
             <div>
@@ -231,34 +232,45 @@
 
               alertBox.style.display = 'none';
 
-              // 1. Capture Google reCAPTCHA Token
-              const recaptchaToken = (window.grecaptcha ? window.grecaptcha.getResponse() : '') || 
-                                     document.querySelector('#contactForm [name="g-recaptcha-response"]')?.value;
-
-              if (!recaptchaToken) {
-                alertBox.style.display = 'block';
-                alertBox.style.background = 'rgba(255,0,85,0.15)';
-                alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-                alertBox.style.color = '#ff0055';
-                alertBox.textContent = '⚠️ Bot Verification Required: Please complete the reCAPTCHA challenge.';
-                return;
-              }
-
               submitBtn.disabled = true;
               submitBtn.innerHTML = '<span>Verifying Security...</span>';
 
+              // 1. Capture Google reCAPTCHA v3 Token (Invisible Score-based)
+              let recaptchaToken = '';
+              const SITE_KEY = '6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH';
+
+              try {
+                if (typeof grecaptcha !== 'undefined') {
+                  if (grecaptcha.enterprise) {
+                    await new Promise((resolve) => grecaptcha.enterprise.ready(resolve));
+                    recaptchaToken = await grecaptcha.enterprise.execute(SITE_KEY, { action: 'contact' });
+                  } else if (grecaptcha.ready) {
+                    await new Promise((resolve) => grecaptcha.ready(resolve));
+                    recaptchaToken = await grecaptcha.execute(SITE_KEY, { action: 'contact' });
+                  }
+                }
+              } catch (recaptchaErr) {
+                console.warn('[reCAPTCHA v3 Execution]', recaptchaErr);
+              }
+
+              if (!recaptchaToken) {
+                recaptchaToken = (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function' ? window.grecaptcha.getResponse() : '') || 
+                                 document.querySelector('#contactForm [name="g-recaptcha-response"]')?.value || '';
+              }
+
               try {
                 // 2. Verify with serverless endpoint
-                const verifyRes = await fetch('/api/verify-recaptcha', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken, action: 'contact' })
-                });
+                if (recaptchaToken) {
+                  const verifyRes = await fetch('/api/verify-recaptcha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken, action: 'contact' })
+                  });
 
-                if (verifyRes.status === 400 || verifyRes.status === 403) {
-                  const errData = await verifyRes.json().catch(() => ({}));
-                  if (window.grecaptcha) window.grecaptcha.reset();
-                  throw new Error(errData.error || 'Security verification failed.');
+                  if (verifyRes.status === 400 || verifyRes.status === 403) {
+                    const errData = await verifyRes.json().catch(() => ({}));
+                    throw new Error(errData.error || 'Security verification failed.');
+                  }
                 }
               } catch (err) {
                 console.warn('[reCAPTCHA Notice]', err.message);
