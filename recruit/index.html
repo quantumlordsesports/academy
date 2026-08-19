@@ -142,8 +142,8 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
-  <!-- Cloudflare Turnstile Bot Protection API -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Google reCAPTCHA v2 API -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
@@ -410,7 +410,7 @@
         </div>
       </div>
 
-      <!-- Online Academy Trial Registration Form (Protected by Cloudflare Turnstile) -->
+      <!-- Online Academy Trial Registration Form (Protected by Google reCAPTCHA v2) -->
       <div style="margin-top: 3rem; background: rgba(15, 19, 29, 0.85); border: 2px solid rgba(0, 240, 255, 0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
           <div>
@@ -418,7 +418,7 @@
             <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900; color: #fff; margin-top: 0.25rem;">Submit Your Trial Application</h3>
           </div>
           <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00FF66; padding: 6px 12px; background: rgba(0,255,102,0.1); border: 1px solid rgba(0,255,102,0.3); border-radius: 8px;">
-            🛡️ CLOUDFLARE TURNSTILE VERIFIED
+            🛡️ RECAPTCHA V2 VERIFIED
           </span>
         </div>
 
@@ -465,9 +465,9 @@
             </div>
           </div>
 
-          <!-- Cloudflare Turnstile Challenge Widget -->
+          <!-- Google reCAPTCHA v2 Widget -->
           <div style="margin: 0.5rem 0; display: flex; justify-content: flex-start;">
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEUXTyqZ1EGIr5ag" data-action="trial_application" data-theme="dark"></div>
+            <div class="g-recaptcha" data-sitekey="6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></div>
           </div>
 
           <div>
@@ -492,16 +492,16 @@
 
             alertBox.style.display = 'none';
 
-            // 1. Check Cloudflare Turnstile token
-            const turnstileToken = document.querySelector('#recruitTrialForm [name="cf-turnstile-response"]')?.value || 
-                                   (window.turnstile ? window.turnstile.getResponse() : null);
+            // 1. Check Google reCAPTCHA token
+            const recaptchaToken = (window.grecaptcha ? window.grecaptcha.getResponse() : '') || 
+                                   document.querySelector('#recruitTrialForm [name="g-recaptcha-response"]')?.value;
 
-            if (!turnstileToken) {
+            if (!recaptchaToken) {
               alertBox.style.display = 'block';
               alertBox.style.background = 'rgba(255,0,85,0.15)';
               alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
               alertBox.style.color = '#ff0055';
-              alertBox.textContent = '⚠️ Bot Verification Required: Please complete the Cloudflare security challenge.';
+              alertBox.textContent = '⚠️ Bot Verification Required: Please complete the reCAPTCHA challenge.';
               return;
             }
 
@@ -510,19 +510,19 @@
 
             try {
               // 2. Verify with serverless endpoint
-              const verifyRes = await fetch('/api/verify-turnstile', {
+              const verifyRes = await fetch('/api/verify-recaptcha', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token: turnstileToken, action: 'trial_application' })
+                body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken, action: 'trial_application' })
               });
 
               if (verifyRes.status === 400 || verifyRes.status === 403) {
                 const errData = await verifyRes.json().catch(() => ({}));
-                if (window.turnstile) window.turnstile.reset();
+                if (window.grecaptcha) window.grecaptcha.reset();
                 throw new Error(errData.error || 'Security verification failed.');
               }
             } catch (err) {
-              console.warn('[Turnstile Notice]', err.message);
+              console.warn('[reCAPTCHA Notice]', err.message);
               if (err.message.includes('Security verification failed')) {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>Submit Trial Dossier</span> →';
@@ -553,7 +553,7 @@
                               `Preferred Role: ${role}\n` +
                               `Rank & K/D: ${kd}\n` +
                               `VOD Link: ${vod || 'None provided'}\n\n` +
-                              `Verification: Cloudflare Turnstile Human Token Verified`;
+                              `Verification: Google reCAPTCHA v2 Verified`;
 
             const mailtoUrl = `mailto:quantumlordsesports@gmail.com?subject=${encodeURIComponent('[ACADEMY TRIAL] ' + ign + ' (' + role + ')')}&body=${encodeURIComponent(emailBody)}`;
             window.open(mailtoUrl, '_blank');

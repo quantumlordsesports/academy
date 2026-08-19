@@ -8,8 +8,13 @@
 
 # API Redirects for Clean Serverless Function Endpoints
 [[redirects]]
+  from = "/api/verify-recaptcha"
+  to = "/.netlify/functions/verify-recaptcha"
+  status = 200
+
+[[redirects]]
   from = "/api/verify-turnstile"
-  to = "/.netlify/functions/verify-turnstile"
+  to = "/.netlify/functions/verify-recaptcha"
   status = 200
 
 # Security Headers

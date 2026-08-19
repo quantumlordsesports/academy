@@ -62,8 +62,8 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
-  <!-- Cloudflare Turnstile Bot Protection API -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- Google reCAPTCHA v2 API -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   
   <script src="audio-controller.js" defer></script>
   <script src="app.js" defer></script>
@@ -311,9 +311,9 @@
               </div>
             </div>
 
-            <!-- Cloudflare Turnstile Bot Protection Widget -->
+            <!-- Google reCAPTCHA v2 Widget -->
             <div class="pt-1 flex justify-center overflow-hidden">
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAAEUXTyqZ1EGIr5ag" data-action="login" data-theme="dark"></div>
+              <div class="g-recaptcha" data-sitekey="6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></div>
             </div>
 
             <div class="pt-2">
@@ -1451,13 +1451,13 @@
         return;
       }
 
-      // Check Cloudflare Turnstile Verification
-      const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || 
-                             (window.turnstile ? window.turnstile.getResponse() : null);
+      // Check Google reCAPTCHA Verification
+      const recaptchaToken = (window.grecaptcha ? window.grecaptcha.getResponse() : '') || 
+                             document.querySelector('[name="g-recaptcha-response"]')?.value;
 
-      if (!turnstileToken) {
+      if (!recaptchaToken) {
         playCyberSFX('alert');
-        showAuthAlert("Bot Verification Required: Please complete the Cloudflare security challenge.");
+        showAuthAlert("Bot Verification Required: Please complete the Google reCAPTCHA challenge.");
         return;
       }
 
@@ -1467,21 +1467,21 @@
       btnText.textContent = 'AUTHENTICATING...';
       dismissAuthAlert();
 
-      // Verify Turnstile Token against backend serverless endpoint
+      // Verify reCAPTCHA Token against backend serverless endpoint
       try {
-        const verifyRes = await fetch('/api/verify-turnstile', {
+        const verifyRes = await fetch('/api/verify-recaptcha', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: turnstileToken, action: 'login' })
+          body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken, action: 'login' })
         });
 
         if (verifyRes.status === 400 || verifyRes.status === 403) {
           const errData = await verifyRes.json().catch(() => ({}));
-          if (window.turnstile) window.turnstile.reset();
+          if (window.grecaptcha) window.grecaptcha.reset();
           throw new Error(errData.error || "Security verification failed. Please complete the challenge again.");
         }
       } catch (verifyErr) {
-        console.warn("[Turnstile Verification]", verifyErr.message);
+        console.warn("[reCAPTCHA Verification]", verifyErr.message);
         if (verifyErr.message.includes("Security verification failed")) {
           submitBtn.disabled = false;
           btnIcon.classList.remove('hidden');
