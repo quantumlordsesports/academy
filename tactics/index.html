@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-title" content="QuantumLords" />
   <title>Tactics Library // Quantum Lords Esports</title>
   <meta name="description"
-    content="Competitive Tactical Playbook, map drop rotations, character skill combos, and weapon meta tier lists from Quantum Lords Esports." />
+    content="Competitive Tactical Playbook, 3D Free Fire Map blueprints, 3D strategy doctrine books, character skill combos, and weapon meta tier lists from Quantum Lords Esports." />
   <link rel="canonical" href="https://quantumlordsesports.netlify.app/tactics/" />
 
   <!-- Open Graph -->
@@ -19,7 +19,7 @@
   <meta property="og:url" content="https://quantumlordsesports.netlify.app/tactics/" />
   <meta property="og:title" content="Tactics Library // Quantum Lords Esports" />
   <meta property="og:description"
-    content="Competitive Tactical Playbook, map drop rotations, character skill combos, and weapon meta tier lists." />
+    content="Competitive Tactical Playbook, 3D Free Fire Map blueprints, 3D strategy doctrine books, character skill combos, and weapon meta tier lists." />
   <meta property="og:image" content="https://quantumlordsesports.netlify.app/assets/logo.png" />
 
   <link rel="icon" href="../assets/logo.png" type="image/png" />
@@ -85,6 +85,15 @@
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.2);
       transform: translateY(-3px);
     }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-error {
+      animation: shake 0.4s ease-in-out;
+      border-color: #FF0055 !important;
+    }
   </style>
 </head>
 
@@ -134,7 +143,7 @@
   </header>
 
   <!-- Main Content Area -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 flex-grow w-full">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 flex-grow w-full">
 
     <!-- Hero Header -->
     <section class="text-center space-y-4 max-w-3xl mx-auto">
@@ -146,12 +155,428 @@
         TACTICS <span class="text-[#00F0FF]">LIBRARY</span>
       </h1>
       <p class="text-slate-300 font-space text-sm sm:text-base leading-relaxed">
-        High-tier competitive strategy doctrines, drop zone rotations, weapon meta tier matrix, character skill synergy, and official scrim execution playbooks.
+        High-tier competitive strategy doctrines, 3D map telemetry, strategy reference books, weapon meta tier matrix, and official scrim execution playbooks.
       </p>
+      
+      <!-- Quick Navigation Anchors -->
+      <div class="flex flex-wrap justify-center gap-2 pt-3 text-xs font-mono">
+        <a href="#3d-maps" class="px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/40 text-[#00F0FF] hover:bg-cyan-500/20 transition-all">
+          🗺️ 3D Tactical Maps (6)
+        </a>
+        <a href="#strategy-books" class="px-3 py-1 rounded-full bg-amber-950/40 border border-amber-500/40 text-[#E8C56A] hover:bg-amber-500/20 transition-all">
+          📚 Strategy Books (7)
+        </a>
+        <a href="#map-blueprints" class="px-3 py-1 rounded-full bg-purple-950/40 border border-purple-500/40 text-purple-300 hover:bg-purple-500/20 transition-all">
+          🎯 Drop Blueprints
+        </a>
+        <a href="#character-meta" class="px-3 py-1 rounded-full bg-green-950/40 border border-green-500/40 text-[#00FF66] hover:bg-green-500/20 transition-all">
+          ⚡ Character Builds
+        </a>
+      </div>
     </section>
 
-    <!-- 1. Map Drop Zones & Zone Rotations -->
-    <section class="space-y-6">
+    <!-- ========================================================================= -->
+    <!-- 1. 3D FLOATING FREE FIRE MAPS SECTION (ALL 6 MAPS) -->
+    <!-- ========================================================================= -->
+    <section id="3d-maps" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-2.5 h-6 bg-[#00F0FF] rounded-sm"></div>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
+              3D FLOATING TACTICAL MAPS
+            </h2>
+            <p class="text-xs font-space text-slate-400">All 6 competitive battleground maps with real-time 3D floating animation & HD download options.</p>
+          </div>
+        </div>
+        <span class="text-xs font-mono text-[#00F0FF] bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/30">
+          🛰️ LIVE 3D TELEMETRY
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Bermuda -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge">BERMUDA</span>
+                <span class="text-[11px] font-mono text-slate-400">CLASSIC // S-TIER</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-cyan-500/20 mb-3">
+                <img src="../assets/maps/Bermuda_HD_cop.jpg" alt="Bermuda 3D Tactical Map" onerror="this.src='../../assets/maps/Bermuda_HD_cop.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Bermuda Pro Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">Clock Tower, Peak, Bimasakti, and Factory chokepoints with primary vehicle spawns.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#00F0FF]">HD RESOLUTION</span>
+              <a href="../assets/maps/Bermuda_HD_cop.jpg" download="QuantumLords_Bermuda_HD.jpg" target="_blank" class="book-btn-download text-xs" style="background: rgba(0,240,255,0.12); border-color: rgba(0,240,255,0.4); color: #00F0FF;">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Purgatory -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge" style="color:#E8C56A; border-color:rgba(232,197,106,0.4); background:rgba(232,197,106,0.12);">PURGATORY</span>
+                <span class="text-[11px] font-mono text-slate-400">BRIDGE // HIGH-GROUND</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-amber-500/20 mb-3">
+                <img src="../assets/maps/Purgatory_HD.jpg" alt="Purgatory 3D Tactical Map" onerror="this.src='../../assets/maps/Purgatory_HD.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Purgatory Pro Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">Brasilia Central warfare, Golf Course rotations, and canal bridge hold strategies.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#E8C56A]">HD RESOLUTION</span>
+              <a href="../assets/maps/Purgatory_HD.jpg" download="QuantumLords_Purgatory_HD.jpg" target="_blank" class="book-btn-download text-xs">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Nexterra -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge" style="color:#8B5CF6; border-color:rgba(139,92,246,0.4); background:rgba(139,92,246,0.12);">NEXTERRA</span>
+                <span class="text-[11px] font-mono text-slate-400">CYBER // GRAV LABS</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-purple-500/20 mb-3">
+                <img src="../assets/maps/Nexterra_HD_copy.jpg" alt="Nexterra 3D Tactical Map" onerror="this.src='../../assets/maps/Nexterra_HD_copy.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Nexterra Pro Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">Grav Labs, Decoy Head, and portal fast-travel routes for aggressive high-speed flanking.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-purple-400">HD RESOLUTION</span>
+              <a href="../assets/maps/Nexterra_HD_copy.jpg" download="QuantumLords_Nexterra_HD.jpg" target="_blank" class="book-btn-download text-xs" style="background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.4); color: #8B5CF6;">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Alpine -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge" style="color:#00FF66; border-color:rgba(0,255,102,0.4); background:rgba(0,255,102,0.12);">ALPINE</span>
+                <span class="text-[11px] font-mono text-slate-400">SNOWFALL // RIDGES</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-green-500/20 mb-3">
+                <img src="../assets/maps/Alpine_HD_Minhaz.jpg" alt="Alpine 3D Tactical Map" onerror="this.src='../../assets/maps/Alpine_HD_Minhaz.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Alpine Pro Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">Snowfall high-ground vantage, Railroad snipes, and Garrison defensive fortifications.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#00FF66]">HD RESOLUTION</span>
+              <a href="../assets/maps/Alpine_HD_Minhaz.jpg" download="QuantumLords_Alpine_HD.jpg" target="_blank" class="book-btn-download text-xs" style="background: rgba(0,255,102,0.12); border-color: rgba(0,255,102,0.4); color: #00FF66;">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Kalahari -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge" style="color:#FF0055; border-color:rgba(255,0,85,0.4); background:rgba(255,0,85,0.12);">KALAHARI</span>
+                <span class="text-[11px] font-mono text-slate-400">DESERT // ELEVATION</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-red-500/20 mb-3">
+                <img src="../assets/maps/Kalahari_HD_copy.jpg" alt="Kalahari 3D Tactical Map" onerror="this.src='../../assets/maps/Kalahari_HD_copy.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Kalahari Pro Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">Command Post, Refinery vertical combat, and Submarine zipline traversal networks.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-[#FF0055]">HD RESOLUTION</span>
+              <a href="../assets/maps/Kalahari_HD_copy.jpg" download="QuantumLords_Kalahari_HD.jpg" target="_blank" class="book-btn-download text-xs" style="background: rgba(255,0,85,0.12); border-color: rgba(255,0,85,0.4); color: #FF0055;">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Solara -->
+        <div class="map-card-3d-wrap">
+          <div class="map-card-3d p-4 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="map-tag-badge" style="color:#38BDF8; border-color:rgba(56,189,248,0.4); background:rgba(56,189,248,0.12);">SOLARA</span>
+                <span class="text-[11px] font-mono text-slate-400">SUN-ISLE // CLOSE QUARTERS</span>
+              </div>
+              <div class="map-thumb-wrap rounded-xl border border-sky-500/20 mb-3">
+                <img src="../assets/maps/Solaha_HD_copy.jpg" alt="Solara 3D Tactical Map" onerror="this.src='../../assets/maps/Solaha_HD_copy.jpg'" />
+                <div class="map-radar-overlay"></div>
+              </div>
+              <h3 class="font-orbitron font-bold text-white text-base">Solara Tactical Map</h3>
+              <p class="text-xs font-space text-slate-300 mt-1">High-density island combat, urban corridor angles, and perimeter beachhead landings.</p>
+            </div>
+            <div class="pt-4 mt-2 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-sky-400">HD RESOLUTION</span>
+              <a href="../assets/maps/Solaha_HD_copy.jpg" download="QuantumLords_Solara_HD.jpg" target="_blank" class="book-btn-download text-xs" style="background: rgba(56,189,248,0.12); border-color: rgba(56,189,248,0.4); color: #38BDF8;">
+                ⬇ Download HD Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. 3D FLOATING STRATEGY BOOKS & LEADERSHIP DOCTRINES (ALL 7 BOOKS) -->
+    <!-- ========================================================================= -->
+    <section id="strategy-books" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-2.5 h-6 bg-[#E8C56A] rounded-sm"></div>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
+              3D STRATEGY & TACTICAL DOCTRINE BOOKS
+            </h2>
+            <p class="text-xs font-space text-slate-400">Master-class books on game theory, military strategy, sports psychology, and competitive esports.</p>
+          </div>
+        </div>
+        <span class="text-xs font-mono text-[#E8C56A] bg-amber-950/60 px-3 py-1 rounded-full border border-amber-500/30">
+          📖 7 DOCTRINES
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. The Art of Strategy -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-[#00F0FF] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30">
+                  GAME THEORY
+                </span>
+                <span class="text-xl">♟️</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                The Art of Strategy
+              </h3>
+              <p class="text-xs font-mono text-slate-400">Avinash K. Dixit & Barry J. Nalebuff</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                A Game Theorist's Guide to Success in Business & Competitive Play. Anticipate rival choices, out-predict rotations, and master dominant strategies.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/1rQu6lCRm1I_oRqxmhSxdTc1BOriF8EEi/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. The Art of War (Bangla) -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #FF0055, #E8C56A);"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-[#FF0055] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-red-950/60 border border-red-500/30">
+                  MILITARY CLASSIC
+                </span>
+                <span class="text-xl">⚔️</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                The Art of War (সমরকলা)
+              </h3>
+              <p class="text-xs font-mono text-slate-400">Sun Tzu (সান জু) · Bangla Edition</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                Supreme art of war is to subdue the enemy without fighting. Tactical positioning, deceptive maneuvers, and high-ground psychology translated in Bengali.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/1pxUFb_SDDWj1duQtT99QbTXNEYdiKJYW/view" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Thinking in Bets -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #8B5CF6, #00F0FF);"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-purple-400 uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-950/60 border border-purple-500/30">
+                  DECISION SCIENCE
+                </span>
+                <span class="text-xl">🎲</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                Thinking in Bets
+              </h3>
+              <p class="text-xs font-mono text-slate-400">Annie Duke</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                Making Smarter Decisions When You Don't Have All the Facts. Learn how to separate decision quality from luck during chaotic tournament circles.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/14ctzeDcpP60UzWxkrU-XlVzpneXai3Qj/view" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. The Champion's Mind -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #00FF66, #00F0FF);"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-[#00FF66] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-green-950/60 border border-green-500/30">
+                  SPORTS PSYCHOLOGY
+                </span>
+                <span class="text-xl">🧠</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                The Champion's Mind
+              </h3>
+              <p class="text-xs font-mono text-slate-400">Jim Afremow, PhD</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                How Great Athletes Think, Train, and Thrive. Master mental toughness, clutch performance states, and eliminate tilt during championship finals.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/1q_A7kBkC-w4BYW2j--bXpQ1zNFb8OC2G/view" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. The Book of Five Rings -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #E8C56A, #FF0055);"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-[#E8C56A] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-950/60 border border-amber-500/30">
+                  DUEL MASTERY
+                </span>
+                <span class="text-xl">🗡️</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                The Book of Five Rings
+              </h3>
+              <p class="text-xs font-mono text-slate-400">Miyamoto Musashi (五輪書)</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                Classic master treatise on rhythm, timing, 1v1 psychological dominance, and the Void mindset required for legendary samurai combat.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/1JgGL3XnhkpORJUMDBm8MMCLFgk5LxO1_/view" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Khalid Bin Al-Waleed: Sword of Allah -->
+        <div class="book-card-3d-wrap">
+          <div class="book-card-3d">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #38BDF8, #8B5CF6);"></div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono text-sky-400 uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-sky-950/60 border border-sky-500/30">
+                  BATTLEFIELD TACTICS
+                </span>
+                <span class="text-xl">🛡️</span>
+              </div>
+              <h3 class="text-lg font-bold font-orbitron text-white leading-snug">
+                Khalid Bin Al-Waleed
+              </h3>
+              <p class="text-xs font-mono text-slate-400">A.I. Akram · Sword of Allah</p>
+              <p class="text-xs font-space text-slate-300 leading-relaxed">
+                Life and campaigns of history's undefeated military general. Double envelopment maneuvers, psychological feints, and rapid flanking strikes.
+              </p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
+              <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
+              <a href="https://drive.google.com/file/d/0ByxFiTmWXSkSbmlBMnZkV1Zvc1k/view?usp=sharing&resourcekey=0-rKHife0EOwluWvGPJxmFzw" target="_blank" rel="noopener noreferrer" class="book-btn-download">
+                <span>Read / Download</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. E-For Esports (🔒 PASSWORD PROTECTED) -->
+        <div class="book-card-3d-wrap lg:col-span-3">
+          <div class="book-card-3d" style="border-color: rgba(255, 0, 85, 0.45); background: linear-gradient(135deg, rgba(22, 27, 34, 0.98) 0%, rgba(20, 10, 15, 0.95) 100%);">
+            <div class="book-spine-accent" style="background: linear-gradient(to bottom, #FF0055, #E8C56A); box-shadow: 0 0 15px rgba(255,0,85,0.7);"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div class="space-y-3 max-w-2xl">
+                <div class="flex items-center space-x-2">
+                  <span class="text-[10px] font-mono text-[#FF0055] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-red-950/80 border border-red-500/50">
+                    🔒 RESTRICTED TEAM INTEL
+                  </span>
+                  <span class="text-xs font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-500/30">
+                    PASSWORD REQUIRED
+                  </span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black font-orbitron text-white">
+                  E-For Esports: The Ultimate Competitive Gaming Doctrine
+                </h3>
+                <p class="text-xs font-space text-slate-300 leading-relaxed">
+                  Confidential playbook on tournament preparation, communications hierarchy, clutch protocol, team macro-mechanics, and professional esports discipline.
+                </p>
+              </div>
+
+              <div class="flex-shrink-0">
+                <button onclick="openBookLockModal('https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-orbitron font-bold text-sm tracking-wider flex items-center space-x-2 shadow-lg shadow-red-900/40 border border-red-400/40 transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                  <span>🔐 UNLOCK BOOK</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. MAP HOT DROPS & ROTATION BLUEPRINTS -->
+    <!-- ========================================================================= -->
+    <section id="map-blueprints" class="space-y-6">
       <div class="flex items-center space-x-3">
         <div class="w-2.5 h-6 bg-[#00F0FF] rounded-sm"></div>
         <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
@@ -226,8 +651,10 @@
       </div>
     </section>
 
-    <!-- 2. Character Skill Meta Synergy -->
-    <section class="space-y-6">
+    <!-- ========================================================================= -->
+    <!-- 4. CHARACTER SKILL META SYNERGY -->
+    <!-- ========================================================================= -->
+    <section id="character-meta" class="space-y-6">
       <div class="flex items-center space-x-3">
         <div class="w-2.5 h-6 bg-[#8B5CF6] rounded-sm"></div>
         <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
@@ -340,8 +767,10 @@
       </div>
     </section>
 
-    <!-- 3. Weapon Meta Tier Matrix -->
-    <section class="space-y-6">
+    <!-- ========================================================================= -->
+    <!-- 5. WEAPON META TIER MATRIX -->
+    <!-- ========================================================================= -->
+    <section id="weapon-meta" class="space-y-6">
       <div class="flex items-center space-x-3">
         <div class="w-2.5 h-6 bg-[#FF0055] rounded-sm"></div>
         <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
@@ -390,6 +819,53 @@
 
   </main>
 
+  <!-- ========================================================================= -->
+  <!-- CYBER PASSWORD LOCK MODAL (FOR E-FOR ESPORTS) -->
+  <!-- ========================================================================= -->
+  <div id="bookLockModal" class="cyber-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+    <div class="cyber-modal-box">
+      <div class="w-12 h-12 rounded-2xl bg-red-950/80 border border-red-500/50 flex items-center justify-center mx-auto mb-4 text-2xl text-[#FF0055]">
+        🔐
+      </div>
+      <h3 id="bookModalTitle" class="text-lg sm:text-xl font-bold font-orbitron text-white mb-2">
+        RESTRICTED INTEL ACCESS
+      </h3>
+      <p class="text-xs font-space text-slate-300 mb-5">
+        Please enter the team authorization password to unlock and access <strong class="text-white">"E-For Esports"</strong>.
+      </p>
+
+      <form onsubmit="event.preventDefault(); verifyBookPassword();" class="space-y-4">
+        <div>
+          <input 
+            type="password" 
+            id="bookLockPassword" 
+            placeholder="Enter Security Password" 
+            required 
+            class="w-full px-4 py-2.5 rounded-xl bg-[#080B10] border border-slate-700 focus:border-[#FF0055] focus:outline-none text-white font-mono text-sm text-center tracking-widest placeholder:text-slate-600"
+          />
+        </div>
+
+        <div id="bookLockError" class="text-xs font-mono min-h-[18px]"></div>
+
+        <div class="flex items-center space-x-3 pt-2">
+          <button 
+            type="button" 
+            onclick="closeBookLockModal()" 
+            class="w-1/2 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            class="w-1/2 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-orbitron font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-950/60 transition-all cursor-pointer"
+          >
+            Authenticate
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer bg-[#05070A] border-t border-slate-800 py-8 px-4 text-xs font-mono text-slate-400">
     <div class="footer-container max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -414,6 +890,59 @@
       </div>
     </div>
   </footer>
+
+  <!-- JavaScript for Password Lock System -->
+  <script>
+    function openBookLockModal(bookUrl) {
+      const modal = document.getElementById('bookLockModal');
+      const input = document.getElementById('bookLockPassword');
+      const errorMsg = document.getElementById('bookLockError');
+      if (modal) {
+        modal.dataset.targetUrl = bookUrl || 'https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view';
+        if (input) input.value = '';
+        if (errorMsg) errorMsg.textContent = '';
+        modal.classList.add('active');
+        setTimeout(() => { if (input) input.focus(); }, 100);
+      }
+    }
+
+    function closeBookLockModal() {
+      const modal = document.getElementById('bookLockModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function verifyBookPassword() {
+      const modal = document.getElementById('bookLockModal');
+      const input = document.getElementById('bookLockPassword');
+      const errorMsg = document.getElementById('bookLockError');
+      const enteredPass = input ? input.value.trim() : '';
+
+      if (enteredPass === 'Shahiar01') {
+        if (errorMsg) {
+          errorMsg.style.color = '#00FF66';
+          errorMsg.textContent = '✅ ACCESS GRANTED. OPENING INTEL...';
+        }
+        const targetUrl = (modal && modal.dataset.targetUrl) || 'https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view';
+        setTimeout(() => {
+          closeBookLockModal();
+          window.open(targetUrl, '_blank');
+        }, 500);
+      } else {
+        if (errorMsg) {
+          errorMsg.style.color = '#FF0055';
+          errorMsg.textContent = '❌ ACCESS DENIED: INVALID SECURITY KEY';
+        }
+        if (input) {
+          input.classList.add('shake-error');
+          setTimeout(() => input.classList.remove('shake-error'), 450);
+        }
+      }
+    }
+
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeBookLockModal();
+    });
+  </script>
 
 </body>
 

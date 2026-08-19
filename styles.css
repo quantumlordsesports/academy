@@ -2639,4 +2639,222 @@ html[data-theme="light"] .preloader-bar {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 240, 255, 0.18);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.12);
-}
+}
+
+/* ======================================================== */
+/* 3D FLOATING MAPS & 3D STRATEGY BOOKS AESTHETICS */
+/* ======================================================== */
+@keyframes floatMap3D {
+  0%, 100% {
+    transform: translateY(0px) rotateX(4deg) rotateY(-3deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(-2deg) rotateY(3deg);
+  }
+}
+
+@keyframes floatMap3DAlt {
+  0%, 100% {
+    transform: translateY(0px) rotateX(-3deg) rotateY(4deg);
+  }
+  50% {
+    transform: translateY(-12px) rotateX(3deg) rotateY(-2deg);
+  }
+}
+
+@keyframes floatBook3D {
+  0%, 100% {
+    transform: translateY(0px) rotateY(-8deg) rotateX(4deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateY(-4deg) rotateX(1deg);
+  }
+}
+
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.map-card-3d-wrap {
+  perspective: 1200px;
+}
+
+.map-card-3d {
+  background: rgba(13, 17, 23, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 240, 255, 0.12);
+  animation: floatMap3D 6s ease-in-out infinite;
+}
+
+.map-card-3d:nth-child(even) {
+  animation: floatMap3DAlt 6.5s ease-in-out infinite 0.7s;
+}
+
+.map-card-3d:hover {
+  transform: translateY(-12px) rotateX(0deg) rotateY(0deg) scale(1.02) !important;
+  border-color: rgba(0, 240, 255, 0.75);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 35px rgba(0, 240, 255, 0.35) !important;
+  z-index: 10;
+}
+
+.map-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #06080f;
+}
+
+.map-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.map-card-3d:hover .map-thumb-wrap img {
+  transform: scale(1.08);
+}
+
+.map-radar-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(6, 8, 15, 0.7) 90%);
+  pointer-events: none;
+}
+
+.map-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00F0FF;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 3D Strategy Book Styles */
+.book-card-3d-wrap {
+  perspective: 1200px;
+}
+
+.book-card-3d {
+  background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(13, 17, 23, 0.9) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 197, 106, 0.25);
+  border-radius: 18px;
+  padding: 1.75rem;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.85), 0 0 20px rgba(232, 197, 106, 0.1);
+  animation: floatBook3D 5.5s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-card-3d:nth-child(even) {
+  animation: floatBook3D 6s ease-in-out infinite 0.9s;
+}
+
+.book-card-3d:hover {
+  transform: translateY(-10px) rotateY(0deg) rotateX(0deg) scale(1.02) !important;
+  border-color: rgba(232, 197, 106, 0.7);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 30px rgba(232, 197, 106, 0.25) !important;
+  z-index: 10;
+}
+
+.book-spine-accent {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 5px;
+  background: linear-gradient(to bottom, #E8C56A, #00F0FF);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 10px rgba(232, 197, 106, 0.5);
+}
+
+.book-btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(232, 197, 106, 0.12);
+  border: 1px solid rgba(232, 197, 106, 0.4);
+  color: #E8C56A;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.book-btn-download:hover {
+  background: #E8C56A;
+  color: #06080f;
+  box-shadow: 0 0 20px rgba(232, 197, 106, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Modal Lock System */
+.cyber-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cyber-modal-box {
+  background: rgba(13, 17, 23, 0.95);
+  border: 1px solid rgba(255, 0, 85, 0.4);
+  border-radius: 20px;
+  max-width: 440px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 0, 85, 0.25);
+  text-align: center;
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cyber-modal-backdrop.active .cyber-modal-box {
+  transform: scale(1);
+}
+
