@@ -58,8 +58,6 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
-  <!-- Google reCAPTCHA v3 API -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></script>
   
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
@@ -164,7 +162,7 @@
           </div>
         </div>
 
-        <!-- Direct Inquiry & Sponsorship Form (Protected by Google reCAPTCHA v2) -->
+        <!-- Direct Inquiry & Sponsorship Form -->
         <div class="contact-card" style="grid-column: 1 / -1; margin-top: 1.5rem; text-align: left;">
           <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem;">
             <div>
@@ -172,7 +170,7 @@
               <p style="font-size: 0.85rem; color: var(--color-text-muted, #94a3b8); margin: 0;">Inquire for sponsorships, creator partnerships, scrims, or media inquiries.</p>
             </div>
             <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00F0FF; padding: 4px 10px; background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.3); border-radius: 6px;">
-              🛡️ BOT PROTECTED
+              ⚡ OFFICIAL INQUIRY
             </span>
           </div>
 
@@ -206,11 +204,6 @@
               <textarea id="contactMessage" name="message" rows="4" required placeholder="Write your message here..." style="width: 100%; padding: 0.75rem 1rem; background: rgba(10, 12, 17, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
             </div>
 
-            <!-- Google reCAPTCHA v3 Security Badge Notice -->
-            <div style="margin: 0.5rem 0; display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: var(--color-text-muted, #94a3b8);">
-              <span style="color: #E8C56A;">🛡️</span>
-              <span>Protected by Google reCAPTCHA</span>
-            </div>
 
             <div>
               <button type="submit" id="contactSubmitBtn" class="button button-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.9rem; letter-spacing: 1px; cursor: pointer;">
@@ -232,66 +225,12 @@
 
               alertBox.style.display = 'none';
 
-              submitBtn.disabled = true;
-              submitBtn.innerHTML = '<span>Verifying Security...</span>';
-
-              // 1. Capture Google reCAPTCHA v3 Token (Invisible Score-based)
-              let recaptchaToken = '';
-              const SITE_KEY = '6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH';
-
-              try {
-                if (typeof grecaptcha !== 'undefined') {
-                  if (grecaptcha.enterprise) {
-                    await new Promise((resolve) => grecaptcha.enterprise.ready(resolve));
-                    recaptchaToken = await grecaptcha.enterprise.execute(SITE_KEY, { action: 'contact' });
-                  } else if (grecaptcha.ready) {
-                    await new Promise((resolve) => grecaptcha.ready(resolve));
-                    recaptchaToken = await grecaptcha.execute(SITE_KEY, { action: 'contact' });
-                  }
-                }
-              } catch (recaptchaErr) {
-                console.warn('[reCAPTCHA v3 Execution]', recaptchaErr);
-              }
-
-              if (!recaptchaToken) {
-                recaptchaToken = (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function' ? window.grecaptcha.getResponse() : '') || 
-                                 document.querySelector('#contactForm [name="g-recaptcha-response"]')?.value || '';
-              }
-
-              try {
-                // 2. Verify with serverless endpoint
-                if (recaptchaToken) {
-                  const verifyRes = await fetch('/api/verify-recaptcha', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 'g-recaptcha-response': recaptchaToken, response: recaptchaToken, token: recaptchaToken, action: 'contact' })
-                  });
-
-                  if (verifyRes.status === 400 || verifyRes.status === 403) {
-                    const errData = await verifyRes.json().catch(() => ({}));
-                    throw new Error(errData.error || 'Security verification failed.');
-                  }
-                }
-              } catch (err) {
-                console.warn('[reCAPTCHA Notice]', err.message);
-                if (err.message.includes('Security verification failed')) {
-                  submitBtn.disabled = false;
-                  submitBtn.innerHTML = '<span>Send Verified Message</span> →';
-                  alertBox.style.display = 'block';
-                  alertBox.style.background = 'rgba(255,0,85,0.15)';
-                  alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-                  alertBox.style.color = '#ff0055';
-                  alertBox.textContent = '❌ Security check failed: ' + err.message;
-                  return;
-                }
-              }
-
-              // 3. Success notification & direct dispatch
+              // Success notification & direct dispatch
               alertBox.style.display = 'block';
               alertBox.style.background = 'rgba(0,255,102,0.15)';
               alertBox.style.border = '1px solid rgba(0,255,102,0.5)';
               alertBox.style.color = '#00ff66';
-              alertBox.textContent = '✅ Human verified! Opening email client to send message...';
+              alertBox.textContent = '✅ Message ready! Opening email client to send...';
 
               submitBtn.disabled = false;
               submitBtn.innerHTML = '<span>Message Prepared ✓</span>';

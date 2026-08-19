@@ -142,8 +142,6 @@
   <script>
     (function(){try{const t=localStorage.getItem('qld_theme')||'dark';document.documentElement.setAttribute('data-theme',t);if(t==='light')document.documentElement.classList.add('theme-light');}catch(e){}})();
   </script>
-  <!-- Google reCAPTCHA v3 API -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH"></script>
   
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
@@ -410,15 +408,15 @@
         </div>
       </div>
 
-      <!-- Online Academy Trial Registration Form (Protected by Google reCAPTCHA v3) -->
+      <!-- Online Academy Trial Registration Form -->
       <div style="margin-top: 3rem; background: rgba(15, 19, 29, 0.85); border: 2px solid rgba(0, 240, 255, 0.3); border-radius: 24px; padding: 2rem; box-shadow: 0 0 40px rgba(0, 240, 255, 0.15);">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
           <div>
             <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00F0FF; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">DIRECT TRIAL REGISTRATION</span>
             <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900; color: #fff; margin-top: 0.25rem;">Submit Your Trial Application</h3>
           </div>
-          <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00FF66; padding: 6px 12px; background: rgba(0,255,102,0.1); border: 1px solid rgba(0,255,102,0.3); border-radius: 8px;">
-            🛡️ RECAPTCHA V3 PROTECTED
+          <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: #00F0FF; padding: 6px 12px; background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.3); border-radius: 8px;">
+            ⚡ OFFICIAL RECRUITMENT TRIAL
           </span>
         </div>
 
@@ -486,67 +484,13 @@
             const vod = document.getElementById('trialVod').value.trim();
 
             alertBox.style.display = 'none';
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Verifying Security...</span>';
 
-            // 1. Execute Google reCAPTCHA v3
-            let recaptchaToken = '';
-            try {
-              if (typeof grecaptcha === 'undefined') {
-                throw new Error('reCAPTCHA service unavailable. Please check your connection or ad blocker.');
-              }
-              await new Promise((resolve) => grecaptcha.ready(resolve));
-              recaptchaToken = await grecaptcha.execute('6LeuUY0tAAAAACWrciwTi9wiM2Zu8afPq74b0ePH', { action: 'submit' });
-            } catch (recaptchaErr) {
-              console.warn('[reCAPTCHA v3 Execution]', recaptchaErr);
-            }
-
-            if (!recaptchaToken) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = '<span>Submit Trial Dossier</span> <span aria-hidden="true">→</span>';
-              alertBox.style.display = 'block';
-              alertBox.style.background = 'rgba(255,0,85,0.15)';
-              alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-              alertBox.style.color = '#ff0055';
-              alertBox.textContent = '⚠️ Bot Verification Failed: Unable to acquire reCAPTCHA security token. Please try again.';
-              return;
-            }
-
-            try {
-              // 2. Verify with serverless endpoint
-              const verifyRes = await fetch('/api/verify-recaptcha', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  'g-recaptcha-response': recaptchaToken,
-                  response: recaptchaToken,
-                  token: recaptchaToken,
-                  action: 'submit'
-                })
-              });
-
-              if (!verifyRes.ok) {
-                const errData = await verifyRes.json().catch(() => ({}));
-                throw new Error(errData.error || 'Security verification failed.');
-              }
-            } catch (err) {
-              console.warn('[reCAPTCHA Notice]', err.message);
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = '<span>Submit Trial Dossier</span> <span aria-hidden="true">→</span>';
-              alertBox.style.display = 'block';
-              alertBox.style.background = 'rgba(255,0,85,0.15)';
-              alertBox.style.border = '1px solid rgba(255,0,85,0.5)';
-              alertBox.style.color = '#ff0055';
-              alertBox.textContent = '❌ Security check failed: ' + err.message;
-              return;
-            }
-
-            // 3. Verified Success
+            // Success notification & dispatch
             alertBox.style.display = 'block';
             alertBox.style.background = 'rgba(0,255,102,0.15)';
             alertBox.style.border = '1px solid rgba(0,255,102,0.5)';
             alertBox.style.color = '#00ff66';
-            alertBox.textContent = '✅ Application Verified! Dispatching your dossier to Quantum Lords Recruitment...';
+            alertBox.textContent = '✅ Application Received! Dispatching your dossier to Quantum Lords Recruitment...';
 
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Dossier Submitted ✓</span>';
@@ -558,8 +502,7 @@
                               `Discord: ${discord}\n` +
                               `Preferred Role: ${role}\n` +
                               `Rank & K/D: ${kd}\n` +
-                              `VOD Link: ${vod || 'None provided'}\n\n` +
-                              `Verification: Google reCAPTCHA v3 Protected`;
+                              `VOD Link: ${vod || 'None provided'}`;
 
             const mailtoUrl = `mailto:quantumlordsesports@gmail.com?subject=${encodeURIComponent('[ACADEMY TRIAL] ' + ign + ' (' + role + ')')}&body=${encodeURIComponent(emailBody)}`;
             window.open(mailtoUrl, '_blank');
