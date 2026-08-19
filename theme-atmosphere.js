@@ -231,34 +231,33 @@
     }
   }
 
-  // --- Thunderbolt / Lightning System ---
-  let lightningState = {
-    active: false,
-    timer: 0,
-    nextStrikeTime: 350 + Math.random() * 500, // frames (~8-15 seconds)
-    intensity: 0,
-    bolts: [],
-    x: 0
-  };
+  // --- Thunderbolt / Lightning System (High-Frequency & Multi-Variation) ---
+  const activeStrikes = [];
 
-  function createLightningBolt(startX, startY, endY) {
+  function createLightningBolt(startX, startY, endX, endY) {
     const segments = [];
     let curX = startX;
     let curY = startY;
-    const maxSegmentLength = 22;
+    const dx = endX - startX;
+    const dy = endY - startY;
+    const distance = Math.hypot(dx, dy);
+    const steps = Math.max(8, Math.floor(distance / 18));
+    const stepX = dx / steps;
+    const stepY = dy / steps;
 
-    while (curY < endY) {
-      const nextY = curY + Math.random() * maxSegmentLength + 10;
-      const nextX = curX + (Math.random() - 0.5) * 35;
+    for (let i = 0; i < steps; i++) {
+      const nextX = curX + stepX + (Math.random() - 0.5) * 32;
+      const nextY = curY + stepY + (Math.random() - 0.5) * 14;
       segments.push({ x1: curX, y1: curY, x2: nextX, y2: nextY });
 
-      // Fork chance
-      if (Math.random() < 0.25 && segments.length < 18) {
+      // Fork branch chance
+      if (Math.random() < 0.32 && segments.length < 24) {
         let forkX = nextX;
         let forkY = nextY;
-        for (let j = 0; j < 3; j++) {
-          const fNextX = forkX + (Math.random() - 0.4) * 30;
-          const fNextY = forkY + Math.random() * 20 + 8;
+        const forkSteps = Math.floor(Math.random() * 4) + 2;
+        for (let j = 0; j < forkSteps; j++) {
+          const fNextX = forkX + (Math.random() - 0.5) * 28 + (dx > 0 ? 8 : -8);
+          const fNextY = forkY + Math.random() * 22 + 6;
           segments.push({ x1: forkX, y1: forkY, x2: fNextX, y2: fNextY, isFork: true });
           forkX = fNextX;
           forkY = fNextY;
@@ -271,72 +270,136 @@
     return segments;
   }
 
-  function triggerLightning() {
-    lightningState.active = true;
-    lightningState.intensity = 1.0;
-    lightningState.x = Math.random() * (width * 0.7) + width * 0.15;
-    const strikeEndY = Math.random() * (height * 0.45) + height * 0.25;
-    lightningState.bolts = createLightningBolt(lightningState.x, 0, strikeEndY);
-  }
-
-  function updateLightning() {
-    lightningState.timer++;
-    if (lightningState.timer >= lightningState.nextStrikeTime) {
-      triggerLightning();
-      lightningState.timer = 0;
-      lightningState.nextStrikeTime = 400 + Math.random() * 600; // Next strike in 8-16 seconds
+  function spawnStrike(type = null) {
+    if (!type) {
+      const rand = Math.random();
+      if (rand < 0.55) type = 'direct'; // Vertical ground fork strike
+      else if (rand < 0.82) type = 'crawler'; // High sky crawler
+      else type = 'sheet'; // Ambient cloud flash
     }
 
-    if (lightningState.active) {
-      lightningState.intensity -= 0.038;
-      if (lightningState.intensity <= 0) {
-        lightningState.active = false;
-        lightningState.intensity = 0;
-        lightningState.bolts = [];
+    const colors = [
+      { glow: 'rgba(0, 240, 255, 0.75)', core: '#ffffff', flash: 'rgba(0, 240, 255, 0.22)' },
+      { glow: 'rgba(192, 132, 252, 0.75)', core: '#ffffff', flash: 'rgba(139, 92, 246, 0.18)' },
+      { glow: 'rgba(232, 197, 106, 0.70)', core: '#fffdf0', flash: 'rgba(232, 197, 106, 0.16)' }
+    ];
+    const colorScheme = colors[Math.floor(Math.random() * colors.length)];
+
+    let startX, startY, endX, endY, bolts = [];
+
+    if (type === 'direct') {
+      startX = Math.random() * (width * 0.8) + width * 0.1;
+      startY = 0;
+      endX = startX + (Math.random() - 0.5) * (width * 0.25);
+      endY = Math.random() * (height * 0.55) + height * 0.25;
+      bolts = createLightningBolt(startX, startY, endX, endY);
+    } else if (type === 'crawler') {
+      startX = Math.random() * (width * 0.4) + width * 0.05;
+      startY = Math.random() * (height * 0.25);
+      endX = startX + Math.random() * (width * 0.5) + width * 0.2;
+      endY = startY + (Math.random() - 0.5) * 60;
+      bolts = createLightningBolt(startX, startY, endX, endY);
+    } else {
+      startX = Math.random() * width;
+      startY = Math.random() * (height * 0.35);
+    }
+
+    activeStrikes.push({
+      type,
+      x: startX,
+      y: startY,
+      bolts,
+      intensity: 1.0,
+      decay: Math.random() * 0.045 + 0.040,
+      color: colorScheme,
+      flicker: true
+    });
+
+    // 40% chance of a rapid twin secondary strike
+    if (Math.random() < 0.40) {
+      setTimeout(() => {
+        if (currentTheme === 'dark') {
+          spawnStrike('direct');
+        }
+      }, Math.random() * 120 + 70);
+    }
+  }
+
+  let lightningTimer = 0;
+  let nextLightningInterval = Math.floor(Math.random() * 80) + 70; // High frequency (~1.2 - 2.5s)
+
+  function updateAndDrawLightning(ctx) {
+    lightningTimer++;
+    if (lightningTimer >= nextLightningInterval) {
+      spawnStrike();
+      lightningTimer = 0;
+      nextLightningInterval = Math.floor(Math.random() * 90) + 60; // 1 to 2.5 seconds between strikes
+    }
+
+    for (let i = activeStrikes.length - 1; i >= 0; i--) {
+      const strike = activeStrikes[i];
+      strike.intensity -= strike.decay;
+
+      if (strike.intensity <= 0) {
+        activeStrikes.splice(i, 1);
+        continue;
       }
+
+      ctx.save();
+      const currentIntensity = strike.flicker && Math.random() < 0.25 
+        ? strike.intensity * 0.6 
+        : strike.intensity;
+
+      // 1. Ambient Sky Flash Glow
+      const flashRadius = strike.type === 'sheet' ? width * 1.1 : width * 0.85;
+      const flashGrad = ctx.createRadialGradient(
+        strike.x, strike.y, 0,
+        strike.x, strike.y, flashRadius
+      );
+      flashGrad.addColorStop(0, strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.35})`));
+      flashGrad.addColorStop(0.5, strike.color.flash.replace(/[\d\.]+\)$/, `${currentIntensity * 0.12})`));
+      flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = flashGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // 2. Draw Lightning Bolt Paths
+      if (strike.bolts.length > 0) {
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Outer electric halo glow
+        ctx.strokeStyle = strike.color.glow.replace(/[\d\.]+\)$/, `${currentIntensity * 0.85})`);
+        ctx.lineWidth = 5.5;
+        ctx.beginPath();
+        strike.bolts.forEach(seg => {
+          ctx.moveTo(seg.x1, seg.y1);
+          ctx.lineTo(seg.x2, seg.y2);
+        });
+        ctx.stroke();
+
+        // Secondary mid-core
+        ctx.strokeStyle = strike.color.glow;
+        ctx.lineWidth = 3.0;
+        ctx.beginPath();
+        strike.bolts.forEach(seg => {
+          ctx.moveTo(seg.x1, seg.y1);
+          ctx.lineTo(seg.x2, seg.y2);
+        });
+        ctx.stroke();
+
+        // High-voltage bright white core
+        ctx.strokeStyle = strike.color.core;
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        strike.bolts.forEach(seg => {
+          ctx.moveTo(seg.x1, seg.y1);
+          ctx.lineTo(seg.x2, seg.y2);
+        });
+        ctx.stroke();
+      }
+
+      ctx.restore();
     }
-  }
-
-  function drawLightning(ctx) {
-    if (!lightningState.active || lightningState.intensity <= 0) return;
-
-    ctx.save();
-    // Ambient Flash Illumination across the sky
-    const flashGrad = ctx.createRadialGradient(
-      lightningState.x, 0, 0,
-      lightningState.x, 0, width * 0.9
-    );
-    flashGrad.addColorStop(0, `rgba(0, 240, 255, ${lightningState.intensity * 0.18})`);
-    flashGrad.addColorStop(0.4, `rgba(139, 92, 246, ${lightningState.intensity * 0.10})`);
-    flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = flashGrad;
-    ctx.fillRect(0, 0, width, height);
-
-    // Draw the lightning bolt lines
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // Outer glow pass
-    ctx.strokeStyle = `rgba(0, 240, 255, ${lightningState.intensity * 0.6})`;
-    ctx.lineWidth = 4.5;
-    ctx.beginPath();
-    lightningState.bolts.forEach(seg => {
-      ctx.moveTo(seg.x1, seg.y1);
-      ctx.lineTo(seg.x2, seg.y2);
-    });
-    ctx.stroke();
-
-    // Inner bright core
-    ctx.strokeStyle = `rgba(255, 255, 255, ${lightningState.intensity * 0.95})`;
-    ctx.lineWidth = 1.8;
-    ctx.beginPath();
-    lightningState.bolts.forEach(seg => {
-      ctx.moveTo(seg.x1, seg.y1);
-      ctx.lineTo(seg.x2, seg.y2);
-    });
-    ctx.stroke();
-
-    ctx.restore();
   }
 
   // --- Main Init and Animation Loop ---
@@ -418,8 +481,7 @@
         s.draw(ctx);
       });
 
-      updateLightning();
-      drawLightning(ctx);
+      updateAndDrawLightning(ctx);
     }
 
     animationFrameId = requestAnimationFrame(render);
