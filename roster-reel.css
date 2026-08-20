@@ -681,13 +681,175 @@ html[data-theme="light"] .reel-hud-header {
   border-color: rgba(184, 130, 12, 0.25);
   box-shadow: 0 8px 24px rgba(18, 22, 36, 0.06);
 }
+
+html[data-theme="light"] .reel-telemetry-badge {
+  color: #b37f00;
+}
+
+html[data-theme="light"] .reel-ctrl-btn {
+  background: rgba(18, 22, 36, 0.07);
+  border-color: rgba(18, 22, 36, 0.18);
+  color: #1a1f32;
+}
+
+html[data-theme="light"] .reel-counter-text {
+  color: #b37f00;
+}
+
+/* Slideshow Stage */
+html[data-theme="light"] .reel-stage {
+  background: rgba(240, 243, 250, 0.97);
+  border-color: rgba(184, 130, 12, 0.3);
+  box-shadow: 0 25px 70px rgba(18, 22, 36, 0.12), 0 0 35px rgba(184, 130, 12, 0.08);
+}
+
+html[data-theme="light"] .slide-photo-pane {
+  background: radial-gradient(circle at center, rgba(232, 197, 106, 0.22), rgba(220, 225, 240, 0.95) 75%);
+  border-right-color: rgba(18, 22, 36, 0.1);
+}
+
+html[data-theme="light"] .reel-side-nav-btn {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(184, 130, 12, 0.45);
+  color: #1a1f32;
+  box-shadow: 0 8px 24px rgba(18, 22, 36, 0.15), 0 0 15px rgba(184, 130, 12, 0.1);
+}
+
+/* Player IGN names — was white (#fff) on light background */
+html[data-theme="light"] .slide-player-ign {
+  color: #0a0d17;
+  text-shadow: 0 0 20px rgba(184, 130, 12, 0.2);
+}
+
+/* Real name & location */
+html[data-theme="light"] .slide-realname {
+  color: #1a1f32;
+}
+
+html[data-theme="light"] .slide-realname-box {
+  color: #5c647b;
+}
+
+html[data-theme="light"] .slide-location {
+  color: #5c647b;
+}
+
+/* Bio quote */
+html[data-theme="light"] .slide-bio-quote {
+  color: #3b4256;
+  background: rgba(18, 22, 36, 0.04);
+  border-left-color: #b37f00;
+}
+
+/* Stat items */
+html[data-theme="light"] .slide-stat-item {
+  background: rgba(18, 22, 36, 0.04);
+  border-color: rgba(18, 22, 36, 0.08);
+}
+
+html[data-theme="light"] .slide-stat-top {
+  color: #5c647b;
+}
+
+html[data-theme="light"] .slide-stat-top strong {
+  color: #b37f00;
+}
+
+/* Action button */
+html[data-theme="light"] .slide-action-btn {
+  background: linear-gradient(135deg, rgba(184, 130, 12, 0.18), rgba(240, 243, 250, 0.95));
+  border-color: #b37f00;
+  color: #0a0d17;
+}
+
+html[data-theme="light"] .slide-action-btn:hover {
+  background: linear-gradient(135deg, rgba(184, 130, 12, 0.35), rgba(230, 234, 248, 1));
+  color: #0a0d17;
+}
+
+/* Role & game tags */
+html[data-theme="light"] .slide-role-tag {
+  background: rgba(184, 130, 12, 0.12);
+  border-color: rgba(184, 130, 12, 0.35);
+  color: #8a6000;
+}
+
+html[data-theme="light"] .slide-game-tag {
+  background: rgba(0, 180, 200, 0.08);
+  border-color: rgba(0, 180, 200, 0.3);
+  color: #006f80;
+}
+
+/* Status pill */
+html[data-theme="light"] .slide-status-pill {
+  background: rgba(240, 243, 250, 0.92);
+  border-color: #00cc55;
+  color: #007a30;
+}
+
+/* Thumbnail cards */
+html[data-theme="light"] .reel-thumb-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(18, 22, 36, 0.1);
+  box-shadow: 0 6px 18px rgba(18, 22, 36, 0.06);
+}
+
+html[data-theme="light"] .reel-thumb-card:hover {
+  background: rgba(245, 247, 255, 0.98);
+  border-color: rgba(184, 130, 12, 0.45);
+}
+
+html[data-theme="light"] .reel-thumb-card.is-active {
+  background: linear-gradient(135deg, rgba(184, 130, 12, 0.12), rgba(240, 243, 250, 0.98));
+  border-color: #b37f00;
+}
+
+/* Thumbnail IGN names — was white (#fff) on light background */
+html[data-theme="light"] .reel-thumb-ign {
+  color: #0a0d17;
+}
+
+html[data-theme="light"] .reel-thumb-role {
+  color: #5c647b;
+}
+
+html[data-theme="light"] .reel-thumb-card.is-active .reel-thumb-role {
+  color: #8a6000;
+}
+
+html[data-theme="light"] .reel-thumb-tag {
+  color: #006f80;
+}
+
+html[data-theme="light"] .thumb-num-badge {
+  background: rgba(240, 243, 250, 0.95);
+  border-color: #b37f00;
+  color: #8a6000;
+}
+
+html[data-theme="light"] .reel-thumb-avatar {
+  border-color: rgba(18, 22, 36, 0.15);
+}
+
+html[data-theme="light"] .reel-thumb-card.is-active .reel-thumb-avatar {
+  border-color: #b37f00;
+  box-shadow: 0 0 14px rgba(184, 130, 12, 0.4);
+}
+
+/* Progress segments */
+html[data-theme="light"] .reel-prog-seg {
+  background: rgba(18, 22, 36, 0.1);
+}
+
+html[data-theme="light"] .reel-prog-seg:hover {
+  background: rgba(184, 130, 12, 0.22);
+}
+
+/* Legacy class names kept for compatibility */
 html[data-theme="light"] .reel-card-main {
   background: rgba(255, 255, 255, 0.96);
   border-color: rgba(18, 22, 36, 0.1);
   box-shadow: 0 20px 50px rgba(18, 22, 36, 0.08);
-}
-html[data-theme="light"] .slide-player-ign {
-  color: #0a0d17;
 }
 html[data-theme="light"] .slide-player-name {
   color: #3b4256;
@@ -699,15 +861,7 @@ html[data-theme="light"] .reel-stat-box {
 html[data-theme="light"] .reel-stat-val {
   color: #0a0d17;
 }
-html[data-theme="light"] .reel-thumb-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(18, 22, 36, 0.1);
-  box-shadow: 0 6px 18px rgba(18, 22, 36, 0.04);
-}
 html[data-theme="light"] .reel-thumb-name {
   color: #0a0d17;
-}
-html[data-theme="light"] .reel-thumb-role {
-  color: #5c647b;
 }
 
