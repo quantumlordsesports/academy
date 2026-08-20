@@ -1,0 +1,24 @@
+{
+  "name": "academy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quantumlordsesports/academy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/quantumlordsesports/academy/issues"
+  },
+  "homepage": "https://github.com/quantumlordsesports/academy#readme",
+  "dependencies": {
+    "motion": "^13.1.1"
+  }
+}

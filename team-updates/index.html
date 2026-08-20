@@ -2,6 +2,7 @@
 <html lang="en" class="dark">
 
 <head>
+  <!-- PREMIUM_INJECTED_v3 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
@@ -36,6 +37,8 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
+  <link rel="stylesheet" href="../premium.css" />
+  <link rel="stylesheet" href="../page-premium.css" />
   <script>
     (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
   </script>
@@ -104,6 +107,136 @@
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
     }
   </style>
+<style>
+/* ── Page-level premium overrides ── */
+body { background: #080C14 !important; }
+main, .page-main, .page-body { background: transparent !important; }
+.section-block, section { position: relative; }
+
+/* Page hero banners */
+.page-hero-banner, .roster-hero, .tactics-hero, .recruit-hero,
+.team-updates-hero, .contact-hero {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,240,255,0.08), transparent 60%),
+              radial-gradient(ellipse at 80% 100%, rgba(139,92,246,0.06), transparent 50%),
+              #080C14;
+  overflow: hidden;
+}
+.page-hero-banner::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00F0FF, #E8C56A, transparent);
+  opacity: 0.5;
+}
+
+/* Section cards glassmorphism layer */
+.card, .player-card, .update-card, .tactic-card, .recruit-card,
+.contact-card, [class*="-card"] {
+  background: rgba(17,24,39,0.82) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.35s ease, box-shadow 0.35s ease !important;
+  will-change: transform;
+}
+.card:hover, .player-card:hover, .update-card:hover,
+.tactic-card:hover, .recruit-card:hover, [class*="-card"]:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(0,240,255,0.22) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5),
+              0 0 30px rgba(0,240,255,0.2) !important;
+}
+
+/* Footer top glow border */
+footer, .site-footer { position: relative; overflow: hidden; }
+footer::before, .site-footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, #00F0FF, #E8C56A, transparent);
+  opacity: 0.4;
+}
+
+/* Heading gradient */
+.page-title, h1.hero-title, .section-title,
+h1[class*="title"], h2[class*="title"] {
+  background: linear-gradient(135deg, #fff 0%, #00F0FF 45%, #E8C56A 85%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShiftPage 5s linear infinite;
+}
+@keyframes gradientShiftPage {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Eyebrow labels */
+.eyebrow, .section-eyebrow, [class*="eyebrow"] {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  color: #00F0FF !important;
+  text-transform: uppercase;
+}
+
+/* Buttons spring feel */
+.btn, .button, [class*="-btn"], [class*="btn-"],
+a[class*="button"], button[class*="button"] {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.25s ease !important;
+}
+.btn:hover, .button:hover, [class*="-btn"]:hover,
+a[class*="button"]:hover, button[class*="button"]:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+}
+.btn:active, .button:active { transform: scale(0.93) !important; }
+
+/* Tables tactical styling */
+table { border-collapse: separate; border-spacing: 0; }
+thead tr { background: rgba(0,240,255,0.06) !important; }
+tbody tr {
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+tbody tr:hover { background: rgba(0,240,255,0.04) !important; }
+
+/* Form inputs */
+input, select, textarea {
+  background: rgba(8,12,20,0.85) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 10px !important;
+  color: #F1F5F9 !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(0,240,255,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(0,240,255,0.12) !important;
+  outline: none !important;
+}
+
+/* Stats numbers */
+[class*="stat"] span, [class*="count"],
+.kd-value, .stat-number, .stat-val {
+  font-family: 'Orbitron', sans-serif !important;
+  background: linear-gradient(135deg, #00F0FF, #E8C56A) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Scroll reveal for all pages */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+</style>
 </head>
 
 <body class="bg-[#0A0C11] text-[#F0F6FC] font-sans min-h-screen antialiased flex flex-col justify-between">
@@ -476,6 +609,101 @@
       });
     }
   </script>
+<script type="module">
+import { animate, inView, stagger, scroll } from
+  "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+(function initPremium() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // ── Scroll progress bar
+  const bar = document.createElement('div');
+  bar.style.cssText = 'position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,#00F0FF,#8B5CF6,#E8C56A);z-index:99999;pointer-events:none;box-shadow:0 0 6px rgba(0,240,255,0.7);transition:width 0.1s linear;';
+  document.body.appendChild(bar);
+  scroll(({ y }) => { bar.style.width = (y.progress * 100).toFixed(1) + '%'; });
+
+  // ── Scroll reveals with stagger
+  document.querySelectorAll('section, .section-block, main > div, .page-section').forEach(section => {
+    const items = section.querySelectorAll('[data-reveal]');
+    if (!items.length) return;
+    inView(section, () => {
+      items.forEach((el, i) => {
+        animate(el, { opacity: [0, 1], y: [28, 0] }, {
+          delay: i * 0.09 + 0.05,
+          duration: 0.7,
+          easing: [0.22, 1, 0.36, 1]
+        });
+        el.classList.add('is-visible');
+      });
+      return () => {};
+    }, { amount: 0.12 });
+  });
+
+  // ── Auto-tag cards for reveal
+  document.querySelectorAll('.card, .player-card, .update-card, .roster-card, [class*="-card"]:not([data-reveal])').forEach((el, i) => {
+    if (!el.hasAttribute('data-reveal')) {
+      el.setAttribute('data-reveal', '');
+    }
+  });
+
+  // ── 3D tilt on all cards
+  document.querySelectorAll('[class*="-card"], .card, .player-card, .stat-box, .comms-card, .routing-tag').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r   = card.getBoundingClientRect();
+      const dx  = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+      const dy  = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+      animate(card, {
+        rotateX: -dy * 6,
+        rotateY:  dx * 6,
+        transformPerspective: 900
+      }, { duration: 0.12, easing: 'ease-out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      animate(card, { rotateX: 0, rotateY: 0, transformPerspective: 900 },
+        { duration: 0.5, easing: [0.34, 1.56, 0.64, 1] });
+    });
+  });
+
+  // ── Spring buttons
+  document.querySelectorAll('.btn, .button, [class*="btn-"], [class*="-btn"], a[class*="button"]').forEach(btn => {
+    btn.addEventListener('mousedown', () => animate(btn, { scale: 0.93 }, { duration: 0.1 }));
+    btn.addEventListener('mouseup',   () => animate(btn, { scale: 1 }, { duration: 0.4, easing: [0.34, 1.56, 0.64, 1] }));
+    btn.addEventListener('mouseleave',() => animate(btn, { scale: 1 }, { duration: 0.3, easing: [0.34, 1.56, 0.64, 1] }));
+  });
+
+  // ── Zero-G float on badges/pills
+  document.querySelectorAll('.badge, .tag, .pill, [class*="badge"], [class*="-tag"], [class*="eyebrow"]').forEach((el, i) => {
+    animate(el, { y: [0, -(5 + i % 3 * 3), 0] },
+      { duration: 3.5 + i * 0.3, repeat: Infinity, easing: 'ease-in-out', delay: i * 0.2 });
+  });
+
+  // ── Counter animation
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const target = parseFloat(el.dataset.counter);
+    const suffix = el.dataset.suffix || '';
+    inView(el, () => {
+      animate(0, target, {
+        duration: 2.2, easing: [0.16, 1, 0.3, 1],
+        onUpdate: v => { el.textContent = (Number.isInteger(target) ? Math.round(v) : v.toFixed(1)) + suffix; }
+      });
+      return () => {};
+    }, { amount: 0.5 });
+  });
+
+  // ── Hero entrance
+  const heroItems = document.querySelectorAll(
+    '.hero-content *, .page-hero-banner *, .roster-hero *, ' +
+    '.player-hero *, [class*="hero"] h1, [class*="hero"] h2, [class*="hero"] p'
+  );
+  heroItems.forEach((el, i) => {
+    animate(el, { opacity: 0, y: 30 }, { duration: 0 });
+    animate(el, { opacity: 1, y: 0 }, {
+      delay: 0.15 + i * 0.1, duration: 0.8, easing: [0.22, 1, 0.36, 1]
+    });
+  });
+
+})();
+</script>
 </body>
 
 </html>
