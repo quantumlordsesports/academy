@@ -310,6 +310,170 @@ const setupNavToggle = () => {
   }
 };
 
+/* ---------- Theme Toast Notification ---------- */
+
+(function injectThemeToastCSS() {
+  if (document.getElementById('qld-theme-toast-style')) return;
+  const style = document.createElement('style');
+  style.id = 'qld-theme-toast-style';
+  style.textContent = `
+    #qld-theme-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 22px 14px 18px;
+      border-radius: 18px;
+      min-width: 300px;
+      max-width: 480px;
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1.5px solid;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.45;
+      cursor: default;
+      user-select: none;
+      opacity: 0;
+      transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.42s ease;
+      overflow: hidden;
+    }
+    #qld-theme-toast.toast-dark {
+      background: rgba(10, 13, 23, 0.88);
+      border-color: rgba(232, 197, 106, 0.45);
+      color: #f0ecd8;
+    }
+    #qld-theme-toast.toast-light {
+      background: rgba(255, 252, 240, 0.90);
+      border-color: rgba(220, 160, 0, 0.45);
+      color: #1a1600;
+    }
+    #qld-theme-toast.toast-show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    .qld-toast-icon {
+      font-size: 28px;
+      line-height: 1;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 8px rgba(255,200,50,0.5));
+      animation: toastIconBounce 0.7s cubic-bezier(0.36,1.4,0.64,1) 0.1s both;
+    }
+    @keyframes toastIconBounce {
+      0%   { transform: scale(0.5) rotate(-15deg); opacity: 0; }
+      60%  { transform: scale(1.2) rotate(6deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .qld-toast-body {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+    .qld-toast-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .qld-toast-msg {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .qld-toast-dark .qld-toast-title  { color: #e8c56a; }
+    .qld-toast-dark .qld-toast-msg    { color: #f5f0de; }
+    .qld-toast-light .qld-toast-title { color: #b37a00; }
+    .qld-toast-light .qld-toast-msg   { color: #1a1600; }
+    .qld-toast-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      border-radius: 0 0 18px 18px;
+      width: 100%;
+      transform-origin: left;
+    }
+    .toast-dark  .qld-toast-progress { background: linear-gradient(90deg, #e8c56a, #f6df9c, #00f0ff); }
+    .toast-light .qld-toast-progress { background: linear-gradient(90deg, #f5c400, #ffdf60, #ff8c00); }
+    .qld-toast-progress.running {
+      animation: toastProgressDrain 3.6s linear forwards;
+    }
+    @keyframes toastProgressDrain {
+      from { transform: scaleX(1); }
+      to   { transform: scaleX(0); }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+const showThemeToast = (() => {
+  let toastEl = null;
+  let hideTimer = null;
+
+  return function(theme) {
+    // Create toast element once
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.id = 'qld-theme-toast';
+      toastEl.setAttribute('role', 'status');
+      toastEl.setAttribute('aria-live', 'polite');
+      toastEl.innerHTML = `
+        <span class="qld-toast-icon"></span>
+        <div class="qld-toast-body">
+          <span class="qld-toast-title"></span>
+          <span class="qld-toast-msg"></span>
+        </div>
+        <span class="qld-toast-progress"></span>
+      `;
+      document.body.appendChild(toastEl);
+    }
+
+    // Clear any running hide timer
+    if (hideTimer) clearTimeout(hideTimer);
+
+    const isDark = theme === 'dark';
+    const icon    = isDark ? '🌙' : '☀️';
+    const title   = isDark ? 'Dark Mode Activated' : 'Bright Mode Activated';
+    const msg     = isDark
+      ? 'Programmers Prefer Dark Mode. Because Light attracts Bugs 🐛'
+      : 'Good Morning! Welcome to the bright side ☀️';
+
+    // Swap classes
+    toastEl.classList.remove('toast-dark', 'toast-light', 'toast-show');
+    void toastEl.offsetWidth; // reflow to restart animations
+    toastEl.classList.add(isDark ? 'toast-dark' : 'toast-light');
+
+    toastEl.querySelector('.qld-toast-icon').textContent  = icon;
+    toastEl.querySelector('.qld-toast-title').textContent = title;
+    toastEl.querySelector('.qld-toast-msg').textContent   = msg;
+
+    // Reset progress bar
+    const prog = toastEl.querySelector('.qld-toast-progress');
+    prog.classList.remove('running');
+    void prog.offsetWidth;
+    prog.classList.add('running');
+
+    // Slide in
+    requestAnimationFrame(() => {
+      toastEl.classList.add('toast-show');
+    });
+
+    // Auto-dismiss after 3.6 s
+    hideTimer = setTimeout(() => {
+      toastEl.classList.remove('toast-show');
+    }, 3600);
+  };
+})();
+
 /* ---------- Dual-Theme Switcher (Dark / Bright) ---------- */
 
 const initThemeToggle = () => {
@@ -395,6 +559,7 @@ const initThemeToggle = () => {
       const next = current === 'dark' ? 'light' : 'dark';
       setStoredTheme(next);
       applyTheme(next, true);
+      showThemeToast(next);
     });
   });
 };
