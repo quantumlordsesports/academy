@@ -388,9 +388,19 @@ body:not([data-theme="light"]):not(.theme-light) footer {
   display: inline-block !important;
 }
 
-/* ── Tailwind override safety (for pages using Tailwind CDN) ───────── */
-.bg-cyber-bg, .bg-\[\#0A0C11\], .bg-\[\#080C14\] { background: #080C14 !important; }
-.border-cyber-border { border-color: rgba(255,255,255,0.08) !important; }
+/* ── Tailwind override safety (scoped for dark theme) ───────── */
+[data-theme="dark"] .bg-cyber-bg, 
+[data-theme="dark"] .bg-\[\#0A0C11\], 
+[data-theme="dark"] .bg-\[\#080C14\],
+body:not([data-theme="light"]):not(.theme-light) .bg-cyber-bg,
+body:not([data-theme="light"]):not(.theme-light) .bg-\[\#0A0C11\],
+body:not([data-theme="light"]):not(.theme-light) .bg-\[\#080C14\] { 
+  background: #080C14 !important; 
+}
+[data-theme="dark"] .border-cyber-border,
+body:not([data-theme="light"]):not(.theme-light) .border-cyber-border { 
+  border-color: rgba(255,255,255,0.08) !important; 
+}
 
 /* ── Mobile ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
@@ -398,21 +408,108 @@ body:not([data-theme="light"]):not(.theme-light) footer {
   h1.page-title, .roster-title, .player-name { font-size: clamp(1.5rem, 8vw, 2.2rem); }
 }
 
-/* ── Light Mode / Bright Theme Overrides ─────────────────────────── */
+/* ── Comprehensive Light Mode / Bright Theme Overrides ─────────────── */
 [data-theme="light"] body,
 html.theme-light body {
   background: #F1F5F9 !important;
   color: #0F172A !important;
 }
 
+[data-theme="light"] .bg-cyber-bg,
+[data-theme="light"] .bg-\[\#0A0C11\],
+[data-theme="light"] .bg-\[\#080C14\],
+[data-theme="light"] .bg-cyber-surface,
+[data-theme="light"] .bg-\[\#0D1117\],
+html.theme-light .bg-cyber-bg,
+html.theme-light .bg-\[\#0A0C11\],
+html.theme-light .bg-\[\#080C14\] {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bg-cyber-card,
+[data-theme="light"] .bg-\[\#161B22\],
+html.theme-light .bg-cyber-card,
+html.theme-light .bg-\[\#161B22\] {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-cyber-border,
+html.theme-light .border-slate-800,
+html.theme-light .border-cyber-border {
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-\[\#F0F6FC\],
+html.theme-light .text-white,
+html.theme-light .text-\[\#F0F6FC\] {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+html.theme-light .text-slate-300,
+html.theme-light .text-slate-400 {
+  color: #334155 !important;
+}
+
+/* Light Mode Navigation */
 [data-theme="light"] .site-header,
 html.theme-light .site-header,
 [data-theme="light"] header,
 html.theme-light header {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
+}
+[data-theme="light"] .site-header .brand-label,
+html.theme-light .site-header .brand-label {
+  color: #0F172A !important;
 }
 
+/* Light Mode Page Heroes (Tactics, Updates, Recruit, Contact, Roster) */
+[data-theme="light"] .page-hero,
+[data-theme="light"] .roster-hero,
+[data-theme="light"] .player-hero,
+[data-theme="light"] .tactics-hero,
+[data-theme="light"] .recruit-hero,
+[data-theme="light"] .team-updates-hero,
+[data-theme="light"] .contact-hero,
+html.theme-light .page-hero,
+html.theme-light .roster-hero,
+html.theme-light .player-hero,
+html.theme-light .tactics-hero,
+html.theme-light .recruit-hero,
+html.theme-light .team-updates-hero,
+html.theme-light .contact-hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(14, 165, 233, 0.08), transparent 65%),
+              radial-gradient(ellipse at 85% 60%, rgba(217, 119, 6, 0.06), transparent 55%),
+              #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .page-hero h1,
+[data-theme="light"] .roster-hero h1,
+[data-theme="light"] .tactics-hero h1,
+[data-theme="light"] .recruit-hero h1,
+[data-theme="light"] .team-updates-hero h1,
+[data-theme="light"] .contact-hero h1,
+html.theme-light .page-hero h1,
+html.theme-light .roster-hero h1,
+html.theme-light .tactics-hero h1,
+html.theme-light .recruit-hero h1,
+html.theme-light .team-updates-hero h1,
+html.theme-light .contact-hero h1 {
+  background: linear-gradient(135deg, #0F172A 0%, #0284C7 60%, #D97706 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Light Mode Cards */
 [data-theme="light"] .card,
 html.theme-light .card,
 [data-theme="light"] .bento-card,
@@ -422,11 +519,36 @@ html.theme-light .roster-player-card,
 [data-theme="light"] .player-card,
 html.theme-light .player-card,
 [data-theme="light"] .comms-card,
-html.theme-light .comms-card {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+html.theme-light .comms-card,
+[data-theme="light"] .highlight-card,
+html.theme-light .highlight-card,
+[data-theme="light"] .requirement-card,
+html.theme-light .requirement-card,
+[data-theme="light"] .trial-card,
+html.theme-light .trial-card,
+[data-theme="light"] .apply-card,
+html.theme-light .apply-card,
+[data-theme="light"] .contact-card,
+html.theme-light .contact-card,
+[data-theme="light"] .channel-card,
+html.theme-light .channel-card,
+[data-theme="light"] .map-card,
+html.theme-light .map-card,
+[data-theme="light"] .strategy-card,
+html.theme-light .strategy-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
   color: #0F172A !important;
+}
+
+[data-theme="light"] .card:hover,
+[data-theme="light"] .bento-card:hover,
+[data-theme="light"] .highlight-card:hover,
+[data-theme="light"] .requirement-card:hover,
+[data-theme="light"] .contact-card:hover {
+  border-color: rgba(14, 165, 233, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.12) !important;
 }
 
 [data-theme="light"] .bento-title,
@@ -434,7 +556,9 @@ html.theme-light .bento-title,
 [data-theme="light"] h2,
 html.theme-light h2,
 [data-theme="light"] h3,
-html.theme-light h3 {
+html.theme-light h3,
+[data-theme="light"] h4,
+html.theme-light h4 {
   color: #0F172A !important;
 }
 
@@ -442,23 +566,136 @@ html.theme-light h3 {
 html.theme-light .bento-desc,
 [data-theme="light"] p,
 html.theme-light p {
+  color: #334155 !important;
+}
+
+/* Light Mode 3D Books & Strategy Library */
+[data-theme="light"] .book-card-3d,
+html.theme-light .book-card-3d {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] .book-card-3d h4,
+[data-theme="light"] .book-card-3d h3,
+html.theme-light .book-card-3d h4,
+html.theme-light .book-card-3d h3 {
+  color: #0F172A !important;
+}
+[data-theme="light"] .book-card-3d p,
+html.theme-light .book-card-3d p {
+  color: #334155 !important;
+}
+[data-theme="light"] .book-btn-download,
+html.theme-light .book-btn-download {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border: 1px solid rgba(239, 68, 68, 0.45) !important;
+  color: #DC2626 !important;
+  font-weight: 700 !important;
+}
+
+/* Light Mode 3D Blueprint Map Cards */
+[data-theme="light"] .map-card-3d,
+html.theme-light .map-card-3d {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] .map-card-3d h4,
+html.theme-light .map-card-3d h4 {
+  color: #0F172A !important;
+}
+[data-theme="light"] .map-card-3d p,
+html.theme-light .map-card-3d p {
+  color: #334155 !important;
+}
+[data-theme="light"] .map-tag-badge,
+html.theme-light .map-tag-badge {
+  color: #0284C7 !important;
+  background: rgba(14, 165, 233, 0.1) !important;
+  border-color: rgba(14, 165, 233, 0.35) !important;
+}
+
+/* Light Mode Forms & Inputs (Recruit & Contact Pages) */
+[data-theme="light"] form input,
+[data-theme="light"] form select,
+[data-theme="light"] form textarea,
+[data-theme="light"] .apply-form input,
+[data-theme="light"] .apply-form select,
+[data-theme="light"] .apply-form textarea,
+html.theme-light form input,
+html.theme-light form select,
+html.theme-light form textarea,
+html.theme-light .apply-form input,
+html.theme-light .apply-form select,
+html.theme-light .apply-form textarea {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(203, 213, 225, 0.95) !important;
+  color: #0F172A !important;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] form input:focus,
+[data-theme="light"] form select:focus,
+[data-theme="light"] form textarea:focus,
+html.theme-light form input:focus,
+html.theme-light form select:focus,
+html.theme-light form textarea:focus {
+  border-color: #0284C7 !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15) !important;
+}
+
+[data-theme="light"] form label,
+[data-theme="light"] .apply-form label,
+html.theme-light form label,
+html.theme-light .apply-form label {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+}
+
+/* Light Mode Roster Tree Cards */
+[data-theme="light"] .tree-root-card,
+html.theme-light .tree-root-card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
+}
+[data-theme="light"] .tree-player-ign,
+html.theme-light .tree-player-ign {
+  color: #0F172A !important;
+}
+[data-theme="light"] .tree-player-name,
+html.theme-light .tree-player-name {
+  color: #475569 !important;
+}
+[data-theme="light"] .tree-origin-node,
+html.theme-light .tree-origin-node {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+}
+[data-theme="light"] .tree-origin-title,
+html.theme-light .tree-origin-title {
+  color: #0F172A !important;
+}
+[data-theme="light"] .tree-origin-desc,
+html.theme-light .tree-origin-desc {
   color: #475569 !important;
 }
 
+/* Light Mode Stats Band */
 [data-theme="light"] .stats-band-premium,
 html.theme-light .stats-band-premium {
   background: rgba(255, 255, 255, 0.95) !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
 }
-
 [data-theme="light"] .stat-item-premium,
 html.theme-light .stat-item-premium {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
 }
-
 [data-theme="light"] .stat-lbl,
 html.theme-light .stat-lbl {
-  color: #64748B !important;
+  color: #475569 !important;
 }
 
 /* ── Reduced Motion ────────────────────────────────────────────────── */
