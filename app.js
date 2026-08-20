@@ -625,18 +625,47 @@ const initMouseGlow = () => {
 /* ---------- Stats counters ---------- */
 
 const initCounters = () => {
-  const values = document.querySelectorAll('.stat-value[data-count]');
-  if (!values.length) return;
-  const animate = (el) => {
-    const target = parseInt(el.dataset.count, 10) || 0;
-    const duration = 1400;
+  const elements = document.querySelectorAll('.stat-value[data-count], .stat-num[data-counter], [data-counter]');
+  if (!elements.length) return;
+
+  const animateNumber = (el) => {
+    const rawVal = el.dataset.counter || el.dataset.count;
+    const suffix = el.dataset.suffix || '';
+    const displayVal = el.dataset.display || '';
+
+    if (displayVal || rawVal === 'unlimited' || isNaN(parseInt(rawVal, 10))) {
+      const finalStr = displayVal || rawVal || 'Unlimited';
+      let iter = 0;
+      const letters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&';
+      const interval = setInterval(() => {
+        el.textContent = finalStr.split('').map((char, index) => {
+          if (index < iter) return char;
+          return letters[Math.floor(Math.random() * letters.length)];
+        }).join('') + suffix;
+
+        if (iter >= finalStr.length) {
+          clearInterval(interval);
+          el.textContent = finalStr + suffix;
+        }
+        iter += 1 / 2;
+      }, 35);
+      return;
+    }
+
+    const target = parseInt(rawVal, 10);
+    const duration = 1200;
     const start = performance.now();
+
     const step = (now) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased);
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = target;
+      const current = Math.round(target * eased);
+      el.textContent = current + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target + suffix;
+      }
     };
     requestAnimationFrame(step);
   };
@@ -644,13 +673,13 @@ const initCounters = () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        animate(entry.target);
+        animateNumber(entry.target);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.2 });
 
-  values.forEach((el) => observer.observe(el));
+  elements.forEach((el) => observer.observe(el));
 };
 
 /* ---------- Scroll reveal (lightweight, no dependency) ---------- */

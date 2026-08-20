@@ -576,15 +576,71 @@ html.theme-light .book-card-3d {
   border: 1px solid rgba(203, 213, 225, 0.9) !important;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
 }
+
+/* 3D Book PDF Thumbnail Cover Text: Crisp Pure White in Bright Mode */
+[data-theme="light"] .book-3d-cover,
+[data-theme="light"] .book-cover-art,
+html.theme-light .book-3d-cover,
+html.theme-light .book-cover-art {
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .book-3d-cover span,
+[data-theme="light"] .book-3d-cover div,
+[data-theme="light"] .book-3d-cover p,
+[data-theme="light"] .book-3d-cover h1,
+[data-theme="light"] .book-3d-cover h2,
+[data-theme="light"] .book-3d-cover h3,
+[data-theme="light"] .book-3d-cover h4,
+[data-theme="light"] .book-cover-art span,
+[data-theme="light"] .book-cover-art div,
+[data-theme="light"] .book-cover-art p,
+html.theme-light .book-3d-cover span,
+html.theme-light .book-3d-cover div,
+html.theme-light .book-3d-cover p,
+html.theme-light .book-3d-cover h1,
+html.theme-light .book-3d-cover h2,
+html.theme-light .book-3d-cover h3,
+html.theme-light .book-3d-cover h4,
+html.theme-light .book-cover-art span,
+html.theme-light .book-cover-art div,
+html.theme-light .book-cover-art p {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="light"] .book-cover-art div[style*="font-family:'Orbitron'"],
+[data-theme="light"] .book-cover-art div[style*='font-family: "Orbitron"'],
+[data-theme="light"] .book-cover-art div[style*="font-family: 'Orbitron'"],
+[data-theme="light"] .book-cover-art div[style*="font-family:Orbitron"],
+html.theme-light .book-cover-art div[style*="font-family:'Orbitron'"],
+html.theme-light .book-cover-art div[style*='font-family: "Orbitron"'],
+html.theme-light .book-cover-art div[style*="font-family: 'Orbitron'"],
+html.theme-light .book-cover-art div[style*="font-family:Orbitron"] {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 2px 5px rgba(0, 0, 0, 0.9) !important;
+}
+
+[data-theme="light"] .book-3d-cover,
+html.theme-light .book-3d-cover {
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.22), -8px 0 20px rgba(0, 0, 0, 0.15) !important;
+  border-width: 1.5px !important;
+}
+
 [data-theme="light"] .book-card-3d h4,
 [data-theme="light"] .book-card-3d h3,
 html.theme-light .book-card-3d h4,
 html.theme-light .book-card-3d h3 {
   color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
 }
 [data-theme="light"] .book-card-3d p,
 html.theme-light .book-card-3d p {
   color: #334155 !important;
+  -webkit-text-fill-color: #334155 !important;
 }
 [data-theme="light"] .book-btn-download,
 html.theme-light .book-btn-download {
