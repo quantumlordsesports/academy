@@ -5,17 +5,35 @@
 
 /* ── Global body / bg reset ───────────────────────────────────────── */
 [data-theme="dark"] body,
-body:not([data-theme="light"]) {
+body:not([data-theme="light"]):not(.theme-light) {
   background: #080C14;
   color: #F1F5F9;
 }
 
 /* ── Nav bar glass ─────────────────────────────────────────────────── */
-.site-header, header, nav.nav-bar {
+[data-theme="dark"] .site-header,
+[data-theme="dark"] header,
+[data-theme="dark"] nav.nav-bar,
+body:not([data-theme="light"]):not(.theme-light) .site-header,
+body:not([data-theme="light"]):not(.theme-light) header,
+body:not([data-theme="light"]):not(.theme-light) nav.nav-bar {
   background: rgba(8,12,20,0.75) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+[data-theme="light"] .site-header,
+html.theme-light .site-header,
+[data-theme="light"] header,
+html.theme-light header,
+[data-theme="light"] nav.nav-bar,
+html.theme-light nav.nav-bar {
+  background: rgba(248, 250, 255, 0.92) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
 }
 
 /* ── Page Hero Universal ───────────────────────────────────────────── */
@@ -117,8 +135,12 @@ h1.page-title, .roster-title, .player-name {
 
 /* ── Cards global Glassmorphism ────────────────────────────────────── */
 /* Roster player cards */
-.roster-player-card, .player-card-item,
-.slide-card, .roster-slide {
+[data-theme="dark"] .roster-player-card, [data-theme="dark"] .player-card-item,
+[data-theme="dark"] .slide-card, [data-theme="dark"] .roster-slide,
+body:not([data-theme="light"]):not(.theme-light) .roster-player-card,
+body:not([data-theme="light"]):not(.theme-light) .player-card-item,
+body:not([data-theme="light"]):not(.theme-light) .slide-card,
+body:not([data-theme="light"]):not(.theme-light) .roster-slide {
   background: rgba(17,24,39,0.85) !important;
   backdrop-filter: blur(18px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
@@ -142,8 +164,15 @@ h1.page-title, .roster-title, .player-name {
 }
 
 /* Tactics / map cards */
-.map-card, .tactic-entry, .strategy-card, .playbook-card,
-.book-card, .weapon-card, .character-card {
+[data-theme="dark"] .map-card, [data-theme="dark"] .tactic-entry, [data-theme="dark"] .strategy-card, [data-theme="dark"] .playbook-card,
+[data-theme="dark"] .book-card, [data-theme="dark"] .weapon-card, [data-theme="dark"] .character-card,
+body:not([data-theme="light"]):not(.theme-light) .map-card,
+body:not([data-theme="light"]):not(.theme-light) .tactic-entry,
+body:not([data-theme="light"]):not(.theme-light) .strategy-card,
+body:not([data-theme="light"]):not(.theme-light) .playbook-card,
+body:not([data-theme="light"]):not(.theme-light) .book-card,
+body:not([data-theme="light"]):not(.theme-light) .weapon-card,
+body:not([data-theme="light"]):not(.theme-light) .character-card {
   background: rgba(17,24,39,0.85) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 18px !important;
@@ -158,8 +187,13 @@ h1.page-title, .roster-title, .player-name {
 }
 
 /* Recruit cards */
-.requirement-card, .trial-card, .apply-card,
-.track-card, .rule-card {
+[data-theme="dark"] .requirement-card, [data-theme="dark"] .trial-card, [data-theme="dark"] .apply-card,
+[data-theme="dark"] .track-card, [data-theme="dark"] .rule-card,
+body:not([data-theme="light"]):not(.theme-light) .requirement-card,
+body:not([data-theme="light"]):not(.theme-light) .trial-card,
+body:not([data-theme="light"]):not(.theme-light) .apply-card,
+body:not([data-theme="light"]):not(.theme-light) .track-card,
+body:not([data-theme="light"]):not(.theme-light) .rule-card {
   background: rgba(17,24,39,0.82) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 16px !important;
@@ -171,7 +205,11 @@ h1.page-title, .roster-title, .player-name {
 }
 
 /* Team update news cards */
-.update-item, .news-card, .achievement-card, .match-card {
+[data-theme="dark"] .update-item, [data-theme="dark"] .news-card, [data-theme="dark"] .achievement-card, [data-theme="dark"] .match-card,
+body:not([data-theme="light"]):not(.theme-light) .update-item,
+body:not([data-theme="light"]):not(.theme-light) .news-card,
+body:not([data-theme="light"]):not(.theme-light) .achievement-card,
+body:not([data-theme="light"]):not(.theme-light) .match-card {
   background: rgba(17,24,39,0.82) !important;
   border: 1px solid rgba(255,255,255,0.07) !important;
   border-radius: 16px !important;
@@ -185,11 +223,16 @@ h1.page-title, .roster-title, .player-name {
 }
 
 /* Contact cards */
-.contact-card, .channel-card, .comms-block {
+[data-theme="dark"] .contact-card, [data-theme="dark"] .channel-card, [data-theme="dark"] .comms-block,
+body:not([data-theme="light"]):not(.theme-light) .contact-card,
+body:not([data-theme="light"]):not(.theme-light) .channel-card,
+body:not([data-theme="light"]):not(.theme-light) .comms-block {
   background: rgba(17,24,39,0.82) !important;
   border: 1px solid rgba(255,255,255,0.08) !important;
   border-radius: 20px !important;
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
               border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 .contact-card:hover, .channel-card:hover, .comms-block:hover {
@@ -242,8 +285,14 @@ h1.page-title, .roster-title, .player-name {
 .tier-b, .tier-B { background: rgba(139,92,246,0.1); color: #8B5CF6; border: 1px solid rgba(139,92,246,0.25); }
 
 /* ── Recruit page form ─────────────────────────────────────────────── */
-.apply-form input, .apply-form select, .apply-form textarea,
-form input, form select, form textarea {
+[data-theme="dark"] .apply-form input, [data-theme="dark"] .apply-form select, [data-theme="dark"] .apply-form textarea,
+[data-theme="dark"] form input, [data-theme="dark"] form select, [data-theme="dark"] form textarea,
+body:not([data-theme="light"]):not(.theme-light) .apply-form input,
+body:not([data-theme="light"]):not(.theme-light) .apply-form select,
+body:not([data-theme="light"]):not(.theme-light) .apply-form textarea,
+body:not([data-theme="light"]):not(.theme-light) form input,
+body:not([data-theme="light"]):not(.theme-light) form select,
+body:not([data-theme="light"]):not(.theme-light) form textarea {
   background: rgba(8,12,20,0.85) !important;
   border: 1px solid rgba(255,255,255,0.1) !important;
   border-radius: 10px !important;
@@ -271,7 +320,9 @@ form label {
 }
 
 /* ── Footer ────────────────────────────────────────────────────────── */
-.site-footer, footer {
+[data-theme="dark"] .site-footer, [data-theme="dark"] footer,
+body:not([data-theme="light"]):not(.theme-light) .site-footer,
+body:not([data-theme="light"]):not(.theme-light) footer {
   background: rgba(8,12,20,0.95) !important;
   border-top: 1px solid rgba(255,255,255,0.06) !important;
   position: relative;

@@ -814,10 +814,10 @@ input:focus, select:focus, textarea:focus {
         <div class="book-card-3d-wrap lg:col-span-3">
           <div class="book-card-3d" style="border-color: rgba(255, 0, 85, 0.45); background: linear-gradient(135deg, rgba(22, 27, 34, 0.98) 0%, rgba(20, 10, 15, 0.95) 100%);">
             <div class="book-spine-accent" style="background: linear-gradient(to bottom, #FF0055, #E8C56A); box-shadow: 0 0 15px rgba(255,0,85,0.7);"></div>
-            <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-8">
               
               <!-- 3D Hardcover Thumbnail Cover for E-For Esports -->
-              <div class="book-3d-container flex-shrink-0" onclick="openBookLockModal('https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view', 'E-For Esports')" style="cursor: pointer;">
+              <div class="book-3d-container flex-shrink-0" onclick="openBookLockModal('https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view', 'E-For Esports')" style="width: 220px; max-width: 100%; height: 220px; cursor: pointer;">
                 <div class="book-3d-cover" style="background: linear-gradient(135deg, #330510 0%, #170106 100%); border: 1px solid rgba(255, 0, 85, 0.6); box-shadow: -12px 16px 28px rgba(0,0,0,0.95), 0 0 30px rgba(255, 0, 85, 0.35);">
                   <div class="book-cover-art" style="background: radial-gradient(circle at 50% 30%, rgba(255, 0, 85, 0.25), transparent 70%);">
                     <div class="flex justify-between items-center">
@@ -836,23 +836,26 @@ input:focus, select:focus, textarea:focus {
                 </div>
               </div>
 
-              <div class="space-y-3 flex-grow">
-                <div class="flex items-center space-x-2">
-                  <span class="text-[10px] font-mono text-[#FF0055] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-red-950/80 border border-red-500/50">
-                    🔒 RESTRICTED TEAM INTEL
-                  </span>
-                  <span class="text-xs font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-500/30">
-                    PASSWORD REQUIRED
-                  </span>
+              <div class="flex flex-col justify-between flex-grow text-left w-full space-y-4">
+                <div class="space-y-2.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-[10px] font-mono text-[#FF0055] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-red-950/80 border border-red-500/50">
+                      🔒 RESTRICTED TEAM INTEL
+                    </span>
+                    <span class="text-xs font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-500/30">
+                      PASSWORD REQUIRED
+                    </span>
+                  </div>
+                  <h3 class="text-xl sm:text-2xl font-black font-orbitron text-white">
+                    E-For Esports: The Ultimate Competitive Gaming Doctrine
+                  </h3>
+                  <p class="text-xs sm:text-sm font-space text-slate-300 leading-relaxed">
+                    Confidential playbook on tournament preparation, communications hierarchy, clutch protocol, team macro-mechanics, and professional esports discipline.
+                  </p>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-black font-orbitron text-white">
-                  E-For Esports: The Ultimate Competitive Gaming Doctrine
-                </h3>
-                <p class="text-xs font-space text-slate-300 leading-relaxed">
-                  Confidential playbook on tournament preparation, communications hierarchy, clutch protocol, team macro-mechanics, and professional esports discipline.
-                </p>
-                <div class="pt-2">
-                  <button onclick="openBookLockModal('https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view', 'E-For Esports')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-orbitron font-bold text-sm tracking-wider inline-flex items-center space-x-2 shadow-lg shadow-red-900/40 border border-red-400/40 transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                <div class="pt-2 flex items-center justify-between border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-400">PDF FORMAT // TIER-1 RESTRICTED</span>
+                  <button type="button" onclick="openBookLockModal('https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view', 'E-For Esports')" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-orbitron font-bold text-xs sm:text-sm tracking-wider inline-flex items-center space-x-2 shadow-lg shadow-red-900/40 border border-red-400/40 transition-all transform hover:-translate-y-0.5 cursor-pointer">
                     <span>🔐 UNLOCK BOOK</span>
                     <span>→</span>
                   </button>

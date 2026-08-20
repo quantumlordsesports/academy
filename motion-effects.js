@@ -33,20 +33,36 @@ function init() {
 
   // 3. Dynamic Animated Counters
   document.querySelectorAll('[data-counter]').forEach(el => {
-    const target = parseFloat(el.dataset.counter);
+    const rawTarget = el.dataset.counter;
     const suffix = el.dataset.suffix || '';
     const prefix = el.dataset.prefix || '';
+
     inView(el, () => {
-      animate(0, target, {
-        duration: 2.0,
-        easing: [0.16, 1, 0.3, 1],
-        onUpdate: v => {
-          const val = Number.isInteger(target) ? Math.round(v) : v.toFixed(1);
-          el.textContent = prefix + val + suffix;
-        }
-      });
+      if (rawTarget === 'unlimited' || isNaN(parseFloat(rawTarget))) {
+        // High-tech rolling cyber counter resolving to Unlimited
+        let count = 0;
+        const interval = setInterval(() => {
+          count += Math.floor(Math.random() * 85) + 30;
+          if (count < 999) {
+            el.textContent = prefix + count + '+';
+          } else {
+            clearInterval(interval);
+            el.textContent = prefix + (el.dataset.display || 'Unlimited') + suffix;
+          }
+        }, 50);
+      } else {
+        const target = parseFloat(rawTarget);
+        animate(0, target, {
+          duration: 2.0,
+          easing: [0.16, 1, 0.3, 1],
+          onUpdate: v => {
+            const val = Number.isInteger(target) ? Math.round(v) : v.toFixed(1);
+            el.textContent = prefix + val + suffix;
+          }
+        });
+      }
       return () => {};
-    }, { amount: 0.4 });
+    }, { amount: 0.3 });
   });
 
   // 4. 3D Mouse Perspective Tilt on Cards & 3D Books

@@ -76,30 +76,10 @@
   });
 })();
 
-// Announcement ticker initializer
+// Announcement ticker initializer (Pro Max Clean)
 function initAnnouncementTicker() {
-  const marqueeContainers = document.querySelectorAll('.announcement-marquee');
-  marqueeContainers.forEach((container)=>{
-    const track = container.querySelector('.marquee-track');
-    if (!track) return;
-    // duplicate content to allow seamless scroll
-    const clone = track.cloneNode(true);
-    container.appendChild(clone);
-    // compute width to set duration: longer content -> longer duration
-    requestIdleCallback ? requestIdleCallback(() => setMarqueeDuration(container)) : setTimeout(()=>setMarqueeDuration(container),50);
-    // pause on hover (CSS also handles this)
-    container.addEventListener('mouseenter', ()=> { track.style.animationPlayState = 'paused'; clone.style.animationPlayState = 'paused'; });
-    container.addEventListener('mouseleave', ()=> { track.style.animationPlayState = ''; clone.style.animationPlayState = ''; });
+  const banners = document.querySelectorAll('.announcement-banner');
+  banners.forEach((banner) => {
+    banner.style.opacity = '1';
   });
-
-  function setMarqueeDuration(container){
-    const track = container.querySelector('.marquee-track');
-    const clone = container.querySelectorAll('.marquee-track')[1];
-    if (!track || !clone) return;
-    const totalWidth = track.getBoundingClientRect().width + clone.getBoundingClientRect().width;
-    // base speed: 80 pixels per second
-    const duration = Math.max(8, Math.round(totalWidth / 80));
-    track.style.setProperty('--marquee-duration', duration + 's');
-    clone.style.setProperty('--marquee-duration', duration + 's');
-  }
 }

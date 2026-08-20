@@ -63,11 +63,11 @@ body {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
-  transform: rotateY(-18deg) rotateX(8deg);
+  transform: rotateY(0deg) rotateX(0deg);
 }
 
 .book-card-3d-wrap:hover .book-3d-container {
-  transform: rotateY(-4deg) rotateX(2deg) translateY(-14px) scale(1.04);
+  transform: translateY(-10px) scale(1.03);
 }
 
 .book-3d-cover {
