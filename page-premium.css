@@ -305,15 +305,36 @@ form label {
   border: 1px solid rgba(255,0,85,0.25);
 }
 
-/* ── Scroll Dividers ───────────────────────────────────────────────── */
+/* ── Tactical Section Dividers ─────────────────────────────────────── */
 .section-divider {
-  display: flex; align-items: center; justify-content: center;
-  padding: 2.5rem 0;
-  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.25rem !important;
+  max-width: 600px !important;
+  margin: 3rem auto !important;
+  padding: 0 1.5rem !important;
+  position: relative !important;
+}
+.section-divider::before,
+.section-divider::after {
+  content: "" !important;
+  flex: 1 !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.45), transparent) !important;
+}
+.section-divider::after {
+  background: linear-gradient(90deg, transparent, rgba(232, 197, 106, 0.45), transparent) !important;
 }
 .section-divider span {
-  display: block; height: 1px; flex: 1;
-  background: linear-gradient(90deg, transparent, rgba(0,240,255,0.3), rgba(232,197,106,0.3), transparent);
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 2px !important;
+  transform: rotate(45deg) !important;
+  background: #00F0FF !important;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.85) !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
 }
 
 /* ── Tailwind override safety (for pages using Tailwind CDN) ───────── */
@@ -324,6 +345,69 @@ form label {
 @media (max-width: 768px) {
   .page-hero, .roster-hero, .player-hero { padding: 4rem 1rem 3rem; }
   h1.page-title, .roster-title, .player-name { font-size: clamp(1.5rem, 8vw, 2.2rem); }
+}
+
+/* ── Light Mode / Bright Theme Overrides ─────────────────────────── */
+[data-theme="light"] body,
+html.theme-light body {
+  background: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .site-header,
+html.theme-light .site-header,
+[data-theme="light"] header,
+html.theme-light header {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .card,
+html.theme-light .card,
+[data-theme="light"] .bento-card,
+html.theme-light .bento-card,
+[data-theme="light"] .roster-player-card,
+html.theme-light .roster-player-card,
+[data-theme="light"] .player-card,
+html.theme-light .player-card,
+[data-theme="light"] .comms-card,
+html.theme-light .comms-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-title,
+html.theme-light .bento-title,
+[data-theme="light"] h2,
+html.theme-light h2,
+[data-theme="light"] h3,
+html.theme-light h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .bento-desc,
+html.theme-light .bento-desc,
+[data-theme="light"] p,
+html.theme-light p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .stats-band-premium,
+html.theme-light .stats-band-premium {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .stat-item-premium,
+html.theme-light .stat-item-premium {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .stat-lbl,
+html.theme-light .stat-lbl {
+  color: #64748B !important;
 }
 
 /* ── Reduced Motion ────────────────────────────────────────────────── */

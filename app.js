@@ -10,7 +10,12 @@ const applySiteData = () => {
   document.documentElement.style.setProperty('--accent', siteData.accentColor || '#e8c56a');
   document.documentElement.style.setProperty('--accent-soft', `${siteData.accentColor || '#e8c56a'}20`);
   document.documentElement.style.setProperty('--accent-glow', `${siteData.accentColor || '#e8c56a'}59`);
-  setText('#hero-title', siteData.teamName);
+  const heroTitle = document.querySelector('#hero-title');
+  if (heroTitle) {
+    const grad = heroTitle.querySelector('.hero-gradient-text');
+    if (grad) grad.textContent = siteData.teamName;
+    else heroTitle.textContent = siteData.teamName;
+  }
 
   const emailContainer = document.getElementById('contact-emails');
   if (emailContainer) {
