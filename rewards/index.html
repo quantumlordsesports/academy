@@ -153,6 +153,8 @@
   </script>
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
+  <link rel="stylesheet" href="../premium.css" />
+  <link rel="stylesheet" href="../page-premium.css" />
 </head>
 
 <body class="theme-obsidian" data-page="Rewards">
@@ -209,7 +211,7 @@
   <!-- Page Content -->
   <main id="content" class="main-content container">
     <!-- Hero Section -->
-    <section class="hero-section page-hero text-center" style="padding-top: 40px; padding-bottom: 20px;">
+    <section class="hero-section page-hero text-center" style="padding-top: 40px; padding-bottom: 20px;" data-reveal>
       <div class="hero-badge-container">
         <span class="cyber-badge gold"
           style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:20px; font-family:'JetBrains Mono', monospace; font-size:0.8rem; background:rgba(232,197,106,0.1); border:1px solid rgba(232,197,106,0.3); color:#e8c56a;">
@@ -230,7 +232,7 @@
     </section>
 
     <!-- Section 1: Active Verified Redeem Codes -->
-    <section class="content-section" style="margin-top:30px;">
+    <section class="content-section" style="margin-top:30px;" data-reveal>
       <div class="section-header"
         style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; border-bottom:1px solid var(--border-color, rgba(255,255,255,0.08)); padding-bottom:15px;">
         <div>
@@ -322,7 +324,7 @@
     </section>
 
     <!-- Section 2: Step-by-Step Official Garena Redemption Guide -->
-    <section class="content-section" style="margin-top:50px;">
+    <section class="content-section" style="margin-top:50px;" data-reveal>
       <h2 style="font-family:'Orbitron', sans-serif; font-size:1.5rem; margin-bottom:10px;">
         📖 How to Redeem Codes on <span class="gold-text">reward.ff.garena.com</span>
       </h2>
@@ -384,7 +386,7 @@
     </section>
 
     <!-- Section 3: Diamond Top-Up, Memberships & Play Points Guide -->
-    <section class="content-section" style="margin-top:50px;">
+    <section class="content-section" style="margin-top:50px;" data-reveal>
       <h2 style="font-family:'Orbitron', sans-serif; font-size:1.5rem; margin-bottom:10px;">
         💎 Diamond Top-Up &amp; <span class="gold-text">Membership Value Guide</span>
       </h2>
@@ -431,7 +433,7 @@
 
     <!-- Section 4: Scam Alert & Account Safety Notice -->
     <section class="content-section"
-      style="margin-top:50px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:12px; padding:24px;">
+      style="margin-top:50px; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); border-radius:12px; padding:24px;" data-reveal>
       <div style="display:flex; align-items:flex-start; gap:16px;">
         <span style="font-size:2rem; line-height:1;">⚠️</span>
         <div>
@@ -453,7 +455,7 @@
 
     <!-- Section 5: High-Converting Academy & Scrim CTA Banner -->
     <section class="content-section"
-      style="margin-top:50px; background:linear-gradient(135deg, rgba(232,197,106,0.15) 0%, rgba(15,19,29,0.9) 100%); border:1px solid rgba(232,197,106,0.4); border-radius:16px; padding:35px 25px; text-align:center;">
+      style="margin-top:50px; background:linear-gradient(135deg, rgba(232,197,106,0.15) 0%, rgba(15,19,29,0.9) 100%); border:1px solid rgba(232,197,106,0.4); border-radius:16px; padding:35px 25px; text-align:center;" data-reveal>
       <span
         style="font-size:0.8rem; font-family:'JetBrains Mono', monospace; color:#e8c56a; letter-spacing:2px; text-transform:uppercase;">WANT
         REAL COMPETITIVE MASTERY?</span>
@@ -478,7 +480,7 @@
     </section>
 
     <!-- Section 6: FAQ Accordion -->
-    <section class="content-section" style="margin-top:50px; margin-bottom:60px;">
+    <section class="content-section" style="margin-top:50px; margin-bottom:60px;" data-reveal>
       <h2 style="font-family:'Orbitron', sans-serif; font-size:1.5rem; margin-bottom:20px; text-align:center;">
         ❓ Frequently Asked <span class="gold-text">Questions</span>
       </h2>
@@ -562,6 +564,7 @@
       });
     }
   </script>
+  <script type="module" src="../motion-effects.js"></script>
 </body>
 
 </html>

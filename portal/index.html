@@ -203,6 +203,8 @@
       animation: shake 0.45s cubic-bezier(.36, .07, .19, .97) both;
     }
   </style>
+  <link rel="stylesheet" href="../premium.css" />
+  <link rel="stylesheet" href="../page-premium.css" />
 </head>
 
 <body
@@ -426,7 +428,7 @@
         <!-- SECTION A: PLAYER DOSSIER -->
         <!-- ========================================================================= -->
         <section
-          class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-cyber-card relative overflow-hidden">
+          class="glass-panel rounded-3xl p-6 sm:p-8 border border-cyber-cyan/30 shadow-cyber-card relative overflow-hidden" data-reveal>
           <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none">
           </div>
 
@@ -557,7 +559,7 @@
         <!-- ========================================================================= -->
         <!-- SECTION B: COMBAT TELEMETRY & METRICS -->
         <!-- ========================================================================= -->
-        <section class="space-y-4">
+        <section class="space-y-4" data-reveal>
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-cyan rounded-sm"></div>
@@ -716,7 +718,7 @@
         <!-- ========================================================================= -->
         <!-- SECTION C: PREMIUM STRATEGY & PDF VAULT -->
         <!-- ========================================================================= -->
-        <section class="space-y-4">
+        <section class="space-y-4" data-reveal>
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
               <div class="w-2.5 h-6 bg-cyber-green rounded-sm"></div>
@@ -956,7 +958,7 @@
         <!-- ========================================================================= -->
         <!-- SECTION D: CLOUD STATUS & DIAGNOSTICS -->
         <!-- ========================================================================= -->
-        <section class="glass-panel rounded-2xl p-6 border border-cyber-border space-y-4">
+        <section class="glass-panel rounded-2xl p-6 border border-cyber-border space-y-4" data-reveal>
           <div class="flex items-center justify-between border-b border-cyber-border/60 pb-3">
             <div class="flex items-center space-x-2">
               <i class="ph-bold ph-cloud-check text-xl text-cyber-cyan"></i>
@@ -1758,6 +1760,7 @@
       draw();
     }
   </script>
+  <script type="module" src="../motion-effects.js"></script>
 </body>
 
 </html>
