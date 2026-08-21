@@ -1,76 +1,171 @@
 /* ============================================================
-   QuantumLords Esports — Background Music Controller (BGM)
-   Cyberpunk / Obsidian Glass / Gold & Cyan Glow
+   QuantumLords Esports — Premium Background Music & Soundscape Player
+   Theme: Cyber Obsidian / Gold & Cyan Neon / Glassmorphism
    ============================================================ */
 
+/* ── Base Widget Container ── */
 .bgm-widget {
   position: fixed;
   bottom: max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
   right: max(20px, calc(16px + env(safe-area-inset-right, 0px)));
   z-index: 9995;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(8, 11, 18, 0.88);
-  border: 1px solid rgba(232, 197, 106, 0.3);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(232, 197, 106, 0.15);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 9999px;
-  padding: 6px 14px 6px 6px;
+  font-family: "Space Grotesk", "Inter", -apple-system, sans-serif;
   color: #f4f3ee;
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
-  max-width: calc(100vw - 32px);
   touch-action: manipulation;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bgm-widget:hover {
-  border-color: rgba(232, 197, 106, 0.6);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(232, 197, 106, 0.28);
+/* ── Click Shield for Expanded State ── */
+.bgm-expanded-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.bgm-widget.is-expanded .bgm-expanded-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── 1. COMPACT BAR (Default Pill Size) ── */
+.bgm-compact-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(8, 12, 20, 0.92);
+  border: 1px solid rgba(232, 197, 106, 0.35);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 20px rgba(232, 197, 106, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 9999px;
+  padding: 6px 14px 6px 6px;
+  max-width: calc(100vw - 32px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.bgm-compact-bar:hover {
+  border-color: rgba(232, 197, 106, 0.65);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(232, 197, 106, 0.28);
   transform: translateY(-2px);
 }
 
-/* Playing Glow State */
-.bgm-widget.is-playing {
-  border-color: rgba(232, 197, 106, 0.5);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 24px rgba(232, 197, 106, 0.22);
+.bgm-widget.is-playing .bgm-compact-bar {
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 24px rgba(0, 240, 255, 0.22);
 }
 
-/* Play/Pause Button */
-.bgm-toggle-btn {
+/* Mini Rotating Vinyl Artwork Thumbnail */
+.bgm-thumb-toggle {
   position: relative;
   width: 44px;
   height: 44px;
   min-width: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(232, 197, 106, 0.2), rgba(20, 24, 36, 0.9));
-  border: 1.5px solid var(--accent, #e8c56a);
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bgm-thumb-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #00F0FF, #E8C56A, #FF0055);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.35);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bgm-thumb-toggle:hover .bgm-thumb-disc {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+}
+
+.bgm-thumb-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* Vinyl Spin Animation when Playing */
+.bgm-widget.is-playing .bgm-thumb-img {
+  animation: vinylSpin 12s linear infinite;
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bgm-thumb-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #080C14;
+  border: 1px solid #E8C56A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Play/Pause Toggle Button */
+.bgm-toggle-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(232, 197, 106, 0.2), rgba(20, 24, 36, 0.95));
+  border: 1.5px solid #E8C56A;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   overflow: hidden;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 12px rgba(232, 197, 106, 0.25);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 10px rgba(232, 197, 106, 0.25);
 }
 
 .bgm-toggle-btn:hover {
   transform: scale(1.08);
-  background: linear-gradient(135deg, rgba(232, 197, 106, 0.35), rgba(30, 36, 52, 0.95));
-  box-shadow: 0 0 18px rgba(232, 197, 106, 0.45);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(30, 36, 52, 0.98));
+  border-color: #00F0FF;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.45);
 }
 
 .bgm-toggle-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 
-/* Icon image (on.png / off.png) */
 .bgm-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   filter: drop-shadow(0 0 4px rgba(232, 197, 106, 0.5));
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -81,55 +176,93 @@
 }
 
 @keyframes pulseIcon {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(232, 197, 106, 0.6)); }
-  50% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(246, 223, 156, 0.9)); }
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.6)); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.9)); }
 }
 
-/* BGM Content Info */
+/* Song Info in Compact Bar */
 .bgm-info {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 120px;
+  min-width: 110px;
+  max-width: 140px;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .bgm-tag {
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--accent, #e8c56a);
+  color: #00F0FF;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
 }
 
 .bgm-status-dot {
   width: 6px;
   height: 6px;
+  min-width: 6px;
   border-radius: 50%;
   background: #64748b;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .bgm-widget.is-playing .bgm-status-dot {
-  background: #00ff66;
-  box-shadow: 0 0 8px #00ff66;
+  background: #00FF66;
+  box-shadow: 0 0 8px #00FF66;
   animation: blinkStatus 1.5s infinite;
 }
 
 @keyframes blinkStatus {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0.35; }
 }
 
 .bgm-title {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 700;
   color: #ffffff;
   white-space: nowrap;
-  letter-spacing: 0.4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+
+/* Quick Prev / Next Buttons */
+.bgm-quick-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.bgm-nav-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.bgm-nav-btn:hover {
+  color: #00F0FF;
+  background: rgba(0, 240, 255, 0.12);
+  transform: scale(1.1);
+}
+
+.bgm-nav-btn:active {
+  transform: scale(0.92);
 }
 
 /* Equalizer Bars */
@@ -138,13 +271,13 @@
   align-items: flex-end;
   gap: 2px;
   height: 14px;
-  padding-left: 2px;
+  padding: 0 2px;
 }
 
 .bgm-eq-bar {
   width: 2.5px;
   height: 3px;
-  background: var(--accent, #e8c56a);
+  background: #00F0FF;
   border-radius: 2px;
   transition: height 0.2s ease, background 0.3s ease;
 }
@@ -172,15 +305,33 @@
 .bgm-volume-wrap {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   padding-left: 6px;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bgm-vol-mute-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bgm-vol-mute-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .bgm-vol-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 60px;
+  width: 52px;
   height: 4px;
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.15);
@@ -192,57 +343,482 @@
 .bgm-vol-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background: var(--accent, #e8c56a);
-  box-shadow: 0 0 6px rgba(232, 197, 106, 0.7);
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-
-.bgm-vol-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.25);
-}
-
-.bgm-vol-slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent, #e8c56a);
-  box-shadow: 0 0 6px rgba(232, 197, 106, 0.7);
-  border: none;
+  background: #E8C56A;
+  box-shadow: 0 0 6px rgba(232, 197, 106, 0.8);
   cursor: pointer;
 }
 
-/* Floating Entrance Prompt Tooltip */
+/* Expand Drawer Toggle Arrow */
+.bgm-expand-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E8C56A;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bgm-expand-btn:hover {
+  background: rgba(232, 197, 106, 0.2);
+  border-color: #E8C56A;
+  transform: scale(1.1);
+}
+
+.bgm-expand-arrow {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bgm-expand-btn.is-open .bgm-expand-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── 2. EXPANDED SHOWCASE DRAWER MODAL ── */
+.bgm-expanded-panel {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  right: 0;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  background: linear-gradient(135deg, rgba(14, 19, 30, 0.97), rgba(8, 11, 18, 0.98));
+  border: 1.5px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  padding: 20px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 240, 255, 0.3) transparent;
+}
+
+.bgm-widget.is-expanded .bgm-expanded-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Expanded Header */
+.bgm-expanded-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bgm-exp-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #00F0FF;
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+}
+
+.bgm-pulse-gem {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00F0FF;
+  box-shadow: 0 0 10px #00F0FF;
+  animation: blinkStatus 1.5s infinite;
+}
+
+.bgm-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.bgm-close-btn:hover {
+  background: rgba(255, 0, 85, 0.2);
+  border-color: #FF0055;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Big Showcase Artwork */
+.bgm-showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.bgm-showcase-art-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 14px;
+}
+
+.bgm-showcase-art {
+  width: 140px;
+  height: 140px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  background: #0A0C11;
+  border: 2px solid rgba(232, 197, 106, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.25);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.bgm-widget.is-playing .bgm-showcase-art {
+  border-color: #00F0FF;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 240, 255, 0.45);
+}
+
+.bgm-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bgm-showcase-art:hover .bgm-showcase-img {
+  transform: scale(1.05);
+}
+
+.bgm-art-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Showcase Metadata */
+.bgm-showcase-meta {
+  width: 100%;
+}
+
+.bgm-track-number {
+  font-size: 9.5px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #E8C56A;
+  letter-spacing: 1.2px;
+  margin-bottom: 4px;
+}
+
+.bgm-showcase-title {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  color: #ffffff;
+  margin: 0 0 4px;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+
+.bgm-showcase-artist {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin: 0 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Timeline & Scrubbing */
+.bgm-timeline {
+  width: 100%;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.bgm-timeline-rail {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  position: relative;
+  overflow: visible;
+}
+
+.bgm-timeline-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00F0FF, #E8C56A);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.bgm-timeline-thumb {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border: 2px solid #00F0FF;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px #00F0FF;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.bgm-timeline:hover .bgm-timeline-thumb {
+  opacity: 1;
+}
+
+.bgm-timeline-numbers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #64748b;
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 4px;
+}
+
+/* Big Transport Controls */
+.bgm-transport-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0 18px;
+}
+
+.bgm-ctrl-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.bgm-ctrl-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: #00F0FF;
+  color: #00F0FF;
+  transform: scale(1.1);
+}
+
+.bgm-ctrl-btn:active {
+  transform: scale(0.93);
+}
+
+.bgm-play-big-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00F0FF, #0284C7);
+  border: 2px solid #ffffff;
+  color: #060912;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bgm-play-big-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.85);
+}
+
+.bgm-play-big-btn:active {
+  transform: scale(0.95);
+}
+
+/* Playlist Section */
+.bgm-playlist-section {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+}
+
+.bgm-playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #E8C56A;
+  margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bgm-hint {
+  font-size: 8px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.bgm-playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 210px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.bgm-playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.bgm-playlist-item:hover {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateX(3px);
+}
+
+.bgm-playlist-item.is-active {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.16), rgba(232, 197, 106, 0.08));
+  border-color: #00F0FF;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.bgm-pl-thumb-wrap {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bgm-playlist-item.is-active .bgm-pl-thumb-wrap {
+  border-color: #00F0FF;
+}
+
+.bgm-pl-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bgm-pl-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.bgm-playlist-item:hover .bgm-pl-play-overlay,
+.bgm-playlist-item.is-active .bgm-pl-play-overlay {
+  opacity: 1;
+}
+
+.bgm-pl-icon {
+  font-size: 10px;
+  color: #00F0FF;
+}
+
+.bgm-pl-meta {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.bgm-pl-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bgm-playlist-item.is-active .bgm-pl-title {
+  color: #00F0FF;
+}
+
+.bgm-pl-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bgm-pl-badge {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #64748b;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bgm-playlist-item.is-active .bgm-pl-badge {
+  color: #00F0FF;
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+/* ── 3. ENTRANCE PROMPT TOOLTIP ── */
 .bgm-entrance-tooltip {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 12px);
   right: 0;
-  background: rgba(10, 14, 24, 0.95);
-  border: 1px solid rgba(232, 197, 106, 0.45);
-  padding: 6px 12px;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #1E293B, #0F172A);
+  border: 1px solid #00F0FF;
+  color: #F4F3EE;
+  padding: 8px 14px;
+  border-radius: 12px;
   font-size: 11px;
   font-weight: 600;
-  color: #f6df9c;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 240, 255, 0.35);
   white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(232, 197, 106, 0.2);
   pointer-events: none;
   opacity: 0;
   transform: translateY(6px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.bgm-entrance-tooltip::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 20px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: rgba(232, 197, 106, 0.45) transparent transparent transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
 }
 
 .bgm-entrance-tooltip.is-visible {
@@ -250,80 +826,90 @@
   transform: translateY(0);
 }
 
-/* Compact Mode / Responsive */
+/* ── 4. LIGHT / BRIGHT THEME OVERRIDES ── */
+html[data-theme="light"] .bgm-compact-bar,
+body.theme-light .bgm-compact-bar {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(15, 23, 42, 0.18) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.15), 0 0 20px rgba(0, 240, 255, 0.12) !important;
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-title,
+body.theme-light .bgm-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-tag,
+body.theme-light .bgm-tag {
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-expanded-panel,
+body.theme-light .bgm-expanded-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 253, 0.98)) !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2), 0 0 35px rgba(2, 132, 199, 0.15) !important;
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-showcase-title,
+body.theme-light .bgm-showcase-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item,
+body.theme-light .bgm-playlist-item {
+  background: rgba(15, 23, 42, 0.03) !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .bgm-pl-title,
+body.theme-light .bgm-pl-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item.is-active,
+body.theme-light .bgm-playlist-item.is-active {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-ctrl-btn,
+body.theme-light .bgm-ctrl-btn {
+  background: rgba(15, 23, 42, 0.05) !important;
+  color: #0F172A !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+/* ── 5. RESPONSIVE ADJUSTMENTS ── */
 @media (max-width: 640px) {
   .bgm-widget {
-    bottom: 16px;
-    right: 16px;
-    padding: 5px;
+    bottom: max(12px, calc(10px + env(safe-area-inset-bottom, 0px)));
+    right: max(12px, calc(10px + env(safe-area-inset-right, 0px)));
+  }
+
+  .bgm-compact-bar {
     gap: 8px;
+    padding: 5px 10px 5px 5px;
   }
 
   .bgm-info {
-    display: none;
+    min-width: 90px;
+    max-width: 110px;
   }
 
-  .bgm-volume-wrap {
-    display: none;
+  .bgm-title {
+    font-size: 11px;
   }
 
-  .bgm-toggle-btn {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
+  .bgm-vol-slider {
+    width: 38px;
   }
 
-  .bgm-icon-img {
-    width: 22px;
-    height: 22px;
+  .bgm-expanded-panel {
+    width: calc(100vw - 24px);
+    right: 0;
+    max-height: 75vh;
   }
-  .bgm-waveform {
-    height: 12px;
-  }
-}
-
-/* Light Theme overrides for BGM Controller */
-html[data-theme="light"] .bgm-widget,
-body.theme-light .bgm-widget {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(217, 119, 6, 0.35);
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.10), 0 0 20px rgba(217, 119, 6, 0.12);
-  color: #0f172a;
-}
-html[data-theme="light"] .bgm-widget:hover,
-body.theme-light .bgm-widget:hover {
-  border-color: rgba(217, 119, 6, 0.6);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15), 0 0 25px rgba(217, 119, 6, 0.22);
-}
-html[data-theme="light"] .bgm-tag,
-body.theme-light .bgm-tag {
-  color: #b45309;
-}
-html[data-theme="light"] .bgm-title,
-body.theme-light .bgm-title {
-  color: #020617;
-}
-html[data-theme="light"] .bgm-status,
-body.theme-light .bgm-status {
-  color: #475569;
-}
-html[data-theme="light"] .bgm-panel,
-body.theme-light .bgm-panel {
-  background: #ffffff;
-  border-color: rgba(217, 119, 6, 0.3);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
-  color: #0f172a;
-}
-html[data-theme="light"] .bgm-panel-title,
-body.theme-light .bgm-panel-title {
-  color: #020617;
-}
-html[data-theme="light"] .bgm-panel-desc,
-body.theme-light .bgm-panel-desc {
-  color: #475569;
-}
-html[data-theme="light"] .bgm-toggle-btn,
-body.theme-light .bgm-toggle-btn {
-  background: linear-gradient(135deg, rgba(217, 119, 6, 0.15), rgba(241, 245, 249, 0.95));
-  border-color: #d97706;
 }
