@@ -56,6 +56,16 @@ function ensureFloatingMenuStyles() {
   }
 }
 
+// Ensure theme-atmosphere.js is loaded
+function ensureThemeAtmosphereScript() {
+  if (!document.getElementById('themeAtmosphereCanvas') && !document.querySelector('script[src*="theme-atmosphere.js"]')) {
+    const script = document.createElement('script');
+    script.src = `${BASE_PATH}theme-atmosphere.js`;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+}
+
 // ----------------------------------------------------
 // Universal Floating Menu HUD DOM Creation & Motion
 // ----------------------------------------------------
@@ -523,6 +533,7 @@ function setupFloatingMenu() {
 // Core Motion.js Effects Initialization
 // ----------------------------------------------------
 function init() {
+  ensureThemeAtmosphereScript();
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     setupFloatingMenu();
     return;

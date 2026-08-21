@@ -1,7 +1,8 @@
 /**
- * QuantumLords Theme Atmosphere System
+ * QuantumLords Theme Atmosphere System v2.0
  * - Bright Mode: Flying sakura flower petals & golden/emerald leaves drifting with breeze.
- * - Dark Mode: Drifting volumetric nebula clouds and twinkling multi-depth moving cosmic stars.
+ * - Dark Mode: Atmospheric Thunderstorm with Branching Thunderbolts, Moving Dark Storm Clouds,
+ *              Multi-Depth Rain Drops with Splashes, and Nocturnal Cyber Bats.
  */
 
 (function () {
@@ -11,7 +12,14 @@
   let width = window.innerWidth;
   let height = window.innerHeight;
 
-  // --- Flora / Breeze Particles (Bright Mode) ---
+  // Global Thunderstorm Ambient Flash State
+  let ambientFlashAlpha = 0;
+  let flashOrigin = { x: 0, y: 0 };
+  let activeLightningBolts = [];
+
+  // =========================================================================
+  // 1. FLORA / BREEZE PARTICLES (Bright Mode)
+  // =========================================================================
   const floraParticles = [];
   const FLORA_COUNT = 38;
 
@@ -30,12 +38,11 @@
       this.angularSpeed = (Math.random() - 0.5) * 0.04;
       this.flip = Math.random() * Math.PI * 2;
       this.flipSpeed = Math.random() * 0.03 + 0.01;
-      this.opacity = Math.random() * 0.45 + 0.45; // 0.45 - 0.9
+      this.opacity = Math.random() * 0.45 + 0.45;
       this.swayAmp = Math.random() * 1.8 + 0.6;
       this.swayFreq = Math.random() * 0.02 + 0.01;
       this.time = Math.random() * 1000;
 
-      // Particle Type: 0 = Sakura Petal (Rose Pink), 1 = Sakura Petal (Soft Blossom), 2 = Emerald Leaf, 3 = Golden Amber Leaf
       const rand = Math.random();
       if (rand < 0.45) {
         this.type = 'sakura';
@@ -63,7 +70,6 @@
       this.x += this.speedX + Math.sin(this.time * this.swayFreq) * this.swayAmp;
       this.y += this.speedY + Math.cos(this.time * this.swayFreq * 0.7) * 0.4;
 
-      // Wrap around bounds
       if (this.x > width + 40 || this.y > height + 40) {
         this.reset(false);
       }
@@ -77,19 +83,17 @@
       ctx.globalAlpha = this.opacity;
 
       if (this.type === 'sakura' || this.type === 'blossom') {
-        // Draw delicate curved sakura petal
         ctx.beginPath();
         ctx.moveTo(0, -this.size);
         ctx.bezierCurveTo(this.size * 0.8, -this.size * 0.5, this.size * 0.9, this.size * 0.6, 0, this.size);
         ctx.bezierCurveTo(-this.size * 0.9, this.size * 0.6, -this.size * 0.8, -this.size * 0.5, 0, -this.size);
-        
+
         const grad = ctx.createLinearGradient(0, -this.size, 0, this.size);
         grad.addColorStop(0, this.color);
         grad.addColorStop(1, this.color2);
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Center petal vein
         ctx.beginPath();
         ctx.moveTo(0, -this.size * 0.6);
         ctx.lineTo(0, this.size * 0.5);
@@ -97,19 +101,17 @@
         ctx.lineWidth = 0.8;
         ctx.stroke();
       } else {
-        // Draw breeze leaf
         ctx.beginPath();
         ctx.moveTo(-this.size * 0.8, 0);
         ctx.quadraticCurveTo(0, -this.size * 0.5, this.size * 0.8, 0);
         ctx.quadraticCurveTo(0, this.size * 0.5, -this.size * 0.8, 0);
-        
+
         const grad = ctx.createLinearGradient(-this.size, 0, this.size, 0);
         grad.addColorStop(0, this.color);
         grad.addColorStop(1, this.color2);
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Leaf spine
         ctx.beginPath();
         ctx.moveTo(-this.size * 0.7, 0);
         ctx.lineTo(this.size * 0.7, 0);
@@ -122,118 +124,442 @@
     }
   }
 
-  // --- Dark Mode Atmosphere (Cosmic Stars & Volumetric Nebula Clouds) ---
-  const stars = [];
-  const STAR_COUNT = 90;
-  const nebulaClouds = [];
-  const NEBULA_COUNT = 5;
+  // =========================================================================
+  // 2. MOVING DARK STORM CLOUDS (Dark Mode)
+  // =========================================================================
+  const stormClouds = [];
+  const CLOUD_COUNT = 9;
 
-  class Star {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.radius = Math.random() * 1.5 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 0.12;
-      this.speedY = (Math.random() - 0.5) * 0.12;
-      this.alpha = Math.random() * 0.7 + 0.3;
-      this.twinkleSpeed = Math.random() * 0.03 + 0.01;
-      this.phase = Math.random() * Math.PI * 2;
-      this.color = Math.random() > 0.4 ? '#ffffff' : (Math.random() > 0.5 ? '#00F0FF' : '#E8C56A');
+  class DarkStormCloud {
+    constructor(index) {
+      this.index = index;
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.width = Math.random() * 450 + 350;
+      this.height = Math.random() * 180 + 120;
+      this.x = initial ? Math.random() * (width + this.width) - this.width : -this.width - 60;
+      this.y = Math.random() * (height * 0.55) - 40;
+      this.layer = this.index % 3; // 0 = Deep back, 1 = Mid heavy, 2 = Foreground scud
+      
+      // Speed according to depth
+      if (this.layer === 0) {
+        this.speedX = Math.random() * 0.18 + 0.08;
+        this.baseOpacity = Math.random() * 0.35 + 0.40;
+      } else if (this.layer === 1) {
+        this.speedX = Math.random() * 0.35 + 0.18;
+        this.baseOpacity = Math.random() * 0.30 + 0.45;
+      } else {
+        this.speedX = Math.random() * 0.55 + 0.30;
+        this.baseOpacity = Math.random() * 0.25 + 0.30;
+      }
+
+      // Generate organic cloud puffs
+      this.puffs = [];
+      const puffCount = Math.floor(Math.random() * 6) + 8;
+      for (let i = 0; i < puffCount; i++) {
+        this.puffs.push({
+          relX: (Math.random() - 0.5) * this.width * 0.85,
+          relY: (Math.random() - 0.5) * this.height * 0.70,
+          radiusX: Math.random() * 110 + 70,
+          radiusY: Math.random() * 80 + 50,
+          density: Math.random() * 0.4 + 0.6
+        });
+      }
+
+      // Dark Storm Color Palettes
+      const cloudShades = [
+        { r: 4, g: 6, b: 12 },    // Obsidian Storm
+        { r: 8, g: 12, b: 22 },   // Midnight Thunder
+        { r: 12, g: 18, b: 32 },  // Deep Charcoal Blue
+        { r: 15, g: 22, b: 38 }   // Atmospheric Storm Gray
+      ];
+      this.shade = cloudShades[this.index % cloudShades.length];
+    }
+
+    update() {
+      this.x += this.speedX;
+      if (this.x > width + 100) {
+        this.reset(false);
+      }
+    }
+
+    draw(ctx) {
+      ctx.save();
+      const { r, g, b } = this.shade;
+
+      // Illumination boost from lightning strikes
+      const flashBoost = ambientFlashAlpha * 0.85;
+      const currentAlpha = Math.min(0.95, this.baseOpacity + flashBoost * 0.5);
+
+      for (let i = 0; i < this.puffs.length; i++) {
+        const puff = this.puffs[i];
+        const px = this.x + this.width * 0.5 + puff.relX;
+        const py = this.y + this.height * 0.5 + puff.relY;
+
+        ctx.save();
+        ctx.translate(px, py);
+
+        const grad = ctx.createRadialGradient(0, 0, puff.radiusX * 0.15, 0, 0, puff.radiusX);
+
+        if (flashBoost > 0.05) {
+          // Cloud rims catch neon electric illumination during strikes
+          const flashR = Math.min(255, r + Math.floor(flashBoost * 180));
+          const flashG = Math.min(255, g + Math.floor(flashBoost * 220));
+          const flashB = Math.min(255, b + Math.floor(flashBoost * 255));
+
+          grad.addColorStop(0, `rgba(${flashR}, ${flashG}, ${flashB}, ${currentAlpha * puff.density * 0.9})`);
+          grad.addColorStop(0.5, `rgba(${r + 15}, ${g + 25}, ${b + 40}, ${currentAlpha * puff.density * 0.6})`);
+          grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        } else {
+          // Deep atmospheric dark cloud
+          grad.addColorStop(0, `rgba(${r + 8}, ${g + 12}, ${b + 20}, ${currentAlpha * puff.density * 0.85})`);
+          grad.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, ${currentAlpha * puff.density * 0.5})`);
+          grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        }
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, puff.radiusX, puff.radiusY, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  // =========================================================================
+  // 3. THUNDERBOLT & LIGHTNING STRIKE ENGINE (Dark Mode)
+  // =========================================================================
+  class Thunderbolt {
+    constructor(startX, startY, targetX, targetY, isMainFork = true) {
+      this.startX = startX;
+      this.startY = startY;
+      this.targetX = targetX;
+      this.targetY = targetY;
+      this.isMainFork = isMainFork;
+      this.life = 0;
+      this.maxLife = Math.floor(Math.random() * 10) + 18; // 18 - 28 frames
+      this.segments = [];
+      this.branches = [];
+
+      // Color Theme: Electric Neon Cyan & Pure White Plasma Core
+      const themes = [
+        { outer: 'rgba(0, 240, 255, 0.85)', mid: 'rgba(125, 245, 255, 0.95)', core: '#ffffff', glow: '#00F0FF' },
+        { outer: 'rgba(168, 85, 247, 0.80)', mid: 'rgba(216, 180, 254, 0.90)', core: '#ffffff', glow: '#A855F7' },
+        { outer: 'rgba(56, 189, 248, 0.85)', mid: 'rgba(186, 230, 253, 0.95)', core: '#ffffff', glow: '#38BDF8' },
+        { outer: 'rgba(232, 197, 106, 0.80)', mid: 'rgba(254, 240, 138, 0.90)', core: '#ffffff', glow: '#E8C56A' }
+      ];
+      this.theme = themes[Math.floor(Math.random() * themes.length)];
+
+      this.generateBolt();
+    }
+
+    generateBolt() {
+      const points = [{ x: this.startX, y: this.startY }];
+      const totalDistY = this.targetY - this.startY;
+      const steps = Math.max(12, Math.floor(totalDistY / 28));
+
+      let currX = this.startX;
+      let currY = this.startY;
+
+      for (let i = 1; i <= steps; i++) {
+        const progress = i / steps;
+        const targetPointX = this.startX + (this.targetX - this.startX) * progress;
+        const targetPointY = this.startY + totalDistY * progress;
+
+        const jitterX = (Math.random() - 0.5) * (this.isMainFork ? 48 : 26);
+        const jitterY = (Math.random() - 0.5) * 14;
+
+        currX = targetPointX + jitterX;
+        currY = targetPointY + jitterY;
+
+        points.push({ x: currX, y: currY });
+
+        // Branching secondary forks
+        if (this.isMainFork && Math.random() < 0.28 && i < steps - 2) {
+          const branchAngle = (Math.random() - 0.5) * 0.9 + (Math.random() > 0.5 ? 0.6 : -0.6);
+          const branchLength = (Math.random() * 0.4 + 0.25) * (height - currY);
+          const branchTargetX = currX + Math.sin(branchAngle) * branchLength;
+          const branchTargetY = currY + Math.cos(branchAngle) * branchLength;
+
+          const branch = new Thunderbolt(currX, currY, branchTargetX, branchTargetY, false);
+          this.branches.push(branch);
+        }
+      }
+
+      this.segments = points;
+    }
+
+    update() {
+      this.life++;
+      this.branches.forEach(b => b.update());
+      return this.life < this.maxLife;
+    }
+
+    draw(ctx) {
+      if (this.segments.length < 2) return;
+
+      // Realistic lightning flicker function
+      let alpha = 1;
+      if (this.life <= 3) {
+        alpha = Math.random() * 0.4 + 0.6; // initial leader
+      } else if (this.life <= 7) {
+        alpha = 1.0; // peak return stroke
+      } else if (this.life <= 14) {
+        alpha = Math.random() > 0.35 ? 0.85 : 0.25; // multi-stage flickering discharge
+      } else {
+        alpha = Math.max(0, (this.maxLife - this.life) / (this.maxLife - 14)); // ionized decay
+      }
+
+      ctx.save();
+      ctx.globalAlpha = alpha;
+
+      // 1. Wide Ambient Bloom Pass
+      ctx.shadowColor = this.theme.glow;
+      ctx.shadowBlur = this.isMainFork ? 24 : 12;
+      ctx.strokeStyle = this.theme.outer;
+      ctx.lineWidth = this.isMainFork ? 6.5 : 3.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'miter';
+
+      ctx.beginPath();
+      ctx.moveTo(this.segments[0].x, this.segments[0].y);
+      for (let i = 1; i < this.segments.length; i++) {
+        ctx.lineTo(this.segments[i].x, this.segments[i].y);
+      }
+      ctx.stroke();
+
+      // 2. Bright Mid-Intensity Pass
+      ctx.shadowBlur = 10;
+      ctx.strokeStyle = this.theme.mid;
+      ctx.lineWidth = this.isMainFork ? 3.2 : 1.6;
+      ctx.stroke();
+
+      // 3. Hot White Plasma Core Pass
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = '#ffffff';
+      ctx.strokeStyle = this.theme.core;
+      ctx.lineWidth = this.isMainFork ? 1.4 : 0.8;
+      ctx.stroke();
+
+      ctx.restore();
+
+      // Draw branches
+      this.branches.forEach(b => b.draw(ctx));
+    }
+  }
+
+  function triggerLightningStrike(targetX = null, targetY = null) {
+    const startX = targetX !== null ? targetX + (Math.random() - 0.5) * 80 : Math.random() * (width * 0.8) + width * 0.1;
+    const startY = Math.random() * 50;
+    const destX = targetX !== null ? targetX : startX + (Math.random() - 0.5) * 350;
+    const destY = targetY !== null ? targetY : Math.random() * (height * 0.4) + height * 0.55;
+
+    const bolt = new Thunderbolt(startX, startY, destX, destY, true);
+    activeLightningBolts.push(bolt);
+
+    // Trigger Ambient Sky Flash
+    flashOrigin = { x: startX, y: startY };
+    ambientFlashAlpha = Math.random() * 0.35 + 0.45; // 0.45 - 0.80
+
+    // Occasional double rapid strike (35% chance)
+    if (Math.random() < 0.35) {
+      setTimeout(() => {
+        if (currentTheme === 'dark') {
+          const subStartX = startX + (Math.random() - 0.5) * 120;
+          const subDestX = destX + (Math.random() - 0.5) * 160;
+          const subBolt = new Thunderbolt(subStartX, startY, subDestX, destY, true);
+          activeLightningBolts.push(subBolt);
+          ambientFlashAlpha = Math.max(ambientFlashAlpha, Math.random() * 0.3 + 0.35);
+        }
+      }, Math.random() * 160 + 90);
+    }
+  }
+
+  // Automatic Lightning Scheduler
+  let lightningTimer = 0;
+  let nextLightningInterval = Math.floor(Math.random() * 180) + 120; // 2s - 5s at 60fps
+
+  function updateLightningSystem() {
+    lightningTimer++;
+    if (lightningTimer >= nextLightningInterval) {
+      triggerLightningStrike();
+      lightningTimer = 0;
+      nextLightningInterval = Math.floor(Math.random() * 220) + 140; // Next strike in 2.3s - 6s
+    }
+
+    // Decay ambient sky flash
+    if (ambientFlashAlpha > 0) {
+      ambientFlashAlpha *= 0.88;
+      if (ambientFlashAlpha < 0.01) ambientFlashAlpha = 0;
+    }
+
+    // Update active bolts
+    for (let i = activeLightningBolts.length - 1; i >= 0; i--) {
+      const active = activeLightningBolts[i].update();
+      if (!active) {
+        activeLightningBolts.splice(i, 1);
+      }
+    }
+  }
+
+  function drawAmbientSkyFlash(ctx) {
+    if (ambientFlashAlpha <= 0.01) return;
+
+    ctx.save();
+    ctx.globalCompositeOperation = 'screen';
+
+    // 1. Radial epicenter flash
+    const grad = ctx.createRadialGradient(
+      flashOrigin.x, flashOrigin.y, 10,
+      flashOrigin.x, flashOrigin.y, Math.max(width, height) * 0.95
+    );
+    grad.addColorStop(0, `rgba(220, 245, 255, ${ambientFlashAlpha * 0.85})`);
+    grad.addColorStop(0.3, `rgba(0, 240, 255, ${ambientFlashAlpha * 0.45})`);
+    grad.addColorStop(0.7, `rgba(139, 92, 246, ${ambientFlashAlpha * 0.20})`);
+    grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, width, height);
+
+    // 2. Diffuse atmospheric sheet illumination
+    ctx.fillStyle = `rgba(180, 225, 255, ${ambientFlashAlpha * 0.25})`;
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.restore();
+  }
+
+  // =========================================================================
+  // 4. MULTI-DEPTH RAIN DROPS & SPLASHES (Dark Mode)
+  // =========================================================================
+  const rainDrops = [];
+  const splashParticles = [];
+  const RAIN_COUNT = 160;
+
+  class RainDrop {
+    constructor(initial = false) {
+      this.reset(initial);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * (width + 200) - 100;
+      this.y = initial ? Math.random() * height : -30;
+      this.layer = Math.random(); // 0-0.35: Background, 0.35-0.75: Mid, 0.75-1.0: Foreground
+
+      if (this.layer > 0.75) {
+        // Foreground fast, crisp rain
+        this.speedY = Math.random() * 9 + 22; // 22 - 31 px/frame
+        this.speedX = this.speedY * 0.14;     // wind slant angle
+        this.length = Math.random() * 16 + 26; // 26 - 42px
+        this.thickness = Math.random() * 0.8 + 1.2;
+        this.alpha = Math.random() * 0.35 + 0.45;
+        this.color = '#cceeff';
+      } else if (this.layer > 0.35) {
+        // Midground rain
+        this.speedY = Math.random() * 7 + 16;
+        this.speedX = this.speedY * 0.13;
+        this.length = Math.random() * 12 + 18;
+        this.thickness = Math.random() * 0.5 + 0.8;
+        this.alpha = Math.random() * 0.25 + 0.30;
+        this.color = '#99ddff';
+      } else {
+        // Distant mist rain
+        this.speedY = Math.random() * 5 + 11;
+        this.speedX = this.speedY * 0.11;
+        this.length = Math.random() * 8 + 12;
+        this.thickness = 0.6;
+        this.alpha = Math.random() * 0.18 + 0.15;
+        this.color = '#66ccff';
+      }
     }
 
     update() {
       this.x += this.speedX;
       this.y += this.speedY;
-      this.phase += this.twinkleSpeed;
 
-      if (this.x < 0) this.x = width;
-      if (this.x > width) this.x = 0;
-      if (this.y < 0) this.y = height;
-      if (this.y > height) this.y = 0;
+      // Splash on bottom boundary
+      if (this.y >= height - 8) {
+        if (this.layer > 0.5 && Math.random() < 0.45) {
+          createSplash(this.x, height - Math.random() * 8, this.color);
+        }
+        this.reset(false);
+      }
+
+      if (this.x > width + 80) {
+        this.reset(false);
+      }
     }
 
     draw(ctx) {
-      const currentAlpha = this.alpha * (0.6 + 0.4 * Math.sin(this.phase));
       ctx.save();
-      ctx.globalAlpha = Math.max(0.1, currentAlpha);
+      // Lightning flash makes raindrops flare brightly
+      const flashGlow = ambientFlashAlpha * 0.7;
+      ctx.globalAlpha = Math.min(1.0, this.alpha + flashGlow);
+
+      ctx.strokeStyle = flashGlow > 0.2 ? '#ffffff' : this.color;
+      ctx.lineWidth = this.thickness;
+      ctx.lineCap = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x - this.speedX * (this.length / this.speedY), this.y - this.length);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+  }
+
+  class SplashParticle {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+      this.speedX = (Math.random() - 0.5) * 3.8 + 0.5; // slight wind push
+      this.speedY = -(Math.random() * 3.2 + 1.2);
+      this.gravity = 0.24;
+      this.radius = Math.random() * 1.4 + 0.8;
+      this.alpha = Math.random() * 0.5 + 0.5;
+      this.life = 0;
+      this.maxLife = Math.floor(Math.random() * 8) + 10;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.speedY += this.gravity;
+      this.life++;
+      this.alpha = Math.max(0, 1 - (this.life / this.maxLife));
+      return this.life < this.maxLife;
+    }
+
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = this.alpha;
       ctx.fillStyle = this.color;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
+    }
+  }
 
-      // Bright cross star sparkle
-      if (this.radius > 1.4 && currentAlpha > 0.7) {
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(this.x - 4, this.y);
-        ctx.lineTo(this.x + 4, this.y);
-        ctx.moveTo(this.x, this.y - 4);
-        ctx.lineTo(this.x, this.y + 4);
-        ctx.stroke();
+  function createSplash(x, y, color) {
+    const splashCount = Math.floor(Math.random() * 3) + 2;
+    for (let i = 0; i < splashCount; i++) {
+      if (splashParticles.length < 90) {
+        splashParticles.push(new SplashParticle(x, y, color));
       }
-      ctx.restore();
     }
   }
 
-  class NebulaCloud {
-    constructor(index) {
-      this.index = index;
-      this.reset();
-    }
-
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * (height * 0.85);
-      this.radius = Math.random() * 250 + 200;
-      this.speedX = (Math.random() * 0.15 + 0.05) * (Math.random() > 0.5 ? 1 : -1);
-      this.speedY = (Math.random() * 0.08 + 0.02) * (Math.random() > 0.5 ? 1 : -1);
-      this.phase = Math.random() * Math.PI * 2;
-      this.phaseSpeed = Math.random() * 0.005 + 0.002;
-      
-      const palettes = [
-        { r: 0, g: 240, b: 255, maxAlpha: 0.045 },   // Neon Cyan
-        { r: 139, g: 92, b: 246, maxAlpha: 0.040 },  // Cosmic Violet
-        { r: 232, g: 197, b: 106, maxAlpha: 0.035 }, // Imperial Gold
-        { r: 255, g: 0, b: 85, maxAlpha: 0.030 },    // Cyber Crimson
-        { r: 14, g: 116, b: 144, maxAlpha: 0.040 }   // Deep Oceanic
-      ];
-      this.palette = palettes[this.index % palettes.length];
-    }
-
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      this.phase += this.phaseSpeed;
-
-      if (this.x < -this.radius) this.x = width + this.radius;
-      if (this.x > width + this.radius) this.x = -this.radius;
-      if (this.y < -this.radius) this.y = height + this.radius;
-      if (this.y > height + this.radius) this.y = -this.radius;
-    }
-
-    draw(ctx) {
-      const alpha = this.palette.maxAlpha * (0.8 + 0.2 * Math.sin(this.phase));
-      const currentRadius = this.radius * (1 + 0.08 * Math.sin(this.phase * 0.7));
-
-      ctx.save();
-      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, currentRadius);
-      const { r, g, b } = this.palette;
-      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${alpha * 0.4})`);
-      grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, currentRadius, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  // --- Glowing Nocturnal Cyber Bats (Dark Mode Background) ---
+  // =========================================================================
+  // 5. GLOWING NOCTURNAL CYBER BATS (Dark Mode)
+  // =========================================================================
   const bats = [];
-  const BAT_COUNT = 28;
+  const BAT_COUNT = 24;
 
   class GlowingBat {
     constructor(randomizePos = true) {
@@ -242,11 +568,11 @@
 
     reset(randomizePos = true) {
       this.direction = Math.random() > 0.45 ? 1 : -1;
-      this.scale = Math.random() * 0.70 + 0.38; // Multi-depth scale (0.38x to 1.08x)
+      this.scale = Math.random() * 0.65 + 0.38;
       this.x = randomizePos ? Math.random() * width : (this.direction === 1 ? -60 : width + 60);
-      this.y = Math.random() * (height * 0.85) + 30;
+      this.y = Math.random() * (height * 0.75) + 40;
 
-      this.speedX = (Math.random() * 1.8 + 1.1) * this.direction * this.scale;
+      this.speedX = (Math.random() * 1.8 + 1.2) * this.direction * this.scale;
       this.speedY = (Math.random() * 0.6 - 0.3) * this.scale;
 
       this.wingPhase = Math.random() * Math.PI * 2;
@@ -256,14 +582,13 @@
 
       this.swoopPhase = Math.random() * Math.PI * 2;
       this.swoopSpeed = Math.random() * 0.032 + 0.016;
-      this.swoopAmp = Math.random() * 1.7 + 0.6;
+      this.swoopAmp = Math.random() * 1.8 + 0.7;
 
-      // Luminous Glow Aura & Eye Colors (Cyan, Violet, Gold, Crimson)
       const glowPalettes = [
-        { glow: 'rgba(0, 240, 255, 0.65)', eye: '#00F0FF', rim: 'rgba(0, 240, 255, 0.40)' },
-        { glow: 'rgba(192, 132, 252, 0.60)', eye: '#C084FC', rim: 'rgba(192, 132, 252, 0.35)' },
-        { glow: 'rgba(255, 215, 0, 0.60)', eye: '#FFD700', rim: 'rgba(255, 215, 0, 0.35)' },
-        { glow: 'rgba(255, 0, 85, 0.60)', eye: '#FF0055', rim: 'rgba(255, 0, 85, 0.35)' }
+        { glow: 'rgba(0, 240, 255, 0.75)', eye: '#00F0FF', rim: 'rgba(0, 240, 255, 0.50)' },
+        { glow: 'rgba(192, 132, 252, 0.70)', eye: '#C084FC', rim: 'rgba(192, 132, 252, 0.45)' },
+        { glow: 'rgba(255, 215, 0, 0.70)', eye: '#FFD700', rim: 'rgba(255, 215, 0, 0.45)' },
+        { glow: 'rgba(255, 0, 85, 0.70)', eye: '#FF0055', rim: 'rgba(255, 0, 85, 0.45)' }
       ];
       this.theme = glowPalettes[Math.floor(Math.random() * glowPalettes.length)];
       this.alpha = Math.min(0.92, this.scale * 0.75 + 0.25);
@@ -273,7 +598,6 @@
       this.swoopPhase += this.swoopSpeed;
       this.glideTimer++;
 
-      // Periodic natural gliding intervals
       if (this.glideTimer > 115 && Math.random() < 0.04) {
         this.isGliding = true;
         if (this.glideTimer > 175) {
@@ -291,7 +615,6 @@
       this.y += Math.sin(this.swoopPhase) * this.swoopAmp + this.speedY;
       this.x += this.speedX;
 
-      // Wrap around screen bounds
       if (this.direction === 1 && this.x > width + 80) {
         this.reset(false);
       } else if (this.direction === -1 && this.x < -80) {
@@ -308,20 +631,16 @@
       ctx.scale(this.scale * this.direction, this.scale);
       ctx.globalAlpha = this.alpha;
 
-      // Aerodynamic banking rotation
       const bankAngle = Math.sin(this.swoopPhase) * 0.22;
       ctx.rotate(bankAngle);
 
-      // Flapping position (-1 to 1)
       const flap = this.isGliding ? 0.22 : Math.sin(this.wingPhase);
       const wingY = flap * 12;
 
-      // Luminous Glow Aura
       ctx.shadowColor = this.theme.glow;
       ctx.shadowBlur = 10 * this.scale;
 
-      // Scalloped Wings (Dark silhouette with glowing luminous rim)
-      ctx.fillStyle = '#060911';
+      ctx.fillStyle = '#05070e';
       ctx.strokeStyle = this.theme.rim;
       ctx.lineWidth = 1.0;
 
@@ -347,18 +666,17 @@
       ctx.fill();
       ctx.stroke();
 
-      // Bat Body Torso
-      ctx.fillStyle = '#0a0f1c';
+      // Bat Torso & Head
+      ctx.fillStyle = '#080d1a';
       ctx.beginPath();
       ctx.ellipse(0, 2, 3.2, 6.2, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Head
       ctx.beginPath();
       ctx.arc(0, -4.5, 3.0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Pointed Ears
+      // Ears
       ctx.beginPath();
       ctx.moveTo(-2.4, -4.5);
       ctx.lineTo(-4.2, -9.5);
@@ -368,7 +686,7 @@
       ctx.lineTo(1.1, -6.2);
       ctx.fill();
 
-      // Glowing Cyber Eyes with Radiant Flare
+      // Glowing Eyes
       ctx.fillStyle = this.theme.eye;
       ctx.shadowColor = this.theme.eye;
       ctx.shadowBlur = 6;
@@ -381,132 +699,50 @@
     }
   }
 
-  // --- Ethereal Aurora Borealis Curtain System (Dark Mode) ---
-  class AuroraRibbon {
-    constructor(config) {
-      this.baseYRatio = config.baseYRatio || 0.28;
-      this.amplitude = config.amplitude || 45;
-      this.wavelength = config.wavelength || 0.0025;
-      this.speed = config.speed || 0.0008;
-      this.colorStops = config.colorStops;
-      this.verticalHeight = config.verticalHeight || 320;
-      this.phase = config.phase || Math.random() * Math.PI * 2;
-      this.time = Math.random() * 1000;
-      this.harmonicSpeed = config.harmonicSpeed || 0.0015;
-      this.harmonicAmp = config.harmonicAmp || 22;
-      this.harmonicWavelength = config.harmonicWavelength || 0.005;
-      this.opacity = config.opacity || 0.28;
+  // =========================================================================
+  // 6. SUBTLE FAINT STARS (Dark Mode Background Depth)
+  // =========================================================================
+  const stars = [];
+  const STAR_COUNT = 55;
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.radius = Math.random() * 1.2 + 0.4;
+      this.speedX = (Math.random() - 0.5) * 0.08;
+      this.speedY = (Math.random() - 0.5) * 0.08;
+      this.alpha = Math.random() * 0.5 + 0.2;
+      this.twinkleSpeed = Math.random() * 0.03 + 0.01;
+      this.phase = Math.random() * Math.PI * 2;
     }
 
     update() {
-      this.time += 1;
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.phase += this.twinkleSpeed;
+
+      if (this.x < 0) this.x = width;
+      if (this.x > width) this.x = 0;
+      if (this.y < 0) this.y = height;
+      if (this.y > height) this.y = 0;
     }
 
     draw(ctx) {
-      const baseY = height * this.baseYRatio;
-      const step = 24;
-      const points = [];
-
-      for (let x = -40; x <= width + 40; x += step) {
-        const primaryWave = Math.sin(x * this.wavelength + this.time * this.speed + this.phase) * this.amplitude;
-        const secondaryWave = Math.cos(x * this.harmonicWavelength - this.time * this.harmonicSpeed + this.phase * 1.5) * this.harmonicAmp;
-        const y = baseY + primaryWave + secondaryWave;
-        points.push({ x, y });
-      }
-
+      const currentAlpha = this.alpha * (0.6 + 0.4 * Math.sin(this.phase));
       ctx.save();
-      ctx.globalCompositeOperation = 'screen';
-      ctx.globalAlpha = this.opacity * (0.85 + 0.15 * Math.sin(this.time * 0.008));
-
-      // Draw flowing vertical gradient curtain
-      for (let i = 0; i < points.length - 1; i++) {
-        const p1 = points[i];
-        const p2 = points[i + 1];
-        const topY = Math.min(p1.y, p2.y) - this.verticalHeight * 0.75;
-        const bottomY = Math.max(p1.y, p2.y) + this.verticalHeight * 0.25;
-
-        const grad = ctx.createLinearGradient(0, topY, 0, bottomY);
-        this.colorStops.forEach(stop => {
-          grad.addColorStop(stop.offset, stop.color);
-        });
-
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.moveTo(p1.x, topY);
-        ctx.lineTo(p2.x, topY);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.lineTo(p1.x, p1.y);
-        ctx.closePath();
-        ctx.fill();
-      }
-
+      ctx.globalAlpha = Math.max(0.05, currentAlpha);
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
     }
   }
 
-  const auroras = [
-    // 1. Radiant Emerald & Cyan Aurora Wave
-    new AuroraRibbon({
-      baseYRatio: 0.22,
-      amplitude: 55,
-      wavelength: 0.0020,
-      speed: 0.0006,
-      verticalHeight: 380,
-      harmonicSpeed: 0.0012,
-      harmonicAmp: 25,
-      harmonicWavelength: 0.0045,
-      opacity: 0.32,
-      phase: 0,
-      colorStops: [
-        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
-        { offset: 0.25, color: 'rgba(0, 240, 255, 0.08)' }, // Neon Cyan
-        { offset: 0.55, color: 'rgba(0, 255, 102, 0.22)' }, // Emerald Green
-        { offset: 0.85, color: 'rgba(16, 185, 129, 0.15)' }, // Mint Green
-        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
-      ]
-    }),
-    // 2. Cosmic Plasma Violet & Magenta Aurora Wave
-    new AuroraRibbon({
-      baseYRatio: 0.32,
-      amplitude: 65,
-      wavelength: 0.0018,
-      speed: 0.0009,
-      verticalHeight: 340,
-      harmonicSpeed: 0.0018,
-      harmonicAmp: 30,
-      harmonicWavelength: 0.0038,
-      opacity: 0.26,
-      phase: 2.1,
-      colorStops: [
-        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
-        { offset: 0.30, color: 'rgba(139, 92, 246, 0.10)' }, // Violet
-        { offset: 0.65, color: 'rgba(192, 132, 252, 0.24)' }, // Plasma Purple
-        { offset: 0.90, color: 'rgba(236, 72, 153, 0.12)' }, // Magenta
-        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
-      ]
-    }),
-    // 3. Electric Cyan & Solar Amber Ribbon Wave
-    new AuroraRibbon({
-      baseYRatio: 0.18,
-      amplitude: 45,
-      wavelength: 0.0028,
-      speed: 0.0007,
-      verticalHeight: 300,
-      harmonicSpeed: 0.0014,
-      harmonicAmp: 20,
-      harmonicWavelength: 0.006,
-      opacity: 0.22,
-      phase: 4.2,
-      colorStops: [
-        { offset: 0, color: 'rgba(0, 0, 0, 0)' },
-        { offset: 0.35, color: 'rgba(0, 240, 255, 0.14)' }, // Cyan
-        { offset: 0.70, color: 'rgba(232, 197, 106, 0.18)' }, // Imperial Gold
-        { offset: 1, color: 'rgba(0, 0, 0, 0)' }
-      ]
-    })
-  ];
-
-  // --- Main Init and Animation Loop ---
+  // =========================================================================
+  // 7. MAIN INITIALIZATION & RENDER PIPELINE
+  // =========================================================================
   function initAtmosphere() {
     canvas = document.getElementById('themeAtmosphereCanvas');
     if (!canvas) {
@@ -518,7 +754,7 @@
       canvas.style.width = '100vw';
       canvas.style.height = '100vh';
       canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = '0'; // Behind content
+      canvas.style.zIndex = '0';
       canvas.style.opacity = '1';
       canvas.style.transition = 'opacity 0.5s ease';
       document.body.insertBefore(canvas, document.body.firstChild);
@@ -528,20 +764,34 @@
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Initialize particles
+    // Interactive Thunderbolt Trigger on Click/Tap
+    window.addEventListener('pointerdown', (e) => {
+      if (currentTheme === 'dark') {
+        // Trigger lightning branch towards tap position
+        triggerLightningStrike(e.clientX, e.clientY);
+      }
+    }, { passive: true });
+
+    // Populate Bright Mode flora
     floraParticles.length = 0;
     for (let i = 0; i < FLORA_COUNT; i++) {
       floraParticles.push(new FloraParticle(true));
     }
 
+    // Populate Dark Mode atmosphere
     stars.length = 0;
     for (let i = 0; i < STAR_COUNT; i++) {
       stars.push(new Star());
     }
 
-    nebulaClouds.length = 0;
-    for (let i = 0; i < NEBULA_COUNT; i++) {
-      nebulaClouds.push(new NebulaCloud(i));
+    stormClouds.length = 0;
+    for (let i = 0; i < CLOUD_COUNT; i++) {
+      stormClouds.push(new DarkStormCloud(i));
+    }
+
+    rainDrops.length = 0;
+    for (let i = 0; i < RAIN_COUNT; i++) {
+      rainDrops.push(new RainDrop(true));
     }
 
     bats.length = 0;
@@ -573,32 +823,51 @@
     ctx.clearRect(0, 0, width, height);
 
     if (currentTheme === 'light') {
-      // Render Flying Sakura Flora Breeze
+      // Light Mode: Sakura Petals & Spring Breeze
       floraParticles.forEach(p => {
         p.update();
         p.draw(ctx);
       });
     } else {
-      // Render Dark Cosmic Night Sky:
-      // 1. Flowing Aurora Borealis Curtains
-      auroras.forEach(a => {
-        a.update();
-        a.draw(ctx);
-      });
+      // Dark Mode: Thunderstorm Atmosphere
 
-      // 2. Volumetric Nebula Clouds
-      nebulaClouds.forEach(c => {
-        c.update();
-        c.draw(ctx);
-      });
-
-      // 3. Twinkling Cosmic Stars
+      // 1. Distant Faint Stars
       stars.forEach(s => {
         s.update();
         s.draw(ctx);
       });
 
-      // 4. Glowing Nocturnal Cyber Bats
+      // 2. Moving Dark Storm Clouds (Deep Background & Midground)
+      stormClouds.forEach(c => {
+        c.update();
+        c.draw(ctx);
+      });
+
+      // 3. Lightning Flash Ambient Sky Illumination
+      drawAmbientSkyFlash(ctx);
+
+      // 4. Branching Thunderbolts & Lightning Strikes
+      updateLightningSystem();
+      activeLightningBolts.forEach(b => {
+        b.draw(ctx);
+      });
+
+      // 5. Multi-Depth Rain Drops & Micro-Splashes
+      rainDrops.forEach(r => {
+        r.update();
+        r.draw(ctx);
+      });
+
+      for (let i = splashParticles.length - 1; i >= 0; i--) {
+        const alive = splashParticles[i].update();
+        if (alive) {
+          splashParticles[i].draw(ctx);
+        } else {
+          splashParticles.splice(i, 1);
+        }
+      }
+
+      // 6. Glowing Nocturnal Cyber Bats Swooping Through Storm
       bats.forEach(b => {
         b.update();
         b.draw(ctx);
@@ -614,7 +883,7 @@
     }
   }
 
-  // Hook into DOMContentLoaded and theme toggles
+  // Hook into DOM lifecycle and theme toggle events
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAtmosphere);
   } else {
@@ -623,5 +892,10 @@
 
   window.updateAtmosphereTheme = function () {
     checkCurrentTheme();
+  };
+
+  // Expose manual lightning trigger API if desired
+  window.triggerThunderbolt = function (x, y) {
+    triggerLightningStrike(x, y);
   };
 })();
