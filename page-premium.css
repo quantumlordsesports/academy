@@ -26,10 +26,10 @@ body:not([data-theme="light"]):not(.theme-light) {
 body:not([data-theme="light"]):not(.theme-light) .site-header,
 body:not([data-theme="light"]):not(.theme-light) header,
 body:not([data-theme="light"]):not(.theme-light) nav.nav-bar {
-  background: rgba(8,12,20,0.85) !important;
+  background: rgba(8, 12, 20, 0.85) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
 }
 
@@ -47,14 +47,19 @@ html.theme-light nav.nav-bar {
 }
 
 /* ── Page Hero Universal ───────────────────────────────────────────── */
-.page-hero, .roster-hero, .player-hero, .tactics-hero,
-.recruit-hero, .team-updates-hero, .contact-hero,
+.page-hero,
+.roster-hero,
+.player-hero,
+.tactics-hero,
+.recruit-hero,
+.team-updates-hero,
+.contact-hero,
 section:first-of-type:not(#hero) {
   position: relative;
   padding: 5rem 1.5rem 4rem;
   background:
-    radial-gradient(ellipse at 50% 0%,  rgba(0,240,255,0.07), transparent 65%),
-    radial-gradient(ellipse at 85% 60%, rgba(139,92,246,0.05), transparent 55%),
+    radial-gradient(ellipse at 50% 0%, rgba(0, 240, 255, 0.07), transparent 65%),
+    radial-gradient(ellipse at 85% 60%, rgba(139, 92, 246, 0.05), transparent 55%),
     #080C14;
   overflow: hidden;
   text-align: center;
@@ -83,11 +88,19 @@ body.theme-light section:first-of-type:not(#hero) {
     #F6F8FD !important;
 }
 
-.page-hero::before, .roster-hero::before, .player-hero::before,
-.tactics-hero::before, .recruit-hero::before, .team-updates-hero::before,
+.page-hero::before,
+.roster-hero::before,
+.player-hero::before,
+.tactics-hero::before,
+.recruit-hero::before,
+.team-updates-hero::before,
 .contact-hero::before {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
   background: linear-gradient(90deg, transparent, #00F0FF 30%, #E8C56A 70%, transparent);
   opacity: 0.5;
 }
@@ -98,9 +111,14 @@ html.theme-light .page-hero::before {
   opacity: 0.7;
 }
 
-.page-hero::after, .roster-hero::after {
+.page-hero::after,
+.roster-hero::after {
   content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   background: linear-gradient(to bottom, transparent, #080C14);
   pointer-events: none;
 }
@@ -113,16 +131,33 @@ html.theme-light .roster-hero::after {
 }
 
 /* HUD scan line on hero */
-.page-hero .hud-scan, .roster-hero .hud-scan {
-  position: absolute; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,240,255,0.4), transparent);
+.page-hero .hud-scan,
+.roster-hero .hud-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
   animation: scanHero 6s linear infinite;
-  top: 0; pointer-events: none; z-index: 2;
+  top: 0;
+  pointer-events: none;
+  z-index: 2;
 }
+
 @keyframes scanHero {
-  0%   { top: 0; opacity: 1; }
-  80%  { opacity: 0.8; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 /* ── Page Title + Eyebrow ──────────────────────────────────────────── */
@@ -132,8 +167,8 @@ html.theme-light .roster-hero::after {
   gap: 6px;
   padding: 5px 14px;
   border-radius: 999px;
-  background: rgba(0,240,255,0.08);
-  border: 1px solid rgba(0,240,255,0.25);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
   color: #00F0FF;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
@@ -142,20 +177,34 @@ html.theme-light .roster-hero::after {
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
+
 .page-eyebrow::before {
   content: '';
-  width: 5px; height: 5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: #00F0FF;
   box-shadow: 0 0 6px #00F0FF;
   animation: dotPulse 1.8s ease-in-out infinite;
 }
+
 @keyframes dotPulse {
-  0%,100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.7); opacity: 0.5; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.7);
+    opacity: 0.5;
+  }
 }
 
-h1.page-title, .roster-title, .player-name {
+h1.page-title,
+.roster-title,
+.player-name {
   font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.8rem, 5vw, 3.2rem);
   font-weight: 900;
@@ -168,13 +217,20 @@ h1.page-title, .roster-title, .player-name {
   background-clip: text;
   animation: gradientPageTitle 5s linear infinite;
 }
+
 @keyframes gradientPageTitle {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* ── Section Headings ─────────────────────────────────────────────── */
-.section-block h2, section h2:not(.bento-title) {
+.section-block h2,
+section h2:not(.bento-title) {
   font-family: 'Orbitron', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
@@ -183,37 +239,48 @@ h1.page-title, .roster-title, .player-name {
 
 /* ── Cards global Glassmorphism ────────────────────────────────────── */
 /* Roster player cards */
-[data-theme="dark"] .roster-player-card, [data-theme="dark"] .player-card-item,
-[data-theme="dark"] .slide-card, [data-theme="dark"] .roster-slide,
+[data-theme="dark"] .roster-player-card,
+[data-theme="dark"] .player-card-item,
+[data-theme="dark"] .slide-card,
+[data-theme="dark"] .roster-slide,
 body:not([data-theme="light"]):not(.theme-light) .roster-player-card,
 body:not([data-theme="light"]):not(.theme-light) .player-card-item,
 body:not([data-theme="light"]):not(.theme-light) .slide-card,
 body:not([data-theme="light"]):not(.theme-light) .roster-slide {
-  background: rgba(17,24,39,0.85) !important;
+  background: rgba(17, 24, 39, 0.85) !important;
   backdrop-filter: blur(18px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(160%) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 20px !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease, box-shadow 0.3s ease !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
   overflow: hidden;
   position: relative;
 }
-.roster-player-card:hover, .player-card-item:hover {
+
+.roster-player-card:hover,
+.player-card-item:hover {
   transform: translateY(-6px) !important;
-  border-color: rgba(0,240,255,0.25) !important;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 35px rgba(0,240,255,0.18) !important;
+  border-color: rgba(0, 240, 255, 0.25) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(0, 240, 255, 0.18) !important;
 }
+
 /* Gold variant for captains */
-.roster-player-card.captain:hover, .player-card-item.captain:hover {
-  border-color: rgba(232,197,106,0.3) !important;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.65), 0 0 35px rgba(232,197,106,0.2) !important;
+.roster-player-card.captain:hover,
+.player-card-item.captain:hover {
+  border-color: rgba(232, 197, 106, 0.3) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(232, 197, 106, 0.2) !important;
 }
 
 /* Tactics / map cards */
-[data-theme="dark"] .map-card, [data-theme="dark"] .tactic-entry, [data-theme="dark"] .strategy-card, [data-theme="dark"] .playbook-card,
-[data-theme="dark"] .book-card, [data-theme="dark"] .weapon-card, [data-theme="dark"] .character-card,
+[data-theme="dark"] .map-card,
+[data-theme="dark"] .tactic-entry,
+[data-theme="dark"] .strategy-card,
+[data-theme="dark"] .playbook-card,
+[data-theme="dark"] .book-card,
+[data-theme="dark"] .weapon-card,
+[data-theme="dark"] .character-card,
 body:not([data-theme="light"]):not(.theme-light) .map-card,
 body:not([data-theme="light"]):not(.theme-light) .tactic-entry,
 body:not([data-theme="light"]):not(.theme-light) .strategy-card,
@@ -221,103 +288,138 @@ body:not([data-theme="light"]):not(.theme-light) .playbook-card,
 body:not([data-theme="light"]):not(.theme-light) .book-card,
 body:not([data-theme="light"]):not(.theme-light) .weapon-card,
 body:not([data-theme="light"]):not(.theme-light) .character-card {
-  background: rgba(17,24,39,0.85) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: rgba(17, 24, 39, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 18px !important;
-  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease, box-shadow 0.3s ease !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
-.map-card:hover, .tactic-entry:hover, .strategy-card:hover,
-.playbook-card:hover, .book-card:hover {
+
+.map-card:hover,
+.tactic-entry:hover,
+.strategy-card:hover,
+.playbook-card:hover,
+.book-card:hover {
   transform: translateY(-5px) !important;
-  border-color: rgba(0,240,255,0.2) !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px rgba(0,240,255,0.15) !important;
+  border-color: rgba(0, 240, 255, 0.2) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 240, 255, 0.15) !important;
 }
 
 /* Recruit cards */
-[data-theme="dark"] .requirement-card, [data-theme="dark"] .trial-card, [data-theme="dark"] .apply-card,
-[data-theme="dark"] .track-card, [data-theme="dark"] .rule-card,
+[data-theme="dark"] .requirement-card,
+[data-theme="dark"] .trial-card,
+[data-theme="dark"] .apply-card,
+[data-theme="dark"] .track-card,
+[data-theme="dark"] .rule-card,
 body:not([data-theme="light"]):not(.theme-light) .requirement-card,
 body:not([data-theme="light"]):not(.theme-light) .trial-card,
 body:not([data-theme="light"]):not(.theme-light) .apply-card,
 body:not([data-theme="light"]):not(.theme-light) .track-card,
 body:not([data-theme="light"]):not(.theme-light) .rule-card {
-  background: rgba(17,24,39,0.82) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: rgba(17, 24, 39, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 16px !important;
-  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s ease !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease !important;
 }
-.requirement-card:hover, .trial-card:hover, .apply-card:hover {
+
+.requirement-card:hover,
+.trial-card:hover,
+.apply-card:hover {
   transform: translateY(-4px) !important;
-  border-color: rgba(0,240,255,0.22) !important;
+  border-color: rgba(0, 240, 255, 0.22) !important;
 }
 
 /* Team update news cards */
-[data-theme="dark"] .update-item, [data-theme="dark"] .news-card, [data-theme="dark"] .achievement-card, [data-theme="dark"] .match-card,
+[data-theme="dark"] .update-item,
+[data-theme="dark"] .news-card,
+[data-theme="dark"] .achievement-card,
+[data-theme="dark"] .match-card,
 body:not([data-theme="light"]):not(.theme-light) .update-item,
 body:not([data-theme="light"]):not(.theme-light) .news-card,
 body:not([data-theme="light"]):not(.theme-light) .achievement-card,
 body:not([data-theme="light"]):not(.theme-light) .match-card {
-  background: rgba(17,24,39,0.82) !important;
-  border: 1px solid rgba(255,255,255,0.07) !important;
+  background: rgba(17, 24, 39, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
   border-radius: 16px !important;
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease !important;
 }
-.update-item:hover, .news-card:hover, .achievement-card:hover {
+
+.update-item:hover,
+.news-card:hover,
+.achievement-card:hover {
   transform: translateY(-4px) !important;
-  border-color: rgba(232,197,106,0.25) !important;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(232,197,106,0.12) !important;
+  border-color: rgba(232, 197, 106, 0.25) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(232, 197, 106, 0.12) !important;
 }
 
 /* Contact cards */
-[data-theme="dark"] .contact-card, [data-theme="dark"] .channel-card, [data-theme="dark"] .comms-block,
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .channel-card,
+[data-theme="dark"] .comms-block,
 body:not([data-theme="light"]):not(.theme-light) .contact-card,
 body:not([data-theme="light"]):not(.theme-light) .channel-card,
 body:not([data-theme="light"]):not(.theme-light) .comms-block {
-  background: rgba(17,24,39,0.82) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
+  background: rgba(17, 24, 39, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 20px !important;
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
-              border-color 0.3s ease, box-shadow 0.3s ease !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
-.contact-card:hover, .channel-card:hover, .comms-block:hover {
+
+.contact-card:hover,
+.channel-card:hover,
+.comms-block:hover {
   transform: translateY(-5px) !important;
-  border-color: rgba(88,101,242,0.3) !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 25px rgba(88,101,242,0.2) !important;
+  border-color: rgba(88, 101, 242, 0.3) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 25px rgba(88, 101, 242, 0.2) !important;
 }
 
 /* ── Player Profile Dossier ────────────────────────────────────────── */
-.player-stat-grid, .combat-grid, .loadout-grid {
+.player-stat-grid,
+.combat-grid,
+.loadout-grid {
   display: grid;
   gap: 1rem;
 }
-.stat-cell, .combat-cell {
-  background: rgba(8,12,20,0.7);
-  border: 1px solid rgba(255,255,255,0.07);
+
+.stat-cell,
+.combat-cell {
+  background: rgba(8, 12, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
   transition: border-color 0.3s ease;
 }
-.stat-cell:hover { border-color: rgba(0,240,255,0.3); }
+
+.stat-cell:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+}
 
 /* ── Roster page slideshow/reel ────────────────────────────────────── */
-.roster-reel-card, .reel-slide, .reel-item {
+.roster-reel-card,
+.reel-slide,
+.reel-item {
   position: relative;
   overflow: hidden;
 }
+
 .roster-reel-card::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: linear-gradient(to bottom,
-    transparent 0%, transparent 55%,
-    rgba(8,12,20,0.95) 100%);
-  z-index: 1; pointer-events: none;
+      transparent 0%, transparent 55%,
+      rgba(8, 12, 20, 0.95) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* ── Tactics page specifics ────────────────────────────────────────── */
-.tier-badge, .weapon-tier-label, .role-badge {
+.tier-badge,
+.weapon-tier-label,
+.role-badge {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 700;
@@ -326,21 +428,43 @@ body:not([data-theme="light"]):not(.theme-light) .comms-block {
   border-radius: 6px;
   padding: 2px 8px;
 }
-.tier-s, .tier-S { background: rgba(232,197,106,0.15); color: #E8C56A; border: 1px solid rgba(232,197,106,0.3); }
-.tier-a, .tier-A { background: rgba(0,240,255,0.1); color: #00F0FF; border: 1px solid rgba(0,240,255,0.25); }
-.tier-b, .tier-B { background: rgba(139,92,246,0.1); color: #8B5CF6; border: 1px solid rgba(139,92,246,0.25); }
+
+.tier-s,
+.tier-S {
+  background: rgba(232, 197, 106, 0.15);
+  color: #E8C56A;
+  border: 1px solid rgba(232, 197, 106, 0.3);
+}
+
+.tier-a,
+.tier-A {
+  background: rgba(0, 240, 255, 0.1);
+  color: #00F0FF;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+}
+
+.tier-b,
+.tier-B {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8B5CF6;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
 
 /* ── Recruit page form ─────────────────────────────────────────────── */
-[data-theme="dark"] .apply-form input, [data-theme="dark"] .apply-form select, [data-theme="dark"] .apply-form textarea,
-[data-theme="dark"] form input, [data-theme="dark"] form select, [data-theme="dark"] form textarea,
+[data-theme="dark"] .apply-form input,
+[data-theme="dark"] .apply-form select,
+[data-theme="dark"] .apply-form textarea,
+[data-theme="dark"] form input,
+[data-theme="dark"] form select,
+[data-theme="dark"] form textarea,
 body:not([data-theme="light"]):not(.theme-light) .apply-form input,
 body:not([data-theme="light"]):not(.theme-light) .apply-form select,
 body:not([data-theme="light"]):not(.theme-light) .apply-form textarea,
 body:not([data-theme="light"]):not(.theme-light) form input,
 body:not([data-theme="light"]):not(.theme-light) form select,
 body:not([data-theme="light"]):not(.theme-light) form textarea {
-  background: rgba(8,12,20,0.85) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(8, 12, 20, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 10px !important;
   color: #F1F5F9 !important;
   padding: 0.75rem 1rem !important;
@@ -349,11 +473,15 @@ body:not([data-theme="light"]):not(.theme-light) form textarea {
   width: 100%;
   transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
-form input:focus, form select:focus, form textarea:focus {
-  border-color: rgba(0,240,255,0.5) !important;
-  box-shadow: 0 0 0 3px rgba(0,240,255,0.1) !important;
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: rgba(0, 240, 255, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1) !important;
   outline: none !important;
 }
+
 form label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -366,40 +494,61 @@ form label {
 }
 
 /* ── Footer ────────────────────────────────────────────────────────── */
-[data-theme="dark"] .site-footer, [data-theme="dark"] footer,
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] footer,
 body:not([data-theme="light"]):not(.theme-light) .site-footer,
 body:not([data-theme="light"]):not(.theme-light) footer {
-  background: rgba(8,12,20,0.95) !important;
-  border-top: 1px solid rgba(255,255,255,0.06) !important;
+  background: rgba(8, 12, 20, 0.95) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
   position: relative;
 }
-.site-footer::before, footer::before {
+
+.site-footer::before,
+footer::before {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
   background: linear-gradient(90deg, transparent, #00F0FF 30%, #E8C56A 70%, transparent);
   opacity: 0.35;
 }
 
 /* ── Tag / Badge variants ──────────────────────────────────────────── */
-.tag-cyan, .badge-cyan, .role-entry-rusher, .role-igl {
-  background: rgba(0,240,255,0.08);
+.tag-cyan,
+.badge-cyan,
+.role-entry-rusher,
+.role-igl {
+  background: rgba(0, 240, 255, 0.08);
   color: #00F0FF;
-  border: 1px solid rgba(0,240,255,0.25);
+  border: 1px solid rgba(0, 240, 255, 0.25);
 }
-.tag-gold, .badge-gold, .role-captain, .role-sniper {
-  background: rgba(232,197,106,0.08);
+
+.tag-gold,
+.badge-gold,
+.role-captain,
+.role-sniper {
+  background: rgba(232, 197, 106, 0.08);
   color: #E8C56A;
-  border: 1px solid rgba(232,197,106,0.25);
+  border: 1px solid rgba(232, 197, 106, 0.25);
 }
-.tag-purple, .badge-purple, .role-support, .role-medic {
-  background: rgba(139,92,246,0.1);
+
+.tag-purple,
+.badge-purple,
+.role-support,
+.role-medic {
+  background: rgba(139, 92, 246, 0.1);
   color: #8B5CF6;
-  border: 1px solid rgba(139,92,246,0.25);
+  border: 1px solid rgba(139, 92, 246, 0.25);
 }
-.tag-red, .badge-red, .role-rusher {
-  background: rgba(255,0,85,0.08);
+
+.tag-red,
+.badge-red,
+.role-rusher {
+  background: rgba(255, 0, 85, 0.08);
   color: #FF0055;
-  border: 1px solid rgba(255,0,85,0.25);
+  border: 1px solid rgba(255, 0, 85, 0.25);
 }
 
 /* ── Tactical Section Dividers ─────────────────────────────────────── */
@@ -413,6 +562,7 @@ body:not([data-theme="light"]):not(.theme-light) footer {
   padding: 0 1.5rem !important;
   position: relative !important;
 }
+
 .section-divider::before,
 .section-divider::after {
   content: "" !important;
@@ -420,9 +570,11 @@ body:not([data-theme="light"]):not(.theme-light) footer {
   height: 1px !important;
   background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.45), transparent) !important;
 }
+
 .section-divider::after {
   background: linear-gradient(90deg, transparent, rgba(232, 197, 106, 0.45), transparent) !important;
 }
+
 .section-divider span {
   width: 8px !important;
   height: 8px !important;
@@ -435,23 +587,34 @@ body:not([data-theme="light"]):not(.theme-light) footer {
 }
 
 /* ── Tailwind override safety (scoped for dark theme) ───────── */
-[data-theme="dark"] .bg-cyber-bg, 
-[data-theme="dark"] .bg-\[\#0A0C11\], 
+[data-theme="dark"] .bg-cyber-bg,
+[data-theme="dark"] .bg-\[\#0A0C11\],
 [data-theme="dark"] .bg-\[\#080C14\],
 body:not([data-theme="light"]):not(.theme-light) .bg-cyber-bg,
 body:not([data-theme="light"]):not(.theme-light) .bg-\[\#0A0C11\],
-body:not([data-theme="light"]):not(.theme-light) .bg-\[\#080C14\] { 
-  background: #080C14 !important; 
+body:not([data-theme="light"]):not(.theme-light) .bg-\[\#080C14\] {
+  background: #080C14 !important;
 }
+
 [data-theme="dark"] .border-cyber-border,
-body:not([data-theme="light"]):not(.theme-light) .border-cyber-border { 
-  border-color: rgba(255,255,255,0.08) !important; 
+body:not([data-theme="light"]):not(.theme-light) .border-cyber-border {
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* ── Mobile ────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .page-hero, .roster-hero, .player-hero { padding: 4rem 1rem 3rem; }
-  h1.page-title, .roster-title, .player-name { font-size: clamp(1.5rem, 8vw, 2.2rem); }
+
+  .page-hero,
+  .roster-hero,
+  .player-hero {
+    padding: 4rem 1rem 3rem;
+  }
+
+  h1.page-title,
+  .roster-title,
+  .player-name {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+  }
 }
 
 /* ── Comprehensive Light Mode / Bright Theme Overrides ─────────────── */
@@ -511,6 +674,7 @@ html.theme-light header {
   border-bottom: 1px solid rgba(203, 213, 225, 0.8) !important;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
 }
+
 [data-theme="light"] .site-header .brand-label,
 html.theme-light .site-header .brand-label {
   color: #0F172A !important;
@@ -532,8 +696,8 @@ html.theme-light .recruit-hero,
 html.theme-light .team-updates-hero,
 html.theme-light .contact-hero {
   background: radial-gradient(ellipse at 50% 0%, rgba(14, 165, 233, 0.08), transparent 65%),
-              radial-gradient(ellipse at 85% 60%, rgba(217, 119, 6, 0.06), transparent 55%),
-              #F8FAFC !important;
+    radial-gradient(ellipse at 85% 60%, rgba(217, 119, 6, 0.06), transparent 55%),
+    #F8FAFC !important;
   color: #0F172A !important;
 }
 
@@ -683,11 +847,13 @@ html.theme-light .book-card-3d h3 {
   color: #0F172A !important;
   -webkit-text-fill-color: #0F172A !important;
 }
+
 [data-theme="light"] .book-card-3d p,
 html.theme-light .book-card-3d p {
   color: #334155 !important;
   -webkit-text-fill-color: #334155 !important;
 }
+
 [data-theme="light"] .book-btn-download,
 html.theme-light .book-btn-download {
   background: rgba(239, 68, 68, 0.1) !important;
@@ -703,14 +869,17 @@ html.theme-light .map-card-3d {
   border: 1px solid rgba(203, 213, 225, 0.9) !important;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
 }
+
 [data-theme="light"] .map-card-3d h4,
 html.theme-light .map-card-3d h4 {
   color: #0F172A !important;
 }
+
 [data-theme="light"] .map-card-3d p,
 html.theme-light .map-card-3d p {
   color: #334155 !important;
 }
+
 [data-theme="light"] .map-tag-badge,
 html.theme-light .map-tag-badge {
   color: #0284C7 !important;
@@ -762,23 +931,28 @@ html.theme-light .tree-root-card {
   border-color: rgba(203, 213, 225, 0.9) !important;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08) !important;
 }
+
 [data-theme="light"] .tree-player-ign,
 html.theme-light .tree-player-ign {
   color: #0F172A !important;
 }
+
 [data-theme="light"] .tree-player-name,
 html.theme-light .tree-player-name {
   color: #475569 !important;
 }
+
 [data-theme="light"] .tree-origin-node,
 html.theme-light .tree-origin-node {
   background: rgba(255, 255, 255, 0.96) !important;
   border-color: rgba(203, 213, 225, 0.9) !important;
 }
+
 [data-theme="light"] .tree-origin-title,
 html.theme-light .tree-origin-title {
   color: #0F172A !important;
 }
+
 [data-theme="light"] .tree-origin-desc,
 html.theme-light .tree-origin-desc {
   color: #475569 !important;
@@ -791,10 +965,12 @@ html.theme-light .stats-band-premium {
   border-color: rgba(203, 213, 225, 0.85) !important;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
 }
+
 [data-theme="light"] .stat-item-premium,
 html.theme-light .stat-item-premium {
   border-color: rgba(203, 213, 225, 0.85) !important;
 }
+
 [data-theme="light"] .stat-lbl,
 html.theme-light .stat-lbl {
   color: #475569 !important;
@@ -802,9 +978,21 @@ html.theme-light .stat-lbl {
 
 /* ── Reduced Motion ────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .page-hero .hud-scan, .roster-hero .hud-scan { animation: none; }
-  h1.page-title, .roster-title, .player-name { animation: none; }
-  .page-eyebrow::before { animation: none; }
+
+  .page-hero .hud-scan,
+  .roster-hero .hud-scan {
+    animation: none;
+  }
+
+  h1.page-title,
+  .roster-title,
+  .player-name {
+    animation: none;
+  }
+
+  .page-eyebrow::before {
+    animation: none;
+  }
 }
 
 /* ================================================================
@@ -820,9 +1008,18 @@ body.theme-light {
   color: #0F172A !important;
 }
 
-[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3, [data-theme="light"] h4,
-html.theme-light h1, html.theme-light h2, html.theme-light h3, html.theme-light h4,
-body.theme-light h1, body.theme-light h2, body.theme-light h3, body.theme-light h4 {
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+html.theme-light h1,
+html.theme-light h2,
+html.theme-light h3,
+html.theme-light h4,
+body.theme-light h1,
+body.theme-light h2,
+body.theme-light h3,
+body.theme-light h4 {
   color: #0F172A !important;
 }
 
@@ -959,11 +1156,11 @@ body.theme-light .bg-cyan-950\/60 {
 }
 
 /* Filter Tabs Container in Team Updates */
-[data-theme="light"] section:has(.tab-btn) > div,
+[data-theme="light"] section:has(.tab-btn)>div,
 [data-theme="light"] .tab-btn,
-html.theme-light section:has(.tab-btn) > div,
+html.theme-light section:has(.tab-btn)>div,
 html.theme-light .tab-btn,
-body.theme-light section:has(.tab-btn) > div,
+body.theme-light section:has(.tab-btn)>div,
 body.theme-light .tab-btn {
   background: #FFFFFF !important;
   border-color: rgba(203, 213, 225, 0.9) !important;
@@ -1400,8 +1597,8 @@ body.theme-light .bg-cyber-card {
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
 }
 
-[data-theme="light"] .player-spotlight-hero > .absolute.bottom-0,
-html.theme-light .player-spotlight-hero > .absolute.bottom-0,
-body.theme-light .player-spotlight-hero > .absolute.bottom-0 {
+[data-theme="light"] .player-spotlight-hero>.absolute.bottom-0,
+html.theme-light .player-spotlight-hero>.absolute.bottom-0,
+body.theme-light .player-spotlight-hero>.absolute.bottom-0 {
   box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
 }
