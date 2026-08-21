@@ -78,7 +78,7 @@ function setupFloatingMenu() {
 
   function isCurrent(pageKey) {
     if (pageKey === 'home') {
-      return currentPath.endsWith('index.html') && !currentPath.includes('/roster') && !currentPath.includes('/tactics') && !currentPath.includes('/recruit') && !currentPath.includes('/rewards') && !currentPath.includes('/contact') && !currentPath.includes('/team-updates') && !currentPath.includes('/portal') || currentPath.endsWith('/') || currentPath === '';
+      return currentPath.endsWith('index.html') && !currentPath.includes('/roster') && !currentPath.includes('/tactics') && !currentPath.includes('/characters') && !currentPath.includes('/guns') && !currentPath.includes('/recruit') && !currentPath.includes('/rewards') && !currentPath.includes('/contact') && !currentPath.includes('/team-updates') && !currentPath.includes('/portal') || currentPath.endsWith('/') || currentPath === '';
     }
     return currentPath.includes(`/${pageKey}`);
   }
@@ -136,9 +136,25 @@ function setupFloatingMenu() {
       id: 'tactics',
       name: 'Tactics & Playbook',
       url: `${BASE_PATH}tactics/index.html`,
-      desc: 'Interactive Drop Maps, Gun Meta & HUD Sensitivity',
+      desc: '3D Maps & Strategy Reference Books',
       icon: '📖',
       badge: isCurrent('tactics') ? 'ACTIVE' : ''
+    },
+    {
+      id: 'characters',
+      name: 'Character Meta',
+      url: `${BASE_PATH}characters/index.html`,
+      desc: '53 Hero Abilities, Skill Lore & 3D Meta Radar',
+      icon: '⚡',
+      badge: isCurrent('characters') ? 'ACTIVE' : ''
+    },
+    {
+      id: 'guns',
+      name: 'Weapons & Arsenal',
+      url: `${BASE_PATH}guns/index.html`,
+      desc: '69 Guns, Utilities & Attachments Meta Matrix',
+      icon: '🔫',
+      badge: isCurrent('guns') ? 'ACTIVE' : ''
     },
     {
       id: 'team-updates',
