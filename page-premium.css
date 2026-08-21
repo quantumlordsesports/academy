@@ -49,6 +49,30 @@ section:first-of-type:not(#hero) {
   overflow: hidden;
   text-align: center;
 }
+
+[data-theme="light"] .page-hero,
+[data-theme="light"] .roster-hero,
+[data-theme="light"] .player-hero,
+[data-theme="light"] .tactics-hero,
+[data-theme="light"] .recruit-hero,
+[data-theme="light"] .team-updates-hero,
+[data-theme="light"] .contact-hero,
+[data-theme="light"] section:first-of-type:not(#hero),
+html.theme-light .page-hero,
+html.theme-light .roster-hero,
+html.theme-light .player-hero,
+html.theme-light .tactics-hero,
+html.theme-light .recruit-hero,
+html.theme-light .team-updates-hero,
+html.theme-light .contact-hero,
+html.theme-light section:first-of-type:not(#hero),
+body.theme-light section:first-of-type:not(#hero) {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.08), transparent 65%),
+    radial-gradient(ellipse at 85% 60%, rgba(217, 119, 6, 0.06), transparent 55%),
+    #F6F8FD !important;
+}
+
 .page-hero::before, .roster-hero::before, .player-hero::before,
 .tactics-hero::before, .recruit-hero::before, .team-updates-hero::before,
 .contact-hero::before {
@@ -57,11 +81,25 @@ section:first-of-type:not(#hero) {
   background: linear-gradient(90deg, transparent, #00F0FF 30%, #E8C56A 70%, transparent);
   opacity: 0.5;
 }
+
+[data-theme="light"] .page-hero::before,
+html.theme-light .page-hero::before {
+  background: linear-gradient(90deg, transparent, #0284C7 30%, #D97706 70%, transparent) !important;
+  opacity: 0.7;
+}
+
 .page-hero::after, .roster-hero::after {
   content: '';
   position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
   background: linear-gradient(to bottom, transparent, #080C14);
   pointer-events: none;
+}
+
+[data-theme="light"] .page-hero::after,
+[data-theme="light"] .roster-hero::after,
+html.theme-light .page-hero::after,
+html.theme-light .roster-hero::after {
+  background: linear-gradient(to bottom, transparent, #F6F8FD) !important;
 }
 
 /* HUD scan line on hero */
@@ -759,4 +797,386 @@ html.theme-light .stat-lbl {
   .page-hero .hud-scan, .roster-hero .hud-scan { animation: none; }
   h1.page-title, .roster-title, .player-name { animation: none; }
   .page-eyebrow::before { animation: none; }
+}
+
+/* ================================================================
+   BRIGHT THEME (LIGHT MODE) COMPREHENSIVE OVERRIDES
+   Tactics Library · Team Updates · Recruit Section · Contact Section
+   ================================================================ */
+
+/* ── Universal Light Mode Typography & Surfaces ────────────────── */
+[data-theme="light"] body,
+html.theme-light body,
+body.theme-light {
+  background-color: #F6F8FD !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3, [data-theme="light"] h4,
+html.theme-light h1, html.theme-light h2, html.theme-light h3, html.theme-light h4,
+body.theme-light h1, body.theme-light h2, body.theme-light h3, body.theme-light h4 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .text-white,
+html.theme-light .text-white,
+body.theme-light .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+html.theme-light .text-slate-300,
+html.theme-light .text-slate-400,
+body.theme-light .text-slate-300,
+body.theme-light .text-slate-400 {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-\[\#00F0FF\],
+html.theme-light .text-\[\#00F0FF\],
+body.theme-light .text-\[\#00F0FF\] {
+  color: #0284C7 !important;
+}
+
+[data-theme="light"] .text-\[\#E8C56A\],
+html.theme-light .text-\[\#E8C56A\],
+body.theme-light .text-\[\#E8C56A\] {
+  color: #B45309 !important;
+}
+
+[data-theme="light"] .text-\[\#FF0055\],
+html.theme-light .text-\[\#FF0055\],
+body.theme-light .text-\[\#FF0055\] {
+  color: #E11D48 !important;
+}
+
+[data-theme="light"] .text-\[\#00FF66\],
+html.theme-light .text-\[\#00FF66\],
+body.theme-light .text-\[\#00FF66\] {
+  color: #059669 !important;
+}
+
+/* ── 1. TACTICS LIBRARY LIGHT MODE OVERRIDES ───────────────────── */
+[data-theme="light"] .bg-purple-950\/60,
+html.theme-light .bg-purple-950\/60,
+body.theme-light .bg-purple-950\/60 {
+  background: rgba(139, 92, 246, 0.12) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  color: #6D28D9 !important;
+}
+
+[data-theme="light"] .bg-cyan-950\/40,
+html.theme-light .bg-cyan-950\/40,
+body.theme-light .bg-cyan-950\/40 {
+  background: rgba(2, 132, 199, 0.1) !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+  color: #0284C7 !important;
+}
+
+[data-theme="light"] .bg-amber-950\/40,
+html.theme-light .bg-amber-950\/40,
+body.theme-light .bg-amber-950\/40 {
+  background: rgba(217, 119, 6, 0.1) !important;
+  border-color: rgba(217, 119, 6, 0.35) !important;
+  color: #B45309 !important;
+}
+
+[data-theme="light"] .bg-green-950\/40,
+html.theme-light .bg-green-950\/40,
+body.theme-light .bg-green-950\/40 {
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-color: rgba(5, 150, 105, 0.35) !important;
+  color: #047857 !important;
+}
+
+/* Tactics Quick Nav Anchors */
+[data-theme="light"] a[href^="#3d-maps"],
+[data-theme="light"] a[href^="#strategy-books"],
+[data-theme="light"] a[href^="#map-blueprints"],
+[data-theme="light"] a[href^="#character-meta"],
+html.theme-light a[href^="#3d-maps"],
+html.theme-light a[href^="#strategy-books"],
+html.theme-light a[href^="#map-blueprints"],
+html.theme-light a[href^="#character-meta"],
+body.theme-light a[href^="#3d-maps"],
+body.theme-light a[href^="#strategy-books"],
+body.theme-light a[href^="#map-blueprints"],
+body.theme-light a[href^="#character-meta"] {
+  background: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* 3D Map Cards, Blueprints, Books & Glass Cards */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .map-blueprint-frame,
+[data-theme="light"] .book-card-3d-wrap,
+[data-theme="light"] .bg-\[\#161B22\],
+[data-theme="light"] .bg-\[\#0F131D\],
+[data-theme="light"] .bg-\[\#0D1117\],
+html.theme-light .glass-card,
+html.theme-light .map-blueprint-frame,
+html.theme-light .book-card-3d-wrap,
+html.theme-light .bg-\[\#161B22\],
+html.theme-light .bg-\[\#0F131D\],
+html.theme-light .bg-\[\#0D1117\],
+body.theme-light .glass-card,
+body.theme-light .map-blueprint-frame,
+body.theme-light .book-card-3d-wrap,
+body.theme-light .bg-\[\#161B22\],
+body.theme-light .bg-\[\#0F131D\],
+body.theme-light .bg-\[\#0D1117\] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .border-slate-800,
+[data-theme="light"] .border-\[\#21262D\],
+html.theme-light .border-slate-800,
+html.theme-light .border-\[\#21262D\],
+body.theme-light .border-slate-800,
+body.theme-light .border-\[\#21262D\] {
+  border-color: rgba(203, 213, 225, 0.85) !important;
+}
+
+/* ── 2. TEAM UPDATES LIGHT MODE OVERRIDES ──────────────────────── */
+[data-theme="light"] .bg-cyan-950\/60,
+html.theme-light .bg-cyan-950\/60,
+body.theme-light .bg-cyan-950\/60 {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-color: rgba(2, 132, 199, 0.4) !important;
+  color: #0284C7 !important;
+}
+
+/* Filter Tabs Container in Team Updates */
+[data-theme="light"] section:has(.tab-btn) > div,
+[data-theme="light"] .tab-btn,
+html.theme-light section:has(.tab-btn) > div,
+html.theme-light .tab-btn,
+body.theme-light section:has(.tab-btn) > div,
+body.theme-light .tab-btn {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .tab-btn.active,
+html.theme-light .tab-btn.active,
+body.theme-light .tab-btn.active {
+  background: #0284C7 !important;
+  border-color: #0284C7 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* Update Items & Cards */
+[data-theme="light"] .update-item,
+[data-theme="light"] .news-card,
+[data-theme="light"] .match-card,
+html.theme-light .update-item,
+html.theme-light .news-card,
+html.theme-light .match-card,
+body.theme-light .update-item,
+body.theme-light .news-card,
+body.theme-light .match-card {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* ── 3. RECRUIT SECTION LIGHT MODE OVERRIDES ───────────────────── */
+[data-theme="light"] .recruit-hero-gradient-text,
+html.theme-light .recruit-hero-gradient-text,
+body.theme-light .recruit-hero-gradient-text {
+  background: linear-gradient(90deg, #0284C7, #0F172A, #E11D48) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Roster Recruitment Badge */
+[data-theme="light"] .bg-black\/60,
+html.theme-light .bg-black\/60,
+body.theme-light .bg-black\/60 {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+}
+
+/* Video Player Frame */
+[data-theme="light"] .bg-\[\#07090E\],
+html.theme-light .bg-\[\#07090E\],
+body.theme-light .bg-\[\#07090E\] {
+  background: #FFFFFF !important;
+  border-color: rgba(2, 132, 199, 0.45) !important;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1) !important;
+}
+
+[data-theme="light"] .hud-bracket,
+html.theme-light .hud-bracket,
+body.theme-light .hud-bracket {
+  border-color: #0284C7 !important;
+}
+
+/* Video Controls & Telemetry Badges */
+[data-theme="light"] #recruitMuteBtn,
+[data-theme="light"] #recruitPlayBtn,
+html.theme-light #recruitMuteBtn,
+html.theme-light #recruitPlayBtn,
+body.theme-light #recruitMuteBtn,
+body.theme-light #recruitPlayBtn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0F172A !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .bg-black\/75,
+html.theme-light .bg-black\/75,
+body.theme-light .bg-black\/75 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(225, 29, 72, 0.45) !important;
+}
+
+/* Primary "Apply for Trials" Button */
+[data-theme="light"] a[href="https://discord.gg/MTVRBAybwM"].bg-gradient-to-r,
+html.theme-light a[href="https://discord.gg/MTVRBAybwM"].bg-gradient-to-r,
+body.theme-light a[href="https://discord.gg/MTVRBAybwM"].bg-gradient-to-r {
+  background: linear-gradient(135deg, #0284C7, #2563EB) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* Secondary "View Roster Requirements" Button */
+[data-theme="light"] button[onclick="openRequirementsModal()"],
+html.theme-light button[onclick="openRequirementsModal()"],
+body.theme-light button[onclick="openRequirementsModal()"] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] button[onclick="openRequirementsModal()"]:hover,
+html.theme-light button[onclick="openRequirementsModal()"]:hover,
+body.theme-light button[onclick="openRequirementsModal()"]:hover {
+  border-color: #E11D48 !important;
+  color: #E11D48 !important;
+}
+
+/* Academy Program Section */
+[data-theme="light"] #recruitment,
+html.theme-light #recruitment,
+body.theme-light #recruitment {
+  background: rgba(248, 250, 255, 0.96) !important;
+}
+
+[data-theme="light"] .recruit-note,
+html.theme-light .recruit-note,
+body.theme-light .recruit-note {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .recruit-list li,
+html.theme-light .recruit-list li,
+body.theme-light .recruit-list li {
+  color: #0F172A !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+}
+
+[data-theme="light"] .discord-note,
+html.theme-light .discord-note,
+body.theme-light .discord-note {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Embedded Google Form Trial Container */
+[data-theme="light"] #trialFormContainer,
+html.theme-light #trialFormContainer,
+body.theme-light #trialFormContainer {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* ── 4. CONTACT SECTION LIGHT MODE OVERRIDES ───────────────────── */
+[data-theme="light"] .comms-card,
+html.theme-light .comms-card,
+body.theme-light .comms-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.07) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .comms-card p,
+[data-theme="light"] .comms-card span,
+html.theme-light .comms-card p,
+html.theme-light .comms-card span,
+body.theme-light .comms-card p,
+body.theme-light .comms-card span {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .comms-card h3,
+[data-theme="light"] .comms-card h4,
+html.theme-light .comms-card h3,
+html.theme-light .comms-card h4,
+body.theme-light .comms-card h3,
+body.theme-light .comms-card h4 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .social-pill-card,
+html.theme-light .social-pill-card,
+body.theme-light .social-pill-card {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  color: #0F172A !important;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .social-pill-card:hover,
+html.theme-light .social-pill-card:hover,
+body.theme-light .social-pill-card:hover {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08), 0 0 16px rgba(2, 132, 199, 0.2) !important;
+}
+
+[data-theme="light"] .routing-tag,
+html.theme-light .routing-tag,
+body.theme-light .routing-tag {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .routing-tag:hover,
+html.theme-light .routing-tag:hover,
+body.theme-light .routing-tag:hover {
+  background: #FFFFFF !important;
+  border-color: #D97706 !important;
+}
+
+[data-theme="light"] .action-btn-secondary,
+html.theme-light .action-btn-secondary,
+body.theme-light .action-btn-secondary {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .action-btn-secondary:hover,
+html.theme-light .action-btn-secondary:hover,
+body.theme-light .action-btn-secondary:hover {
+  background: rgba(2, 132, 199, 0.1) !important;
+  border-color: #0284C7 !important;
+  color: #0284C7 !important;
 }
