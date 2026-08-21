@@ -340,21 +340,30 @@ function setupFloatingMenu() {
     `;
 
     // Motion.js Spring Exit
-    animate(dialog, 
-      { opacity: [1, 0], scale: [1, 0.94], y: [0, 16] }, 
-      { duration: 0.22, easing: 'ease-in' }
-    );
-    animate(backdrop, 
-      { opacity: [1, 0] }, 
-      { duration: 0.22, easing: 'ease-in' }
-    ).then(() => {
+    try {
+      animate(dialog, 
+        { opacity: [1, 0], scale: [1, 0.94], y: [0, 16] }, 
+        { duration: 0.2, easing: 'ease-in' }
+      );
+      animate(backdrop, 
+        { opacity: [1, 0] }, 
+        { duration: 0.2, easing: 'ease-in' }
+      );
+    } catch (err) {
+      console.warn('Motion close error:', err);
+    }
+
+    setTimeout(() => {
       backdrop.classList.remove('is-open');
       backdrop.setAttribute('aria-hidden', 'true');
+      dialog.style.opacity = '';
+      dialog.style.transform = '';
+      backdrop.style.opacity = '';
       if (searchInput) {
         searchInput.value = '';
         filterHUD('');
       }
-    });
+    }, 200);
   }
 
   function toggleHUD() {
@@ -368,17 +377,33 @@ function setupFloatingMenu() {
   // Trigger click
   fab.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     toggleHUD();
   });
 
-  // Close click
-  closeBtn.addEventListener('click', closeHUD);
+  // Close button in HUD Header: click, pointerdown, touchstart
+  ['click', 'pointerdown'].forEach(evt => {
+    closeBtn.addEventListener(evt, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeHUD();
+    });
+  });
 
-  // Click outside dialog to close
+  // Close on backdrop click outside dialog
   backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) {
+    if (e.target === backdrop || e.target.classList.contains('qld-hud-backdrop')) {
+      e.preventDefault();
+      e.stopPropagation();
       closeHUD();
     }
+  });
+
+  // Auto-close on selecting any menu destination
+  backdrop.querySelectorAll('.qld-hud-card, .qld-hud-player-card').forEach(link => {
+    link.addEventListener('click', () => {
+      closeHUD();
+    });
   });
 
   // Keyboard Navigation: M to toggle, Escape to close
@@ -387,6 +412,7 @@ function setupFloatingMenu() {
     const isTyping = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
 
     if (e.key === 'Escape' && isOpen) {
+      e.preventDefault();
       closeHUD();
     } else if ((e.key === 'm' || e.key === 'M') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
       e.preventDefault();

@@ -20,7 +20,7 @@
   position: fixed;
   bottom: max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
   left: max(20px, calc(16px + env(safe-area-inset-left, 0px)));
-  z-index: 9996;
+  z-index: 99995;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -34,6 +34,7 @@
   color: #ffffff;
   font-family: "Space Grotesk", "Inter", -apple-system, sans-serif;
   cursor: pointer;
+  pointer-events: auto;
   user-select: none;
   touch-action: manipulation;
   outline: none;
@@ -400,26 +401,40 @@
 
 /* Close Button */
 .qld-hud-close-btn {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  pointer-events: auto;
   transition: all 0.2s ease;
   outline: none;
+  position: relative;
+  z-index: 30;
+  touch-action: manipulation;
+}
+
+.qld-hud-close-btn svg,
+.qld-hud-close-btn line {
+  pointer-events: none;
 }
 
 .qld-hud-close-btn:hover {
-  background: rgba(255, 0, 85, 0.2);
+  background: rgba(255, 0, 85, 0.28);
   border-color: var(--fab-crimson);
-  color: var(--fab-crimson);
-  transform: scale(1.05);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 0, 85, 0.45);
+  transform: scale(1.08);
+}
+
+.qld-hud-close-btn:active {
+  transform: scale(0.92);
 }
 
 /* HUD Body / Scrollable Content */
