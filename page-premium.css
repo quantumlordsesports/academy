@@ -1984,7 +1984,10 @@ html.theme-light #system-telemetry span[style*="color: #fff"] {
   color: #0F172A !important;
 }
 
-[data-theme="light"] #system-telemetry div[style*="color: #fff"],
-html.theme-light #system-telemetry div[style*="color: #fff"] {
-  color: #0F172A !important;
+[data-theme="light"] .footer-dev-date,
+html.theme-light .footer-dev-date {
+  color: #475569 !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
 }
+
