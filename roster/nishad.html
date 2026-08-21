@@ -120,6 +120,22 @@
       border-color: #00F0FF;
       pointer-events: none;
     }
+    html.theme-light .player-hero-location,
+    html[data-theme="light"] .player-hero-location,
+    body.theme-light .player-hero-location,
+    .theme-light .player-hero-location,
+    [data-theme="light"] .player-hero-location {
+      color: #000000 !important;
+      background-color: rgba(0, 0, 0, 0.07) !important;
+      border-color: rgba(0, 0, 0, 0.18) !important;
+    }
+    html.theme-light .player-hero-location span,
+    html[data-theme="light"] .player-hero-location span,
+    body.theme-light .player-hero-location span,
+    .theme-light .player-hero-location span,
+    [data-theme="light"] .player-hero-location span {
+      color: #000000 !important;
+    }
   </style>
 </head>
 <body class="bg-[#0A0C11] text-[#F4F3EE] font-sans min-h-screen relative overflow-x-hidden antialiased">
@@ -209,7 +225,7 @@
             <span class="inline-flex items-center px-3 py-1 rounded-lg bg-cyber-cyan/15 border border-cyber-cyan/40 text-cyber-cyan text-xs font-mono font-bold">
               ⚡ Rusher by Birth
             </span>
-            <span class="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
+            <span class="player-hero-location inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-white/10 border border-white/20 text-slate-200 text-xs font-mono">
               <span>🇧🇩</span>
               <span>Kishorgonj, Bangladesh</span>
             </span>

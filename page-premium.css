@@ -1212,6 +1212,23 @@ body.theme-light .player-spotlight-hero .font-space {
   color: #1E293B !important;
 }
 
+[data-theme="light"] .player-spotlight-hero .player-hero-location,
+[data-theme="light"] .player-hero-location,
+html.theme-light .player-spotlight-hero .player-hero-location,
+html.theme-light .player-hero-location,
+body.theme-light .player-spotlight-hero .player-hero-location,
+body.theme-light .player-hero-location {
+  color: #000000 !important;
+  background-color: rgba(0, 0, 0, 0.07) !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+[data-theme="light"] .player-hero-location span,
+html.theme-light .player-hero-location span,
+body.theme-light .player-hero-location span {
+  color: #000000 !important;
+}
+
 [data-theme="light"] .player-spotlight-hero .hud-corner,
 html.theme-light .player-spotlight-hero .hud-corner,
 body.theme-light .player-spotlight-hero .hud-corner {
