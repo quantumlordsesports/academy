@@ -504,22 +504,31 @@ h3 {
 /* ---------- Header / Nav ---------- */
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  background: rgba(5, 7, 13, 0.72);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 99990 !important;
+  background: rgba(5, 7, 13, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   padding-top: env(safe-area-inset-top, 0px);
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
 
 .site-header.scrolled {
-  border-bottom-color: var(--border);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(4, 6, 12, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 240, 255, 0.18) !important;
+}
+
+body {
+  padding-top: 76px;
 }
 
 .nav-bar {
