@@ -1164,12 +1164,7 @@ html.theme-light .theme-toggle-teaser-badge {
   font-size: clamp(3.4rem, 11vw, 7.5rem);
   line-height: 0.92;
   letter-spacing: 0.03em;
-  color: transparent;
-  background: linear-gradient(180deg, #fffdf5 10%, var(--accent-bright) 45%, var(--accent-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.6));
+  color: #ffffff;
 }
 
 .welcome-panel {
@@ -3521,13 +3516,11 @@ html[data-theme="light"] .italic.font-space {
 }
 
 html[data-theme="light"] .hero-section #hero-title {
-  color: #000000 !important;
   background: none !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
-  -webkit-text-fill-color: #000000 !important;
   filter: none !important;
-  animation: blackFire 2.4s ease-in-out infinite !important;
+  animation: none !important;
 }
 
 /* Keep other hero h1s readable (there's only one, but just in case) */
