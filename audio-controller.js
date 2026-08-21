@@ -3,14 +3,12 @@
  * 
  * Features:
  * - 5 Official Free Fire Soundtracks & High-Res Artwork Thumbnails
- * - Compact Pill Mode + Ultra-Smooth Expandable Showcase Drawer
- * - Dynamic Playlist Selection with Auto-Collapse on selection
- * - Multi-depth Vinyl Artwork Rotation & Cyber Equalizer
- * - Timeline Progress Scrubbing & Duration Tracking
- * - Next/Prev Track Navigation & Auto-advance playlist
- * - State, Track Index & Volume Persistence in LocalStorage
- * - Cross-page compatibility across subfolders & root
- * - Complete Light & Dark mode adaptation
+ * - Initial Full Pill Display on first entrance with "Enable Audio" prompt
+ * - Auto-minimizes to a sleek spinning circular disc thumbnail when idle/unused
+ * - Expands back to full pill / controls immediately upon click or hover
+ * - Full Expanded Showcase Drawer for playlist selection, lyrics info & seeking
+ * - Cross-page state, volume & track persistence in LocalStorage
+ * - Complete Dark & Bright/Light Mode integration
  */
 
 (function () {
@@ -166,15 +164,16 @@
       <!-- Backdrop click shield for expanded mode -->
       <div class="bgm-expanded-backdrop" id="bgmBackdrop" aria-hidden="true"></div>
 
-      <!-- ================= COMPACT BAR ================= -->
+      <!-- ================= COMPACT / PILL BAR ================= -->
       <div class="bgm-compact-bar" id="bgmCompactBar">
         
-        <!-- Rotating Mini Album Artwork -->
-        <button type="button" class="bgm-thumb-toggle" id="bgmThumbToggle" title="Click to expand music player" aria-label="Expand player and select soundtrack">
+        <!-- Rotating Mini Album Artwork Disc (Click to Toggle / Expand) -->
+        <button type="button" class="bgm-thumb-toggle" id="bgmThumbToggle" title="Click to view all controls & soundtracks" aria-label="Expand music controller">
           <div class="bgm-thumb-disc">
             <img class="bgm-thumb-img" id="bgmThumbMini" src="${currentTrack.thumbnail}" alt="${currentTrack.title}" />
           </div>
-          <span class="bgm-thumb-badge" aria-hidden="true">🎵</span>
+          <span class="bgm-thumb-badge" id="bgmThumbBadge" aria-hidden="true">🎵</span>
+          <span class="bgm-circle-pulse" aria-hidden="true"></span>
         </button>
 
         <!-- Play/Pause Button -->
@@ -183,10 +182,10 @@
         </button>
 
         <!-- Song Info (Click to Expand) -->
-        <div class="bgm-info" id="bgmInfo" title="Click to expand playlist" aria-label="Track Information">
+        <div class="bgm-info" id="bgmInfo" title="Click to expand soundtracks" aria-label="Track Information">
           <div class="bgm-tag">
             <span class="bgm-status-dot" id="bgmStatusDot"></span>
-            <span id="bgmStatusText">${currentTrack.tag || 'NOW PLAYING'}</span>
+            <span id="bgmStatusText">ENABLE AUDIO</span>
           </div>
           <div class="bgm-title" id="bgmTitle">${currentTrack.title}</div>
         </div>
@@ -307,9 +306,9 @@
 
       </div>
 
-      <!-- Autoplay Gesture Tooltip -->
-      <div class="bgm-entrance-tooltip" id="bgmTooltip">
-        ⚡ Click to enable entrance music & switch tracks
+      <!-- Autoplay / Entrance Prompt Tooltip -->
+      <div class="bgm-entrance-tooltip is-visible" id="bgmTooltip">
+        ⚡ <strong>Enable Audio</strong> · Tap to listen to soundtracks
       </div>
 
       <!-- Audio Element -->
@@ -394,8 +393,39 @@
     const savedState = localStorage.getItem('qld_bgm_state');
     let isExplicitlyPaused = savedState === 'paused';
     let isExpanded = false;
+    let isMinimized = false;
+    let idleTimer = null;
     let autoCollapseTimer = null;
     let isSeeking = false;
+    let isHovered = false;
+
+    // ── IDLE / AUTO-MINIMIZE MANAGEMENT ──
+    function startIdleTimer(delayMs = 5000) {
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        // Only minimize if not expanded, not hovered, and drawer is closed
+        if (!isExpanded && !isHovered) {
+          setMinimized(true);
+        }
+      }, delayMs);
+    }
+
+    function resetIdleTimer(delayMs = 4500) {
+      if (isMinimized) {
+        setMinimized(false);
+      }
+      startIdleTimer(delayMs);
+    }
+
+    function setMinimized(minimized) {
+      isMinimized = !!minimized;
+      if (isMinimized) {
+        widget.classList.add('is-minimized');
+        if (tooltip) tooltip.classList.remove('is-visible');
+      } else {
+        widget.classList.remove('is-minimized');
+      }
+    }
 
     // Update Volume Icon
     function updateVolumeIcon(vol) {
@@ -413,10 +443,14 @@
     function setExpanded(expand) {
       isExpanded = !!expand;
       if (isExpanded) {
+        setMinimized(false);
+        if (idleTimer) clearTimeout(idleTimer);
         widget.classList.add('is-expanded');
         expandedPanel.setAttribute('aria-hidden', 'false');
         expandBtn.setAttribute('aria-expanded', 'true');
         expandBtn.classList.add('is-open');
+        if (tooltip) tooltip.classList.remove('is-visible');
+        
         // Scroll active item into view inside playlist
         const activeItem = playlistList.querySelector('.bgm-playlist-item.is-active');
         if (activeItem) {
@@ -431,6 +465,8 @@
           clearTimeout(autoCollapseTimer);
           autoCollapseTimer = null;
         }
+        // Start idle timer after closing drawer
+        startIdleTimer(4000);
       }
     }
 
@@ -449,7 +485,7 @@
         widget.classList.remove('is-playing');
         iconImg.src = ICON_OFF;
         iconImg.alt = 'Music Paused';
-        if (statusText) statusText.textContent = 'MUSIC PAUSED';
+        if (statusText) statusText.textContent = isExplicitlyPaused ? 'MUSIC PAUSED' : 'ENABLE AUDIO';
         if (playBigIcon) playBigIcon.textContent = '▶';
         toggleBtn.setAttribute('title', 'Play Music');
         toggleBtn.setAttribute('aria-label', 'Play Music');
@@ -551,6 +587,7 @@
       } else {
         pauseMusic();
       }
+      resetIdleTimer(5000);
     }
 
     // Show prompt tooltip if autoplay was prevented
@@ -559,8 +596,8 @@
       if (tooltip) {
         tooltip.classList.add('is-visible');
         setTimeout(() => {
-          if (tooltip) tooltip.classList.remove('is-visible');
-        }, 6000);
+          if (tooltip && !audio.paused) tooltip.classList.remove('is-visible');
+        }, 8000);
       }
     }
 
@@ -585,6 +622,22 @@
 
     // ================= EVENT LISTENERS =================
 
+    // Hover & Mouse Interaction Handlers for Auto-Shrink
+    widget.addEventListener('mouseenter', () => {
+      isHovered = true;
+      if (idleTimer) clearTimeout(idleTimer);
+      if (isMinimized) {
+        setMinimized(false);
+      }
+    });
+
+    widget.addEventListener('mouseleave', () => {
+      isHovered = false;
+      if (!isExpanded) {
+        startIdleTimer(4000);
+      }
+    });
+
     // Compact Bar Toggles
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -596,15 +649,25 @@
       togglePlayback();
     });
 
-    // Expand Trigger on Mini Thumbnail, Info, or Expand Arrow Button
+    // Clicking Mini Thumbnail Disc:
+    // If minimized, restore to full pill bar. If in pill bar, toggle expand drawer.
     thumbToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      setExpanded(!isExpanded);
+      if (isMinimized) {
+        setMinimized(false);
+        startIdleTimer(5000);
+      } else {
+        setExpanded(!isExpanded);
+      }
     });
 
     infoEl.addEventListener('click', (e) => {
       e.stopPropagation();
-      setExpanded(true);
+      if (audio.paused && !isExplicitlyPaused) {
+        startMusic();
+      } else {
+        setExpanded(true);
+      }
     });
 
     expandBtn.addEventListener('click', (e) => {
@@ -624,9 +687,11 @@
     // Previous & Next Navigation (Compact & Expanded)
     function goPrev(collapse = false) {
       loadTrack(currentTrackIdx - 1, !audio.paused || !isExplicitlyPaused, collapse);
+      resetIdleTimer(5000);
     }
     function goNext(collapse = false) {
       loadTrack(currentTrackIdx + 1, !audio.paused || !isExplicitlyPaused, collapse);
+      resetIdleTimer(5000);
     }
 
     prevBtnMini.addEventListener('click', (e) => {
@@ -708,6 +773,7 @@
       } else if (!audio.paused) {
         iconImg.src = ICON_ON;
       }
+      resetIdleTimer(6000);
     });
 
     // Volume Mute Button
@@ -724,6 +790,7 @@
       }
       localStorage.setItem('qld_bgm_volume', audio.volume.toString());
       updateVolumeIcon(audio.volume);
+      resetIdleTimer(5000);
     });
 
     // Keyboard Hotkeys
@@ -733,6 +800,17 @@
         setExpanded(false);
       }
     });
+
+    // ── INITIAL ENTRANCE FLOW ──
+    // Show full pill bar for first 6 seconds on entrance, then auto-shrink to circle disc if unused
+    startIdleTimer(6500);
+
+    // Hide entrance tooltip after 7 seconds
+    setTimeout(() => {
+      if (tooltip) {
+        tooltip.classList.remove('is-visible');
+      }
+    }, 7000);
 
     // Autoplay Entrance Attempt
     if (!isExplicitlyPaused) {
