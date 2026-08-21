@@ -55,6 +55,45 @@ body:not([data-theme="light"]):not(.theme-light) {
   }
 }
 
+/* ── Theme Toggle Teaser Badge (Dark Mode Only) ─────────────────────── */
+.theme-toggle-teaser-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  margin-left: 0.35rem;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(249, 115, 22, 0.28));
+  border: 1px solid rgba(250, 204, 21, 0.65);
+  border-radius: 999px;
+  color: #fef08a;
+  font-family: 'Hind Siliguri', 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  box-shadow: 0 0 14px rgba(234, 179, 8, 0.35);
+  animation: teaserPulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+  line-height: 1.25;
+}
+
+/* When Bright Mode is active, hide teaser badge */
+html[data-theme="light"] .theme-toggle-teaser-badge,
+html.theme-light .theme-toggle-teaser-badge {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .nav-actions .theme-toggle-teaser-badge {
+    display: none !important;
+  }
+  .nav-list .theme-toggle-teaser-badge {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.45rem;
+  }
+}
+
 /* ── Nav bar glass ─────────────────────────────────────────────────── */
 .site-header {
   position: fixed !important;

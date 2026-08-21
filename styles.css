@@ -1,8 +1,9 @@
 /* ============================================================
    QuantumLords Esports — Dual-Theme System (Dark & Bright)
    Palette: Void Black & Gold (Dark) · Alabaster Glass & Amber (Bright)
-   Type: Bebas Neue (display) · Space Grotesk (UI) · Inter (body)
+   Type: Bebas Neue (display) · Space Grotesk (UI) · Inter (body) · Hind Siliguri (Bengali)
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap');
 
 :root {
   color-scheme: dark;
@@ -702,6 +703,58 @@ body {
 
 .theme-toggle-text {
   font-family: var(--font-ui);
+}
+
+/* Theme Toggle Teaser Badge (Active in Dark Mode when button offers Bright mode) */
+.theme-toggle-teaser-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  margin-left: 0.35rem;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(249, 115, 22, 0.28));
+  border: 1px solid rgba(250, 204, 21, 0.65);
+  border-radius: 999px;
+  color: #fef08a;
+  font-family: 'Hind Siliguri', 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  white-space: nowrap;
+  box-shadow: 0 0 14px rgba(234, 179, 8, 0.35);
+  animation: teaserPulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+  line-height: 1.25;
+}
+
+@keyframes teaserPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(234, 179, 8, 0.3);
+    border-color: rgba(250, 204, 21, 0.45);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.6), 0 0 22px rgba(234, 179, 8, 0.4);
+    border-color: rgba(253, 224, 71, 0.95);
+  }
+}
+
+/* When Bright Mode is active, hide teaser badge */
+html[data-theme="light"] .theme-toggle-teaser-badge,
+html.theme-light .theme-toggle-teaser-badge {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .nav-actions .theme-toggle-teaser-badge {
+    display: none !important;
+  }
+  .nav-list .theme-toggle-teaser-badge {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.45rem;
+  }
 }
 
 /* Nav Toggle Button */

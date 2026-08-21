@@ -520,11 +520,27 @@ const initThemeToggle = () => {
       const icon = btn.querySelector('.theme-toggle-icon');
       const text = btn.querySelector('.theme-toggle-text');
 
+      // Logic: If in Bright Mode -> button shows 'Dark' (🌙) to switch to dark.
+      //        If in Dark Mode   -> button shows 'Bright' (☀️) to switch to bright.
       if (icon) {
-        icon.innerHTML = isLight ? '☀️' : '🌙';
+        icon.innerHTML = isLight ? '🌙' : '☀️';
       }
       if (text) {
-        text.textContent = isLight ? 'Bright' : 'Dark';
+        text.textContent = isLight ? 'Dark' : 'Bright';
+      }
+
+      // Bengali Teaser Badge ("ব্রাইট মুডে আরো মজা পাবেন ") - Visible only in Dark mode
+      let badge = btn.querySelector('.theme-toggle-teaser-badge');
+      if (!isLight) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'theme-toggle-teaser-badge';
+          badge.textContent = 'ব্রাইট মুডে আরো মজা পাবেন ';
+          btn.appendChild(badge);
+        }
+        badge.style.display = 'inline-flex';
+      } else if (badge) {
+        badge.style.display = 'none';
       }
     });
 
