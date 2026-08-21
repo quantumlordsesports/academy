@@ -1387,36 +1387,38 @@ body.theme-light .action-btn-secondary:hover {
 }
 
 /* ── 5. PLAYER DOSSIERS SPOTLIGHT LIGHT MODE OVERRIDES (nishad, roman, santo, shahriar) ── */
+/* Keep background video completely clear without white fade or wash in both bright & dark modes */
 [data-theme="light"] .player-spotlight-hero,
 html.theme-light .player-spotlight-hero,
 body.theme-light .player-spotlight-hero {
-  background-color: #F6F8FD !important;
+  background-color: #0A0C11 !important;
 }
 
 [data-theme="light"] .player-spotlight-hero .bg-gradient-to-t,
 html.theme-light .player-spotlight-hero .bg-gradient-to-t,
 body.theme-light .player-spotlight-hero .bg-gradient-to-t {
-  background: linear-gradient(to top, rgba(246, 248, 253, 0.96) 0%, rgba(246, 248, 253, 0.72) 45%, rgba(15, 23, 42, 0.35) 100%) !important;
+  background: linear-gradient(to top, rgba(10, 12, 17, 0.92) 0%, rgba(10, 12, 17, 0.45) 45%, rgba(0, 0, 0, 0.2) 100%) !important;
 }
 
 [data-theme="light"] .player-spotlight-hero .bg-gradient-to-r,
 html.theme-light .player-spotlight-hero .bg-gradient-to-r,
 body.theme-light .player-spotlight-hero .bg-gradient-to-r {
-  background: linear-gradient(to right, rgba(246, 248, 253, 0.92) 0%, rgba(246, 248, 253, 0.45) 50%, transparent 100%) !important;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.5) 100%) !important;
 }
 
 [data-theme="light"] .player-spotlight-hero h1,
 html.theme-light .player-spotlight-hero h1,
 body.theme-light .player-spotlight-hero h1 {
-  color: #0F172A !important;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9) !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.95) !important;
   filter: none !important;
 }
 
 [data-theme="light"] .player-spotlight-hero .font-space,
 html.theme-light .player-spotlight-hero .font-space,
 body.theme-light .player-spotlight-hero .font-space {
-  color: #1E293B !important;
+  color: #F1F5F9 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 [data-theme="light"] .player-spotlight-hero .player-hero-location,
