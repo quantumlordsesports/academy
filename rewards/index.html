@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gift for the Viewers & Strategy Vault // QuantumLords Esports</title>
+  <title>Gift for the Viewers & Rewards // QuantumLords Esports</title>
   <meta name="description"
-    content="Exclusive gift for QuantumLords viewers. Unlock classified competitive strategy books, mental mastery doctrines, and Free Fire tactical PDFs with password shahriar01." />
+    content="Exclusive gifts for QuantumLords viewers. Access the vault master password (shahriar01) and active Free Fire redeem codes." />
   <meta name="keywords"
-    content="QuantumLords gift, Free Fire Strategy PDFs, Esports Tactical Books, Redeem Codes, shahriar01, Free Fire Academy" />
+    content="QuantumLords gift, Free Fire Redeem Codes, Vault Password, shahriar01, Free Fire Academy, Esports Rewards" />
   <meta name="author" content="Quantum Lords Esports" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Gift for the Viewers & Strategy Vault // QuantumLords Esports" />
+  <meta property="og:title" content="Gift for the Viewers & Rewards // QuantumLords Esports" />
   <meta property="og:description"
-    content="Exclusive gift for QuantumLords viewers. Unlock classified strategy books & tactical PDFs with password shahriar01." />
-  <meta property="og:image" content="../assets/matches/academy.png" />
+    content="Exclusive gifts for QuantumLords viewers. Access the master vault password (shahriar01) and active Free Fire redeem codes." />
+  <meta property="og:image" content="../assets/logo.png" />
   <meta property="og:type" content="website" />
 
   <!-- Favicon -->
@@ -29,6 +29,37 @@
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              bg: '#080C14',
+              surface: '#0D111A',
+              card: '#131826',
+              border: '#1E2638',
+              cyan: '#00F0FF',
+              crimson: '#FF0055',
+              violet: '#8B5CF6',
+              green: '#00FF66',
+              gold: '#E8C56A',
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="../ui-effects.css" />
@@ -38,76 +69,64 @@
   <link rel="stylesheet" href="../page-premium.css" />
 
   <style>
-    /* Gift Vault Special Styling */
-    .gift-hero-banner {
-      background: radial-gradient(ellipse at 50% 20%, rgba(232, 197, 106, 0.15) 0%, rgba(0, 240, 255, 0.06) 45%, #080C14 80%);
-      border: 1px solid rgba(232, 197, 106, 0.35);
-      border-radius: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 197, 106, 0.15);
-      position: relative;
-      overflow: hidden;
+    .clean-glass-card {
+      background: rgba(19, 24, 38, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .clean-glass-card:hover {
+      border-color: rgba(232, 197, 106, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(232, 197, 106, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .password-glow-box {
+      background: radial-gradient(ellipse at 50% 50%, rgba(232, 197, 106, 0.12) 0%, rgba(10, 14, 24, 0.95) 100%);
+      border: 2px dashed #E8C56A;
+      box-shadow: inset 0 0 25px rgba(232, 197, 106, 0.1), 0 8px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 18px;
     }
 
     .gift-badge-pulse {
-      animation: giftPulse 2s infinite ease-in-out;
+      animation: giftPulse 2.5s infinite ease-in-out;
     }
 
     @keyframes giftPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(232, 197, 106, 0.4); }
-      50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(232, 197, 106, 0.7); }
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(232, 197, 106, 0.3); }
+      50% { transform: scale(1.04); box-shadow: 0 0 25px rgba(232, 197, 106, 0.6); }
     }
 
-    .password-copy-box {
-      background: rgba(10, 14, 24, 0.95);
-      border: 2px dashed #E8C56A;
-      box-shadow: inset 0 0 20px rgba(232, 197, 106, 0.12), 0 8px 25px rgba(0, 0, 0, 0.6);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .password-copy-box:hover {
-      border-color: #00F0FF;
-      box-shadow: inset 0 0 25px rgba(0, 240, 255, 0.15), 0 12px 35px rgba(0, 0, 0, 0.8);
-    }
-
-    .vault-card-premium {
-      background: rgba(15, 20, 32, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .vault-card-premium:hover {
-      border-color: #E8C56A;
-      background: rgba(20, 26, 44, 0.95);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(232, 197, 106, 0.2);
-    }
-
-    /* Light Theme Overrides */
-    [data-theme="light"] .gift-hero-banner {
-      background: radial-gradient(ellipse at 50% 20%, rgba(217, 119, 6, 0.12) 0%, rgba(2, 132, 199, 0.06) 45%, #FFFFFF 80%) !important;
+    /* Light Theme Styling */
+    [data-theme="light"] .clean-glass-card {
+      background: #FFFFFF !important;
       border-color: rgba(203, 213, 225, 0.9) !important;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
     }
 
-    [data-theme="light"] .password-copy-box {
+    [data-theme="light"] .password-glow-box {
       background: #F8FAFD !important;
       border-color: #D97706 !important;
+      box-shadow: 0 4px 18px rgba(217, 119, 6, 0.12) !important;
+    }
+
+    [data-theme="light"] .text-white {
       color: #0F172A !important;
     }
 
-    [data-theme="light"] .vault-card-premium {
-      background: #FFFFFF !important;
-      border-color: rgba(203, 213, 225, 0.9) !important;
-      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05) !important;
+    [data-theme="light"] .text-slate-300 {
+      color: #334155 !important;
+    }
+
+    [data-theme="light"] .text-slate-400 {
+      color: #64748B !important;
     }
   </style>
 </head>
 
-<body class="bg-[#080C14] text-[#F1F5F9] font-sans min-h-screen relative overflow-x-hidden antialiased">
+<body class="bg-[#080C14] text-[#F1F5F9] font-sans min-h-screen relative overflow-x-hidden antialiased flex flex-col justify-between">
 
   <!-- Header -->
   <header class="site-header">
@@ -156,37 +175,47 @@
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12 w-full">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12 w-full">
 
-    <!-- ========================================================================= -->
-    <!-- 1. GIFT FOR THE VIEWERS HERO BANNER -->
-    <!-- ========================================================================= -->
-    <section class="gift-hero-banner p-6 sm:p-10 text-center space-y-6">
-      
-      <!-- Top Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyber-gold/20 border border-cyber-gold/50 text-cyber-gold font-mono text-xs font-bold tracking-widest uppercase gift-badge-pulse">
+    <!-- Hero Header -->
+    <section class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyber-gold/15 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold tracking-widest uppercase gift-badge-pulse">
         <span>🎁</span>
-        <span>SPECIAL GIFT FOR THE VIEWERS</span>
+        <span>COMMUNITY REWARDS & ACCESS</span>
       </div>
 
-      <!-- Main Title -->
-      <div class="space-y-3 max-w-3xl mx-auto">
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black font-orbitron text-white tracking-wider uppercase leading-tight">
-          GIFT FOR THE <span class="text-cyber-gold">VIEWERS</span>
-        </h1>
-        <p class="text-slate-300 font-space text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-          As a special gift for our viewers, fans, and community members, access all our classified strategy books, mental mastery guides, and competitive Free Fire PDF doctrines.
+      <h1 class="text-3xl sm:text-5xl font-black font-orbitron text-white tracking-wider uppercase">
+        GIFTS & <span class="text-cyber-gold">VAULT REWARDS</span>
+      </h1>
+      <p class="text-slate-300 font-space text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Official viewer gift password and daily verified Free Fire redeem codes from QuantumLords Esports.
+      </p>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 1. VAULT MASTER PASSWORD SECTION -->
+    <!-- ========================================================================= -->
+    <section class="clean-glass-card p-6 sm:p-10 text-center space-y-6">
+      <div class="space-y-2">
+        <span class="text-xs font-mono text-cyber-cyan uppercase tracking-widest font-bold">
+          🔐 CLASSIFIED VAULT & DOCTRINE ACCESS
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wide">
+          MASTER PASSWORD
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-space max-w-md mx-auto">
+          Use this password to unlock classified strategy files, tactical documents, and coaching archives across our portals.
         </p>
       </div>
 
-      <!-- Password Unlock Highlight Box -->
-      <div class="password-copy-box max-w-lg mx-auto p-5 sm:p-6 text-center space-y-3">
-        <div class="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">
-          🔐 TO UNLOCK ALL THE PDF'S, PASSWORD IS:
+      <!-- Password Card -->
+      <div class="password-glow-box p-6 max-w-md mx-auto space-y-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase tracking-widest font-semibold">
+          VAULT UNLOCK KEY
         </div>
 
-        <div class="flex items-center justify-center gap-3">
-          <span class="font-mono text-2xl sm:text-3xl font-black text-cyber-gold tracking-widest select-all drop-shadow-[0_0_12px_rgba(232,197,106,0.6)]">
+        <div class="py-2">
+          <span class="font-mono text-3xl sm:text-4xl font-black text-cyber-gold tracking-widest select-all drop-shadow-[0_0_15px_rgba(232,197,106,0.6)]">
             shahriar01
           </span>
         </div>
@@ -195,365 +224,123 @@
           type="button" 
           id="copyPasswordBtn" 
           onclick="copyVaultPassword('shahriar01')"
-          class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-cyber-gold hover:from-amber-400 hover:to-yellow-300 text-black font-orbitron font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(232,197,106,0.4)] cursor-pointer flex items-center justify-center gap-2"
+          class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-cyber-gold hover:from-amber-400 hover:to-yellow-300 text-black font-orbitron font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(232,197,106,0.35)] hover:shadow-[0_0_25px_rgba(232,197,106,0.5)] cursor-pointer flex items-center justify-center gap-2 active:scale-[0.98]"
         >
           <span>📋</span>
           <span id="copyPasswordBtnText">COPY PASSWORD (shahriar01)</span>
         </button>
       </div>
-
-      <div class="text-xs font-mono text-slate-400 flex items-center justify-center gap-4 flex-wrap pt-2">
-        <span>✨ 100% Free Access</span>
-        <span>•</span>
-        <span>📚 6 Complete Master Books</span>
-        <span>•</span>
-        <span>⚡ Instant Google Drive Downloads</span>
-      </div>
-
     </section>
 
     <!-- ========================================================================= -->
-    <!-- 2. PDF STRATEGY & TACTICAL BOOKS VAULT (6 PDFS) -->
+    <!-- 2. ACTIVE FREE FIRE REDEEM CODES SECTION -->
     <!-- ========================================================================= -->
     <section class="space-y-6">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider flex items-center gap-2">
-            <span>📚</span>
-            <span>UNLOCKED STRATEGY <span class="text-cyber-cyan">VAULT</span></span>
-          </h2>
-          <p class="text-xs font-space text-slate-400 mt-0.5">Click any book to enter password <code>shahriar01</code> and download.</p>
-        </div>
-        <span class="text-xs font-mono text-cyber-cyan bg-cyan-950/50 px-3 py-1 rounded-full border border-cyan-500/30 self-start sm:self-auto">
-          6 CLASSIFIED DOCTRINES
-        </span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-        <!-- 1. The Art of Strategy -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-cyber-cyan bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded font-bold uppercase">
-                GAME THEORY
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-cyan-950/40 border border-cyan-500/40 flex items-center justify-center text-2xl flex-shrink-0">
-                ♟️
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">The Art of Strategy</h3>
-                <p class="text-[11px] font-mono text-slate-400 mt-0.5">Avinash K. Dixit & Barry J. Nalebuff</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              Master game theory, anticipate rival lobby rotations, and make mathematically winning choices in esports finals.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://drive.google.com/file/d/1rQu6lCRm1I_oRqxmhSxdTc1BOriF8EEi/view?usp=sharing', 'The Art of Strategy')"
-              class="px-4 py-2 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 border border-cyber-cyan/50 text-cyber-cyan font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- 2. The Art of War (Bangla) -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-red-400 bg-red-950/60 border border-red-500/30 px-2 py-0.5 rounded font-bold uppercase">
-                MILITARY CLASSIC
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-red-950/40 border border-red-500/40 flex items-center justify-center text-2xl flex-shrink-0">
-                ⚔️
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">The Art of War (সমরকলা)</h3>
-                <p class="text-[11px] font-mono text-slate-400 mt-0.5">Sun Tzu · Bangla Pro Edition</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              Tactical positioning, deceptive maneuvers, and high-ground psychology translated in clear Bengali for gamers.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://drive.google.com/file/d/1pxUFb_SDDWj1duQtT99QbTXNEYdiKJYW/view?usp=drive_link', 'The Art of War (সমরকলা)')"
-              class="px-4 py-2 rounded-lg bg-red-500/15 hover:bg-red-500/25 border border-red-500/50 text-red-400 font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- 3. Thinking in Bets -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-purple-400 bg-purple-950/60 border border-purple-500/30 px-2 py-0.5 rounded font-bold uppercase">
-                DECISION SCIENCE
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-purple-950/40 border border-purple-500/40 flex items-center justify-center text-2xl flex-shrink-0">
-                🎲
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">Thinking in Bets</h3>
-                <p class="text-[11px] font-mono text-slate-400 mt-0.5">Annie Duke · Decision Making</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              Making smarter in-game calls when you don't have all the facts. Eliminate tilt and master probabilistic rotations.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://drive.google.com/file/d/14ctzeDcpP60UzWxkrU-XlVzpneXai3Qj/view?usp=drive_link', 'Thinking in Bets')"
-              class="px-4 py-2 rounded-lg bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/50 text-purple-400 font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- 4. The Book of Five Rings -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded font-bold uppercase">
-                DUEL MASTERY
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-center text-2xl flex-shrink-0">
-                🏯
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">The Book of Five Rings</h3>
-                <p class="text-[11px] font-mono text-slate-400 mt-0.5">Miyamoto Musashi · Focus Mastery</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              Legendary swordsman doctrine on situational awareness, individual 1v1 mechanics, rhythm control, and focus.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://drive.google.com/file/d/1JgGL3XnhkpORJUMDBm8MMCLFgk5LxO1_/view?usp=sharing', 'The Book of Five Rings')"
-              class="px-4 py-2 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/50 text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- 5. The Champion's Mind -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-amber-400 bg-amber-950/60 border border-amber-500/30 px-2 py-0.5 rounded font-bold uppercase">
-                SPORTS PSYCHOLOGY
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-amber-950/40 border border-amber-500/40 flex items-center justify-center text-2xl flex-shrink-0">
-                🧠
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">The Champion's Mind</h3>
-                <p class="text-[11px] font-mono text-slate-400 mt-0.5">Dr. Jim Afremow · Mental Toughness</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              How great athletes think, train, and thrive in high-pressure tournaments. Build unshakeable clutch confidence.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">PDF FORMAT</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://drive.google.com/file/d/1q_A7kBkC-w4BYW2j--bXpQ1zNFb8OC2G/view?usp=drive_link', 'The Champion\'s Mind')"
-              class="px-4 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/50 text-amber-400 font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-        <!-- 6. Strategical Esports by AK -->
-        <article class="vault-card-premium p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-[10px] font-mono text-cyber-gold bg-cyber-gold/20 border border-cyber-gold/50 px-2 py-0.5 rounded font-bold uppercase">
-                QUANTUMLORDS SPECIAL
-              </span>
-              <span class="text-[10px] font-mono text-cyber-gold bg-amber-950/50 border border-amber-500/30 px-2 py-0.5 rounded font-bold">
-                🎁 VIEWER GIFT
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-14 rounded-lg bg-amber-950/40 border border-cyber-gold/50 flex items-center justify-center text-2xl flex-shrink-0">
-                👑
-              </div>
-              <div>
-                <h3 class="font-orbitron font-bold text-white text-base leading-tight">Strategical Esports by AK</h3>
-                <p class="text-[11px] font-mono text-cyber-gold mt-0.5">A.K.M Shahriar · Official Handbook</p>
-              </div>
-            </div>
-
-            <p class="text-xs font-space text-slate-300 leading-relaxed">
-              Custom team zone algorithms, battle-tested callout matrices, drop strategies, and Free Fire meta breakdowns.
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-slate-400">DOCX / PDF</span>
-            <button 
-              type="button" 
-              onclick="openVaultModal('https://docs.google.com/document/d/1U_9-LltnT0WOipK9Jnq6iMd-MKNPIS4H/edit?usp=drive_link&ouid=107954101100984058702&rtpof=true&sd=true', 'Strategical Esports by AK')"
-              class="px-4 py-2 rounded-lg bg-cyber-gold/20 hover:bg-cyber-gold/35 border border-cyber-gold text-cyber-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>🔓 Unlock PDF</span>
-              <span>→</span>
-            </button>
-          </div>
-        </article>
-
-      </div>
-
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- 3. ACTIVE FREE FIRE REDEEM CODES -->
-    <!-- ========================================================================= -->
-    <section class="space-y-6 pt-4">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider">
-            🔥 Today's Active <span class="text-cyber-gold">Redeem Codes</span>
+          <h2 class="text-xl sm:text-2xl font-bold font-orbitron text-white uppercase tracking-wider flex items-center gap-2">
+            <span>🔥</span>
+            <span>ACTIVE <span class="text-cyber-gold">REDEEM CODES</span></span>
           </h2>
-          <p class="text-xs font-space text-slate-400 mt-0.5">Server: BD / South Asia | Verified Daily by QuantumLords Esports</p>
+          <p class="text-xs font-space text-slate-400 mt-0.5">Verified daily by QuantumLords Esports</p>
         </div>
         <a 
           href="https://reward.ff.garena.com" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="px-4 py-2 rounded-lg bg-cyber-gold hover:bg-amber-400 text-black font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 self-start sm:self-auto shadow-md"
+          class="px-4 py-2 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 self-start sm:self-auto hover:border-cyber-gold"
         >
-          <span>🔗 Official Redemption Portal</span>
+          <span>Official Redemption Portal</span>
           <span>↗</span>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         
         <!-- Code 1 -->
-        <div class="vault-card-premium p-5 space-y-3">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">STATUS: ACTIVE</span>
-            <span class="text-[10px] font-mono text-slate-400">BD Server</span>
+        <div class="clean-glass-card p-5 space-y-3.5 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
+                ACTIVE
+              </span>
+              <span class="text-[10px] font-mono text-slate-400 font-semibold">BD Server</span>
+            </div>
+            
+            <div class="font-mono text-base font-black text-cyber-gold bg-black/40 p-3 rounded-xl border border-dashed border-cyber-gold/40 text-center select-all tracking-wider">
+              FFQC-L9KD-887Z
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white">Reward:</strong> 2x Weapon Royale Voucher + MP40 Cobra Crate
+            </p>
           </div>
-          <div class="font-mono text-lg font-black text-cyber-gold bg-black/40 p-2.5 rounded-lg border border-dashed border-cyber-gold/40 text-center select-all">
-            FFQC-L9KD-887Z
-          </div>
-          <p class="text-xs text-slate-300"><strong>Reward:</strong> 2x Weapon Royale Voucher + MP40 Predator Cobra Crate</p>
+
           <button 
             type="button" 
             onclick="copyRedeemCode('FFQC-L9KD-887Z', this)" 
-            class="w-full py-2 px-3 rounded-lg bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer"
+            class="w-full py-2.5 px-3 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer hover:border-cyber-gold flex items-center justify-center gap-1.5"
           >
-            📋 Copy Code
+            <span>📋</span>
+            <span>Copy Code</span>
           </button>
         </div>
 
         <!-- Code 2 -->
-        <div class="vault-card-premium p-5 space-y-3">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">STATUS: ACTIVE</span>
-            <span class="text-[10px] font-mono text-slate-400">South Asia</span>
+        <div class="clean-glass-card p-5 space-y-3.5 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
+                ACTIVE
+              </span>
+              <span class="text-[10px] font-mono text-slate-400 font-semibold">South Asia</span>
+            </div>
+            
+            <div class="font-mono text-base font-black text-cyber-gold bg-black/40 p-3 rounded-xl border border-dashed border-cyber-gold/40 text-center select-all tracking-wider">
+              QLDS-2026-FIRE
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white">Reward:</strong> Diamond Royale Ticket + QLD Custom Avatar
+            </p>
           </div>
-          <div class="font-mono text-lg font-black text-cyber-gold bg-black/40 p-2.5 rounded-lg border border-dashed border-cyber-gold/40 text-center select-all">
-            QLDS-2026-FIRE
-          </div>
-          <p class="text-xs text-slate-300"><strong>Reward:</strong> Diamond Royale Ticket + QuantumLords Custom Avatar</p>
+
           <button 
             type="button" 
             onclick="copyRedeemCode('QLDS-2026-FIRE', this)" 
-            class="w-full py-2 px-3 rounded-lg bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer"
+            class="w-full py-2.5 px-3 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer hover:border-cyber-gold flex items-center justify-center gap-1.5"
           >
-            📋 Copy Code
+            <span>📋</span>
+            <span>Copy Code</span>
           </button>
         </div>
 
         <!-- Code 3 -->
-        <div class="vault-card-premium p-5 space-y-3">
-          <div class="flex justify-between items-center">
-            <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-bold">STATUS: ACTIVE</span>
-            <span class="text-[10px] font-mono text-slate-400">Global</span>
+        <div class="clean-glass-card p-5 space-y-3.5 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
+                ACTIVE
+              </span>
+              <span class="text-[10px] font-mono text-slate-400 font-semibold">Global</span>
+            </div>
+            
+            <div class="font-mono text-base font-black text-cyber-gold bg-black/40 p-3 rounded-xl border border-dashed border-cyber-gold/40 text-center select-all tracking-wider">
+              FFBD-VANC-GOLD
+            </div>
+            
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <strong class="text-white">Reward:</strong> 50x Character Fragments + Gold Voucher
+            </p>
           </div>
-          <div class="font-mono text-lg font-black text-cyber-gold bg-black/40 p-2.5 rounded-lg border border-dashed border-cyber-gold/40 text-center select-all">
-            FFBD-VANC-GOLD
-          </div>
-          <p class="text-xs text-slate-300"><strong>Reward:</strong> 50x Character Fragments + Gold Royale Voucher</p>
+
           <button 
             type="button" 
             onclick="copyRedeemCode('FFBD-VANC-GOLD', this)" 
-            class="w-full py-2 px-3 rounded-lg bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer"
+            class="w-full py-2.5 px-3 rounded-xl bg-cyber-gold/15 hover:bg-cyber-gold/25 border border-cyber-gold/40 text-cyber-gold font-mono text-xs font-bold transition-all cursor-pointer hover:border-cyber-gold flex items-center justify-center gap-1.5"
           >
-            📋 Copy Code
+            <span>📋</span>
+            <span>Copy Code</span>
           </button>
         </div>
 
@@ -562,56 +349,9 @@
 
   </main>
 
-  <!-- ========================================================================= -->
-  <!-- 4. PASSWORD MODAL -->
-  <!-- ========================================================================= -->
-  <div id="vaultPasswordModal" class="cyber-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="vaultModalTitle">
-    <div class="cyber-modal-box">
-      <div class="w-12 h-12 rounded-2xl bg-amber-950/80 border border-cyber-gold/50 flex items-center justify-center mx-auto mb-4 text-2xl text-cyber-gold">
-        🎁
-      </div>
-      <h3 id="vaultModalTitle" class="text-lg sm:text-xl font-bold font-orbitron text-white mb-2">
-        UNLOCK VIEWER GIFT INTEL
-      </h3>
-      <p class="text-xs font-space text-slate-300 mb-5">
-        Enter password <strong class="text-cyber-gold">shahriar01</strong> to open <span id="lockedVaultDocTitle" class="text-cyber-cyan">this doctrine</span>.
-      </p>
-
-      <form onsubmit="event.preventDefault(); verifyVaultPassword();" class="space-y-4">
-        <div>
-          <input 
-            type="password" 
-            id="vaultModalInputPassword" 
-            placeholder="Enter password: shahriar01" 
-            required 
-            class="w-full px-4 py-3 rounded-xl bg-[#080B10] border border-slate-700 focus:border-cyber-gold focus:outline-none text-white font-mono text-sm text-center tracking-widest placeholder:text-slate-600"
-          />
-        </div>
-
-        <div id="vaultModalErrorMsg" class="text-xs font-mono min-h-[18px]"></div>
-
-        <div class="flex items-center space-x-3 pt-2">
-          <button 
-            type="button" 
-            onclick="closeVaultModal()" 
-            class="w-1/2 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs uppercase tracking-wider transition-colors cursor-pointer"
-          >
-            Cancel
-          </button>
-          <button 
-            type="submit" 
-            class="w-1/2 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-cyber-gold hover:from-amber-400 hover:to-yellow-300 text-black font-orbitron font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer"
-          >
-            Unlock Now
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <!-- Footer -->
-  <footer class="site-footer bg-[#05070A] border-t border-slate-800 py-8 px-4 text-xs font-mono text-slate-400">
-    <div class="footer-container max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+  <footer class="site-footer bg-[#05070A] border-t border-slate-800/80 py-8 px-4 text-xs font-mono text-slate-400 mt-16">
+    <div class="footer-container max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div class="flex items-center justify-center sm:justify-start space-x-3">
         <img src="../assets/logo.png" alt="QuantumLords logo" class="w-8 h-8 object-contain" />
         <div>
@@ -647,7 +387,7 @@
     function copyRedeemCode(code, btn) {
       navigator.clipboard.writeText(code).then(() => {
         const originalText = btn.innerHTML;
-        btn.innerHTML = '✅ Copied!';
+        btn.innerHTML = '<span>✅</span><span>Copied!</span>';
         setTimeout(() => {
           btn.innerHTML = originalText;
         }, 2000);
@@ -655,63 +395,10 @@
         console.error('Copy failed: ', err);
       });
     }
-
-    function openVaultModal(targetUrl, docTitle) {
-      const modal = document.getElementById('vaultPasswordModal');
-      const input = document.getElementById('vaultModalInputPassword');
-      const errorMsg = document.getElementById('vaultModalErrorMsg');
-      const titleDisplay = document.getElementById('lockedVaultDocTitle');
-      if (modal) {
-        modal.dataset.targetUrl = targetUrl;
-        if (titleDisplay && docTitle) titleDisplay.textContent = `"${docTitle}"`;
-        if (input) input.value = '';
-        if (errorMsg) errorMsg.textContent = '';
-        modal.classList.add('active');
-        setTimeout(() => { if (input) input.focus(); }, 100);
-      }
-    }
-
-    function closeVaultModal() {
-      const modal = document.getElementById('vaultPasswordModal');
-      if (modal) modal.classList.remove('active');
-    }
-
-    function verifyVaultPassword() {
-      const modal = document.getElementById('vaultPasswordModal');
-      const input = document.getElementById('vaultModalInputPassword');
-      const errorMsg = document.getElementById('vaultModalErrorMsg');
-      const entered = input ? input.value.trim().toLowerCase() : '';
-
-      if (entered === 'shahriar01') {
-        if (errorMsg) {
-          errorMsg.style.color = '#00FF66';
-          errorMsg.textContent = '✅ PASSWORD CORRECT! OPENING PDF...';
-        }
-        const targetUrl = (modal && modal.dataset.targetUrl) || 'https://drive.google.com/file/d/1U-wWe5lqVKQg3-NLqqVk5h1whBUajSdo/view';
-        setTimeout(() => {
-          closeVaultModal();
-          window.open(targetUrl, '_blank');
-        }, 400);
-      } else {
-        if (errorMsg) {
-          errorMsg.style.color = '#FF0055';
-          errorMsg.textContent = '❌ INCORRECT PASSWORD: USE "shahriar01"';
-        }
-        if (input) {
-          input.classList.add('shake-error');
-          setTimeout(() => input.classList.remove('shake-error'), 450);
-        }
-      }
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeVaultModal();
-    });
   </script>
 
   <script src="../app.js"></script>
   <script src="../audio-controller.js"></script>
-  <script type="module" src="../motion-effects.js"></script>
 </body>
 
 </html>
