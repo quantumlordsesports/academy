@@ -1896,3 +1896,34 @@ body.theme-light .player-spotlight-hero>.absolute.bottom-0 {
     transform: scale(0.85);
   }
 }
+
+/* ── Tactics Library Bright Mode Overrides ────────────────────────── */
+[data-theme="light"] .character-meta-card,
+[data-theme="light"] .weapon-meta-card,
+html.theme-light .character-meta-card,
+html.theme-light .weapon-meta-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .character-meta-card .text-white,
+[data-theme="light"] .weapon-meta-card .text-white,
+html.theme-light .character-meta-card .text-white,
+html.theme-light .weapon-meta-card .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .character-meta-card .text-slate-300,
+[data-theme="light"] .weapon-meta-card .text-slate-300,
+html.theme-light .character-meta-card .text-slate-300,
+html.theme-light .weapon-meta-card .text-slate-300 {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .character-meta-card .text-slate-400,
+[data-theme="light"] .weapon-meta-card .text-slate-400,
+html.theme-light .character-meta-card .text-slate-400,
+html.theme-light .weapon-meta-card .text-slate-400 {
+  color: #64748B !important;
+}
