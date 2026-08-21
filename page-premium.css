@@ -1927,3 +1927,64 @@ html.theme-light .character-meta-card .text-slate-400,
 html.theme-light .weapon-meta-card .text-slate-400 {
   color: #64748B !important;
 }
+
+
+/* ── System Telemetry Section Bright Mode Overrides ────────────────── */
+[data-theme="light"] #system-telemetry,
+html.theme-light #system-telemetry {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .telemetry-card,
+html.theme-light .telemetry-card {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] .telemetry-card > div[style*="font-weight: 900"],
+html.theme-light .telemetry-card > div[style*="font-weight: 900"] {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] #system-telemetry h2,
+[data-theme="light"] #system-telemetry h3,
+html.theme-light #system-telemetry h2,
+html.theme-light #system-telemetry h3 {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] #system-telemetry div[style*="background: #080C14"],
+html.theme-light #system-telemetry div[style*="background: #080C14"] {
+  background: #F8FAFC !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+}
+
+[data-theme="light"] #system-telemetry div[style*="background: #080c14"],
+html.theme-light #system-telemetry div[style*="background: #080c14"] {
+  background: #E2E8F0 !important;
+}
+
+[data-theme="light"] #system-telemetry div[style*="background: rgba(15, 20, 28"],
+html.theme-light #system-telemetry div[style*="background: rgba(15, 20, 28"] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] #system-telemetry div[style*="background: linear-gradient(135deg, rgba(22, 27, 34"],
+html.theme-light #system-telemetry div[style*="background: linear-gradient(135deg, rgba(22, 27, 34"] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+[data-theme="light"] #system-telemetry span[style*="color: #fff"],
+html.theme-light #system-telemetry span[style*="color: #fff"] {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] #system-telemetry div[style*="color: #fff"],
+html.theme-light #system-telemetry div[style*="color: #fff"] {
+  color: #0F172A !important;
+}
