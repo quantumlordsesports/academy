@@ -2317,7 +2317,7 @@ body {
   }
 
   .hero-video-bg {
-    display: none;
+    opacity: 0.45;
   }
 
   .hero-section {
@@ -2339,9 +2339,154 @@ body {
   }
 }
 
-/* ---------- Mobile Screens (Under 768px) Clean Single-Column Stacking ---------- */
+/* ---------- Mobile Screens (Under 768px) Clean Single-Column Stacking & Fluid Scaling ---------- */
 @media (max-width: 768px) {
 
+  body {
+    padding-top: 64px !important;
+  }
+
+  .nav-bar {
+    padding: 0.6rem 1rem !important;
+  }
+
+  .brand-mark {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    border-radius: 0.7rem !important;
+  }
+
+  .brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-sub {
+    font-size: 0.62rem !important;
+  }
+
+  /* Live Intel Announcement Banner on Mobile */
+  .announce-bar {
+    padding: 0.25rem 0.75rem;
+  }
+
+  .announce-inner {
+    border-radius: 14px;
+    padding: 0.5rem 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .announce-body {
+    width: 100%;
+  }
+
+  .announce-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 0.4rem 1rem;
+    min-height: 38px;
+  }
+
+  /* Hero Section Fluid Scaling */
+  .hero-section {
+    min-height: calc(100vh - 64px);
+    padding: 2rem 1rem 3.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-branding {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .logo-frame {
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-section h1,
+  #hero-title {
+    font-size: clamp(2rem, 8.5vw, 3.2rem) !important;
+    line-height: 1.15;
+    word-break: break-word;
+  }
+
+  .welcome-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.15rem;
+    gap: 0.65rem;
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  .welcome-line {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .hero-badge-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.85rem 0;
+  }
+
+  .zero-g-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+  }
+
+  .hero-actions .button,
+  .hero-actions .btn-discord-spring {
+    width: 100% !important;
+    text-align: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.92rem;
+  }
+
+  /* Stats Band Responsive Grid */
+  .stats-band-premium {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+    margin: -1.5rem 1rem 0;
+    border-radius: 18px;
+  }
+
+  .stat-num {
+    font-size: 1.75rem !important;
+  }
+
+  .stat-lbl {
+    font-size: 0.78rem !important;
+  }
+
+  /* Card Grids & Layouts Stacking */
   .card-grid,
   .achievement-grid,
   .sponsor-grid,
@@ -2358,6 +2503,7 @@ body {
   .roster-grid {
     grid-template-columns: 1fr !important;
     width: 100% !important;
+    gap: 1.25rem;
   }
 
   /* Stack input grid rows on mobile */
@@ -2365,28 +2511,41 @@ body {
   .form-grid {
     grid-template-columns: 1fr !important;
     width: 100% !important;
+    gap: 1rem;
   }
 
-  .welcome-panel {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.1rem;
-    gap: 0.75rem;
-    width: 100%;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-    align-items: stretch;
-  }
-
-  .hero-actions .button {
-    width: 100%;
+  /* Mobile-optimized touch inputs (prevent iOS safari auto-zoom) */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
+    min-height: 46px;
+    border-radius: 10px;
   }
 
   .section-header h1 {
-    font-size: clamp(2.2rem, 9vw, 3.4rem);
+    font-size: clamp(2rem, 8.5vw, 3.2rem);
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.8rem, 7.5vw, 2.6rem);
+  }
+
+  .section-block {
+    padding: 2.5rem 1rem;
+  }
+
+  /* Video player wrapper in news/highlights */
+  .video-embed-wrap,
+  .match-video-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
   }
 }
 
@@ -2402,36 +2561,60 @@ body {
   }
 }
 
+/* ---------- Small Mobile Screens (Under 480px) ---------- */
 @media (max-width: 480px) {
   .brand-label {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .hero-section h1,
   .section-header h2 {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    font-size: clamp(1.85rem, 9.5vw, 2.6rem) !important;
   }
 
   .welcome-line {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
   }
 
   .button {
-    padding: 0.85rem 1.35rem;
-    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
     width: 100%;
   }
 
   .player-card__photo {
-    min-height: 14rem;
+    min-height: 16rem;
   }
 
   .marquee-track {
     animation-duration: calc(var(--marquee-duration, 14s) * 1.4);
   }
 
-  .stats-band {
-    grid-template-columns: 1fr !important;
+  .stats-band-premium {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem;
+    padding: 1rem 0.65rem;
+    margin: -1.25rem 0.5rem 0;
+  }
+
+  .stat-item-premium {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .stat-num {
+    font-size: 1.45rem !important;
+  }
+
+  .stat-lbl {
+    font-size: 0.72rem !important;
+  }
+
+  .toast-copy {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1.5rem;
+    text-align: center;
+    width: auto;
   }
 }
 

@@ -1602,3 +1602,211 @@ html.theme-light .player-spotlight-hero>.absolute.bottom-0,
 body.theme-light .player-spotlight-hero>.absolute.bottom-0 {
   box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
 }
+
+/* ================================================================
+   QuantumLords — Site-Wide Mobile Responsiveness Overhaul (≤768px)
+   Strictly scoped to mobile; PC/Desktop (>1024px) remains untouched
+   ================================================================ */
+
+@media (max-width: 1024px) {
+  .subpage-container,
+  main.max-w-6xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Universal Subpage Hero Padding & Titles */
+  .page-hero,
+  .roster-hero,
+  .player-hero,
+  .tactics-hero,
+  .recruit-hero,
+  .team-updates-hero,
+  .contact-hero,
+  section:first-of-type:not(#hero) {
+    padding: 3.25rem 1rem 2.25rem !important;
+  }
+
+  .page-hero h1,
+  .roster-hero h1,
+  .player-hero h1,
+  .tactics-hero h1,
+  .recruit-hero h1,
+  .team-updates-hero h1,
+  .contact-hero h1 {
+    font-size: clamp(1.85rem, 8vw, 2.85rem) !important;
+    line-height: 1.18 !important;
+    word-break: break-word;
+  }
+
+  .page-hero p,
+  .roster-hero p,
+  .tactics-hero p,
+  .recruit-hero p,
+  .team-updates-hero p,
+  .contact-hero p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+  }
+
+  /* Player Spotlight Hero Section Mobile Adjustments */
+  .player-spotlight-hero {
+    min-height: clamp(460px, 58vh, 580px) !important;
+    max-height: none !important;
+  }
+
+  .player-spotlight-hero h1 {
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem) !important;
+    line-height: 1.1 !important;
+    word-break: break-word;
+  }
+
+  .player-spotlight-hero button {
+    min-height: 40px !important;
+    padding: 0.45rem 0.85rem !important;
+    font-size: 11px !important;
+  }
+
+  /* Player Spotlight Top Bar Navigation */
+  header.border-cyber-gold\/20,
+  header.border-cyber-cyan\/20 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  header.border-cyber-gold\/20 .max-w-7xl,
+  header.border-cyber-cyan\/20 .max-w-7xl {
+    gap: 0.5rem !important;
+  }
+
+  /* Spotlight Squad Quick Switcher on Mobile */
+  header.border-cyber-gold\/20 .flex.items-center.gap-2,
+  header.border-cyber-cyan\/20 .flex.items-center.gap-2 {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
+    padding-bottom: 2px;
+  }
+
+  header.border-cyber-gold\/20 .flex.items-center.gap-2::-webkit-scrollbar,
+  header.border-cyber-cyan\/20 .flex.items-center.gap-2::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Tactical Overview Card Mobile Stacking */
+  main section.rounded-3xl {
+    padding: 1.25rem 1rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  main section.rounded-3xl .w-44.h-52,
+  main section.rounded-3xl .sm\:w-52.sm\:h-60 {
+    width: 170px !important;
+    height: 200px !important;
+    margin: 0 auto;
+  }
+
+  /* 2-Column Mobile Metrics in Spotlight */
+  .grid-cols-2.sm\:grid-cols-4,
+  .grid-cols-2.md\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Single Column Stacking for Loadouts, Dossiers & Weapons */
+  .grid-cols-1.lg\:grid-cols-3,
+  .grid-cols-1.md\:grid-cols-2,
+  .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Teammates navigation row on mobile */
+  .grid-cols-1.sm\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Filter pill tabs horizontal scroll container */
+  .filter-tabs-wrapper,
+  .roster-tabs,
+  .tactics-tabs,
+  .news-categories {
+    display: flex !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .filter-tabs-wrapper::-webkit-scrollbar,
+  .roster-tabs::-webkit-scrollbar,
+  .tactics-tabs::-webkit-scrollbar,
+  .news-categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Recruit Application Multi-Step Form */
+  .recruit-steps {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .recruit-step-item {
+    width: 100% !important;
+  }
+
+  /* Cloudflare Turnstile bot widget mobile centering */
+  .cf-turnstile-wrapper,
+  .cf-turnstile {
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0.75rem auto !important;
+    transform: scale(0.92);
+    transform-origin: center;
+  }
+
+  /* Touch buttons full width */
+  form button[type="submit"],
+  .form-submit-btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Daily Rewards Grid */
+  .rewards-grid,
+  .daily-streak-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+}
+
+/* ---------- Small Mobile Screens (Under 480px) ---------- */
+@media (max-width: 480px) {
+  .player-spotlight-hero {
+    min-height: 440px !important;
+  }
+
+  .player-spotlight-hero h1 {
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+  }
+
+  .rewards-grid,
+  .daily-streak-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem !important;
+  }
+
+  .cf-turnstile {
+    transform: scale(0.85);
+  }
+}
