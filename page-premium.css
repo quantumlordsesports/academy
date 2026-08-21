@@ -271,8 +271,6 @@ body:not([data-theme="light"]):not(.theme-light) .comms-block {
   transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
               border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
-              border-color 0.3s ease, box-shadow 0.3s ease !important;
-}
 .contact-card:hover, .channel-card:hover, .comms-block:hover {
   transform: translateY(-5px) !important;
   border-color: rgba(88,101,242,0.3) !important;
@@ -1179,4 +1177,204 @@ body.theme-light .action-btn-secondary:hover {
   background: rgba(2, 132, 199, 0.1) !important;
   border-color: #0284C7 !important;
   color: #0284C7 !important;
+}
+
+/* ── 5. PLAYER DOSSIERS SPOTLIGHT LIGHT MODE OVERRIDES (nishad, roman, santo, shahriar) ── */
+[data-theme="light"] .player-spotlight-hero,
+html.theme-light .player-spotlight-hero,
+body.theme-light .player-spotlight-hero {
+  background-color: #F6F8FD !important;
+}
+
+[data-theme="light"] .player-spotlight-hero .bg-gradient-to-t,
+html.theme-light .player-spotlight-hero .bg-gradient-to-t,
+body.theme-light .player-spotlight-hero .bg-gradient-to-t {
+  background: linear-gradient(to top, rgba(246, 248, 253, 0.96) 0%, rgba(246, 248, 253, 0.72) 45%, rgba(15, 23, 42, 0.35) 100%) !important;
+}
+
+[data-theme="light"] .player-spotlight-hero .bg-gradient-to-r,
+html.theme-light .player-spotlight-hero .bg-gradient-to-r,
+body.theme-light .player-spotlight-hero .bg-gradient-to-r {
+  background: linear-gradient(to right, rgba(246, 248, 253, 0.92) 0%, rgba(246, 248, 253, 0.45) 50%, transparent 100%) !important;
+}
+
+[data-theme="light"] .player-spotlight-hero h1,
+html.theme-light .player-spotlight-hero h1,
+body.theme-light .player-spotlight-hero h1 {
+  color: #0F172A !important;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.9) !important;
+  filter: none !important;
+}
+
+[data-theme="light"] .player-spotlight-hero .font-space,
+html.theme-light .player-spotlight-hero .font-space,
+body.theme-light .player-spotlight-hero .font-space {
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .player-spotlight-hero .hud-corner,
+html.theme-light .player-spotlight-hero .hud-corner,
+body.theme-light .player-spotlight-hero .hud-corner {
+  border-color: #0284C7 !important;
+}
+
+[data-theme="light"] #spotlightMuteBtn,
+[data-theme="light"] #spotlightPlayBtn,
+html.theme-light #spotlightMuteBtn,
+html.theme-light #spotlightPlayBtn,
+body.theme-light #spotlightMuteBtn,
+body.theme-light #spotlightPlayBtn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] #spotlightMuteBtn:hover,
+[data-theme="light"] #spotlightPlayBtn:hover,
+html.theme-light #spotlightMuteBtn:hover,
+html.theme-light #spotlightPlayBtn:hover,
+body.theme-light #spotlightMuteBtn:hover,
+body.theme-light #spotlightPlayBtn:hover {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  color: #0284C7 !important;
+}
+
+/* Tactical Overview Section & Metrics */
+[data-theme="light"] main section.rounded-3xl,
+html.theme-light main section.rounded-3xl,
+body.theme-light main section.rounded-3xl {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.07) !important;
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .border-l-4.border-cyber-cyan,
+html.theme-light .border-l-4.border-cyber-cyan,
+body.theme-light .border-l-4.border-cyber-cyan {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border-left-color: #0284C7 !important;
+  color: #1E293B !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+html.theme-light .bg-white\/\[0\.02\],
+html.theme-light .bg-white\/\[0\.03\],
+body.theme-light .bg-white\/\[0\.02\],
+body.theme-light .bg-white\/\[0\.03\] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  color: #0F172A !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.02\] .text-slate-400,
+[data-theme="light"] .bg-white\/\[0\.03\] .text-slate-400,
+html.theme-light .bg-white\/\[0\.02\] .text-slate-400,
+html.theme-light .bg-white\/\[0\.03\] .text-slate-400,
+body.theme-light .bg-white\/\[0\.02\] .text-slate-400,
+body.theme-light .bg-white\/\[0\.03\] .text-slate-400 {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .bg-\[\#080B10\],
+html.theme-light .bg-\[\#080B10\],
+body.theme-light .bg-\[\#080B10\] {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  color: #0284C7 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Dossier & Loadout Panels */
+[data-theme="light"] .bg-\[\#0F131D\]\/80,
+[data-theme="light"] .bg-\[\#0F131D\]\/90,
+[data-theme="light"] .bg-\[\#0A0D16\],
+html.theme-light .bg-\[\#0F131D\]\/80,
+html.theme-light .bg-\[\#0F131D\]\/90,
+html.theme-light .bg-\[\#0A0D16\],
+body.theme-light .bg-\[\#0F131D\]\/80,
+body.theme-light .bg-\[\#0F131D\]\/90,
+body.theme-light .bg-\[\#0A0D16\] {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06) !important;
+  color: #0F172A !important;
+}
+
+/* Teammates navigation links */
+[data-theme="light"] a[href$=".html"].bg-\[\#0F131D\],
+html.theme-light a[href$=".html"].bg-\[\#0F131D\],
+body.theme-light a[href$=".html"].bg-\[\#0F131D\] {
+  background: #F8FAFD !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03) !important;
+}
+
+[data-theme="light"] a[href$=".html"].bg-\[\#0F131D\]:hover,
+html.theme-light a[href$=".html"].bg-\[\#0F131D\]:hover,
+body.theme-light a[href$=".html"].bg-\[\#0F131D\]:hover {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] a[href$=".html"].bg-\[\#0F131D\] .text-white,
+html.theme-light a[href$=".html"].bg-\[\#0F131D\] .text-white,
+body.theme-light a[href$=".html"].bg-\[\#0F131D\] .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] a[href$=".html"].bg-\[\#0F131D\] .text-cyber-gold,
+html.theme-light a[href$=".html"].bg-\[\#0F131D\] .text-cyber-gold,
+body.theme-light a[href$=".html"].bg-\[\#0F131D\] .text-cyber-gold {
+  color: #B45309 !important;
+}
+
+/* Dossier Header Spotlight navigation */
+[data-theme="light"] header.border-cyber-gold\/20,
+html.theme-light header.border-cyber-gold\/20,
+body.theme-light header.border-cyber-gold\/20 {
+  background: rgba(248, 250, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.85) !important;
+}
+
+[data-theme="light"] .text-cyber-muted,
+html.theme-light .text-cyber-muted,
+body.theme-light .text-cyber-muted {
+  color: #64748B !important;
+}
+
+[data-theme="light"] a[href="index.html"].bg-cyber-gold\/15,
+html.theme-light a[href="index.html"].bg-cyber-gold\/15,
+body.theme-light a[href="index.html"].bg-cyber-gold\/15 {
+  background: rgba(217, 119, 6, 0.12) !important;
+  border-color: #D97706 !important;
+  color: #B45309 !important;
+}
+
+[data-theme="light"] a[href="index.html"].bg-cyber-gold\/15:hover,
+html.theme-light a[href="index.html"].bg-cyber-gold\/15:hover,
+body.theme-light a[href="index.html"].bg-cyber-gold\/15:hover {
+  background: rgba(217, 119, 6, 0.2) !important;
+  border-color: #B45309 !important;
+  color: #92400E !important;
+}
+
+[data-theme="light"] .bg-cyber-card,
+html.theme-light .bg-cyber-card,
+body.theme-light .bg-cyber-card {
+  background: #FFFFFF !important;
+  border-color: rgba(203, 213, 225, 0.9) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05) !important;
+}
+
+[data-theme="light"] .player-spotlight-hero > .absolute.bottom-0,
+html.theme-light .player-spotlight-hero > .absolute.bottom-0,
+body.theme-light .player-spotlight-hero > .absolute.bottom-0 {
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
 }
