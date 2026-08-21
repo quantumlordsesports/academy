@@ -424,7 +424,7 @@ const showThemeToast = (() => {
   let toastEl = null;
   let hideTimer = null;
 
-  return function(theme) {
+  return function (theme) {
     // Create toast element once
     if (!toastEl) {
       toastEl = document.createElement('div');
@@ -446,9 +446,9 @@ const showThemeToast = (() => {
     if (hideTimer) clearTimeout(hideTimer);
 
     const isDark = theme === 'dark';
-    const icon    = isDark ? '🌙' : '☀️';
-    const title   = isDark ? 'Dark Mode Activated' : 'Bright Mode Activated';
-    const msg     = isDark
+    const icon = isDark ? '🌙' : '☀️';
+    const title = isDark ? 'Dark Mode Activated' : 'Bright Mode Activated';
+    const msg = isDark
       ? 'Programmers Prefer Dark Mode. Because Light attracts Bugs 🐛'
       : 'Good Morning! Welcome to the bright side ☀️';
 
@@ -457,9 +457,9 @@ const showThemeToast = (() => {
     void toastEl.offsetWidth; // reflow to restart animations
     toastEl.classList.add(isDark ? 'toast-dark' : 'toast-light');
 
-    toastEl.querySelector('.qld-toast-icon').textContent  = icon;
+    toastEl.querySelector('.qld-toast-icon').textContent = icon;
     toastEl.querySelector('.qld-toast-title').textContent = title;
-    toastEl.querySelector('.qld-toast-msg').textContent   = msg;
+    toastEl.querySelector('.qld-toast-msg').textContent = msg;
 
     // Reset progress bar
     const prog = toastEl.querySelector('.qld-toast-progress');
@@ -529,13 +529,13 @@ const initThemeToggle = () => {
         text.textContent = isLight ? 'Dark' : 'Bright';
       }
 
-      // Bengali Teaser Badge ("ব্রাইট মুডে আরো মজা পাবেন ") - Visible only in Dark mode
+      // Bengali Teaser Badge ("Tung Tung Mode ") - Visible only in Dark mode
       let badge = btn.querySelector('.theme-toggle-teaser-badge');
       if (!isLight) {
         if (!badge) {
           badge = document.createElement('span');
           badge.className = 'theme-toggle-teaser-badge';
-          badge.textContent = 'ব্রাইট মুডে আরো মজা পাবেন ';
+          badge.textContent = 'Tung Tung Mode ';
           btn.appendChild(badge);
         }
         badge.style.display = 'inline-flex';
@@ -553,13 +553,13 @@ const initThemeToggle = () => {
   if (!document.querySelector('script[src*="theme-atmosphere.js"]')) {
     const atmoScript = document.createElement('script');
     // Detect relative path depth
-    const isSubdir = window.location.pathname.includes('/roster/') || 
-                     window.location.pathname.includes('/team-updates/') || 
-                     window.location.pathname.includes('/tactics/') || 
-                     window.location.pathname.includes('/recruit/') || 
-                     window.location.pathname.includes('/contact/') || 
-                     window.location.pathname.includes('/portal/') || 
-                     window.location.pathname.includes('/rewards/');
+    const isSubdir = window.location.pathname.includes('/roster/') ||
+      window.location.pathname.includes('/team-updates/') ||
+      window.location.pathname.includes('/tactics/') ||
+      window.location.pathname.includes('/recruit/') ||
+      window.location.pathname.includes('/contact/') ||
+      window.location.pathname.includes('/portal/') ||
+      window.location.pathname.includes('/rewards/');
     atmoScript.src = isSubdir ? '../theme-atmosphere.js' : 'theme-atmosphere.js';
     atmoScript.defer = true;
     document.head.appendChild(atmoScript);
