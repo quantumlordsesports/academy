@@ -1,6 +1,7 @@
 /* ============================================================
    QuantumLords Esports — Premium Background Music & Soundscape Player
    Theme: Cyber Obsidian / Gold & Cyan Neon / Glassmorphism
+   Full Responsive & Universal Bright/Light Mode Support
    ============================================================ */
 
 /* ── Base Widget Container ── */
@@ -826,60 +827,452 @@
   transform: translateY(0);
 }
 
-/* ── 4. LIGHT / BRIGHT THEME OVERRIDES ── */
+/* ============================================================
+   ── 4. COMPLETE BRIGHT / LIGHT THEME OVERRIDES ──
+   High Contrast Crisp Glass & Deep Obsidian Typography
+   ============================================================ */
+
+/* 4.1 Compact Bar in Light Mode */
 html[data-theme="light"] .bgm-compact-bar,
-body.theme-light .bgm-compact-bar {
-  background: rgba(255, 255, 255, 0.94) !important;
-  border-color: rgba(15, 23, 42, 0.18) !important;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.15), 0 0 20px rgba(0, 240, 255, 0.12) !important;
+html.theme-light .bgm-compact-bar,
+body.theme-light .bgm-compact-bar,
+.theme-light .bgm-compact-bar,
+[data-theme="light"] .bgm-compact-bar {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(2, 132, 199, 0.35) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.14), 0 0 20px rgba(2, 132, 199, 0.15) !important;
   color: #0F172A !important;
 }
 
+html[data-theme="light"] .bgm-widget.is-playing .bgm-compact-bar,
+html.theme-light .bgm-widget.is-playing .bgm-compact-bar,
+body.theme-light .bgm-widget.is-playing .bgm-compact-bar,
+.theme-light .bgm-widget.is-playing .bgm-compact-bar,
+[data-theme="light"] .bgm-widget.is-playing .bgm-compact-bar {
+  border-color: #0284C7 !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.18), 0 0 24px rgba(2, 132, 199, 0.28) !important;
+}
+
+/* Play/Pause Button in Light Mode */
+html[data-theme="light"] .bgm-toggle-btn,
+html.theme-light .bgm-toggle-btn,
+body.theme-light .bgm-toggle-btn,
+.theme-light .bgm-toggle-btn,
+[data-theme="light"] .bgm-toggle-btn {
+  background: linear-gradient(135deg, #e0f2fe, #f0fdf4) !important;
+  border: 1.5px solid #0284C7 !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2) !important;
+}
+
+html[data-theme="light"] .bgm-toggle-btn:hover,
+html.theme-light .bgm-toggle-btn:hover,
+body.theme-light .bgm-toggle-btn:hover,
+.theme-light .bgm-toggle-btn:hover,
+[data-theme="light"] .bgm-toggle-btn:hover {
+  background: linear-gradient(135deg, #bae6fd, #e0f2fe) !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* Mini Vinyl Disc Thumbnail in Light Mode */
+html[data-theme="light"] .bgm-thumb-badge,
+html.theme-light .bgm-thumb-badge,
+body.theme-light .bgm-thumb-badge,
+.theme-light .bgm-thumb-badge,
+[data-theme="light"] .bgm-thumb-badge {
+  background: #ffffff !important;
+  border: 1.5px solid #0284C7 !important;
+  color: #0284C7 !important;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Typography & Labels in Light Mode */
 html[data-theme="light"] .bgm-title,
-body.theme-light .bgm-title {
+html.theme-light .bgm-title,
+body.theme-light .bgm-title,
+.theme-light .bgm-title,
+[data-theme="light"] .bgm-title {
   color: #0F172A !important;
 }
 
 html[data-theme="light"] .bgm-tag,
-body.theme-light .bgm-tag {
+html.theme-light .bgm-tag,
+body.theme-light .bgm-tag,
+.theme-light .bgm-tag,
+[data-theme="light"] .bgm-tag {
   color: #0284C7 !important;
 }
 
-html[data-theme="light"] .bgm-expanded-panel,
-body.theme-light .bgm-expanded-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(246, 248, 253, 0.98)) !important;
-  border-color: rgba(2, 132, 199, 0.35) !important;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2), 0 0 35px rgba(2, 132, 199, 0.15) !important;
-  color: #0F172A !important;
+/* Equalizer Bars & Nav in Light Mode */
+html[data-theme="light"] .bgm-nav-btn,
+html.theme-light .bgm-nav-btn,
+body.theme-light .bgm-nav-btn,
+.theme-light .bgm-nav-btn,
+[data-theme="light"] .bgm-nav-btn {
+  color: #334155 !important;
 }
 
-html[data-theme="light"] .bgm-showcase-title,
-body.theme-light .bgm-showcase-title {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .bgm-playlist-item,
-body.theme-light .bgm-playlist-item {
-  background: rgba(15, 23, 42, 0.03) !important;
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html[data-theme="light"] .bgm-pl-title,
-body.theme-light .bgm-pl-title {
-  color: #0F172A !important;
-}
-
-html[data-theme="light"] .bgm-playlist-item.is-active,
-body.theme-light .bgm-playlist-item.is-active {
+html[data-theme="light"] .bgm-nav-btn:hover,
+html.theme-light .bgm-nav-btn:hover,
+body.theme-light .bgm-nav-btn:hover,
+.theme-light .bgm-nav-btn:hover,
+[data-theme="light"] .bgm-nav-btn:hover {
+  color: #0284C7 !important;
   background: rgba(2, 132, 199, 0.12) !important;
+}
+
+html[data-theme="light"] .bgm-eq-bar,
+html.theme-light .bgm-eq-bar,
+body.theme-light .bgm-eq-bar,
+.theme-light .bgm-eq-bar,
+[data-theme="light"] .bgm-eq-bar {
+  background: #0284C7 !important;
+}
+
+/* Volume Slider in Light Mode */
+html[data-theme="light"] .bgm-volume-wrap,
+html.theme-light .bgm-volume-wrap,
+body.theme-light .bgm-volume-wrap,
+.theme-light .bgm-volume-wrap,
+[data-theme="light"] .bgm-volume-wrap {
+  border-left: 1px solid rgba(15, 23, 42, 0.14) !important;
+}
+
+html[data-theme="light"] .bgm-vol-slider,
+html.theme-light .bgm-vol-slider,
+body.theme-light .bgm-vol-slider,
+.theme-light .bgm-vol-slider,
+[data-theme="light"] .bgm-vol-slider {
+  background: rgba(15, 23, 42, 0.14) !important;
+}
+
+html[data-theme="light"] .bgm-vol-slider::-webkit-slider-thumb,
+html.theme-light .bgm-vol-slider::-webkit-slider-thumb,
+body.theme-light .bgm-vol-slider::-webkit-slider-thumb,
+.theme-light .bgm-vol-slider::-webkit-slider-thumb,
+[data-theme="light"] .bgm-vol-slider::-webkit-slider-thumb {
+  background: #0284C7 !important;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.5) !important;
+}
+
+/* Expand Button in Light Mode */
+html[data-theme="light"] .bgm-expand-btn,
+html.theme-light .bgm-expand-btn,
+body.theme-light .bgm-expand-btn,
+.theme-light .bgm-expand-btn,
+[data-theme="light"] .bgm-expand-btn {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-expand-btn:hover,
+html.theme-light .bgm-expand-btn:hover,
+body.theme-light .bgm-expand-btn:hover,
+.theme-light .bgm-expand-btn:hover,
+[data-theme="light"] .bgm-expand-btn:hover {
+  background: rgba(2, 132, 199, 0.14) !important;
   border-color: #0284C7 !important;
 }
 
-html[data-theme="light"] .bgm-ctrl-btn,
-body.theme-light .bgm-ctrl-btn {
-  background: rgba(15, 23, 42, 0.05) !important;
+/* 4.2 Expanded Showcase Drawer in Light Mode */
+html[data-theme="light"] .bgm-expanded-panel,
+html.theme-light .bgm-expanded-panel,
+body.theme-light .bgm-expanded-panel,
+.theme-light .bgm-expanded-panel,
+[data-theme="light"] .bgm-expanded-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98)) !important;
+  border: 1.5px solid rgba(2, 132, 199, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.22), 0 0 35px rgba(2, 132, 199, 0.18) !important;
   color: #0F172A !important;
-  border-color: rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Expanded Header in Light Mode */
+html[data-theme="light"] .bgm-expanded-header,
+html.theme-light .bgm-expanded-header,
+body.theme-light .bgm-expanded-header,
+.theme-light .bgm-expanded-header,
+[data-theme="light"] .bgm-expanded-header {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .bgm-exp-tag,
+html.theme-light .bgm-exp-tag,
+body.theme-light .bgm-exp-tag,
+.theme-light .bgm-exp-tag,
+[data-theme="light"] .bgm-exp-tag {
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-pulse-gem,
+html.theme-light .bgm-pulse-gem,
+body.theme-light .bgm-pulse-gem,
+.theme-light .bgm-pulse-gem,
+[data-theme="light"] .bgm-pulse-gem {
+  background: #0284C7 !important;
+  box-shadow: 0 0 8px #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-close-btn,
+html.theme-light .bgm-close-btn,
+body.theme-light .bgm-close-btn,
+.theme-light .bgm-close-btn,
+[data-theme="light"] .bgm-close-btn {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .bgm-close-btn:hover,
+html.theme-light .bgm-close-btn:hover,
+body.theme-light .bgm-close-btn:hover,
+.theme-light .bgm-close-btn:hover,
+[data-theme="light"] .bgm-close-btn:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: #EF4444 !important;
+  color: #DC2626 !important;
+}
+
+/* Showcase Artwork & Meta in Light Mode */
+html[data-theme="light"] .bgm-showcase-art,
+html.theme-light .bgm-showcase-art,
+body.theme-light .bgm-showcase-art,
+.theme-light .bgm-showcase-art,
+[data-theme="light"] .bgm-showcase-art {
+  background: #ffffff !important;
+  border: 2px solid rgba(2, 132, 199, 0.4) !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15), 0 0 20px rgba(2, 132, 199, 0.15) !important;
+}
+
+html[data-theme="light"] .bgm-widget.is-playing .bgm-showcase-art,
+html.theme-light .bgm-widget.is-playing .bgm-showcase-art,
+body.theme-light .bgm-widget.is-playing .bgm-showcase-art,
+.theme-light .bgm-widget.is-playing .bgm-showcase-art,
+[data-theme="light"] .bgm-widget.is-playing .bgm-showcase-art {
+  border-color: #0284C7 !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18), 0 0 25px rgba(2, 132, 199, 0.28) !important;
+}
+
+html[data-theme="light"] .bgm-track-number,
+html.theme-light .bgm-track-number,
+body.theme-light .bgm-track-number,
+.theme-light .bgm-track-number,
+[data-theme="light"] .bgm-track-number {
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-showcase-title,
+html.theme-light .bgm-showcase-title,
+body.theme-light .bgm-showcase-title,
+.theme-light .bgm-showcase-title,
+[data-theme="light"] .bgm-showcase-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-showcase-artist,
+html.theme-light .bgm-showcase-artist,
+body.theme-light .bgm-showcase-artist,
+.theme-light .bgm-showcase-artist,
+[data-theme="light"] .bgm-showcase-artist {
+  color: #475569 !important;
+}
+
+/* Timeline in Light Mode */
+html[data-theme="light"] .bgm-timeline-rail,
+html.theme-light .bgm-timeline-rail,
+body.theme-light .bgm-timeline-rail,
+.theme-light .bgm-timeline-rail,
+[data-theme="light"] .bgm-timeline-rail {
+  background: rgba(15, 23, 42, 0.12) !important;
+}
+
+html[data-theme="light"] .bgm-timeline-fill,
+html.theme-light .bgm-timeline-fill,
+body.theme-light .bgm-timeline-fill,
+.theme-light .bgm-timeline-fill,
+[data-theme="light"] .bgm-timeline-fill {
+  background: linear-gradient(90deg, #0284C7, #38BDF8) !important;
+}
+
+html[data-theme="light"] .bgm-timeline-thumb,
+html.theme-light .bgm-timeline-thumb,
+body.theme-light .bgm-timeline-thumb,
+.theme-light .bgm-timeline-thumb,
+[data-theme="light"] .bgm-timeline-thumb {
+  background: #ffffff !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.6) !important;
+}
+
+html[data-theme="light"] .bgm-timeline-numbers,
+html.theme-light .bgm-timeline-numbers,
+body.theme-light .bgm-timeline-numbers,
+.theme-light .bgm-timeline-numbers,
+[data-theme="light"] .bgm-timeline-numbers {
+  color: #475569 !important;
+}
+
+/* Expanded Transport Controls in Light Mode */
+html[data-theme="light"] .bgm-ctrl-btn,
+html.theme-light .bgm-ctrl-btn,
+body.theme-light .bgm-ctrl-btn,
+.theme-light .bgm-ctrl-btn,
+[data-theme="light"] .bgm-ctrl-btn {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  color: #334155 !important;
+}
+
+html[data-theme="light"] .bgm-ctrl-btn:hover,
+html.theme-light .bgm-ctrl-btn:hover,
+body.theme-light .bgm-ctrl-btn:hover,
+.theme-light .bgm-ctrl-btn:hover,
+[data-theme="light"] .bgm-ctrl-btn:hover {
+  background: rgba(2, 132, 199, 0.12) !important;
+  border-color: #0284C7 !important;
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-play-big-btn,
+html.theme-light .bgm-play-big-btn,
+body.theme-light .bgm-play-big-btn,
+.theme-light .bgm-play-big-btn,
+[data-theme="light"] .bgm-play-big-btn {
+  background: linear-gradient(135deg, #0284C7, #0369A1) !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45) !important;
+}
+
+html[data-theme="light"] .bgm-play-big-btn:hover,
+html.theme-light .bgm-play-big-btn:hover,
+body.theme-light .bgm-play-big-btn:hover,
+.theme-light .bgm-play-big-btn:hover,
+[data-theme="light"] .bgm-play-big-btn:hover {
+  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.65) !important;
+}
+
+/* Playlist Section in Light Mode */
+html[data-theme="light"] .bgm-playlist-section,
+html.theme-light .bgm-playlist-section,
+body.theme-light .bgm-playlist-section,
+.theme-light .bgm-playlist-section,
+[data-theme="light"] .bgm-playlist-section {
+  border-top: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+
+html[data-theme="light"] .bgm-playlist-header,
+html.theme-light .bgm-playlist-header,
+body.theme-light .bgm-playlist-header,
+.theme-light .bgm-playlist-header,
+[data-theme="light"] .bgm-playlist-header {
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-hint,
+html.theme-light .bgm-hint,
+body.theme-light .bgm-hint,
+.theme-light .bgm-hint,
+[data-theme="light"] .bgm-hint {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item,
+html.theme-light .bgm-playlist-item,
+body.theme-light .bgm-playlist-item,
+.theme-light .bgm-playlist-item,
+[data-theme="light"] .bgm-playlist-item {
+  background: rgba(15, 23, 42, 0.03) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item:hover,
+html.theme-light .bgm-playlist-item:hover,
+body.theme-light .bgm-playlist-item:hover,
+.theme-light .bgm-playlist-item:hover,
+[data-theme="light"] .bgm-playlist-item:hover {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item.is-active,
+html.theme-light .bgm-playlist-item.is-active,
+body.theme-light .bgm-playlist-item.is-active,
+.theme-light .bgm-playlist-item.is-active,
+[data-theme="light"] .bgm-playlist-item.is-active {
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.14), rgba(56, 189, 248, 0.08)) !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15) !important;
+}
+
+html[data-theme="light"] .bgm-pl-thumb-wrap,
+html.theme-light .bgm-pl-thumb-wrap,
+body.theme-light .bgm-pl-thumb-wrap,
+.theme-light .bgm-pl-thumb-wrap,
+[data-theme="light"] .bgm-pl-thumb-wrap {
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-thumb-wrap,
+html.theme-light .bgm-playlist-item.is-active .bgm-pl-thumb-wrap,
+body.theme-light .bgm-playlist-item.is-active .bgm-pl-thumb-wrap,
+.theme-light .bgm-playlist-item.is-active .bgm-pl-thumb-wrap,
+[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-thumb-wrap {
+  border-color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-pl-title,
+html.theme-light .bgm-pl-title,
+body.theme-light .bgm-pl-title,
+.theme-light .bgm-pl-title,
+[data-theme="light"] .bgm-pl-title {
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-title,
+html.theme-light .bgm-playlist-item.is-active .bgm-pl-title,
+body.theme-light .bgm-playlist-item.is-active .bgm-pl-title,
+.theme-light .bgm-playlist-item.is-active .bgm-pl-title,
+[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-title {
+  color: #0284C7 !important;
+}
+
+html[data-theme="light"] .bgm-pl-sub,
+html.theme-light .bgm-pl-sub,
+body.theme-light .bgm-pl-sub,
+.theme-light .bgm-pl-sub,
+[data-theme="light"] .bgm-pl-sub {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .bgm-pl-badge,
+html.theme-light .bgm-pl-badge,
+body.theme-light .bgm-pl-badge,
+.theme-light .bgm-pl-badge,
+[data-theme="light"] .bgm-pl-badge {
+  background: rgba(15, 23, 42, 0.06) !important;
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-badge,
+html.theme-light .bgm-playlist-item.is-active .bgm-pl-badge,
+body.theme-light .bgm-playlist-item.is-active .bgm-pl-badge,
+.theme-light .bgm-playlist-item.is-active .bgm-pl-badge,
+[data-theme="light"] .bgm-playlist-item.is-active .bgm-pl-badge {
+  background: rgba(2, 132, 199, 0.15) !important;
+  color: #0284C7 !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+}
+
+/* Tooltip in Light Mode */
+html[data-theme="light"] .bgm-entrance-tooltip,
+html.theme-light .bgm-entrance-tooltip,
+body.theme-light .bgm-entrance-tooltip,
+.theme-light .bgm-entrance-tooltip,
+[data-theme="light"] .bgm-entrance-tooltip {
+  background: #ffffff !important;
+  border-color: #0284C7 !important;
+  color: #0F172A !important;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15), 0 0 15px rgba(2, 132, 199, 0.2) !important;
 }
 
 /* ── 5. RESPONSIVE ADJUSTMENTS ── */
