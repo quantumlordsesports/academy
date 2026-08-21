@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="light" class="theme-light">
 
 <head>
   <!-- PREMIUM_INJECTED_v3 -->
@@ -53,7 +53,7 @@
   <link rel="stylesheet" href="premium.css" />
   <link rel="stylesheet" href="page-premium.css" />
   <script>
-    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'light'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); else document.documentElement.classList.remove('theme-light'); } catch (e) { } })();
   </script>
   <script src="audio-controller.js" defer></script>
   <script src="app.js" defer></script>
@@ -321,9 +321,9 @@ input:focus, select:focus, textarea:focus {
         </div>
 
         <div class="flex items-center space-x-3">
-          <button class="theme-toggle" aria-label="Switch to Bright Theme" title="Switch to Bright Theme">
-            <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
-            <span class="theme-toggle-text">Bright</span>
+          <button class="theme-toggle" aria-label="Switch to Dark Theme" title="Switch to Dark Theme">
+            <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+            <span class="theme-toggle-text">Dark</span>
           </button>
           <button onclick="openMakeupCardModal()"
             class="px-3.5 py-1.5 rounded-lg bg-cyber-violet/20 hover:bg-cyber-violet/30 border border-cyber-violet text-purple-300 font-mono text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all">

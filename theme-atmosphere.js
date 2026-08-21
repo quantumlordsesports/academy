@@ -9,7 +9,7 @@
 (function () {
   let canvas, ctx;
   let animationFrameId = null;
-  let currentTheme = 'dark';
+  let currentTheme = 'light';
   let width = window.innerWidth;
   let height = window.innerHeight;
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="light" class="theme-light">
 
 <head>
   <!-- PREMIUM_INJECTED_v3 -->
@@ -71,7 +71,7 @@
   <link rel="stylesheet" href="premium.css" />
   <link rel="stylesheet" href="page-premium.css" />
   <script>
-    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'light'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); else document.documentElement.classList.remove('theme-light'); } catch (e) { } })();
   </script>
   <script src="audio-controller.js" defer></script>
   <script src="app.js" defer></script>
@@ -377,9 +377,9 @@ input:focus, select:focus, textarea:focus {
           <span id="militaryClock" class="text-white font-bold tracking-widest font-mono">00:00:00 BST</span>
         </div>
         <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Switch to Bright Theme" title="Switch to Bright Theme">
-          <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
-          <span class="theme-toggle-text">Bright</span>
+        <button class="theme-toggle" aria-label="Switch to Dark Theme" title="Switch to Dark Theme">
+          <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
         </button>
         <!-- SFX Toggle -->
         <button id="sfxToggleBtn" onclick="toggleAudioSFX()"

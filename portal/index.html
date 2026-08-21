@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="light" class="theme-light">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="color-scheme" content="dark" />
   <meta name="theme-color" content="#06080f" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -68,7 +67,7 @@
   <link rel="stylesheet" href="../floating-menu.css" />
   <link rel="stylesheet" href="../audio-controller.css" />
   <script>
-    (function () { try { const t = localStorage.getItem('qld_theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); } catch (e) { } })();
+    (function () { try { const t = localStorage.getItem('qld_theme') || 'light'; document.documentElement.setAttribute('data-theme', t); if (t === 'light') document.documentElement.classList.add('theme-light'); else document.documentElement.classList.remove('theme-light'); } catch (e) { } })();
   </script>
   <script src="../audio-controller.js" defer></script>
   <script src="../app.js" defer></script>
@@ -246,9 +245,9 @@
           <span id="militaryClock" class="text-white font-bold tracking-widest font-mono">00:00:00 BST</span>
         </div>
         <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Switch to Bright Theme" title="Switch to Bright Theme">
-          <span class="theme-toggle-icon" aria-hidden="true">☀️</span>
-          <span class="theme-toggle-text">Bright</span>
+        <button class="theme-toggle" aria-label="Switch to Dark Theme" title="Switch to Dark Theme">
+          <span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle-text">Dark</span>
         </button>
         <!-- SFX Toggle -->
         <button id="sfxToggleBtn" onclick="toggleAudioSFX()"

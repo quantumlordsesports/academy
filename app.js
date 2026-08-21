@@ -484,9 +484,9 @@ const showThemeToast = (() => {
 const initThemeToggle = () => {
   const getStoredTheme = () => {
     try {
-      return localStorage.getItem('qld_theme') || 'dark';
+      return localStorage.getItem('qld_theme') || 'light';
     } catch (e) {
-      return 'dark';
+      return 'light';
     }
   };
 
@@ -576,7 +576,7 @@ const initThemeToggle = () => {
     btn.dataset.themeBound = 'true';
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
       const next = current === 'dark' ? 'light' : 'dark';
       setStoredTheme(next);
       applyTheme(next, true);
