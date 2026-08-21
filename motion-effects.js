@@ -77,24 +77,17 @@ function setupFloatingMenu() {
   const fab = document.createElement('button');
   fab.id = 'qldFloatingMenuTrigger';
   fab.className = 'qld-fab-trigger';
-  fab.setAttribute('aria-label', 'Toggle Quantum Tactical Navigation Menu');
+  fab.setAttribute('aria-label', 'Toggle Navigation Menu');
   fab.setAttribute('aria-expanded', 'false');
-  fab.setAttribute('title', 'Quantum Tactical Navigation Menu (Hotkey: M)');
+  fab.setAttribute('title', 'Navigation Menu (Hotkey: M)');
 
   fab.innerHTML = `
     <div class="qld-fab-halo" aria-hidden="true"></div>
     <div class="qld-fab-icon-core">
       <svg class="qld-fab-svg" viewBox="0 0 24 24" id="qldFabIcon">
-        <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
-    </div>
-    <div class="qld-fab-body">
-      <div class="qld-fab-title-row">
-        <span class="qld-fab-beacon" aria-hidden="true"></span>
-        <span class="qld-fab-label">HUD MENU</span>
-        <span class="qld-fab-key-badge" aria-hidden="true">M</span>
-      </div>
-      <span class="qld-fab-sub">TACTICAL NAV</span>
+      <span class="qld-fab-beacon" aria-hidden="true"></span>
     </div>
   `;
 
@@ -103,7 +96,7 @@ function setupFloatingMenu() {
   // Motion Idle Floating Loop on FAB
   animate(fab, 
     { y: [-3, 3, -3] }, 
-    { duration: 3.8, repeat: Infinity, easing: 'ease-in-out' }
+    { duration: 3.6, repeat: Infinity, easing: 'ease-in-out' }
   );
 
   // 2. Create Tactical HUD Backdrop & Modal Dialog
@@ -336,7 +329,7 @@ function setupFloatingMenu() {
 
     // Morph FAB SVG back to hamburger
     fabSvg.innerHTML = `
-      <path d="M3 6h18M3 12h18M3 18h18" stroke-width="2" stroke-linecap="round"/>
+      <path d="M4 7h16M4 12h16M4 17h16" stroke-width="2.2" stroke-linecap="round"/>
     `;
 
     // Motion.js Spring Exit

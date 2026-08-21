@@ -21,16 +21,20 @@
   bottom: max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
   left: max(20px, calc(16px + env(safe-area-inset-left, 0px)));
   z-index: 99995;
-  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
   background: var(--fab-bg);
-  border: 1px solid var(--fab-glass-border);
+  border: 1.5px solid var(--fab-glass-border);
   box-shadow: var(--fab-glow);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: 9999px;
-  padding: 6px 14px 6px 6px;
   color: #ffffff;
   font-family: "Space Grotesk", "Inter", -apple-system, sans-serif;
   cursor: pointer;
@@ -39,12 +43,17 @@
   touch-action: manipulation;
   outline: none;
   text-decoration: none;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .qld-fab-trigger:hover {
-  border-color: rgba(232, 197, 106, 0.7);
-  box-shadow: 0 0 30px rgba(232, 197, 106, 0.35), 0 20px 40px rgba(0, 0, 0, 0.8);
+  transform: scale(1.1) translateY(-2px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 28px rgba(0, 240, 255, 0.55), 0 16px 36px rgba(0, 0, 0, 0.85);
+}
+
+.qld-fab-trigger:active {
+  transform: scale(0.94);
 }
 
 .qld-fab-trigger:focus-visible {
@@ -55,12 +64,12 @@
 /* Outer Orbit Pulse Halo */
 .qld-fab-halo {
   position: absolute;
-  inset: -4px;
-  border-radius: 9999px;
-  border: 1px dashed rgba(0, 240, 255, 0.4);
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(0, 240, 255, 0.45);
   pointer-events: none;
   animation: qld-halo-spin 14s linear infinite;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 @keyframes qld-halo-spin {
@@ -71,33 +80,27 @@
 /* Icon Orb Core */
 .qld-fab-icon-core {
   position: relative;
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(10, 16, 28, 0.95));
-  border: 1.5px solid var(--fab-cyan);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .qld-fab-trigger:hover .qld-fab-icon-core {
-  border-color: var(--fab-gold);
-  box-shadow: 0 0 20px rgba(232, 197, 106, 0.5);
   transform: scale(1.05);
 }
 
 /* Icon SVG */
 .qld-fab-svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: none;
-  stroke: #ffffff;
-  stroke-width: 2;
+  stroke: #00F0FF;
+  stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.25s ease;
@@ -107,23 +110,12 @@
   stroke: var(--fab-gold);
 }
 
-/* Text Content & Cyber Telemetry */
-.qld-fab-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-}
-
-.qld-fab-title-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
 .qld-fab-beacon {
-  width: 7px;
-  height: 7px;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--fab-cyan);
   box-shadow: 0 0 8px var(--fab-cyan);
@@ -135,62 +127,26 @@
   50% { opacity: 0.4; transform: scale(0.75); }
 }
 
-.qld-fab-label {
-  font-family: "Orbitron", "Space Grotesk", sans-serif;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: #f1f5f9;
-  line-height: 1;
-}
-
-.qld-fab-sub {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: rgba(232, 197, 106, 0.9);
-  line-height: 1;
-}
-
-/* Shortcut Pill Badge */
-.qld-fab-key-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 5px;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  color: #94a3b8;
-  letter-spacing: 0.02em;
-  margin-left: 2px;
-}
-
 /* Active Open State on Trigger */
 .qld-fab-trigger.is-active {
-  border-color: rgba(255, 0, 85, 0.6);
-  box-shadow: 0 0 30px rgba(255, 0, 85, 0.4), 0 16px 36px rgba(0, 0, 0, 0.8);
-}
-
-.qld-fab-trigger.is-active .qld-fab-icon-core {
-  background: linear-gradient(135deg, rgba(255, 0, 85, 0.25), rgba(18, 10, 16, 0.95));
-  border-color: var(--fab-crimson);
-  box-shadow: 0 0 16px rgba(255, 0, 85, 0.4);
+  background: rgba(14, 19, 30, 0.95);
+  border-color: rgba(255, 0, 85, 0.7);
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.5), 0 16px 36px rgba(0, 0, 0, 0.85);
+  transform: rotate(90deg) scale(1.05);
 }
 
 .qld-fab-trigger.is-active .qld-fab-svg {
-  transform: rotate(90deg);
   stroke: var(--fab-crimson);
 }
 
 .qld-fab-trigger.is-active .qld-fab-beacon {
   background: var(--fab-crimson);
   box-shadow: 0 0 8px var(--fab-crimson);
+}
+
+.qld-fab-trigger.is-active .qld-fab-halo {
+  border-color: rgba(255, 0, 85, 0.55);
+  animation-duration: 6s;
 }
 
 /* ==========================================
@@ -761,13 +717,17 @@
 
 @media (max-width: 768px) {
   .qld-fab-trigger {
-    padding: 5px 10px 5px 5px;
-    bottom: max(16px, calc(12px + env(safe-area-inset-bottom, 0px)));
-    left: max(16px, calc(12px + env(safe-area-inset-left, 0px)));
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    bottom: max(14px, calc(10px + env(safe-area-inset-bottom, 0px)));
+    left: max(14px, calc(10px + env(safe-area-inset-left, 0px)));
   }
 
-  .qld-fab-key-badge {
-    display: none;
+  .qld-fab-svg {
+    width: 20px;
+    height: 20px;
   }
 
   .qld-hud-dialog {
@@ -815,10 +775,6 @@
 }
 
 @media (max-width: 480px) {
-  .qld-fab-sub {
-    display: none;
-  }
-
   .qld-hud-squad-row {
     grid-template-columns: 1fr;
   }
@@ -833,15 +789,15 @@ html.theme-light .qld-fab-trigger,
 body.theme-light .qld-fab-trigger {
   background: rgba(255, 255, 255, 0.94) !important;
   border-color: rgba(203, 213, 225, 0.95) !important;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.09), 0 0 20px rgba(217, 119, 6, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.09), 0 0 20px rgba(2, 132, 199, 0.2) !important;
   color: #0F172A !important;
 }
 
 [data-theme="light"] .qld-fab-trigger:hover,
 html.theme-light .qld-fab-trigger:hover,
 body.theme-light .qld-fab-trigger:hover {
-  border-color: rgba(217, 119, 6, 0.8) !important;
-  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12), 0 0 25px rgba(217, 119, 6, 0.3) !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.14), 0 0 25px rgba(2, 132, 199, 0.35) !important;
 }
 
 [data-theme="light"] .qld-fab-halo,
@@ -861,27 +817,13 @@ body.theme-light .qld-fab-icon-core {
 [data-theme="light"] .qld-fab-svg,
 html.theme-light .qld-fab-svg,
 body.theme-light .qld-fab-svg {
+  stroke: #0284C7 !important;
+}
+
+[data-theme="light"] .qld-fab-trigger:hover .qld-fab-svg,
+html.theme-light .qld-fab-trigger:hover .qld-fab-svg,
+body.theme-light .qld-fab-trigger:hover .qld-fab-svg {
   stroke: #0F172A !important;
-}
-
-[data-theme="light"] .qld-fab-label,
-html.theme-light .qld-fab-label,
-body.theme-light .qld-fab-label {
-  color: #0F172A !important;
-}
-
-[data-theme="light"] .qld-fab-sub,
-html.theme-light .qld-fab-sub,
-body.theme-light .qld-fab-sub {
-  color: #B45309 !important;
-}
-
-[data-theme="light"] .qld-fab-key-badge,
-html.theme-light .qld-fab-key-badge,
-body.theme-light .qld-fab-key-badge {
-  background: rgba(15, 23, 42, 0.08) !important;
-  border-color: rgba(15, 23, 42, 0.14) !important;
-  color: #475569 !important;
 }
 
 [data-theme="light"] .qld-hud-backdrop,
