@@ -1184,14 +1184,20 @@ body.theme-light .bg-green-950\/40 {
 [data-theme="light"] a[href^="#strategy-books"],
 [data-theme="light"] a[href^="#map-blueprints"],
 [data-theme="light"] a[href^="#character-meta"],
+[data-theme="light"] a[href^="#weapon-meta"],
+[data-theme="light"] a[href^="#learn-from-coaches"],
 html.theme-light a[href^="#3d-maps"],
 html.theme-light a[href^="#strategy-books"],
 html.theme-light a[href^="#map-blueprints"],
 html.theme-light a[href^="#character-meta"],
+html.theme-light a[href^="#weapon-meta"],
+html.theme-light a[href^="#learn-from-coaches"],
 body.theme-light a[href^="#3d-maps"],
 body.theme-light a[href^="#strategy-books"],
 body.theme-light a[href^="#map-blueprints"],
-body.theme-light a[href^="#character-meta"] {
+body.theme-light a[href^="#character-meta"],
+body.theme-light a[href^="#weapon-meta"],
+body.theme-light a[href^="#learn-from-coaches"] {
   background: #FFFFFF !important;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06) !important;
 }
