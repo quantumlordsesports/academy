@@ -1997,3 +1997,331 @@ html.theme-light .footer-dev-date {
   border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
+/* ================================================================
+   QuantumLords — Cinematic Scroll & Tactical HUD Decoration Layer
+   Inspired by lets-scroll & 10k-websites engineering standards
+   ================================================================ */
+
+/* ── 1. Modern CSS Properties Registration ─────────────────────── */
+@property --cyber-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --specular-shift {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
+/* ── 2. View Transitions API Support ───────────────────────────── */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 0.25s cubic-bezier(0.4, 0, 1, 1) both fadeOut;
+}
+
+::view-transition-new(root) {
+  animation: 0.28s cubic-bezier(0, 0, 0.2, 1) both fadeIn;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.995); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.005); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ── 3. Tactical Route Rail (Waypoints HUD) ─────────────────────── */
+.qld-route-rail {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99975;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.qld-route-rail-track {
+  position: absolute;
+  right: 7px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.qld-route-rail-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, #00F0FF, #E8C56A);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+  transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qld-route-rail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.qld-route-rail-item {
+  position: relative;
+}
+
+.qld-route-rail-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  text-decoration: none;
+  pointer-events: auto;
+  padding: 4px 0;
+}
+
+.qld-route-rail-dot {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qld-route-rail-dot-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qld-route-rail-dot-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.6), transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.35s ease;
+}
+
+.qld-route-rail-tag {
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgba(8, 12, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qld-route-rail-tag .code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #00F0FF;
+  font-weight: 700;
+}
+
+.qld-route-rail-tag .label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  color: #F8FAFC;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+/* Hover & Active States */
+.qld-route-rail-link:hover .qld-route-rail-tag,
+.qld-route-rail-link.is-active .qld-route-rail-tag {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.qld-route-rail-link:hover .qld-route-rail-dot-core {
+  background: #00F0FF;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px #00F0FF;
+}
+
+.qld-route-rail-link.is-active .qld-route-rail-dot-core {
+  background: #E8C56A;
+  border-color: #FFD700;
+  transform: scale(1.35);
+  box-shadow: 0 0 12px #E8C56A;
+}
+
+.qld-route-rail-link.is-active .qld-route-rail-dot-glow {
+  opacity: 1;
+  transform: scale(1.4);
+  background: radial-gradient(circle, rgba(232, 197, 106, 0.6), transparent 70%);
+  animation: routeBeaconPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes routeBeaconPulse {
+  0%, 100% { transform: scale(1.2); opacity: 0.5; }
+  50% { transform: scale(1.8); opacity: 0.9; }
+}
+
+/* Light Theme Route Rail Adaptations */
+[data-theme="light"] .qld-route-rail-track,
+html.theme-light .qld-route-rail-track {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .qld-route-rail-dot-core,
+html.theme-light .qld-route-rail-dot-core {
+  background: rgba(15, 23, 42, 0.25);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+[data-theme="light"] .qld-route-rail-tag,
+html.theme-light .qld-route-rail-tag {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .qld-route-rail-tag .label,
+html.theme-light .qld-route-rail-tag .label {
+  color: #0F172A;
+}
+
+/* Hide on mobile & tablet to keep viewport pristine */
+@media (max-width: 1100px) {
+  .qld-route-rail {
+    display: none !important;
+  }
+}
+
+/* ── 4. 3D Cursor Proximity & Specular Light Sheen ─────────────── */
+.bento-card,
+.tree-root-card,
+.map-card-3d,
+.telemetry-card,
+.highlight-card,
+.floating-sponsor-card,
+.comms-card,
+.title-sponsor-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.bento-card::before,
+.tree-root-card::before,
+.map-card-3d::before,
+.telemetry-card::before,
+.highlight-card::before,
+.floating-sponsor-card::before,
+.comms-card::before,
+.title-sponsor-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--cursor-x, -999px) var(--cursor-y, -999px), rgba(0, 240, 255, 0.12), transparent 45%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.bento-card:hover::before,
+.tree-root-card:hover::before,
+.map-card-3d:hover::before,
+.telemetry-card:hover::before,
+.highlight-card:hover::before,
+.floating-sponsor-card:hover::before,
+.comms-card:hover::before,
+.title-sponsor-hero:hover::before {
+  opacity: 1;
+}
+
+/* Gold Cards Proximity Tint */
+.bento-card.gold-accent::before,
+.title-sponsor-hero::before {
+  background: radial-gradient(420px circle at var(--cursor-x, -999px) var(--cursor-y, -999px), rgba(232, 197, 106, 0.15), transparent 45%);
+}
+
+/* Purple Cards Proximity Tint */
+.bento-card.purple-accent::before {
+  background: radial-gradient(420px circle at var(--cursor-x, -999px) var(--cursor-y, -999px), rgba(139, 92, 246, 0.15), transparent 45%);
+}
+
+/* Light Mode Proximity Sheen */
+[data-theme="light"] .bento-card::before,
+[data-theme="light"] .tree-root-card::before,
+[data-theme="light"] .map-card-3d::before,
+[data-theme="light"] .telemetry-card::before,
+[data-theme="light"] .highlight-card::before,
+[data-theme="light"] .floating-sponsor-card::before,
+[data-theme="light"] .comms-card::before,
+html.theme-light .bento-card::before,
+html.theme-light .tree-root-card::before,
+html.theme-light .map-card-3d::before,
+html.theme-light .telemetry-card::before,
+html.theme-light .highlight-card::before,
+html.theme-light .floating-sponsor-card::before,
+html.theme-light .comms-card::before {
+  background: radial-gradient(420px circle at var(--cursor-x, -999px) var(--cursor-y, -999px), rgba(2, 132, 199, 0.08), transparent 45%);
+}
+
+/* ── 5. Native CSS Scroll-Driven Animation Timelines ────────────── */
+@supports (animation-timeline: scroll()) {
+  .scroll-progress i {
+    animation: nativeScrollProgress auto linear;
+    animation-timeline: scroll(root);
+  }
+
+  @keyframes nativeScrollProgress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+/* ── 6. Speed Receipts — Content Visibility for Heavy Sections ──── */
+#sponsors,
+#system-telemetry,
+#contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+/* ── 7. Reduced Motion Fallback Safeguard ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .qld-route-rail-fill,
+  .qld-route-rail-dot-core,
+  .qld-route-rail-tag,
+  .bento-card::before,
+  .tree-root-card::before {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
