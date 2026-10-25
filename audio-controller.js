@@ -2,7 +2,7 @@
  * QuantumLords Esports — Premium Background Music & Soundscape Controller
  * 
  * Features:
- * - 5 Official Free Fire Soundtracks & High-Res Artwork Thumbnails
+ * - 6 Official Free Fire Soundtracks & High-Res Artwork Thumbnails
  * - Initial Full Pill Display on first entrance with "Enable Audio" prompt
  * - Auto-minimizes to a sleek spinning circular disc thumbnail when idle/unused
  * - Expands back to full pill / controls immediately upon click or hover
@@ -54,7 +54,7 @@
     return encodeURI(`${BASE_PATH}${relative}`);
   }
 
-  // 5 Official Tracks with Audio files & Thumbnails
+  // 6 Official Tracks with Audio files & Thumbnails
   const TRACKS = [
     {
       id: 'anthem',
@@ -105,6 +105,16 @@
       audio: safePath('assets/songs/Reunion by DVLM x ALOK x KSHMR  Free Fire 4nniversary Theme Song  Free Fire Official Collaboration.mp3'),
       fallbacks: [],
       thumbnail: safePath('assets/songs/Reunion by DVLM x ALOK x KSHMR  Free Fire 4nniversary Theme Song thumbnail  Free Fire Official Collaboration.jpg')
+    },
+    {
+      id: 'parody',
+      title: 'Free Fire Parody',
+      subtitle: 'Esports Community Anthem',
+      artist: 'Free Fire Official',
+      tag: 'COMMUNITY PARODY',
+      audio: safePath('assets/songs/Free fire Parody.mp3'),
+      fallbacks: [],
+      thumbnail: safePath('assets/songs/Free fire Parody thumbnail.jpg')
     }
   ];
 
